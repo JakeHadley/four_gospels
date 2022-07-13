@@ -5,6 +5,7 @@
 // license that can be found in the LICENSE file or at
 // https://opensource.org/licenses/MIT.
 
+// import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:four_gospels/counter/counter.dart';
@@ -15,6 +16,7 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // logEvent();
     return MaterialApp(
       theme: ThemeData(
         appBarTheme: const AppBarTheme(color: Color(0xFF13B9FF)),
@@ -27,7 +29,13 @@ class App extends StatelessWidget {
         GlobalMaterialLocalizations.delegate,
       ],
       supportedLocales: AppLocalizations.supportedLocales,
+      debugShowCheckedModeBanner: false,
       home: const CounterPage(),
     );
   }
+
+  // Future<void> logEvent() async {
+  //   final analytics = FirebaseAnalytics.instance;
+  //   await analytics.logEvent(name: 'opened_app');
+  // }
 }
