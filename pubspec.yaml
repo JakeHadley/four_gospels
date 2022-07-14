@@ -8,7 +8,11 @@ environment:
 
 dependencies:
   bloc: ^8.0.3
+  cloud_firestore: ^3.3.0
+  firebase_analytics: ^9.1.12
+  firebase_auth: ^3.4.2
   firebase_core: ^1.19.1
+  firebase_crashlytics: ^2.8.5
   flutter:
     sdk: flutter
   flutter_bloc: ^8.0.1
