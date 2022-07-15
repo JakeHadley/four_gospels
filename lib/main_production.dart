@@ -17,5 +17,5 @@ void main() async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
 
-  await bootstrap(() => const App());
+  await bootstrap(App.new);
 }

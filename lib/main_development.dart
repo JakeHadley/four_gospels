@@ -9,5 +9,5 @@ import 'package:four_gospels/app/app.dart';
 import 'package:four_gospels/bootstrap.dart';
 
 void main() {
-  bootstrap(() => const App());
+  bootstrap(App.new);
 }
