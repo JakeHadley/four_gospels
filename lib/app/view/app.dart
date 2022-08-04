@@ -7,9 +7,12 @@
 
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:four_gospels/app/auto_router.dart';
 import 'package:four_gospels/l10n/l10n.dart';
+import 'package:four_gospels/quiz/quiz.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class App extends StatelessWidget {
   App({super.key});
@@ -19,21 +22,25 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     logEvent();
-    return MaterialApp.router(
-      routerDelegate: _appRouter.delegate(),
-      routeInformationParser: _appRouter.defaultRouteParser(),
-      theme: ThemeData(
-        appBarTheme: const AppBarTheme(color: Color(0xFF13B9FF)),
-        colorScheme: ColorScheme.fromSwatch(
-          accentColor: const Color(0xFF13B9FF),
+    return BlocProvider(
+      create: (BuildContext context) => QuizBloc(),
+      child: MaterialApp.router(
+        routerDelegate: _appRouter.delegate(),
+        routeInformationParser: _appRouter.defaultRouteParser(),
+        theme: ThemeData(
+          appBarTheme: const AppBarTheme(color: Color(0xFF13B9FF)),
+          colorScheme: ColorScheme.fromSwatch(
+            accentColor: const Color(0xFF13B9FF),
+          ),
+          textTheme: GoogleFonts.nunitoTextTheme(),
         ),
+        localizationsDelegates: const [
+          AppLocalizations.delegate,
+          GlobalMaterialLocalizations.delegate,
+        ],
+        supportedLocales: AppLocalizations.supportedLocales,
+        debugShowCheckedModeBanner: false,
       ),
-      localizationsDelegates: const [
-        AppLocalizations.delegate,
-        GlobalMaterialLocalizations.delegate,
-      ],
-      supportedLocales: AppLocalizations.supportedLocales,
-      debugShowCheckedModeBanner: false,
     );
   }
 
