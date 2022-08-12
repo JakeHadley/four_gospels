@@ -14,12 +14,24 @@ class SinglePlayerSetupPage extends StatefulWidget {
 
 class _SinglePlayerSetupPageState extends State<SinglePlayerSetupPage> {
   QuestionItem? selectedValue;
-  final List<QuestionItem> items = [
+  final List<DropdownMenuItem<QuestionItem>> items = [
     QuestionItem('10 Questions', 10),
     QuestionItem('15 Questions', 15),
     QuestionItem('20 Questions', 20),
     QuestionItem('25 Questions', 25),
-  ];
+  ]
+      .map(
+        (item) => DropdownMenuItem<QuestionItem>(
+          value: item,
+          child: Text(
+            item.text,
+            style: const TextStyle(
+              fontSize: 14,
+            ),
+          ),
+        ),
+      )
+      .toList();
 
   void onSinglePress() {
     context.router.push(const QuizRoute());
@@ -30,58 +42,63 @@ class _SinglePlayerSetupPageState extends State<SinglePlayerSetupPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        foregroundColor: Colors.black,
+        foregroundColor: Colors.white,
         title: Text(
           'Single Player',
-          style: Theme.of(context).textTheme.headline5,
+          style: Theme.of(context)
+              .textTheme
+              .headline5!
+              .merge(const TextStyle(color: Colors.white)),
         ),
-        backgroundColor: const Color(0xff56b2de),
+        backgroundColor: Theme.of(context).colorScheme.primary,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Text(
-                '10 Points per correct answer',
-                style: Theme.of(context).textTheme.headline5,
-              ),
-              DropdownButton2(
-                isExpanded: true,
-                buttonHeight: 60,
-                hint: Text(
-                  'Select Number of Questions',
-                  style: TextStyle(
-                    fontSize: 14,
-                    color: Theme.of(context).hintColor,
+        child: Column(
+          children: [
+            Expanded(
+              child: Column(
+                children: [
+                  Text(
+                    '10 Points per correct answer',
+                    style: Theme.of(context).textTheme.headline5,
                   ),
-                ),
-                items: items
-                    .map(
-                      (item) => DropdownMenuItem<QuestionItem>(
-                        value: item,
-                        child: Text(
-                          item.text,
-                          style: const TextStyle(
-                            fontSize: 14,
-                          ),
-                        ),
+                  DropdownButton2(
+                    isExpanded: true,
+                    buttonHeight: 60,
+                    hint: Text(
+                      'Select Number of Questions',
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: Theme.of(context).hintColor,
                       ),
-                    )
-                    .toList(),
-                value: selectedValue,
-                onChanged: (QuestionItem? value) {
-                  setState(() {
-                    selectedValue = value;
-                  });
-                },
+                    ),
+                    items: items,
+                    value: selectedValue,
+                    onChanged: (QuestionItem? value) {
+                      setState(() {
+                        selectedValue = value;
+                      });
+                    },
+                  ),
+                ],
               ),
-              ElevatedButton(
-                onPressed: selectedValue != null ? onSinglePress : null,
-                child: const Text('Begin'),
-              )
-            ],
-          ),
+            ),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                minimumSize: const Size(148, 44),
+                elevation: 5,
+              ),
+              onPressed: selectedValue != null ? onSinglePress : null,
+              child: Text(
+                'Begin',
+                style: Theme.of(context)
+                    .textTheme
+                    .headline6!
+                    .merge(const TextStyle(color: Colors.white)),
+              ),
+            )
+          ],
         ),
       ),
     );

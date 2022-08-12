@@ -28,11 +28,22 @@ class App extends StatelessWidget {
         routerDelegate: _appRouter.delegate(),
         routeInformationParser: _appRouter.defaultRouteParser(),
         theme: ThemeData(
-          appBarTheme: const AppBarTheme(color: Color(0xFF13B9FF)),
-          colorScheme: ColorScheme.fromSwatch(
-            accentColor: const Color(0xFF13B9FF),
+          colorScheme: const ColorScheme(
+            primary: Color(0xff130cb7),
+            onPrimary: Colors.white,
+            secondary: Color(0xff56b2de),
+            onSecondary: Color(0xff413D3D),
+            brightness: Brightness.light,
+            onError: Color(0xffC8C8C8),
+            error: Color(0xffAA0000),
+            background: Colors.white,
+            onBackground: Color(0xff616161),
+            surface: Colors.white,
+            onSurface: Color(0xff616161),
           ),
-          textTheme: GoogleFonts.nunitoTextTheme(),
+          textTheme: GoogleFonts.nunitoTextTheme().merge(
+            const TextTheme(),
+          ),
         ),
         localizationsDelegates: const [
           AppLocalizations.delegate,

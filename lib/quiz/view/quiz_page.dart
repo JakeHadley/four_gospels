@@ -18,8 +18,18 @@ class QuizPage extends StatelessWidget {
         }
         if (state is QuizLoadedSingle) {
           return Scaffold(
-            appBar: AppBar(),
             body: Text('loaded ${state.numberOfQuestions}'),
+            appBar: AppBar(
+              foregroundColor: Colors.white,
+              backgroundColor: Theme.of(context).colorScheme.primary,
+              title: Text(
+                'Single Player',
+                style: Theme.of(context)
+                    .textTheme
+                    .headline5!
+                    .merge(const TextStyle(color: Colors.white)),
+              ),
+            ),
           );
         }
         return const Text('Error');
