@@ -8,6 +8,7 @@ part 'quiz_state.dart';
 class QuizBloc extends Bloc<QuizEvent, QuizState> {
   QuizBloc() : super(QuizLoading()) {
     on<QuizSinglePlayerStart>(_onQuizSinglePlayerStart);
+    on<QuizSinglePlayerNextQuestion>(_onQuizSinglePlayerNextQuestion);
   }
 
   void _onQuizSinglePlayerStart(
@@ -15,6 +16,29 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
     Emitter<QuizState> emit,
   ) {
     emit(QuizLoading());
-    emit(QuizLoadedSingle(event.numberOfQuestions));
+    //get questions
+    //send questions with the emit
+    emit(
+      QuizLoadedSingle(
+        numberOfQuestions: event.numberOfQuestions,
+      ),
+    );
+  }
+
+  void _onQuizSinglePlayerNextQuestion(
+    QuizSinglePlayerNextQuestion event,
+    Emitter<QuizState> emit,
+  ) {
+    final prevState = state as QuizLoadedSingle;
+    final numberOfPoints = event.correct
+        ? prevState.numberOfPoints + 10
+        : prevState.numberOfPoints;
+
+    emit(
+      prevState.copyWith(
+        currentQuestionIndex: prevState.currentQuestionIndex + 1,
+        numberOfPoints: numberOfPoints,
+      ),
+    );
   }
 }

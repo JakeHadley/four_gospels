@@ -1,10 +1,44 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'package:four_gospels/quiz/bloc/quiz_bloc.dart';
+import 'package:four_gospels/quiz/quiz_widgets/quiz_widgets.dart';
 
-class QuizPage extends StatelessWidget {
+class QuizPage extends StatefulWidget {
   const QuizPage({super.key});
+
+  @override
+  State<QuizPage> createState() => _QuizPageState();
+}
+
+class _QuizPageState extends State<QuizPage> {
+  bool answered = false;
+  bool correct = false;
+  String answerSelected = '';
+
+  // void onAnswerPressed({required bool isCorrect}) {
+  //   setState(() {
+  //     answered = true;
+  //     correct = isCorrect;
+  //   });
+  // }
+
+  void onAnswerPressed({
+    required String answer,
+    required bool isCorrect,
+  }) {
+    setState(() {
+      answered = true;
+      answerSelected = answer;
+      correct = isCorrect;
+    });
+  }
+
+  void onNextPressed() {
+    answered = false;
+    context
+        .read<QuizBloc>()
+        .add(QuizSinglePlayerNextQuestion(correct: correct));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +52,22 @@ class QuizPage extends StatelessWidget {
         }
         if (state is QuizLoadedSingle) {
           return Scaffold(
-            body: Text('loaded ${state.numberOfQuestions}'),
+            body: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                ProgressBar(
+                  numberOfQuestions: state.numberOfQuestions,
+                  numberOfPoints: state.numberOfPoints,
+                  currentQuestionIndex: state.currentQuestionIndex,
+                ),
+                QuestionView(
+                  onPressed: onAnswerPressed,
+                  answered: answered,
+                  answerSelected: answerSelected,
+                ),
+                NextButton(onPressed: onNextPressed),
+              ],
+            ),
             appBar: AppBar(
               foregroundColor: Colors.white,
               backgroundColor: Theme.of(context).colorScheme.primary,
