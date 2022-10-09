@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:four_gospels/quiz/bloc/quiz_bloc.dart';
-import 'package:four_gospels/quiz/quiz_widgets/quiz_widgets.dart';
+
+import '../widgets/widgets.dart';
 
 class QuizPage extends StatefulWidget {
   const QuizPage({super.key});
@@ -64,8 +65,12 @@ class _QuizPageState extends State<QuizPage> {
                   onPressed: onAnswerPressed,
                   answered: answered,
                   answerSelected: answerSelected,
+                  question: state.questions[state.currentQuestionIndex],
                 ),
-                NextButton(onPressed: onNextPressed),
+                NextButton(
+                  onPressed: onNextPressed,
+                  answered: answered,
+                ),
               ],
             ),
             appBar: AppBar(

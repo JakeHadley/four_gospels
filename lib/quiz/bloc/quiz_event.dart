@@ -9,12 +9,13 @@ abstract class QuizEvent extends Equatable {
 }
 
 class QuizSinglePlayerStart extends QuizEvent {
-  const QuizSinglePlayerStart(this.numberOfQuestions);
+  const QuizSinglePlayerStart(this.numberOfQuestions, this.mode);
 
   final int numberOfQuestions;
+  final Mode mode;
 
   @override
-  List<Object?> get props => [numberOfQuestions];
+  List<Object?> get props => [numberOfQuestions, mode];
 }
 
 class QuizSinglePlayerNextQuestion extends QuizEvent {

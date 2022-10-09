@@ -13,3 +13,5 @@ Setup localization correctly
 Setup tests
 
 Change icons
+
+Setup offline indicator

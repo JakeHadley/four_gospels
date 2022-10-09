@@ -8,6 +8,7 @@ class AnswerButton extends StatelessWidget {
     required this.onPressed,
     required this.answerKey,
     required this.answerSelected,
+    required this.answerText,
   });
 
   final bool answered;
@@ -18,6 +19,14 @@ class AnswerButton extends StatelessWidget {
   }) onPressed;
   final String answerKey;
   final String answerSelected;
+  final String answerText;
+
+  void onButtonPressed() {
+    onPressed(
+      answer: answerKey,
+      isCorrect: isCorrect,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,10 +42,7 @@ class AnswerButton extends StatelessWidget {
     return FractionallySizedBox(
       widthFactor: 0.8,
       child: GestureDetector(
-        onTap: () => onPressed(
-          answer: answerKey,
-          isCorrect: isCorrect,
-        ),
+        onTap: !answered ? onButtonPressed : null,
         child: AnimatedContainer(
           padding: const EdgeInsets.all(8),
           margin: const EdgeInsets.all(8),
@@ -46,11 +52,8 @@ class AnswerButton extends StatelessWidget {
               Radius.circular(20),
             ),
           ),
-          duration: const Duration(microseconds: 300),
-          child: const Text(
-            // 'A. LOTS OF text',
-            'Lots of text here that describes something about the way the answer is going to be written in a large format',
-          ),
+          duration: const Duration(seconds: 1),
+          child: Text(answerText),
         ),
       ),
     );

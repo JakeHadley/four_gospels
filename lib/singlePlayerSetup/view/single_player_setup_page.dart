@@ -1,9 +1,11 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:four_gospels/app/auto_router.dart';
+import 'package:four_gospels/quiz/models/mode.dart';
 import 'package:four_gospels/quiz/quiz.dart';
+import 'package:four_gospels/singlePlayerSetup/models.dart';
+import 'package:four_gospels/singlePlayerSetup/widgets/widgets.dart';
 
 class SinglePlayerSetupPage extends StatefulWidget {
   const SinglePlayerSetupPage({super.key});
@@ -13,12 +15,14 @@ class SinglePlayerSetupPage extends StatefulWidget {
 }
 
 class _SinglePlayerSetupPageState extends State<SinglePlayerSetupPage> {
-  QuestionItem? selectedValue;
-  final List<DropdownMenuItem<QuestionItem>> items = [
-    QuestionItem('10 Questions', 10),
-    QuestionItem('15 Questions', 15),
-    QuestionItem('20 Questions', 20),
-    QuestionItem('25 Questions', 25),
+  QuestionItem? selectedQuestionItem;
+  ModeItem? selectedModeItem;
+
+  final List<DropdownMenuItem<QuestionItem>> questionItems = [
+    const QuestionItem('10 Questions', 10),
+    const QuestionItem('15 Questions', 15),
+    const QuestionItem('20 Questions', 20),
+    const QuestionItem('25 Questions', 25),
   ]
       .map(
         (item) => DropdownMenuItem<QuestionItem>(
@@ -33,25 +37,42 @@ class _SinglePlayerSetupPageState extends State<SinglePlayerSetupPage> {
       )
       .toList();
 
+  final List<DropdownMenuItem<ModeItem>> modeItems = [
+    const ModeItem('Easy', Mode.easy),
+    const ModeItem('Moderate', Mode.moderate),
+    const ModeItem('Hard', Mode.hard),
+  ]
+      .map(
+        (item) => DropdownMenuItem<ModeItem>(
+          value: item,
+          child: Text(
+            item.text,
+            style: const TextStyle(
+              fontSize: 14,
+            ),
+          ),
+        ),
+      )
+      .toList();
+
   void onSinglePress() {
     context.router.push(const QuizRoute());
-    context.read<QuizBloc>().add(QuizSinglePlayerStart(selectedValue!.num));
+    context.read<QuizBloc>().add(
+          QuizSinglePlayerStart(
+            selectedQuestionItem!.num,
+            selectedModeItem!.mode,
+          ),
+        );
+  }
+
+  bool validate() {
+    return selectedQuestionItem != null && selectedModeItem != null;
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        foregroundColor: Colors.white,
-        title: Text(
-          'Single Player',
-          style: Theme.of(context)
-              .textTheme
-              .headline5!
-              .merge(const TextStyle(color: Colors.white)),
-        ),
-        backgroundColor: Theme.of(context).colorScheme.primary,
-      ),
+      appBar: const SinglePlayerAppBar(),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
@@ -63,21 +84,23 @@ class _SinglePlayerSetupPageState extends State<SinglePlayerSetupPage> {
                     '10 Points per correct answer',
                     style: Theme.of(context).textTheme.headline5,
                   ),
-                  DropdownButton2(
-                    isExpanded: true,
-                    buttonHeight: 60,
-                    hint: Text(
-                      'Select Number of Questions',
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: Theme.of(context).hintColor,
-                      ),
-                    ),
-                    items: items,
-                    value: selectedValue,
-                    onChanged: (QuestionItem? value) {
+                  DropdownSelector<QuestionItem>(
+                    text: 'Select number of questions',
+                    items: questionItems,
+                    value: selectedQuestionItem,
+                    onChanged: (value) {
                       setState(() {
-                        selectedValue = value;
+                        selectedQuestionItem = value;
+                      });
+                    },
+                  ),
+                  DropdownSelector<ModeItem>(
+                    text: 'Select difficulty',
+                    items: modeItems,
+                    value: selectedModeItem,
+                    onChanged: (value) {
+                      setState(() {
+                        selectedModeItem = value;
                       });
                     },
                   ),
@@ -89,7 +112,7 @@ class _SinglePlayerSetupPageState extends State<SinglePlayerSetupPage> {
                 minimumSize: const Size(148, 44),
                 elevation: 5,
               ),
-              onPressed: selectedValue != null ? onSinglePress : null,
+              onPressed: validate() ? onSinglePress : null,
               child: Text(
                 'Begin',
                 style: Theme.of(context)
@@ -103,11 +126,4 @@ class _SinglePlayerSetupPageState extends State<SinglePlayerSetupPage> {
       ),
     );
   }
-}
-
-class QuestionItem {
-  QuestionItem(this.text, this.num);
-
-  final String text;
-  final int num;
 }

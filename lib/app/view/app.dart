@@ -12,6 +12,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:four_gospels/app/auto_router.dart';
 import 'package:four_gospels/l10n/l10n.dart';
 import 'package:four_gospels/quiz/quiz.dart';
+import 'package:four_gospels/services/quiz_service.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class App extends StatelessWidget {
@@ -22,35 +23,50 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     logEvent();
-    return BlocProvider(
-      create: (BuildContext context) => QuizBloc(),
-      child: MaterialApp.router(
-        routerDelegate: _appRouter.delegate(),
-        routeInformationParser: _appRouter.defaultRouteParser(),
-        theme: ThemeData(
-          colorScheme: const ColorScheme(
-            primary: Color(0xff130cb7),
-            onPrimary: Colors.white,
-            secondary: Color(0xff56b2de),
-            onSecondary: Color(0xff413D3D),
-            brightness: Brightness.light,
-            onError: Color(0xffC8C8C8),
-            error: Color(0xffAA0000),
-            background: Colors.white,
-            onBackground: Color(0xff616161),
-            surface: Colors.white,
-            onSurface: Color(0xff616161),
-          ),
-          textTheme: GoogleFonts.nunitoTextTheme().merge(
-            const TextTheme(),
-          ),
+    return MultiRepositoryProvider(
+      providers: [
+        RepositoryProvider<QuizService>(
+          create: (context) => QuizService(),
         ),
-        localizationsDelegates: const [
-          AppLocalizations.delegate,
-          GlobalMaterialLocalizations.delegate,
+      ],
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (BuildContext context) {
+              final quizService = RepositoryProvider.of<QuizService>(context);
+
+              return QuizBloc(quizService);
+            },
+          ),
         ],
-        supportedLocales: AppLocalizations.supportedLocales,
-        debugShowCheckedModeBanner: false,
+        child: MaterialApp.router(
+          routerDelegate: _appRouter.delegate(),
+          routeInformationParser: _appRouter.defaultRouteParser(),
+          theme: ThemeData(
+            colorScheme: const ColorScheme(
+              primary: Color(0xff130cb7),
+              onPrimary: Colors.white,
+              secondary: Color(0xff56b2de),
+              onSecondary: Color(0xff413D3D),
+              brightness: Brightness.light,
+              onError: Color(0xffC8C8C8),
+              error: Color(0xffAA0000),
+              background: Colors.white,
+              onBackground: Color(0xff616161),
+              surface: Colors.white,
+              onSurface: Color(0xff616161),
+            ),
+            textTheme: GoogleFonts.nunitoTextTheme().merge(
+              const TextTheme(),
+            ),
+          ),
+          localizationsDelegates: const [
+            AppLocalizations.delegate,
+            GlobalMaterialLocalizations.delegate,
+          ],
+          supportedLocales: AppLocalizations.supportedLocales,
+          debugShowCheckedModeBanner: false,
+        ),
       ),
     );
   }
