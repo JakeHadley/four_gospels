@@ -13,14 +13,6 @@ part 'auto_router.gr.dart';
     AutoRoute(page: HomePage, initial: true),
     AutoRoute(page: SinglePlayerSetupPage),
     AutoRoute(page: QuizPage)
-    // AutoRoute(page: SplashPage),
-    // AutoRoute(
-    //   page: HomeWrapperPage,
-    //   children: [
-    //     AutoRoute(page: HomePage, initial: true),
-    //     AutoRoute(page: FormPage),
-    //   ],
-    // ),
   ],
 )
 class AppRouter extends _$AppRouter {}

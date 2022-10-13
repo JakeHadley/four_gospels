@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:four_gospels/quiz/bloc/quiz_bloc.dart';
 
 class NextButton extends StatelessWidget {
   const NextButton({
     super.key,
-    required this.onPressed,
-    required this.answered,
+    required this.currentQuestionAnswered,
   });
 
-  final VoidCallback onPressed;
-  final bool answered;
+  final bool currentQuestionAnswered;
 
   @override
   Widget build(BuildContext context) {
     return AnimatedOpacity(
-      opacity: !answered ? 0 : 1,
-      duration: answered
+      opacity: !currentQuestionAnswered ? 0 : 1,
+      duration: currentQuestionAnswered
           ? const Duration(seconds: 3)
           : const Duration(microseconds: 1),
       curve: Curves.easeInQuint,
@@ -22,7 +22,9 @@ class NextButton extends StatelessWidget {
         margin: const EdgeInsets.symmetric(vertical: 8),
         decoration: const BoxDecoration(color: Colors.blueAccent),
         child: TextButton(
-          onPressed: onPressed,
+          onPressed: () => context
+              .read<QuizBloc>()
+              .add(const QuizSinglePlayerNextQuestion()),
           child: const Text('Next'),
         ),
       ),

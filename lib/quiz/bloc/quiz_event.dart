@@ -19,10 +19,18 @@ class QuizSinglePlayerStart extends QuizEvent {
 }
 
 class QuizSinglePlayerNextQuestion extends QuizEvent {
-  const QuizSinglePlayerNextQuestion({required this.correct});
-
-  final bool correct;
+  const QuizSinglePlayerNextQuestion();
 
   @override
-  List<Object?> get props => [correct];
+  List<Object?> get props => [];
+}
+
+class QuizSinglePlayerAnswered extends QuizEvent {
+  const QuizSinglePlayerAnswered({
+    required this.selectedAnswerKey,
+    required this.isCorrect,
+  });
+
+  final String selectedAnswerKey;
+  final bool isCorrect;
 }

@@ -13,6 +13,7 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
         super(QuizLoading()) {
     on<QuizSinglePlayerStart>(_onQuizSinglePlayerStart);
     on<QuizSinglePlayerNextQuestion>(_onQuizSinglePlayerNextQuestion);
+    on<QuizSinglePlayerAnswered>(_onQuizSinglePlayerAnswered);
   }
   final QuizService _quizService;
 
@@ -32,6 +33,7 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
         numberOfQuestions: event.numberOfQuestions,
         questions: questions,
         mode: event.mode,
+        answerList: _buildAnswerList(questions[0]),
       ),
     );
   }
@@ -41,15 +43,51 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
     Emitter<QuizState> emit,
   ) {
     final prevState = state as QuizLoadedSingle;
-    final numberOfPoints = event.correct
+    final numberOfPoints = prevState.isCorrect
         ? prevState.numberOfPoints + 10
         : prevState.numberOfPoints;
+    final nextQuestionIndex = prevState.currentQuestionIndex + 1;
+
+    if (nextQuestionIndex == prevState.numberOfQuestions) {
+      emit(
+        QuizEnded(
+          numberOfPoints: numberOfPoints,
+        ),
+      );
+    }
 
     emit(
       prevState.copyWith(
-        currentQuestionIndex: prevState.currentQuestionIndex + 1,
         numberOfPoints: numberOfPoints,
+        currentQuestionIndex: nextQuestionIndex,
+        currentQuestionAnswered: false,
+        selectedAnswerKey: '',
+        isCorrect: false,
+        answerList: _buildAnswerList(prevState.questions[nextQuestionIndex]),
       ),
     );
   }
+
+  void _onQuizSinglePlayerAnswered(
+    QuizSinglePlayerAnswered event,
+    Emitter<QuizState> emit,
+  ) {
+    final prevState = state as QuizLoadedSingle;
+
+    emit(
+      prevState.copyWith(
+        currentQuestionAnswered: true,
+        selectedAnswerKey: event.selectedAnswerKey,
+        isCorrect: event.isCorrect,
+      ),
+    );
+  }
+
+  List<Answer> _buildAnswerList(Question question) => List<Answer>.from([
+        Answer(isCorrect: true, key: 'A', text: question.correctAnswer),
+        Answer(isCorrect: false, key: 'B', text: question.wrongAnswer1),
+        Answer(isCorrect: false, key: 'C', text: question.wrongAnswer2),
+        Answer(isCorrect: false, key: 'D', text: question.wrongAnswer3),
+      ])
+        ..shuffle();
 }
