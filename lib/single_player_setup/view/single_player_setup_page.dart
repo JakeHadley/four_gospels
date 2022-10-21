@@ -4,8 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:four_gospels/app/auto_router.dart';
 import 'package:four_gospels/quiz/models/mode.dart';
 import 'package:four_gospels/quiz/quiz.dart';
-import 'package:four_gospels/singlePlayerSetup/models.dart';
-import 'package:four_gospels/singlePlayerSetup/widgets/widgets.dart';
+import 'package:four_gospels/single_player_setup/models.dart';
+import 'package:four_gospels/single_player_setup/widgets/widgets.dart';
 
 class SinglePlayerSetupPage extends StatefulWidget {
   const SinglePlayerSetupPage({super.key});

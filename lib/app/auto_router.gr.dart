@@ -28,6 +28,10 @@ class _$AppRouter extends RootStackRouter {
     QuizRoute.name: (routeData) {
       return MaterialPageX<dynamic>(
           routeData: routeData, child: const QuizPage());
+    },
+    EndGameRoute.name: (routeData) {
+      return MaterialPageX<dynamic>(
+          routeData: routeData, child: const EndGamePage());
     }
   };
 
@@ -36,7 +40,8 @@ class _$AppRouter extends RootStackRouter {
         RouteConfig(HomeRoute.name, path: '/'),
         RouteConfig(SinglePlayerSetupRoute.name,
             path: '/single-player-setup-page'),
-        RouteConfig(QuizRoute.name, path: '/quiz-page')
+        RouteConfig(QuizRoute.name, path: '/quiz-page'),
+        RouteConfig(EndGameRoute.name, path: '/end-game-page')
       ];
 }
 
@@ -63,4 +68,12 @@ class QuizRoute extends PageRouteInfo<void> {
   const QuizRoute() : super(QuizRoute.name, path: '/quiz-page');
 
   static const String name = 'QuizRoute';
+}
+
+/// generated route for
+/// [EndGamePage]
+class EndGameRoute extends PageRouteInfo<void> {
+  const EndGameRoute() : super(EndGameRoute.name, path: '/end-game-page');
+
+  static const String name = 'EndGameRoute';
 }

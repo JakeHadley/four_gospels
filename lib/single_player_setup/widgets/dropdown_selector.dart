@@ -1,7 +1,6 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
-
-import 'package:four_gospels/singlePlayerSetup/models.dart';
+import 'package:four_gospels/single_player_setup/models.dart';
 
 class DropdownSelector<T extends Item> extends StatelessWidget {
   const DropdownSelector({
