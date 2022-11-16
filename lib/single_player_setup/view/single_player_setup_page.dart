@@ -2,8 +2,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:four_gospels/app/auto_router.dart';
-import 'package:four_gospels/quiz/models/mode.dart';
-import 'package:four_gospels/quiz/quiz.dart';
+import 'package:four_gospels/quiz/bloc/quiz_bloc.dart';
+import 'package:four_gospels/single_player_setup/item_config.dart';
 import 'package:four_gospels/single_player_setup/models.dart';
 import 'package:four_gospels/single_player_setup/widgets/widgets.dart';
 
@@ -18,30 +18,22 @@ class _SinglePlayerSetupPageState extends State<SinglePlayerSetupPage> {
   QuestionItem? selectedQuestionItem;
   ModeItem? selectedModeItem;
 
-  final List<DropdownMenuItem<QuestionItem>> questionItems = [
-    const QuestionItem('10 Questions', 10),
-    const QuestionItem('15 Questions', 15),
-    const QuestionItem('20 Questions', 20),
-    const QuestionItem('25 Questions', 25),
-  ]
-      .map(
-        (item) => DropdownMenuItem<QuestionItem>(
-          value: item,
-          child: Text(
-            item.text,
-            style: const TextStyle(
-              fontSize: 14,
+  final List<DropdownMenuItem<QuestionItem>> dropdownQuestionItems =
+      questionItems
+          .map(
+            (item) => DropdownMenuItem<QuestionItem>(
+              value: item,
+              child: Text(
+                item.text,
+                style: const TextStyle(
+                  fontSize: 14,
+                ),
+              ),
             ),
-          ),
-        ),
-      )
-      .toList();
+          )
+          .toList();
 
-  final List<DropdownMenuItem<ModeItem>> modeItems = [
-    const ModeItem('Easy', Mode.easy),
-    const ModeItem('Moderate', Mode.moderate),
-    const ModeItem('Hard', Mode.hard),
-  ]
+  final List<DropdownMenuItem<ModeItem>> dropdownModeItems = modeItems
       .map(
         (item) => DropdownMenuItem<ModeItem>(
           value: item,
@@ -86,7 +78,7 @@ class _SinglePlayerSetupPageState extends State<SinglePlayerSetupPage> {
                   ),
                   DropdownSelector<QuestionItem>(
                     text: 'Select number of questions',
-                    items: questionItems,
+                    items: dropdownQuestionItems,
                     value: selectedQuestionItem,
                     onChanged: (value) {
                       setState(() {
@@ -96,7 +88,7 @@ class _SinglePlayerSetupPageState extends State<SinglePlayerSetupPage> {
                   ),
                   DropdownSelector<ModeItem>(
                     text: 'Select difficulty',
-                    items: modeItems,
+                    items: dropdownModeItems,
                     value: selectedModeItem,
                     onChanged: (value) {
                       setState(() {
