@@ -398,6 +398,7 @@
 				ENABLE_BITCODE = NO;
 				FLAVOR_APP_NAME = "Four Gospels";
 				INFOPLIST_FILE = Runner/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Four Gospels Quiz";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -532,6 +533,7 @@
 				ENABLE_BITCODE = NO;
 				FLAVOR_APP_NAME = "Four Gospels";
 				INFOPLIST_FILE = Runner/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Four Gospels Quiz";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -556,6 +558,7 @@
 				ENABLE_BITCODE = NO;
 				FLAVOR_APP_NAME = "Four Gospels";
 				INFOPLIST_FILE = Runner/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Four Gospels Quiz";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -636,6 +639,7 @@
 				ENABLE_BITCODE = NO;
 				FLAVOR_APP_NAME = "[DEV] Four Gospels";
 				INFOPLIST_FILE = Runner/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Four Gospels Quiz";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -714,6 +718,7 @@
 				ENABLE_BITCODE = NO;
 				FLAVOR_APP_NAME = "[DEV] Four Gospels";
 				INFOPLIST_FILE = Runner/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Four Gospels Quiz";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -789,6 +794,7 @@
 				ENABLE_BITCODE = NO;
 				FLAVOR_APP_NAME = "[DEV] Four Gospels";
 				INFOPLIST_FILE = Runner/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Four Gospels Quiz";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -869,6 +875,7 @@
 				ENABLE_BITCODE = NO;
 				FLAVOR_APP_NAME = "[STG] Four Gospels";
 				INFOPLIST_FILE = Runner/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Four Gospels Quiz";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -947,6 +954,7 @@
 				ENABLE_BITCODE = NO;
 				FLAVOR_APP_NAME = "[STG] Four Gospels";
 				INFOPLIST_FILE = Runner/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Four Gospels Quiz";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1022,6 +1030,7 @@
 				ENABLE_BITCODE = NO;
 				FLAVOR_APP_NAME = "[STG] Four Gospels";
 				INFOPLIST_FILE = Runner/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Four Gospels Quiz";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
