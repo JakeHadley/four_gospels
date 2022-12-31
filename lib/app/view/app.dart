@@ -43,21 +43,110 @@ class App extends StatelessWidget {
           routerDelegate: _appRouter.delegate(),
           routeInformationParser: _appRouter.defaultRouteParser(),
           theme: ThemeData(
+            primaryColor: const Color(0xff144C6E), //primary default
+            primaryColorDark: const Color(0xff0F3953), //primary dark
+            primaryColorLight: const Color(0xff89A6B7), //primary light
+            scaffoldBackgroundColor: const Color(0xffE0E0DF), //bg
+            iconTheme:
+                const IconThemeData(color: Color(0xffFFFFFF)), //white icon
+            primaryIconTheme:
+                const IconThemeData(color: Color(0xff030303)), //black icon
+            cardColor: const Color(0xffFFFFFF), //primary lightest
+            errorColor: const Color(0xffD00000), //error default
+            disabledColor: const Color(0xff2E2E2E), //gray default
+
             colorScheme: const ColorScheme(
-              primary: Color(0xff130cb7),
+              primary: Color(0xff2A7221), //success default
+              primaryContainer: Color(0xff205519), //success dark
+              secondary: Color(0xff266B6B), //accent1 dark
+              secondaryContainer: Color(0xff99C7C7), //accent1 light
+              tertiary: Color(0xff2B78B2), //accent2 dark
+              tertiaryContainer: Color(0xff9CCFF6), //accent2 light
+
               onPrimary: Colors.white,
-              secondary: Color(0xff56b2de),
               onSecondary: Color(0xff413D3D),
               brightness: Brightness.light,
               onError: Color(0xffC8C8C8),
               error: Color(0xffAA0000),
-              background: Colors.white,
+              background: Color(0xffE0E0DF),
               onBackground: Color(0xff616161),
               surface: Colors.white,
               onSurface: Color(0xff616161),
             ),
-            textTheme: GoogleFonts.nunitoTextTheme().merge(
-              const TextTheme(),
+            appBarTheme: AppBarTheme(
+              color: const Color(0xff144C6E), //primary default
+              titleTextStyle: GoogleFonts.getFont('KoHo').merge(
+                const TextStyle(
+                  fontSize: 34,
+                  color: Color(0xffFFFFFF),
+                  fontWeight: FontWeight.w600,
+                  letterSpacing: 4,
+                ),
+              ),
+            ),
+            textTheme: GoogleFonts.getTextTheme(
+              'KoHo',
+              const TextTheme(
+                //subtitle
+                subtitle1: TextStyle(
+                  fontSize: 22,
+                  color: Color(0xff585858),
+                  fontWeight: FontWeight.bold,
+                ),
+                //question subtitle
+                subtitle2: TextStyle(
+                  fontSize: 22,
+                  color: Color(0xff2E2E2E),
+                ),
+                //start button
+                headline1: TextStyle(
+                  fontSize: 64,
+                  color: Color(0xffFFFFFF),
+                ),
+                //num questions labels
+                headline2: TextStyle(
+                  fontSize: 56,
+                  color: Color(0xff144C6E),
+                ),
+                //option labels, submit
+                headline4: TextStyle(
+                  fontSize: 34,
+                  color: Color(0xffFFFFFF),
+                  fontWeight: FontWeight.w600,
+                ),
+                //question
+                headline5: TextStyle(
+                  fontSize: 24,
+                  color: Color(0xff030303),
+                  fontWeight: FontWeight.bold,
+                ),
+                //answers
+                bodyText1: TextStyle(
+                  fontSize: 22,
+                  color: Color(0xff030303),
+                  fontWeight: FontWeight.w500,
+                ),
+
+                //
+                headline3: TextStyle(
+                  fontSize: 45,
+                ),
+                headline6: TextStyle(
+                  fontSize: 20,
+                ),
+                overline: TextStyle(
+                  fontSize: 10,
+                ),
+                bodyText2: TextStyle(
+                  fontSize: 14,
+                ),
+                button: TextStyle(
+                  fontSize: 14,
+                ),
+                caption: TextStyle(
+                  fontSize: 12,
+                ),
+              ),
             ),
           ),
           localizationsDelegates: const [
