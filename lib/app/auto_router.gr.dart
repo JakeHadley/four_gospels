@@ -21,9 +21,15 @@ class _$AppRouter extends RootStackRouter {
       return MaterialPageX<dynamic>(
           routeData: routeData, child: const HomePage());
     },
-    SinglePlayerSetupRoute.name: (routeData) {
+    DifficultyOptionsRoute.name: (routeData) {
       return MaterialPageX<dynamic>(
-          routeData: routeData, child: const SinglePlayerSetupPage());
+          routeData: routeData, child: const DifficultyOptionsPage());
+    },
+    NumberQuestionsRoute.name: (routeData) {
+      final args = routeData.argsAs<NumberQuestionsRouteArgs>();
+      return MaterialPageX<dynamic>(
+          routeData: routeData,
+          child: NumberQuestionsPage(key: args.key, mode: args.mode));
     },
     QuizRoute.name: (routeData) {
       return MaterialPageX<dynamic>(
@@ -38,8 +44,9 @@ class _$AppRouter extends RootStackRouter {
   @override
   List<RouteConfig> get routes => [
         RouteConfig(HomeRoute.name, path: '/'),
-        RouteConfig(SinglePlayerSetupRoute.name,
-            path: '/single-player-setup-page'),
+        RouteConfig(DifficultyOptionsRoute.name,
+            path: '/difficulty-options-page'),
+        RouteConfig(NumberQuestionsRoute.name, path: '/number-questions-page'),
         RouteConfig(QuizRoute.name, path: '/quiz-page'),
         RouteConfig(EndGameRoute.name, path: '/end-game-page')
       ];
@@ -54,12 +61,36 @@ class HomeRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [SinglePlayerSetupPage]
-class SinglePlayerSetupRoute extends PageRouteInfo<void> {
-  const SinglePlayerSetupRoute()
-      : super(SinglePlayerSetupRoute.name, path: '/single-player-setup-page');
+/// [DifficultyOptionsPage]
+class DifficultyOptionsRoute extends PageRouteInfo<void> {
+  const DifficultyOptionsRoute()
+      : super(DifficultyOptionsRoute.name, path: '/difficulty-options-page');
 
-  static const String name = 'SinglePlayerSetupRoute';
+  static const String name = 'DifficultyOptionsRoute';
+}
+
+/// generated route for
+/// [NumberQuestionsPage]
+class NumberQuestionsRoute extends PageRouteInfo<NumberQuestionsRouteArgs> {
+  NumberQuestionsRoute({Key? key, required Mode mode})
+      : super(NumberQuestionsRoute.name,
+            path: '/number-questions-page',
+            args: NumberQuestionsRouteArgs(key: key, mode: mode));
+
+  static const String name = 'NumberQuestionsRoute';
+}
+
+class NumberQuestionsRouteArgs {
+  const NumberQuestionsRouteArgs({this.key, required this.mode});
+
+  final Key? key;
+
+  final Mode mode;
+
+  @override
+  String toString() {
+    return 'NumberQuestionsRouteArgs{key: $key, mode: $mode}';
+  }
 }
 
 /// generated route for
