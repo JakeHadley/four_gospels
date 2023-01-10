@@ -31,6 +31,15 @@ class _$AppRouter extends RootStackRouter {
           routeData: routeData,
           child: NumberQuestionsPage(key: args.key, mode: args.mode));
     },
+    ConfirmSettingsRoute.name: (routeData) {
+      final args = routeData.argsAs<ConfirmSettingsRouteArgs>();
+      return MaterialPageX<dynamic>(
+          routeData: routeData,
+          child: ConfirmSettingsPage(
+              key: args.key,
+              mode: args.mode,
+              numberQuestions: args.numberQuestions));
+    },
     QuizRoute.name: (routeData) {
       return MaterialPageX<dynamic>(
           routeData: routeData, child: const QuizPage());
@@ -47,6 +56,7 @@ class _$AppRouter extends RootStackRouter {
         RouteConfig(DifficultyOptionsRoute.name,
             path: '/difficulty-options-page'),
         RouteConfig(NumberQuestionsRoute.name, path: '/number-questions-page'),
+        RouteConfig(ConfirmSettingsRoute.name, path: '/confirm-settings-page'),
         RouteConfig(QuizRoute.name, path: '/quiz-page'),
         RouteConfig(EndGameRoute.name, path: '/end-game-page')
       ];
@@ -90,6 +100,35 @@ class NumberQuestionsRouteArgs {
   @override
   String toString() {
     return 'NumberQuestionsRouteArgs{key: $key, mode: $mode}';
+  }
+}
+
+/// generated route for
+/// [ConfirmSettingsPage]
+class ConfirmSettingsRoute extends PageRouteInfo<ConfirmSettingsRouteArgs> {
+  ConfirmSettingsRoute(
+      {Key? key, required Mode mode, required int numberQuestions})
+      : super(ConfirmSettingsRoute.name,
+            path: '/confirm-settings-page',
+            args: ConfirmSettingsRouteArgs(
+                key: key, mode: mode, numberQuestions: numberQuestions));
+
+  static const String name = 'ConfirmSettingsRoute';
+}
+
+class ConfirmSettingsRouteArgs {
+  const ConfirmSettingsRouteArgs(
+      {this.key, required this.mode, required this.numberQuestions});
+
+  final Key? key;
+
+  final Mode mode;
+
+  final int numberQuestions;
+
+  @override
+  String toString() {
+    return 'ConfirmSettingsRouteArgs{key: $key, mode: $mode, numberQuestions: $numberQuestions}';
   }
 }
 

@@ -7,16 +7,9 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: const CustomAppBar(height: 75, title: 'New Testament Quiz'),
-      body: SingleChildScrollView(
-        child: Column(
-          children: const [
-            Subtitle(text: 'Select a Quiz'),
-            GameOptions(),
-          ],
-        ),
-      ),
+    return const Scaffold(
+      appBar: CustomAppBar(height: 75, title: 'New Testament Quiz'),
+      body: GameOptions(),
     );
   }
 }

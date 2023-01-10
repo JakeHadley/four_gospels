@@ -79,7 +79,7 @@ class App extends StatelessWidget {
                 const TextStyle(
                   fontSize: 34,
                   color: Color(0xffFFFFFF),
-                  fontWeight: FontWeight.w600,
+                  fontWeight: FontWeight.w900,
                   letterSpacing: 4,
                 ),
               ),
@@ -102,11 +102,13 @@ class App extends StatelessWidget {
                 headline1: TextStyle(
                   fontSize: 64,
                   color: Color(0xffFFFFFF),
+                  fontWeight: FontWeight.w600,
                 ),
                 //num questions labels
                 headline2: TextStyle(
-                  fontSize: 56,
+                  fontSize: 58,
                   color: Color(0xff144C6E),
+                  fontWeight: FontWeight.w700,
                 ),
                 //option labels, submit
                 headline4: TextStyle(

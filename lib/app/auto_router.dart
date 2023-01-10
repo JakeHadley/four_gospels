@@ -13,6 +13,7 @@ part 'auto_router.gr.dart';
     AutoRoute(page: HomePage, initial: true),
     AutoRoute(page: DifficultyOptionsPage),
     AutoRoute(page: NumberQuestionsPage),
+    AutoRoute(page: ConfirmSettingsPage),
     AutoRoute(page: QuizPage),
     AutoRoute(page: EndGamePage),
   ],
