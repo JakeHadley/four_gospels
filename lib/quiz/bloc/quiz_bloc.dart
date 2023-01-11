@@ -10,7 +10,7 @@ part 'quiz_state.dart';
 class QuizBloc extends Bloc<QuizEvent, QuizState> {
   QuizBloc(QuizService quizService)
       : _quizService = quizService,
-        super(QuizLoading()) {
+        super(QuizInitial()) {
     on<QuizSinglePlayerStart>(_onQuizSinglePlayerStart);
     on<QuizSinglePlayerNextQuestion>(_onQuizSinglePlayerNextQuestion);
     on<QuizSinglePlayerAnswered>(_onQuizSinglePlayerAnswered);

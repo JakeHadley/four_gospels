@@ -8,6 +8,8 @@ abstract class QuizState extends Equatable {
   List<Object?> get props => [];
 }
 
+class QuizInitial extends QuizState {}
+
 class QuizLoadedSingle extends QuizState {
   const QuizLoadedSingle({
     required this.numberOfQuestions,
