@@ -52,8 +52,9 @@ class App extends StatelessWidget {
             primaryIconTheme:
                 const IconThemeData(color: Color(0xff030303)), //black icon
             cardColor: const Color(0xffFFFFFF), //primary lightest
+            dividerColor: const Color(0xff0A2637), //primary darker
             errorColor: const Color(0xffD00000), //error default
-            disabledColor: const Color(0xff2E2E2E), //gray default
+            disabledColor: const Color(0xff979797), //gray default
 
             colorScheme: const ColorScheme(
               primary: Color(0xff2A7221), //success default

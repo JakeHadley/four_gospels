@@ -54,18 +54,18 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
           numberOfPoints: numberOfPoints,
         ),
       );
+    } else {
+      emit(
+        prevState.copyWith(
+          numberOfPoints: numberOfPoints,
+          currentQuestionIndex: nextQuestionIndex,
+          currentQuestionAnswered: false,
+          selectedAnswerKey: '',
+          isCorrect: false,
+          answerList: _buildAnswerList(prevState.questions[nextQuestionIndex]),
+        ),
+      );
     }
-
-    emit(
-      prevState.copyWith(
-        numberOfPoints: numberOfPoints,
-        currentQuestionIndex: nextQuestionIndex,
-        currentQuestionAnswered: false,
-        selectedAnswerKey: '',
-        isCorrect: false,
-        answerList: _buildAnswerList(prevState.questions[nextQuestionIndex]),
-      ),
-    );
   }
 
   void _onQuizSinglePlayerAnswered(

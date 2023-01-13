@@ -24,42 +24,43 @@ class GameOptions extends StatelessWidget {
       ScaffoldMessenger.of(context).showSnackBar(_snackBar);
     }
 
-    return SafeArea(
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            const Subtitle(text: 'Select a Quiz'),
-            ListView(
-              physics: const BouncingScrollPhysics(),
-              shrinkWrap: true,
-              children: [
-                OptionItem(
-                  text: 'Single Player',
-                  action: () =>
-                      context.router.push(const DifficultyOptionsRoute()),
-                  color: Theme.of(context).primaryColorDark,
-                  iconWidget: const Icon(Icons.person, size: 80),
-                ),
-                const SizedBox(height: 26),
-                OptionItem(
-                  text: 'MultiPlayer',
-                  action: _dismissSnackbar,
-                  // color: Theme.of(context).colorScheme.secondary,
-                  color: Colors.grey,
-                  iconWidget: const Icon(Icons.groups, size: 80),
-                ),
-                const SizedBox(height: 26),
-                OptionItem(
-                  text: 'Speed Round',
-                  action: _dismissSnackbar,
-                  // color: Theme.of(context).colorScheme.tertiary,
-                  color: Colors.grey,
-                  iconWidget: const Icon(Icons.av_timer, size: 80),
-                ),
-              ],
-            )
-          ],
-        ),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 40),
+      child: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 12),
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                'Select a Quiz',
+                style: Theme.of(context).textTheme.subtitle1,
+              ),
+            ),
+          ),
+          OptionItem(
+            text: 'Single Player',
+            action: () => context.router.push(const DifficultyOptionsRoute()),
+            color: Theme.of(context).primaryColorDark,
+            iconWidget: const Icon(Icons.person, size: 80),
+          ),
+          const SizedBox(height: 20),
+          OptionItem(
+            text: 'MultiPlayer',
+            action: _dismissSnackbar,
+            // color: Theme.of(context).colorScheme.secondary,
+            color: Colors.grey,
+            iconWidget: const Icon(Icons.groups, size: 80),
+          ),
+          const SizedBox(height: 20),
+          OptionItem(
+            text: 'Speed Round',
+            action: _dismissSnackbar,
+            // color: Theme.of(context).colorScheme.tertiary,
+            color: Colors.grey,
+            iconWidget: const Icon(Icons.av_timer, size: 80),
+          )
+        ],
       ),
     );
   }

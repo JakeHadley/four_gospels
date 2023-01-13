@@ -22,7 +22,7 @@ class ConfirmSettingsPage extends StatelessWidget {
   }
 
   void _onStateChange(BuildContext context) {
-    context.router.push(const QuizRoute());
+    context.router.replaceAll([const QuizRoute()]);
   }
 
   @override

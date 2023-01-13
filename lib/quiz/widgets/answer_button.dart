@@ -1,57 +1,88 @@
+import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:four_gospels/quiz/bloc/quiz_bloc.dart';
 import 'package:four_gospels/quiz/models/answer.dart';
 
 class AnswerButton extends StatelessWidget {
-  const AnswerButton({super.key, required this.answer});
+  const AnswerButton({
+    super.key,
+    required this.answer,
+    required this.currentQuestionAnswered,
+    required this.onPress,
+    required this.selectedAnswer,
+    required this.selectedAnswerKey,
+    required this.showBadgeKey,
+  });
 
   final Answer answer;
+  final bool currentQuestionAnswered;
+  final void Function(Answer) onPress;
+  final Answer? selectedAnswer;
+  final String? selectedAnswerKey;
+  final String? showBadgeKey;
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<QuizBloc, QuizState>(
-      builder: (context, state) {
-        if (state is QuizLoadedSingle) {
-          var color = Colors.white;
-          if (state.currentQuestionAnswered) {
-            if (answer.isCorrect) {
-              color = Colors.green;
-            } else if (state.selectedAnswerKey == answer.key) {
-              color = Colors.red;
-            }
-          }
+    var color = Theme.of(context).cardColor;
+    var textTheme = Theme.of(context).textTheme.bodyText1;
+    if (currentQuestionAnswered) {
+      if (answer.isCorrect) {
+        color = Theme.of(context).colorScheme.primary;
+        textTheme =
+            textTheme?.merge(TextStyle(color: Theme.of(context).cardColor));
+      } else if (selectedAnswerKey == answer.key) {
+        color = Theme.of(context).errorColor;
+        textTheme =
+            textTheme?.merge(TextStyle(color: Theme.of(context).cardColor));
+      }
+    } else if (selectedAnswer == answer) {
+      color = Theme.of(context).disabledColor;
+    }
 
-          return FractionallySizedBox(
-            widthFactor: 0.8,
-            child: GestureDetector(
-              onTap: !state.currentQuestionAnswered
-                  ? () => context.read<QuizBloc>().add(
-                        QuizSinglePlayerAnswered(
-                          selectedAnswerKey: answer.key,
-                          isCorrect: answer.isCorrect,
-                        ),
-                      )
-                  : null,
-              child: AnimatedContainer(
-                padding: const EdgeInsets.all(8),
-                margin: const EdgeInsets.all(8),
-                decoration: BoxDecoration(
-                  color: color,
-                  borderRadius: const BorderRadius.all(
-                    Radius.circular(20),
-                  ),
-                ),
-                duration: state.currentQuestionAnswered
-                    ? const Duration(seconds: 1)
-                    : const Duration(microseconds: 1),
-                child: Text(answer.text),
+    return Badge(
+      badgeContent: Text(
+        '+10',
+        style: Theme.of(context)
+            .textTheme
+            .subtitle1
+            ?.merge(TextStyle(color: Theme.of(context).cardColor)),
+      ),
+      padding: const EdgeInsets.all(12),
+      badgeColor: Theme.of(context).primaryColor,
+      borderSide: BorderSide(
+        color: Theme.of(context).primaryColorLight,
+      ),
+      showBadge: showBadgeKey == answer.key,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 8),
+        child: GestureDetector(
+          onTap: () => onPress(answer),
+          child: Card(
+            elevation: 3,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(40),
+            ),
+            child: AnimatedContainer(
+              padding: const EdgeInsets.symmetric(
+                vertical: 6,
+                horizontal: 16,
+              ),
+              width: double.infinity,
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                color: color,
+                borderRadius: BorderRadius.circular(40),
+                border: Border.all(color: Theme.of(context).dividerColor),
+              ),
+              duration: const Duration(milliseconds: 400),
+              child: Text(
+                answer.text,
+                style: textTheme,
+                textAlign: TextAlign.center,
               ),
             ),
-          );
-        }
-        return const Text('Error');
-      },
+          ),
+        ),
+      ),
     );
   }
 }

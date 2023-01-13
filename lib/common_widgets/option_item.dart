@@ -37,14 +37,14 @@ class OptionItem extends StatelessWidget {
 
     return SizedBox(
       height: 100,
-      child: FractionallySizedBox(
-        widthFactor: 0.9,
-        child: Card(
-          shape: _border,
-          color: _color,
-          child: InkWell(
-            customBorder: _border,
-            onTap: _action,
+      child: Card(
+        shape: _border,
+        color: _color,
+        child: InkWell(
+          customBorder: _border,
+          onTap: _action,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8),
             child: Row(
               children: [
                 const SizedBox(width: 12),
@@ -56,7 +56,6 @@ class OptionItem extends StatelessWidget {
                     textAlign: TextAlign.center,
                   ),
                 ),
-                const SizedBox(width: 30)
               ],
             ),
           ),
