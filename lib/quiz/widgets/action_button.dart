@@ -8,12 +8,14 @@ class ActionButton extends StatelessWidget {
     required this.nextQuestionAction,
     required this.selectedAnswer,
     required this.submitAction,
+    required this.lastQuestion,
   });
 
   final bool currentQuestionAnswered;
   final void Function() nextQuestionAction;
   final Answer? selectedAnswer;
   final void Function() submitAction;
+  final bool lastQuestion;
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +42,7 @@ class ActionButton extends StatelessWidget {
                   style: Theme.of(context).textTheme.headline4,
                 )
               : Text(
-                  'Next Question',
+                  lastQuestion ? 'Finish Quiz' : 'Next Question',
                   style: Theme.of(context).textTheme.headline4,
                 ),
         ),

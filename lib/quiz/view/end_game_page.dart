@@ -1,42 +1,24 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:four_gospels/app/auto_router.dart';
+import 'package:four_gospels/common_widgets/common_widgets.dart';
 import 'package:four_gospels/quiz/bloc/quiz_bloc.dart';
+import 'package:four_gospels/quiz/widgets/widgets.dart';
 
 class EndGamePage extends StatelessWidget {
   const EndGamePage({super.key});
 
+  void _onPress(BuildContext context) {
+    context.router.replaceAll([const HomeRoute()]);
+    context.read<QuizBloc>().add(QuizSingleFinished());
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
-      body: const Text('hello'),
+      appBar: const CustomAppBar(height: 75, title: 'Single Player'),
+      body: EndGameContent(onPress: _onPress),
     );
-    // return BlocBuilder<QuizBloc, QuizState>(
-    //   builder: (context, state) {
-    //     if (state is QuizEnded) {
-    //       return Scaffold(
-    //         // appBar: const QuizAppBar(),
-    //         body: Center(
-    //           child: Column(
-    //             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-    //             children: [
-    //               Text('Number of Points: ${state.numberOfPoints.toString()}'),
-    //               Container(
-    //                 margin: const EdgeInsets.symmetric(vertical: 8),
-    //                 decoration: const BoxDecoration(color: Colors.blueAccent),
-    //                 child: TextButton(
-    //                   onPressed: () => context.router.popUntilRoot(),
-    //                   child: const Text('Home'),
-    //                 ),
-    //               ),
-    //             ],
-    //           ),
-    //         ),
-    //       );
-    //     }
-    //     return const Text('Error');
-    //   },
-    // );
   }
 }

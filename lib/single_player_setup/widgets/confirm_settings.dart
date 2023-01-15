@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:four_gospels/common_widgets/common_widgets.dart';
 import 'package:four_gospels/quiz/bloc/quiz_bloc.dart';
 import 'package:four_gospels/quiz/models/models.dart';
 import 'package:four_gospels/single_player_setup/widgets/widgets.dart';
@@ -42,7 +43,10 @@ class ConfirmSettings extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 54),
-              InfoBox(mode: mode, numberQuestions: numberQuestions),
+              InfoBox(
+                text1: 'Difficulty: ${mode.toString()}',
+                text2: 'Questions: $numberQuestions',
+              ),
               const Spacer(),
               StartButton(
                 onPress: onPress,

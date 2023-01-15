@@ -14,6 +14,7 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
     on<QuizSinglePlayerStart>(_onQuizSinglePlayerStart);
     on<QuizSinglePlayerNextQuestion>(_onQuizSinglePlayerNextQuestion);
     on<QuizSinglePlayerAnswered>(_onQuizSinglePlayerAnswered);
+    on<QuizSingleFinished>(_onQuizSingleFinished);
   }
   final QuizService _quizService;
 
@@ -52,6 +53,8 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
       emit(
         QuizEnded(
           numberOfPoints: numberOfPoints,
+          numberOfQuestions: prevState.numberOfQuestions,
+          numberCorrect: numberOfPoints / prevState.numberOfQuestions,
         ),
       );
     } else {
@@ -81,6 +84,13 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
         isCorrect: event.isCorrect,
       ),
     );
+  }
+
+  void _onQuizSingleFinished(
+    QuizSingleFinished event,
+    Emitter<QuizState> emit,
+  ) {
+    emit(QuizInitial());
   }
 
   List<Answer> _buildAnswerList(Question question) => List<Answer>.from([

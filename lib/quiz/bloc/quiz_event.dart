@@ -34,3 +34,5 @@ class QuizSinglePlayerAnswered extends QuizEvent {
   final String selectedAnswerKey;
   final bool isCorrect;
 }
+
+class QuizSingleFinished extends QuizEvent {}

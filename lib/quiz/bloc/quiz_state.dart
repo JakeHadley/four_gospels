@@ -75,7 +75,13 @@ class QuizLoadedSingle extends QuizState {
 class QuizLoading extends QuizState {}
 
 class QuizEnded extends QuizState {
-  const QuizEnded({required this.numberOfPoints});
+  const QuizEnded({
+    required this.numberOfQuestions,
+    required this.numberCorrect,
+    required this.numberOfPoints,
+  });
 
   final int numberOfPoints;
+  final int numberOfQuestions;
+  final double numberCorrect;
 }

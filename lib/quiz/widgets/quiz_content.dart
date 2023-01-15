@@ -60,13 +60,15 @@ class QuizContent extends StatelessWidget {
                   nextQuestionAction: nextQuestionAction,
                   selectedAnswer: selectedAnswer,
                   submitAction: submitAction,
+                  lastQuestion:
+                      state.numberOfQuestions - state.currentQuestionIndex == 1,
                 ),
                 const SizedBox(height: 20)
               ],
             ),
           );
         }
-        return const Text('Error');
+        return const SizedBox.shrink();
       },
     );
   }
