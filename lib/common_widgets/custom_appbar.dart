@@ -5,14 +5,17 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     super.key,
     required this.height,
     required this.title,
+    this.backButton,
   });
 
   final double height;
   final String title;
+  final Widget? backButton;
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      leading: backButton,
       centerTitle: true,
       title: Text(title),
       shape: const RoundedRectangleBorder(
