@@ -37,7 +37,7 @@ class NumberQuestionOptions extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               NumberOption(text: '10', action: _select(10)),
-              const SizedBox(width: 15),
+              const SizedBox(width: 10),
               NumberOption(text: '15', action: _select(15)),
             ],
           ),
@@ -46,7 +46,7 @@ class NumberQuestionOptions extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               NumberOption(text: '20', action: _select(20)),
-              const SizedBox(width: 15),
+              const SizedBox(width: 10),
               NumberOption(text: '25', action: _select(25)),
             ],
           )

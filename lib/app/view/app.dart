@@ -113,7 +113,7 @@ class App extends StatelessWidget {
                 ),
                 //option labels, submit
                 headline4: TextStyle(
-                  fontSize: 34,
+                  fontSize: 32,
                   color: Color(0xffFFFFFF),
                   fontWeight: FontWeight.w600,
                 ),
@@ -125,7 +125,7 @@ class App extends StatelessWidget {
                 ),
                 //answers
                 bodyText1: TextStyle(
-                  fontSize: 22,
+                  fontSize: 20,
                   color: Color(0xff030303),
                   fontWeight: FontWeight.w500,
                 ),

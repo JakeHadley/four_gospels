@@ -15,7 +15,7 @@ class DifficultyOptions extends StatelessWidget {
     final _icon = Icon(
       Icons.star,
       color: Theme.of(context).primaryIconTheme.color,
-      size: 48,
+      size: 44,
     );
 
     void Function() _select(Mode mode) => () => onPress(context, mode);
