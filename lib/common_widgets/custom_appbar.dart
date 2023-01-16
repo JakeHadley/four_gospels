@@ -17,7 +17,10 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       leading: backButton,
       centerTitle: true,
-      title: Text(title),
+      title: FittedBox(
+        fit: BoxFit.fitWidth,
+        child: Text(title),
+      ),
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(
           bottom: Radius.circular(30),

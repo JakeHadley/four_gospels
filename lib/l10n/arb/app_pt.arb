@@ -1,0 +1,11 @@
+{
+    "@@locale": "pt",
+    "counterAppBarTitle": "Counter",
+    "@counterAppBarTitle": {
+        "description": "Text shown in the AppBar of the Counter Page"
+    },
+    "homePageAppBarTitle": "Quiz do Novo Testamento",
+    "@homePageAppBarTitle": {
+      "description": "Texto mostrado no AppBar da primeira pagina"
+    }
+}

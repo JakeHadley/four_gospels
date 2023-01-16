@@ -41,9 +41,13 @@ class QuizContent extends StatelessWidget {
                   currentQuestionIndex: state.currentQuestionIndex,
                   numberOfQuestions: state.numberOfQuestions,
                 ),
-                Text(
-                  state.questions[state.currentQuestionIndex].question,
-                  style: Theme.of(context).textTheme.headline5,
+                RichText(
+                  text: TextSpan(
+                    text: state.questions[state.currentQuestionIndex].question
+                        .replaceAll(r'\n', '\n')
+                        .replaceAll(r'\t', '\t'),
+                    style: Theme.of(context).textTheme.headline5,
+                  ),
                 ),
                 const Spacer(),
                 AnswerButtonList(

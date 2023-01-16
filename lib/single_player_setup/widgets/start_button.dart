@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:four_gospels/l10n/l10n.dart';
 
 class StartButton extends StatelessWidget {
   const StartButton({
@@ -12,6 +13,8 @@ class StartButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
+
     return GestureDetector(
       onTap: () => onPress(context),
       child: AnimatedContainer(
@@ -32,7 +35,7 @@ class StartButton extends StatelessWidget {
           duration: const Duration(milliseconds: 200),
           child: isInitialState
               ? Text(
-                  'Start',
+                  l10n.startButton,
                   style: Theme.of(context).textTheme.headline1,
                 )
               : const CircularProgressIndicator(

@@ -2,12 +2,15 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:four_gospels/app/auto_router.dart';
 import 'package:four_gospels/common_widgets/common_widgets.dart';
+import 'package:four_gospels/l10n/l10n.dart';
 
 class GameOptions extends StatelessWidget {
   const GameOptions({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
+
     final _snackBar = SnackBar(
       backgroundColor: Theme.of(context).colorScheme.secondary,
       content: const Text('Coming Soon!'),
@@ -33,20 +36,20 @@ class GameOptions extends StatelessWidget {
             child: Align(
               alignment: Alignment.centerLeft,
               child: Text(
-                'Select a Quiz',
+                l10n.selectQuizSubtitle,
                 style: Theme.of(context).textTheme.subtitle1,
               ),
             ),
           ),
           OptionItem(
-            text: 'Single Player',
+            text: l10n.singlePlayerHome,
             action: () => context.router.push(const DifficultyOptionsRoute()),
             color: Theme.of(context).primaryColorDark,
             iconWidget: const Icon(Icons.person, size: 80),
           ),
           const SizedBox(height: 20),
           OptionItem(
-            text: 'MultiPlayer',
+            text: l10n.multiPlayer,
             action: _dismissSnackbar,
             // color: Theme.of(context).colorScheme.secondary,
             color: Colors.grey,
@@ -54,7 +57,7 @@ class GameOptions extends StatelessWidget {
           ),
           const SizedBox(height: 20),
           OptionItem(
-            text: 'Speed Round',
+            text: l10n.speedRound,
             action: _dismissSnackbar,
             // color: Theme.of(context).colorScheme.tertiary,
             color: Colors.grey,

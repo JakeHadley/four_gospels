@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:four_gospels/common_widgets/common_widgets.dart';
+import 'package:four_gospels/l10n/l10n.dart';
 import 'package:four_gospels/quiz/models/mode.dart';
 import 'package:four_gospels/single_player_setup/widgets/number_option.dart';
 
@@ -15,6 +15,8 @@ class NumberQuestionOptions extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
+
     void Function() _select(int n) => () => onPress(context, n);
 
     return Padding(
@@ -26,7 +28,7 @@ class NumberQuestionOptions extends StatelessWidget {
             child: Align(
               alignment: Alignment.centerLeft,
               child: Text(
-                'Select how many questions',
+                l10n.numberQuestionsSubtitle,
                 style: Theme.of(context).textTheme.subtitle1,
               ),
             ),

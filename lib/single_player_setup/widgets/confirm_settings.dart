@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:four_gospels/common_widgets/common_widgets.dart';
+import 'package:four_gospels/l10n/l10n.dart';
 import 'package:four_gospels/quiz/bloc/quiz_bloc.dart';
 import 'package:four_gospels/quiz/models/models.dart';
 import 'package:four_gospels/single_player_setup/widgets/widgets.dart';
@@ -21,6 +22,8 @@ class ConfirmSettings extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
+
     return BlocConsumer<QuizBloc, QuizState>(
       listener: (context, state) {
         if (state is QuizLoadedSingle) {
@@ -37,15 +40,17 @@ class ConfirmSettings extends StatelessWidget {
                 child: Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
-                    'Ready to test your knowlege?',
+                    l10n.confirmSettingsSubtitle,
                     style: Theme.of(context).textTheme.subtitle1,
                   ),
                 ),
               ),
               const SizedBox(height: 54),
               InfoBox(
-                text1: 'Difficulty: ${mode.toString()}',
-                text2: 'Questions: $numberQuestions',
+                text1: '${l10n.confirmSettingsDifficulty}: '
+                    '${mode.toStringIntl(l10n)}',
+                text2: '${l10n.confirmSettingsNumberQuestions}: '
+                    '$numberQuestions',
               ),
               const Spacer(),
               StartButton(

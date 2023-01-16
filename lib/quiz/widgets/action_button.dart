@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:four_gospels/l10n/l10n.dart';
 import 'package:four_gospels/quiz/models/models.dart';
 
 class ActionButton extends StatelessWidget {
@@ -19,6 +20,8 @@ class ActionButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
+
     return AnimatedOpacity(
       opacity: selectedAnswer == null ? 0 : 1,
       duration:
@@ -38,11 +41,13 @@ class ActionButton extends StatelessWidget {
           ),
           child: !currentQuestionAnswered
               ? Text(
-                  'Submit',
+                  l10n.submitButton,
                   style: Theme.of(context).textTheme.headline4,
                 )
               : Text(
-                  lastQuestion ? 'Finish Quiz' : 'Next Question',
+                  lastQuestion
+                      ? l10n.finishQuizButton
+                      : l10n.nextQuestionButton,
                   style: Theme.of(context).textTheme.headline4,
                 ),
         ),

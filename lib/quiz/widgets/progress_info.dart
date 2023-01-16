@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:four_gospels/l10n/l10n.dart';
 
 class ProgressInfo extends StatelessWidget {
   const ProgressInfo({
@@ -12,12 +13,14 @@ class ProgressInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
-          'question ${currentQuestionIndex + 1} '
-          'of $numberOfQuestions',
+          '${l10n.quizSubtitleQuestion} ${currentQuestionIndex + 1} '
+          '${l10n.quizSubtitleOf} $numberOfQuestions',
           style: Theme.of(context).textTheme.subtitle2,
         ),
         SizedBox(

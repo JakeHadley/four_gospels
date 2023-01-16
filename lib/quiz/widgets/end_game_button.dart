@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:four_gospels/l10n/l10n.dart';
 
 class EndGameButton extends StatelessWidget {
   const EndGameButton({super.key, required this.onPress});
@@ -7,6 +8,8 @@ class EndGameButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
+
     return InkWell(
       onTap: () => onPress(context),
       borderRadius: BorderRadius.circular(40),
@@ -19,7 +22,7 @@ class EndGameButton extends StatelessWidget {
         ),
         child: Center(
           child: Text(
-            'Play Again?',
+            l10n.endGameButton,
             style: Theme.of(context).textTheme.headline4,
           ),
         ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:four_gospels/common_widgets/common_widgets.dart';
+import 'package:four_gospels/l10n/l10n.dart';
 import 'package:four_gospels/quiz/models/mode.dart';
 
 class DifficultyOptions extends StatelessWidget {
@@ -9,6 +10,8 @@ class DifficultyOptions extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
+
     final _icon = Icon(
       Icons.star,
       color: Theme.of(context).primaryIconTheme.color,
@@ -26,13 +29,13 @@ class DifficultyOptions extends StatelessWidget {
             child: Align(
               alignment: Alignment.centerLeft,
               child: Text(
-                'Select a Difficulty',
+                l10n.difficultySubtitle,
                 style: Theme.of(context).textTheme.subtitle1,
               ),
             ),
           ),
           OptionItem(
-            text: 'Easy',
+            text: l10n.difficultyEasy,
             action: _select(Mode.easy),
             color: Theme.of(context).primaryColorLight,
             iconWidget: _icon,
@@ -41,7 +44,7 @@ class DifficultyOptions extends StatelessWidget {
           ),
           const SizedBox(height: 26),
           OptionItem(
-            text: 'Moderate',
+            text: l10n.difficultyModerate,
             action: _select(Mode.moderate),
             color: Theme.of(context).colorScheme.secondaryContainer,
             iconWidget: Row(
@@ -53,7 +56,7 @@ class DifficultyOptions extends StatelessWidget {
           ),
           const SizedBox(height: 26),
           OptionItem(
-            text: 'Hard',
+            text: l10n.difficultyHard,
             action: _select(Mode.hard),
             color: Theme.of(context).colorScheme.tertiaryContainer,
             iconWidget: Row(
