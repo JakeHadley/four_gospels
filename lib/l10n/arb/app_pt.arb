@@ -1,11 +1,99 @@
 {
     "@@locale": "pt",
-    "counterAppBarTitle": "Counter",
-    "@counterAppBarTitle": {
-        "description": "Text shown in the AppBar of the Counter Page"
-    },
-    "homePageAppBarTitle": "Quiz do Novo Testamento",
+    "homePageAppBarTitle": "New Testament Quiz",
     "@homePageAppBarTitle": {
-      "description": "Texto mostrado no AppBar da primeira pagina"
+      "description": "Home page app bar text"
+    },
+    "selectQuizSubtitle": "Select a Quiz",
+    "@selectQuizSubtitle": {
+      "description": "Home page subtitle text"
+    },
+    "singlePlayerHome": "Single Player",
+    "@singlePlayerHome": {
+      "description": "Home page single player button text"
+    },
+    "multiPlayer": "MultiPlayer",
+    "@multiPlayer": {
+      "description": "Home page multiplayer button text"
+    },
+    "speedRound": "Speed Round",
+    "@speedRound": {
+      "description": "Home page speed round button text"
+    },
+    "singlePlayerAppBar": "Single Player",
+    "@singlePlayerAppBar": {
+      "description": "Single player setup appbar text"
+    },
+    "difficultySubtitle": "Select a Difficulty",
+    "@difficultySubtitle": {
+      "description": "Difficulty options page subtitle text"
+    },
+    "difficultyEasy": "Easy",
+    "@difficultyEasy": {
+      "description": "Difficulty easy option button text"
+    },
+    "difficultyModerate": "Moderate",
+    "@difficultyModerate": {
+      "description": "Difficulty moderate option button text"
+    },
+    "difficultyHard": "Hard",
+    "@difficultyHard": {
+      "description": "Difficulty hard option button text"
+    },
+    "numberQuestionsSubtitle": "Select how many questions",
+    "@numberQuestionsSubtitle": {
+      "description": "Number of questions page subtitle text"
+    },
+    "confirmSettingsSubtitle": "Ready to test your knowlege?",
+    "@confirmSettingsSubtitle": {
+      "description": "Confirm settings page subtitle text"
+    },
+    "confirmSettingsDifficulty": "Difficulty",
+    "@confirmSettingsDifficulty": {
+      "description": "Difficulty selected option pretext"
+    },
+    "confirmSettingsNumberQuestions": "Questions",
+    "@confirmSettingsNumberQuestions": {
+      "description": "Number questions selected option pretext"
+    },
+    "startButton": "Start",
+    "@startButton": {
+      "description": "Start button text"
+    },
+    "quizSubtitleQuestion": "question",
+    "@quizSubtitleQuestion": {
+      "description": "Quiz subtitle question portion text"
+    },
+    "quizSubtitleOf": "of",
+    "@quizSubtitleOf": {
+      "description": "Quiz subtitle of portion text"
+    },
+    "submitButton": "Submit",
+    "@submitButton": {
+      "description": "Submit button text"
+    },
+    "finishQuizButton": "Finish Quiz",
+    "@finishQuizButton": {
+      "description": "Finish quiz button text"
+    },
+    "nextQuestionButton": "Next Question",
+    "@nextQuestionButton": {
+      "description": "Next question button text"
+    },
+    "endGamePageSubtitle": "Checkout your score!",
+    "@endGamePageSubtitle": {
+      "description": "End game page subtitle text"
+    },
+    "endGameInfoScore": "Score",
+    "@endGameInfoScore": {
+      "description": "End game page score pretext"
+    },
+    "endGamePageCorrectAnswers": "Correct Answers",
+    "@endGamePageCorrectAnswers": {
+      "description": "End game page correct answers pretext"
+    },
+    "endGameButton": "Play Again?",
+    "@endGameButton": {
+      "description": "End game button text"
     }
 }
