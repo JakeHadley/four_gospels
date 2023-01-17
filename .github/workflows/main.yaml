@@ -11,4 +11,3 @@ jobs:
     with:
       flutter_channel: stable
       flutter_version: 3.0.0
-      dart_sdk: 2.18.0
