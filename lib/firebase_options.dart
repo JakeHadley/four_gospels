@@ -39,6 +39,7 @@ class DefaultFirebaseOptions {
           'DefaultFirebaseOptions have not been configured for linux - '
           'you can reconfigure this by running the FlutterFire CLI again.',
         );
+      // ignore: no_default_cases
       default:
         throw UnsupportedError(
           'DefaultFirebaseOptions are not supported for this platform.',
@@ -70,7 +71,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '449612563741',
     projectId: 'four-gospels-exigent',
     storageBucket: 'four-gospels-exigent.appspot.com',
-    iosClientId: '449612563741-kn5mtvtsp2fd2i93rss5l5o8ccblr9nm.apps.googleusercontent.com',
+    iosClientId:
+        '449612563741-kn5mtvtsp2fd2i93rss5l5o8ccblr9nm.apps.googleusercontent.com',
     iosBundleId: 'app.exigentdev.four-gospels',
   );
 }
