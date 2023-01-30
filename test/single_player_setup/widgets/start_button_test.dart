@@ -26,5 +26,18 @@ void main() {
       expect(find.byType(CircularProgressIndicator), findsNothing);
       expect(find.byType(Text), findsOneWidget);
     });
+    testWidgets('Start Button onPress', (tester) async {
+      var pressed = false;
+      await tester.pumpApp(
+        StartButton(
+          onPress: (_) {
+            pressed = true;
+          },
+          isInitialState: true,
+        ),
+      );
+      await tester.tap(find.text('Start'));
+      expect(pressed, isTrue);
+    });
   });
 }
