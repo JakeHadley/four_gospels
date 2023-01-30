@@ -25,23 +25,23 @@ class OptionItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _border = RoundedRectangleBorder(
+    final border = RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(40),
     );
 
-    final _textStyle = _darkText
-        ? Theme.of(context).textTheme.headline4?.copyWith(
+    final textStyle = _darkText
+        ? Theme.of(context).textTheme.headlineMedium?.copyWith(
               color: Theme.of(context).primaryIconTheme.color,
             )
-        : Theme.of(context).textTheme.headline4;
+        : Theme.of(context).textTheme.headlineMedium;
 
     return SizedBox(
       height: 100,
       child: Card(
-        shape: _border,
+        shape: border,
         color: _color,
         child: InkWell(
-          customBorder: _border,
+          customBorder: border,
           onTap: _action,
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8),
@@ -52,7 +52,7 @@ class OptionItem extends StatelessWidget {
                 Expanded(
                   child: Text(
                     _text,
-                    style: _textStyle,
+                    style: textStyle,
                     textAlign: TextAlign.center,
                   ),
                 ),

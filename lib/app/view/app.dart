@@ -53,7 +53,6 @@ class App extends StatelessWidget {
                 const IconThemeData(color: Color(0xff030303)), //black icon
             cardColor: const Color(0xffFFFFFF), //primary lightest
             dividerColor: const Color(0xff0A2637), //primary darker
-            errorColor: const Color(0xffD00000), //error default
             disabledColor: const Color(0xff979797), //gray default
 
             colorScheme: const ColorScheme(
@@ -63,12 +62,12 @@ class App extends StatelessWidget {
               secondaryContainer: Color(0xff99C7C7), //accent1 light
               tertiary: Color(0xff2B78B2), //accent2 dark
               tertiaryContainer: Color(0xff9CCFF6), //accent2 light
+              error: Color(0xffD00000), //error default
 
               onPrimary: Colors.white,
               onSecondary: Color(0xff413D3D),
               brightness: Brightness.light,
               onError: Color(0xffC8C8C8),
-              error: Color(0xffAA0000),
               background: Color(0xffE0E0DF),
               onBackground: Color(0xff616161),
               surface: Colors.white,
@@ -89,64 +88,64 @@ class App extends StatelessWidget {
               'KoHo',
               const TextTheme(
                 //subtitle
-                subtitle1: TextStyle(
+                titleMedium: TextStyle(
                   fontSize: 22,
                   color: Color(0xff585858),
                   fontWeight: FontWeight.bold,
                 ),
                 //question subtitle
-                subtitle2: TextStyle(
+                titleSmall: TextStyle(
                   fontSize: 22,
                   color: Color(0xff2E2E2E),
                 ),
                 //start button
-                headline1: TextStyle(
+                displayLarge: TextStyle(
                   fontSize: 64,
                   color: Color(0xffFFFFFF),
                   fontWeight: FontWeight.w600,
                 ),
                 //num questions labels
-                headline2: TextStyle(
+                displayMedium: TextStyle(
                   fontSize: 58,
                   color: Color(0xff144C6E),
                   fontWeight: FontWeight.w700,
                 ),
                 //option labels, submit
-                headline4: TextStyle(
+                headlineMedium: TextStyle(
                   fontSize: 32,
                   color: Color(0xffFFFFFF),
                   fontWeight: FontWeight.w600,
                 ),
                 //question
-                headline5: TextStyle(
+                headlineSmall: TextStyle(
                   fontSize: 24,
                   color: Color(0xff030303),
                   fontWeight: FontWeight.bold,
                 ),
                 //answers
-                bodyText1: TextStyle(
+                bodyLarge: TextStyle(
                   fontSize: 20,
                   color: Color(0xff030303),
                   fontWeight: FontWeight.w500,
                 ),
 
                 //
-                headline3: TextStyle(
+                displaySmall: TextStyle(
                   fontSize: 45,
                 ),
-                headline6: TextStyle(
+                titleLarge: TextStyle(
                   fontSize: 20,
                 ),
-                overline: TextStyle(
+                labelSmall: TextStyle(
                   fontSize: 10,
                 ),
-                bodyText2: TextStyle(
+                bodyMedium: TextStyle(
                   fontSize: 14,
                 ),
-                button: TextStyle(
+                labelLarge: TextStyle(
                   fontSize: 14,
                 ),
-                caption: TextStyle(
+                bodySmall: TextStyle(
                   fontSize: 12,
                 ),
               ),

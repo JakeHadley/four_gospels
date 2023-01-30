@@ -8,7 +8,7 @@ class NumberOption extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _border = RoundedRectangleBorder(
+    final border = RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(40),
     );
 
@@ -16,18 +16,18 @@ class NumberOption extends StatelessWidget {
       width: 150,
       height: 150,
       child: Card(
-        shape: _border,
+        shape: border,
         elevation: 4,
         color: Theme.of(context).cardColor,
         child: InkWell(
           splashColor: Theme.of(context).primaryColorLight,
           onTap: action,
-          customBorder: _border,
+          customBorder: border,
           child: Center(
             child: Text(
               text,
               textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.headline2,
+              style: Theme.of(context).textTheme.displayMedium,
             ),
           ),
         ),

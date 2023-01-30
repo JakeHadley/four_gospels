@@ -46,7 +46,7 @@ class QuizContent extends StatelessWidget {
                     text: state.questions[state.currentQuestionIndex].question
                         .replaceAll(r'\n', '\n')
                         .replaceAll(r'\t', '\t'),
-                    style: Theme.of(context).textTheme.headline5,
+                    style: Theme.of(context).textTheme.headlineSmall,
                   ),
                 ),
                 const Spacer(),

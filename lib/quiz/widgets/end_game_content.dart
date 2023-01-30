@@ -30,7 +30,7 @@ class EndGameContent extends StatelessWidget {
                     alignment: Alignment.centerLeft,
                     child: Text(
                       l10n.endGamePageSubtitle,
-                      style: Theme.of(context).textTheme.subtitle1,
+                      style: Theme.of(context).textTheme.titleMedium,
                     ),
                   ),
                 ),

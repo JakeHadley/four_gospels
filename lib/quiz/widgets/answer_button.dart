@@ -1,4 +1,4 @@
-import 'package:badges/badges.dart';
+import 'package:badges/badges.dart' as badges;
 import 'package:flutter/material.dart';
 import 'package:four_gospels/quiz/models/answer.dart';
 
@@ -23,14 +23,14 @@ class AnswerButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var color = Theme.of(context).cardColor;
-    var textTheme = Theme.of(context).textTheme.bodyText1;
+    var textTheme = Theme.of(context).textTheme.bodyLarge;
     if (currentQuestionAnswered) {
       if (answer.isCorrect) {
         color = Theme.of(context).colorScheme.primary;
         textTheme =
             textTheme?.merge(TextStyle(color: Theme.of(context).cardColor));
       } else if (selectedAnswerKey == answer.key) {
-        color = Theme.of(context).errorColor;
+        color = Theme.of(context).colorScheme.error;
         textTheme =
             textTheme?.merge(TextStyle(color: Theme.of(context).cardColor));
       }
@@ -38,24 +38,24 @@ class AnswerButton extends StatelessWidget {
       color = Theme.of(context).disabledColor;
     }
 
-    return Badge(
-      badgeContent: Text(
-        '+10',
-        style: Theme.of(context)
-            .textTheme
-            .subtitle1
-            ?.merge(TextStyle(color: Theme.of(context).cardColor)),
-      ),
-      padding: const EdgeInsets.all(12),
-      badgeColor: Theme.of(context).primaryColor,
-      borderSide: BorderSide(
-        color: Theme.of(context).primaryColorLight,
-      ),
-      showBadge: showBadgeKey == answer.key,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 8),
-        child: GestureDetector(
-          onTap: () => onPress(answer),
+    return GestureDetector(
+      onTap: () => onPress(answer),
+      child: badges.Badge(
+        badgeContent: Text(
+          '+10',
+          style: Theme.of(context)
+              .textTheme
+              .titleMedium
+              ?.merge(TextStyle(color: Theme.of(context).cardColor)),
+        ),
+        padding: const EdgeInsets.all(12),
+        badgeColor: Theme.of(context).primaryColor,
+        borderSide: BorderSide(
+          color: Theme.of(context).primaryColorLight,
+        ),
+        showBadge: showBadgeKey == answer.key,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 8),
           child: Card(
             elevation: 3,
             shape: RoundedRectangleBorder(

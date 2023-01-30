@@ -12,13 +12,13 @@ class DifficultyOptions extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
 
-    final _icon = Icon(
+    final icon = Icon(
       Icons.star,
       color: Theme.of(context).primaryIconTheme.color,
       size: 44,
     );
 
-    void Function() _select(Mode mode) => () => onPress(context, mode);
+    void Function() select(Mode mode) => () => onPress(context, mode);
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 40),
@@ -30,26 +30,26 @@ class DifficultyOptions extends StatelessWidget {
               alignment: Alignment.centerLeft,
               child: Text(
                 l10n.difficultySubtitle,
-                style: Theme.of(context).textTheme.subtitle1,
+                style: Theme.of(context).textTheme.titleMedium,
               ),
             ),
           ),
           OptionItem(
             text: l10n.difficultyEasy,
-            action: _select(Mode.easy),
+            action: select(Mode.easy),
             color: Theme.of(context).primaryColorLight,
-            iconWidget: _icon,
+            iconWidget: icon,
             darkText: true,
             equalWidth: true,
           ),
           const SizedBox(height: 26),
           OptionItem(
             text: l10n.difficultyModerate,
-            action: _select(Mode.moderate),
+            action: select(Mode.moderate),
             color: Theme.of(context).colorScheme.secondaryContainer,
             iconWidget: Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: [_icon, _icon],
+              children: [icon, icon],
             ),
             darkText: true,
             equalWidth: true,
@@ -57,11 +57,11 @@ class DifficultyOptions extends StatelessWidget {
           const SizedBox(height: 26),
           OptionItem(
             text: l10n.difficultyHard,
-            action: _select(Mode.hard),
+            action: select(Mode.hard),
             color: Theme.of(context).colorScheme.tertiaryContainer,
             iconWidget: Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: [_icon, _icon, _icon],
+              children: [icon, icon, icon],
             ),
             darkText: true,
             equalWidth: true,

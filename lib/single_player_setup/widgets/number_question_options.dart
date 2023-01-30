@@ -17,7 +17,7 @@ class NumberQuestionOptions extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
 
-    void Function() _select(int n) => () => onPress(context, n);
+    void Function() select(int n) => () => onPress(context, n);
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 40),
@@ -29,25 +29,25 @@ class NumberQuestionOptions extends StatelessWidget {
               alignment: Alignment.centerLeft,
               child: Text(
                 l10n.numberQuestionsSubtitle,
-                style: Theme.of(context).textTheme.subtitle1,
+                style: Theme.of(context).textTheme.titleMedium,
               ),
             ),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              NumberOption(text: '10', action: _select(10)),
+              NumberOption(text: '10', action: select(10)),
               const SizedBox(width: 10),
-              NumberOption(text: '15', action: _select(15)),
+              NumberOption(text: '15', action: select(15)),
             ],
           ),
           const SizedBox(height: 15),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              NumberOption(text: '20', action: _select(20)),
+              NumberOption(text: '20', action: select(20)),
               const SizedBox(width: 10),
-              NumberOption(text: '25', action: _select(25)),
+              NumberOption(text: '25', action: select(25)),
             ],
           )
         ],

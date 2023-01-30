@@ -36,7 +36,7 @@ class StartButton extends StatelessWidget {
           child: isInitialState
               ? Text(
                   l10n.startButton,
-                  style: Theme.of(context).textTheme.headline1,
+                  style: Theme.of(context).textTheme.displayLarge,
                 )
               : const CircularProgressIndicator(
                   color: Colors.white,

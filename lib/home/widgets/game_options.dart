@@ -11,7 +11,7 @@ class GameOptions extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
 
-    final _snackBar = SnackBar(
+    final snackBar = SnackBar(
       backgroundColor: Theme.of(context).colorScheme.secondary,
       content: const Text('Coming Soon!'),
       action: SnackBarAction(
@@ -22,9 +22,9 @@ class GameOptions extends StatelessWidget {
       behavior: SnackBarBehavior.floating,
     );
 
-    void _dismissSnackbar() {
+    void dismissSnackbar() {
       ScaffoldMessenger.of(context).hideCurrentSnackBar();
-      ScaffoldMessenger.of(context).showSnackBar(_snackBar);
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
     }
 
     return Padding(
@@ -37,7 +37,7 @@ class GameOptions extends StatelessWidget {
               alignment: Alignment.centerLeft,
               child: Text(
                 l10n.selectQuizSubtitle,
-                style: Theme.of(context).textTheme.subtitle1,
+                style: Theme.of(context).textTheme.titleMedium,
               ),
             ),
           ),
@@ -50,7 +50,7 @@ class GameOptions extends StatelessWidget {
           const SizedBox(height: 20),
           OptionItem(
             text: l10n.multiPlayer,
-            action: _dismissSnackbar,
+            action: dismissSnackbar,
             // color: Theme.of(context).colorScheme.secondary,
             color: Colors.grey,
             iconWidget: const Icon(Icons.groups, size: 80),
@@ -58,7 +58,7 @@ class GameOptions extends StatelessWidget {
           const SizedBox(height: 20),
           OptionItem(
             text: l10n.speedRound,
-            action: _dismissSnackbar,
+            action: dismissSnackbar,
             // color: Theme.of(context).colorScheme.tertiary,
             color: Colors.grey,
             iconWidget: const Icon(Icons.av_timer, size: 80),

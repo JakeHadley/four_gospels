@@ -21,7 +21,7 @@ class ProgressInfo extends StatelessWidget {
         Text(
           '${l10n.quizSubtitleQuestion} ${currentQuestionIndex + 1} '
           '${l10n.quizSubtitleOf} $numberOfQuestions',
-          style: Theme.of(context).textTheme.subtitle2,
+          style: Theme.of(context).textTheme.titleSmall,
         ),
         SizedBox(
           height: 22,

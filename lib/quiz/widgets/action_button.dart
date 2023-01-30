@@ -42,13 +42,13 @@ class ActionButton extends StatelessWidget {
           child: !currentQuestionAnswered
               ? Text(
                   l10n.submitButton,
-                  style: Theme.of(context).textTheme.headline4,
+                  style: Theme.of(context).textTheme.headlineMedium,
                 )
               : Text(
                   lastQuestion
                       ? l10n.finishQuizButton
                       : l10n.nextQuestionButton,
-                  style: Theme.of(context).textTheme.headline4,
+                  style: Theme.of(context).textTheme.headlineMedium,
                 ),
         ),
       ),
