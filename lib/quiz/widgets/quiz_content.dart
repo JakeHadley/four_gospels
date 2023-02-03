@@ -32,6 +32,8 @@ class QuizContent extends StatelessWidget {
       },
       builder: (context, state) {
         if (state is QuizLoadedSingle) {
+          final currentQuestion = state.questions[state.currentQuestionIndex];
+
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 40),
             child: Column(
@@ -43,7 +45,7 @@ class QuizContent extends StatelessWidget {
                 ),
                 RichText(
                   text: TextSpan(
-                    text: state.questions[state.currentQuestionIndex].question
+                    text: currentQuestion.question
                         .replaceAll(r'\n', '\n')
                         .replaceAll(r'\t', '\t'),
                     style: Theme.of(context).textTheme.headlineSmall,
@@ -59,6 +61,11 @@ class QuizContent extends StatelessWidget {
                   showBadgeKey: showBadgeKey,
                 ),
                 const SizedBox(height: 20),
+                Reference(
+                  reference: currentQuestion.reference,
+                  currentQuestionAnswered: state.currentQuestionAnswered,
+                ),
+                const SizedBox(height: 10),
                 ActionButton(
                   currentQuestionAnswered: state.currentQuestionAnswered,
                   nextQuestionAction: nextQuestionAction,

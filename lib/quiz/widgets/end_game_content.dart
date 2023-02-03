@@ -38,7 +38,7 @@ class EndGameContent extends StatelessWidget {
                 InfoBox(
                   text1: '${l10n.endGameInfoScore}: ${state.numberOfPoints}',
                   text2: '${l10n.endGamePageCorrectAnswers}: '
-                      '${state.numberCorrect.toInt()}/${state.numberOfQuestions}',
+                      '${state.numberCorrect}/${state.numberOfQuestions}',
                 ),
                 const Spacer(),
                 EndGameButton(onPress: onPress),

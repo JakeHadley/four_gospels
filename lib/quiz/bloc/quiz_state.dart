@@ -16,6 +16,7 @@ class QuizLoadedSingle extends QuizState {
     required this.questions,
     required this.mode,
     this.numberOfPoints = 0,
+    this.numberCorrect = 0,
     this.currentQuestionIndex = 0,
     this.currentQuestionAnswered = false,
     this.selectedAnswerKey = '',
@@ -28,6 +29,7 @@ class QuizLoadedSingle extends QuizState {
     List<Question>? questions,
     Mode? mode,
     int? numberOfPoints,
+    int? numberCorrect,
     int? currentQuestionIndex,
     bool? currentQuestionAnswered,
     String? selectedAnswerKey,
@@ -39,6 +41,7 @@ class QuizLoadedSingle extends QuizState {
       questions: questions ?? this.questions,
       mode: mode ?? this.mode,
       numberOfPoints: numberOfPoints ?? this.numberOfPoints,
+      numberCorrect: numberCorrect ?? this.numberCorrect,
       currentQuestionIndex: currentQuestionIndex ?? this.currentQuestionIndex,
       currentQuestionAnswered:
           currentQuestionAnswered ?? this.currentQuestionAnswered,
@@ -52,6 +55,7 @@ class QuizLoadedSingle extends QuizState {
   final List<Question> questions;
   final Mode mode;
   final int numberOfPoints;
+  final int numberCorrect;
   final int currentQuestionIndex;
   final bool currentQuestionAnswered;
   final String selectedAnswerKey;
@@ -64,6 +68,7 @@ class QuizLoadedSingle extends QuizState {
         questions,
         mode,
         numberOfPoints,
+        numberCorrect,
         currentQuestionIndex,
         currentQuestionAnswered,
         selectedAnswerKey,
@@ -83,5 +88,5 @@ class QuizEnded extends QuizState {
 
   final int numberOfPoints;
   final int numberOfQuestions;
-  final double numberCorrect;
+  final int numberCorrect;
 }

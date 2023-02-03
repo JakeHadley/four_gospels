@@ -19,7 +19,11 @@ class InfoBox extends StatelessWidget {
           padding: const EdgeInsets.all(20),
           child: Column(
             children: [
-              Text(text1, style: Theme.of(context).textTheme.headlineMedium),
+              Text(
+                text1,
+                style: Theme.of(context).textTheme.headlineMedium,
+                textAlign: TextAlign.center,
+              ),
               const SizedBox(height: 20),
               Text(
                 text2,

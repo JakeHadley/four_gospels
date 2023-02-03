@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:four_gospels/app/auto_router.dart';
+import 'package:four_gospels/l10n/l10n.dart';
 import 'package:four_gospels/quiz/bloc/quiz_bloc.dart';
 
 class QuizBackButton extends StatelessWidget {
@@ -9,6 +10,8 @@ class QuizBackButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
+
     return BackButton(
       onPressed: () {
         showDialog<void>(
@@ -16,18 +19,18 @@ class QuizBackButton extends StatelessWidget {
           barrierDismissible: false,
           builder: (BuildContext context) {
             return AlertDialog(
-              content: const Text('Do you want to quit?'),
+              content: Text(l10n.quitDialogCaption),
               actions: [
                 TextButton(
                   onPressed: () => Navigator.of(context).pop(),
-                  child: const Text('Cancel'),
+                  child: Text(l10n.quitDialogCancel),
                 ),
                 ElevatedButton(
                   onPressed: () {
                     context.router.replaceAll([const HomeRoute()]);
                     context.read<QuizBloc>().add(QuizSingleFinished());
                   },
-                  child: const Text('Quit'),
+                  child: Text(l10n.quitDialogQuit),
                 ),
               ],
             );

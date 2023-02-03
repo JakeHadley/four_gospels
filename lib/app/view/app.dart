@@ -86,67 +86,53 @@ class App extends StatelessWidget {
             ),
             textTheme: GoogleFonts.getTextTheme(
               'KoHo',
-              const TextTheme(
+              TextTheme(
                 //subtitle
-                titleMedium: TextStyle(
+                titleMedium: const TextStyle(
                   fontSize: 22,
                   color: Color(0xff585858),
                   fontWeight: FontWeight.bold,
                 ),
                 //question subtitle
-                titleSmall: TextStyle(
+                titleSmall: const TextStyle(
                   fontSize: 22,
                   color: Color(0xff2E2E2E),
                 ),
                 //start button
-                displayLarge: TextStyle(
+                displayLarge: const TextStyle(
                   fontSize: 64,
                   color: Color(0xffFFFFFF),
                   fontWeight: FontWeight.w600,
                 ),
                 //num questions labels
-                displayMedium: TextStyle(
+                displayMedium: const TextStyle(
                   fontSize: 58,
                   color: Color(0xff144C6E),
                   fontWeight: FontWeight.w700,
                 ),
                 //option labels, submit
-                headlineMedium: TextStyle(
-                  fontSize: 32,
+                headlineMedium: const TextStyle(
+                  fontSize: 30,
                   color: Color(0xffFFFFFF),
                   fontWeight: FontWeight.w600,
                 ),
                 //question
-                headlineSmall: TextStyle(
+                headlineSmall: const TextStyle(
                   fontSize: 24,
                   color: Color(0xff030303),
                   fontWeight: FontWeight.bold,
                 ),
                 //answers
-                bodyLarge: TextStyle(
+                bodyLarge: const TextStyle(
                   fontSize: 20,
                   color: Color(0xff030303),
                   fontWeight: FontWeight.w500,
                 ),
-
-                //
-                displaySmall: TextStyle(
-                  fontSize: 45,
-                ),
-                titleLarge: TextStyle(
-                  fontSize: 20,
-                ),
-                labelSmall: TextStyle(
-                  fontSize: 10,
-                ),
-                bodyMedium: TextStyle(
-                  fontSize: 14,
-                ),
-                labelLarge: TextStyle(
-                  fontSize: 14,
-                ),
                 bodySmall: TextStyle(
-                  fontSize: 12,
+                  color: Colors.blue[700],
+                  decoration: TextDecoration.underline,
+                  fontSize: 15,
+                  fontWeight: FontWeight.w500,
                 ),
               ),
             ),

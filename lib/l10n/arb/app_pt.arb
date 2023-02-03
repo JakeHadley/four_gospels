@@ -1,99 +1,111 @@
 {
     "@@locale": "pt",
-    "homePageAppBarTitle": "New Testament Quiz",
+    "homePageAppBarTitle": "Quiz do Novo Testamento",
     "@homePageAppBarTitle": {
       "description": "Home page app bar text"
     },
-    "selectQuizSubtitle": "Select a Quiz",
+    "selectQuizSubtitle": "Selecione um quiz",
     "@selectQuizSubtitle": {
       "description": "Home page subtitle text"
     },
-    "singlePlayerHome": "Single Player",
+    "singlePlayerHome": "1 jogador",
     "@singlePlayerHome": {
       "description": "Home page single player button text"
     },
-    "multiPlayer": "MultiPlayer",
+    "multiPlayer": "Vários jogadores",
     "@multiPlayer": {
       "description": "Home page multiplayer button text"
     },
-    "speedRound": "Speed Round",
+    "speedRound": "Rodada de velocidade",
     "@speedRound": {
       "description": "Home page speed round button text"
     },
-    "singlePlayerAppBar": "Single Player",
+    "singlePlayerAppBar": "1 jogador",
     "@singlePlayerAppBar": {
       "description": "Single player setup appbar text"
     },
-    "difficultySubtitle": "Select a Difficulty",
+    "difficultySubtitle": "Selecione a dificuldade",
     "@difficultySubtitle": {
       "description": "Difficulty options page subtitle text"
     },
-    "difficultyEasy": "Easy",
+    "difficultyEasy": "Fácil",
     "@difficultyEasy": {
       "description": "Difficulty easy option button text"
     },
-    "difficultyModerate": "Moderate",
+    "difficultyModerate": "Moderado",
     "@difficultyModerate": {
       "description": "Difficulty moderate option button text"
     },
-    "difficultyHard": "Hard",
+    "difficultyHard": "Difícil",
     "@difficultyHard": {
       "description": "Difficulty hard option button text"
     },
-    "numberQuestionsSubtitle": "Select how many questions",
+    "numberQuestionsSubtitle": "Selecione o número de perguntas",
     "@numberQuestionsSubtitle": {
       "description": "Number of questions page subtitle text"
     },
-    "confirmSettingsSubtitle": "Ready to test your knowlege?",
+    "confirmSettingsSubtitle": "Pronto para testar seu conhecimento?",
     "@confirmSettingsSubtitle": {
       "description": "Confirm settings page subtitle text"
     },
-    "confirmSettingsDifficulty": "Difficulty",
+    "confirmSettingsDifficulty": "Dificuldade",
     "@confirmSettingsDifficulty": {
       "description": "Difficulty selected option pretext"
     },
-    "confirmSettingsNumberQuestions": "Questions",
+    "confirmSettingsNumberQuestions": "Perguntas",
     "@confirmSettingsNumberQuestions": {
       "description": "Number questions selected option pretext"
     },
-    "startButton": "Start",
+    "startButton": "Iniciar",
     "@startButton": {
       "description": "Start button text"
     },
-    "quizSubtitleQuestion": "question",
+    "quizSubtitleQuestion": "pergunta",
     "@quizSubtitleQuestion": {
       "description": "Quiz subtitle question portion text"
     },
-    "quizSubtitleOf": "of",
+    "quizSubtitleOf": "de",
     "@quizSubtitleOf": {
       "description": "Quiz subtitle of portion text"
     },
-    "submitButton": "Submit",
+    "submitButton": "Enviar",
     "@submitButton": {
       "description": "Submit button text"
     },
-    "finishQuizButton": "Finish Quiz",
+    "finishQuizButton": "Terminar o Quiz",
     "@finishQuizButton": {
       "description": "Finish quiz button text"
     },
-    "nextQuestionButton": "Next Question",
+    "nextQuestionButton": "Próxima pergunta",
     "@nextQuestionButton": {
       "description": "Next question button text"
     },
-    "endGamePageSubtitle": "Checkout your score!",
+    "endGamePageSubtitle": "Verifique sua pontuação!",
     "@endGamePageSubtitle": {
       "description": "End game page subtitle text"
     },
-    "endGameInfoScore": "Score",
+    "endGameInfoScore": "Pontuação",
     "@endGameInfoScore": {
       "description": "End game page score pretext"
     },
-    "endGamePageCorrectAnswers": "Correct Answers",
+    "endGamePageCorrectAnswers": "Respostas corretas",
     "@endGamePageCorrectAnswers": {
       "description": "End game page correct answers pretext"
     },
-    "endGameButton": "Play Again?",
+    "endGameButton": "Jogar novamente?",
     "@endGameButton": {
       "description": "End game button text"
+    },
+    "quitDialogCaption": "Quer terminar o jogo?",
+    "@quitDialogCaption": {
+      "description": "Quit Dialog Caption"
+    },
+    "quitDialogCancel": "Cancelar",
+    "@quitDialogCancel": {
+      "description": "Quit dialog cancel button text"
+    },
+    "quitDialogQuit": "Terminar",
+    "@quitDialogQuit": {
+      "description": "Quit dialog quit button text"
     }
 }

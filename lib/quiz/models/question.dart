@@ -9,6 +9,7 @@ class Question extends Equatable {
     required this.wrongAnswer1,
     required this.wrongAnswer2,
     required this.wrongAnswer3,
+    required this.reference,
   });
 
   Question.fromJson(Map<String, Object?> json)
@@ -20,6 +21,7 @@ class Question extends Equatable {
           wrongAnswer1: json['wrongAnswer1']! as String,
           wrongAnswer2: json['wrongAnswer2']! as String,
           wrongAnswer3: json['wrongAnswer3']! as String,
+          reference: json['reference']! as String,
         );
 
   Map<String, Object?> toJson() {
@@ -31,6 +33,7 @@ class Question extends Equatable {
       'wrongAnswer1': wrongAnswer1,
       'wrongAnswer2': wrongAnswer2,
       'wrongAnswer3': wrongAnswer3,
+      'reference': reference,
     };
   }
 
@@ -41,6 +44,7 @@ class Question extends Equatable {
   final String wrongAnswer1;
   final String wrongAnswer2;
   final String wrongAnswer3;
+  final String reference;
 
   @override
   List<Object?> get props => [];

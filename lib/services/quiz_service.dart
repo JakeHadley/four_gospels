@@ -3,8 +3,6 @@ import 'package:four_gospels/quiz/models/models.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class QuizService {
-  // final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-
   final CollectionReference _questionsCollection = FirebaseFirestore.instance
       .collection('questionsPor')
       .withConverter<Question>(

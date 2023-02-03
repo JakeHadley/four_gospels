@@ -1,9 +1,5 @@
 {
     "@@locale": "en",
-    "counterAppBarTitle": "Counter",
-    "@counterAppBarTitle": {
-        "description": "Text shown in the AppBar of the Counter Page"
-    },
     "homePageAppBarTitle": "New Testament Quiz",
     "@homePageAppBarTitle": {
       "description": "Home page app bar text"
@@ -99,5 +95,17 @@
     "endGameButton": "Play Again?",
     "@endGameButton": {
       "description": "End game button text"
+    },
+    "quitDialogCaption": "Do you want to quit?",
+    "@quitDialogCaption": {
+      "description": "Quit Dialog Caption"
+    },
+    "quitDialogCancel": "Cancel",
+    "@quitDialogCancel": {
+      "description": "Quit dialog cancel button text"
+    },
+    "quitDialogQuit": "Quit",
+    "@quitDialogQuit": {
+      "description": "Quit dialog quit button text"
     }
 }

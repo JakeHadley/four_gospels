@@ -47,6 +47,9 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
     final numberOfPoints = prevState.isCorrect
         ? prevState.numberOfPoints + 10
         : prevState.numberOfPoints;
+    final numberCorrect = prevState.isCorrect
+        ? prevState.numberCorrect + 1
+        : prevState.numberCorrect;
     final nextQuestionIndex = prevState.currentQuestionIndex + 1;
 
     if (nextQuestionIndex == prevState.numberOfQuestions) {
@@ -54,13 +57,14 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
         QuizEnded(
           numberOfPoints: numberOfPoints,
           numberOfQuestions: prevState.numberOfQuestions,
-          numberCorrect: numberOfPoints / prevState.numberOfQuestions,
+          numberCorrect: numberCorrect,
         ),
       );
     } else {
       emit(
         prevState.copyWith(
           numberOfPoints: numberOfPoints,
+          numberCorrect: numberCorrect,
           currentQuestionIndex: nextQuestionIndex,
           currentQuestionAnswered: false,
           selectedAnswerKey: '',
