@@ -20,6 +20,10 @@
     "@speedRound": {
       "description": "Home page speed round button text"
     },
+    "speed": "Velocidade",
+    "@speed": {
+      "description": "Speed round confirm settings page summary text"
+    },
     "singlePlayerAppBar": "1 jogador",
     "@singlePlayerAppBar": {
       "description": "Single player setup appbar text"
@@ -107,5 +111,9 @@
     "quitDialogQuit": "Terminar",
     "@quitDialogQuit": {
       "description": "Quit dialog quit button text"
+    },
+    "comingSoonText": "Em Breve!",
+    "@comingSoonText": {
+      "description": "Text for Snackbar"
     }
 }

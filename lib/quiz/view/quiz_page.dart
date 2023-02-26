@@ -6,6 +6,7 @@ import 'package:four_gospels/common_widgets/common_widgets.dart';
 import 'package:four_gospels/l10n/l10n.dart';
 import 'package:four_gospels/quiz/bloc/quiz_bloc.dart';
 import 'package:four_gospels/quiz/models/models.dart';
+import 'package:four_gospels/quiz/widgets/back_button_dialog.dart';
 import 'package:four_gospels/quiz/widgets/widgets.dart';
 
 class QuizPage extends StatefulWidget {
@@ -51,23 +52,35 @@ class _QuizPageState extends State<QuizPage> {
     context.router.replaceAll([const EndGameRoute()]);
   }
 
+  Future<bool> _onWillPop() async {
+    return await showDialog<bool>(
+          context: context,
+          barrierDismissible: false,
+          builder: (BuildContext context) => const BackButtonDialog(),
+        ) ??
+        false;
+  }
+
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
 
-    return Scaffold(
-      appBar: CustomAppBar(
-        height: 75,
-        title: l10n.singlePlayerAppBar,
-        backButton: const QuizBackButton(),
-      ),
-      body: QuizContent(
-        nextQuestionAction: _nextQuestionAction,
-        onAnswerPress: _onAnswerPress,
-        onQuizEnded: _onQuizEnded,
-        selectedAnswer: _selectedAnswer,
-        showBadgeKey: _showBadgeKey,
-        submitAction: _submitAction,
+    return WillPopScope(
+      onWillPop: _onWillPop,
+      child: Scaffold(
+        appBar: CustomAppBar(
+          height: 75,
+          title: l10n.singlePlayerAppBar,
+          backButton: const QuizBackButton(),
+        ),
+        body: QuizContent(
+          nextQuestionAction: _nextQuestionAction,
+          onAnswerPress: _onAnswerPress,
+          onQuizEnded: _onQuizEnded,
+          selectedAnswer: _selectedAnswer,
+          showBadgeKey: _showBadgeKey,
+          submitAction: _submitAction,
+        ),
       ),
     );
   }

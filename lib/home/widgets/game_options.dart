@@ -13,7 +13,7 @@ class GameOptions extends StatelessWidget {
 
     final snackBar = SnackBar(
       backgroundColor: Theme.of(context).colorScheme.secondary,
-      content: const Text('Coming Soon!'),
+      content: Text(l10n.comingSoonText),
       action: SnackBarAction(
         label: 'dismiss',
         textColor: Theme.of(context).colorScheme.tertiaryContainer,
@@ -58,9 +58,8 @@ class GameOptions extends StatelessWidget {
           const SizedBox(height: 20),
           OptionItem(
             text: l10n.speedRound,
-            action: dismissSnackbar,
-            // color: Theme.of(context).colorScheme.tertiary,
-            color: Colors.grey,
+            action: () => context.router.push(const SpeedSetupRoute()),
+            color: Theme.of(context).colorScheme.tertiary,
             iconWidget: const Icon(Icons.av_timer, size: 80),
           )
         ],

@@ -4,6 +4,7 @@ import 'package:four_gospels/home/home.dart';
 import 'package:four_gospels/quiz/models/mode.dart';
 import 'package:four_gospels/quiz/quiz.dart';
 import 'package:four_gospels/single_player_setup/single_player_setup.dart';
+import 'package:four_gospels/speed_setup/speed_setup.dart';
 
 part 'auto_router.gr.dart';
 
@@ -16,6 +17,7 @@ part 'auto_router.gr.dart';
     AutoRoute(page: ConfirmSettingsPage),
     AutoRoute(page: QuizPage),
     AutoRoute(page: EndGamePage),
+    AutoRoute(page: SpeedSetupPage)
   ],
 )
 class AppRouter extends _$AppRouter {}

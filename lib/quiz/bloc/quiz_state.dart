@@ -90,3 +90,5 @@ class QuizEnded extends QuizState {
   final int numberOfQuestions;
   final int numberCorrect;
 }
+
+class QuizLoadedSpeed extends QuizState {}

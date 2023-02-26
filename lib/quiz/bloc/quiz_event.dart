@@ -36,3 +36,5 @@ class QuizSinglePlayerAnswered extends QuizEvent {
 }
 
 class QuizSingleFinished extends QuizEvent {}
+
+class QuizSpeedStart extends QuizEvent {}

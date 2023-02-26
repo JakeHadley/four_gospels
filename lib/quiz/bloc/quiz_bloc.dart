@@ -15,6 +15,7 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
     on<QuizSinglePlayerNextQuestion>(_onQuizSinglePlayerNextQuestion);
     on<QuizSinglePlayerAnswered>(_onQuizSinglePlayerAnswered);
     on<QuizSingleFinished>(_onQuizSingleFinished);
+    on<QuizSpeedStart>(_onQuizSpeedStart);
   }
   final QuizService _quizService;
 
@@ -96,6 +97,11 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
   ) {
     emit(QuizInitial());
   }
+
+  void _onQuizSpeedStart(
+    QuizSpeedStart event,
+    Emitter<QuizState> emit,
+  ) {}
 
   List<Answer> _buildAnswerList(Question question) => List<Answer>.from([
         Answer(isCorrect: true, key: 'A', text: question.correctAnswer),
