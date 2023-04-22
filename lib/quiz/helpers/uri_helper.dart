@@ -43,16 +43,16 @@ ParsedEntry parseEntry(String entry) {
   }
 
   //it's a regular book
-  //Alma 15-16
-  //Alma 5:3-5, 10-12, 20
+  //John 15-16
+  //John 5:3-5, 10-12, 20
   if (halves.length == 1) {
     //no verses
-    //[0] is 'Alma 5-8'
+    //[0] is 'John 5-8'
     book = getBook(halves[0].split(' ')[0]);
     chapter = halves[0].split(' ')[1].split('-')[0];
   } else if (halves.length == 2) {
     //verses
-    //[0] is 'Alma 5'
+    //[0] is 'John 5'
     book = getBook(halves[0].split(' ')[0]);
     chapter = halves[0].split(' ')[1];
 

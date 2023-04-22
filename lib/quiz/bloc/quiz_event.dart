@@ -8,25 +8,36 @@ abstract class QuizEvent extends Equatable {
   List<Object?> get props => [];
 }
 
-class QuizSinglePlayerStart extends QuizEvent {
-  const QuizSinglePlayerStart(this.numberOfQuestions, this.mode);
+class QuizStart extends QuizEvent {
+  const QuizStart.single(
+    this.numberOfQuestions,
+    this.mode, {
+    this.type = QuizType.single,
+  });
+
+  const QuizStart.speed(
+    this.numberOfQuestions,
+    this.mode, [
+    this.type = QuizType.speed,
+  ]);
 
   final int numberOfQuestions;
   final Mode mode;
+  final QuizType type;
 
   @override
-  List<Object?> get props => [numberOfQuestions, mode];
+  List<Object?> get props => [numberOfQuestions, mode, type];
 }
 
-class QuizSinglePlayerNextQuestion extends QuizEvent {
-  const QuizSinglePlayerNextQuestion();
+class QuizNextQuestion extends QuizEvent {
+  const QuizNextQuestion();
 
   @override
   List<Object?> get props => [];
 }
 
-class QuizSinglePlayerAnswered extends QuizEvent {
-  const QuizSinglePlayerAnswered({
+class QuizAnsweredQuestion extends QuizEvent {
+  const QuizAnsweredQuestion({
     required this.selectedAnswerKey,
     required this.isCorrect,
   });
@@ -35,6 +46,4 @@ class QuizSinglePlayerAnswered extends QuizEvent {
   final bool isCorrect;
 }
 
-class QuizSingleFinished extends QuizEvent {}
-
-class QuizSpeedStart extends QuizEvent {}
+class QuizFinished extends QuizEvent {}

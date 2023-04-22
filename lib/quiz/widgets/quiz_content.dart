@@ -31,7 +31,7 @@ class QuizContent extends StatelessWidget {
         }
       },
       builder: (context, state) {
-        if (state is QuizLoadedSingle) {
+        if (state is QuizLoaded) {
           final currentQuestion = state.questions[state.currentQuestionIndex];
 
           return Padding(

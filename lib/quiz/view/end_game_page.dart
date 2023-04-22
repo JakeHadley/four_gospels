@@ -12,7 +12,7 @@ class EndGamePage extends StatelessWidget {
 
   void _onPress(BuildContext context) {
     context.router.replaceAll([const HomeRoute()]);
-    context.read<QuizBloc>().add(QuizSingleFinished());
+    context.read<QuizBloc>().add(QuizFinished());
   }
 
   @override

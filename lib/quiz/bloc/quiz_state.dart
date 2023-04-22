@@ -10,11 +10,12 @@ abstract class QuizState extends Equatable {
 
 class QuizInitial extends QuizState {}
 
-class QuizLoadedSingle extends QuizState {
-  const QuizLoadedSingle({
+class QuizLoaded extends QuizState {
+  const QuizLoaded({
     required this.numberOfQuestions,
     required this.questions,
     required this.mode,
+    required this.type,
     this.numberOfPoints = 0,
     this.numberCorrect = 0,
     this.currentQuestionIndex = 0,
@@ -24,10 +25,11 @@ class QuizLoadedSingle extends QuizState {
     this.answerList = const [],
   });
 
-  QuizLoadedSingle copyWith({
+  QuizLoaded copyWith({
     int? numberOfQuestions,
     List<Question>? questions,
     Mode? mode,
+    QuizType? type,
     int? numberOfPoints,
     int? numberCorrect,
     int? currentQuestionIndex,
@@ -36,10 +38,11 @@ class QuizLoadedSingle extends QuizState {
     bool? isCorrect,
     List<Answer>? answerList,
   }) {
-    return QuizLoadedSingle(
+    return QuizLoaded(
       numberOfQuestions: numberOfQuestions ?? this.numberOfQuestions,
       questions: questions ?? this.questions,
       mode: mode ?? this.mode,
+      type: type ?? this.type,
       numberOfPoints: numberOfPoints ?? this.numberOfPoints,
       numberCorrect: numberCorrect ?? this.numberCorrect,
       currentQuestionIndex: currentQuestionIndex ?? this.currentQuestionIndex,
@@ -54,6 +57,7 @@ class QuizLoadedSingle extends QuizState {
   final int numberOfQuestions;
   final List<Question> questions;
   final Mode mode;
+  final QuizType type;
   final int numberOfPoints;
   final int numberCorrect;
   final int currentQuestionIndex;
@@ -67,6 +71,7 @@ class QuizLoadedSingle extends QuizState {
         numberOfQuestions,
         questions,
         mode,
+        type,
         numberOfPoints,
         numberCorrect,
         currentQuestionIndex,
@@ -90,5 +95,3 @@ class QuizEnded extends QuizState {
   final int numberOfQuestions;
   final int numberCorrect;
 }
-
-class QuizLoadedSpeed extends QuizState {}

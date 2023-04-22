@@ -22,7 +22,7 @@ class BackButtonDialog extends StatelessWidget {
         ElevatedButton(
           onPressed: () {
             context.router.replaceAll([const HomeRoute()]);
-            context.read<QuizBloc>().add(QuizSingleFinished());
+            context.read<QuizBloc>().add(QuizFinished());
           },
           child: Text(l10n.quitDialogQuit),
         ),

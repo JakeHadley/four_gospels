@@ -67,13 +67,28 @@ class QuizService {
     return questionList;
   }
 
-  Future<List<Question>> getQuestions(int numberOfQuestions, Mode mode) async {
-    final doc = await _statsCollection.doc('questionsPor').get();
+  Future<List<Question>> getQuestions(
+    int numberOfQuestions,
+    Mode mode,
+    QuizType type,
+  ) async {
+    final statsCollection = await _statsCollection.doc('questionsPor').get();
 
-    if (doc.data() != null) {
-      final stats = Stats.fromJson(doc.data()! as Map<String, dynamic>);
+    if (statsCollection.data() != null) {
+      final stats =
+          Stats.fromJson(statsCollection.data()! as Map<String, dynamic>);
 
-      final ids = await _getIds(stats, mode, numberOfQuestions);
+      var ids = <String>[];
+      if (type == QuizType.speed) {
+        ids = await Future.wait([
+          _getIds(stats, Mode.easy, 20),
+          _getIds(stats, Mode.moderate, 20),
+          _getIds(stats, Mode.hard, 20),
+          // flatten list of ids to be one list
+        ]).then((results) => results.expand((idsList) => idsList).toList());
+      } else {
+        ids = await _getIds(stats, mode, numberOfQuestions);
+      }
       final questionsList = await _getQuestionsList(ids);
 
       return questionsList;

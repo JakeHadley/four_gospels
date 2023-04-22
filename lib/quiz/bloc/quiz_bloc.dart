@@ -11,40 +11,35 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
   QuizBloc(QuizService quizService)
       : _quizService = quizService,
         super(QuizInitial()) {
-    on<QuizSinglePlayerStart>(_onQuizSinglePlayerStart);
-    on<QuizSinglePlayerNextQuestion>(_onQuizSinglePlayerNextQuestion);
-    on<QuizSinglePlayerAnswered>(_onQuizSinglePlayerAnswered);
-    on<QuizSingleFinished>(_onQuizSingleFinished);
-    on<QuizSpeedStart>(_onQuizSpeedStart);
+    on<QuizStart>(_onQuizStart);
+    on<QuizNextQuestion>(_onQuizNextQuestion);
+    on<QuizAnsweredQuestion>(_onQuizAnsweredQuestion);
+    on<QuizFinished>(_onQuizFinished);
   }
   final QuizService _quizService;
 
-  Future<void> _onQuizSinglePlayerStart(
-    QuizSinglePlayerStart event,
-    Emitter<QuizState> emit,
-  ) async {
+  Future<void> _onQuizStart(QuizStart event, Emitter<QuizState> emit) async {
     emit(QuizLoading());
 
     final questions = await _quizService.getQuestions(
       event.numberOfQuestions,
       event.mode,
+      event.type,
     );
 
     emit(
-      QuizLoadedSingle(
+      QuizLoaded(
         numberOfQuestions: event.numberOfQuestions,
         questions: questions,
         mode: event.mode,
         answerList: _buildAnswerList(questions[0]),
+        type: event.type,
       ),
     );
   }
 
-  void _onQuizSinglePlayerNextQuestion(
-    QuizSinglePlayerNextQuestion event,
-    Emitter<QuizState> emit,
-  ) {
-    final prevState = state as QuizLoadedSingle;
+  void _onQuizNextQuestion(QuizNextQuestion event, Emitter<QuizState> emit) {
+    final prevState = state as QuizLoaded;
     final numberOfPoints = prevState.isCorrect
         ? prevState.numberOfPoints + 10
         : prevState.numberOfPoints;
@@ -76,11 +71,11 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
     }
   }
 
-  void _onQuizSinglePlayerAnswered(
-    QuizSinglePlayerAnswered event,
+  void _onQuizAnsweredQuestion(
+    QuizAnsweredQuestion event,
     Emitter<QuizState> emit,
   ) {
-    final prevState = state as QuizLoadedSingle;
+    final prevState = state as QuizLoaded;
 
     emit(
       prevState.copyWith(
@@ -91,17 +86,9 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
     );
   }
 
-  void _onQuizSingleFinished(
-    QuizSingleFinished event,
-    Emitter<QuizState> emit,
-  ) {
+  void _onQuizFinished(QuizFinished event, Emitter<QuizState> emit) {
     emit(QuizInitial());
   }
-
-  void _onQuizSpeedStart(
-    QuizSpeedStart event,
-    Emitter<QuizState> emit,
-  ) {}
 
   List<Answer> _buildAnswerList(Question question) => List<Answer>.from([
         Answer(isCorrect: true, key: 'A', text: question.correctAnswer),

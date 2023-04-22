@@ -21,7 +21,7 @@ class ConfirmSettings extends StatelessWidget {
 
     return BlocConsumer<QuizBloc, QuizState>(
       listener: (context, state) {
-        if (state is QuizLoadedSpeed) {
+        if (state is QuizLoaded) {
           onStateChange(context);
         }
       },

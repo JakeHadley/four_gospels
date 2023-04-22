@@ -28,7 +28,7 @@ class _QuizPageState extends State<QuizPage> {
 
   void _submitAction() {
     context.read<QuizBloc>().add(
-          QuizSinglePlayerAnswered(
+          QuizAnsweredQuestion(
             selectedAnswerKey: _selectedAnswer!.key,
             isCorrect: _selectedAnswer!.isCorrect,
           ),
@@ -41,7 +41,7 @@ class _QuizPageState extends State<QuizPage> {
   }
 
   void _nextQuestionAction() {
-    context.read<QuizBloc>().add(const QuizSinglePlayerNextQuestion());
+    context.read<QuizBloc>().add(const QuizNextQuestion());
     setState(() {
       _selectedAnswer = null;
       _showBadgeKey = null;
@@ -61,26 +61,44 @@ class _QuizPageState extends State<QuizPage> {
         false;
   }
 
+  String _getTitle(QuizType type, AppLocalizations l10n) {
+    switch (type) {
+      case QuizType.single:
+        return l10n.singlePlayerAppBar;
+      case QuizType.speed:
+        return l10n.speedRoundAppBar;
+      case QuizType.multi:
+        return '';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
 
     return WillPopScope(
       onWillPop: _onWillPop,
-      child: Scaffold(
-        appBar: CustomAppBar(
-          height: 75,
-          title: l10n.singlePlayerAppBar,
-          backButton: const QuizBackButton(),
-        ),
-        body: QuizContent(
-          nextQuestionAction: _nextQuestionAction,
-          onAnswerPress: _onAnswerPress,
-          onQuizEnded: _onQuizEnded,
-          selectedAnswer: _selectedAnswer,
-          showBadgeKey: _showBadgeKey,
-          submitAction: _submitAction,
-        ),
+      child: BlocBuilder<QuizBloc, QuizState>(
+        builder: (context, state) {
+          if (state is QuizLoaded) {
+            return Scaffold(
+              appBar: CustomAppBar(
+                height: 75,
+                title: _getTitle(state.type, l10n),
+                backButton: const QuizBackButton(),
+              ),
+              body: QuizContent(
+                nextQuestionAction: _nextQuestionAction,
+                onAnswerPress: _onAnswerPress,
+                onQuizEnded: _onQuizEnded,
+                selectedAnswer: _selectedAnswer,
+                showBadgeKey: _showBadgeKey,
+                submitAction: _submitAction,
+              ),
+            );
+          }
+          return const Text('Error');
+        },
       ),
     );
   }

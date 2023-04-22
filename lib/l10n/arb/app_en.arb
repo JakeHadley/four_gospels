@@ -28,6 +28,10 @@
     "@singlePlayerAppBar": {
       "description": "Single player setup appbar text"
     },
+    "speedRoundAppBar": "Speed Round",
+    "@speedRoundAppBar": {
+      "description": "Speed round setup appbar text"
+    },
     "difficultySubtitle": "Select a Difficulty",
     "@difficultySubtitle": {
       "description": "Difficulty options page subtitle text"
