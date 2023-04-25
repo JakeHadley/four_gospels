@@ -20,9 +20,9 @@ class QuizLoaded extends QuizState {
     this.numberCorrect = 0,
     this.currentQuestionIndex = 0,
     this.currentQuestionAnswered = false,
-    this.selectedAnswerKey = '',
     this.isCorrect = false,
     this.answerList = const [],
+    this.selectedAnswer,
   });
 
   QuizLoaded copyWith({
@@ -34,9 +34,9 @@ class QuizLoaded extends QuizState {
     int? numberCorrect,
     int? currentQuestionIndex,
     bool? currentQuestionAnswered,
-    String? selectedAnswerKey,
     bool? isCorrect,
     List<Answer>? answerList,
+    Answer? selectedAnswer,
   }) {
     return QuizLoaded(
       numberOfQuestions: numberOfQuestions ?? this.numberOfQuestions,
@@ -48,9 +48,9 @@ class QuizLoaded extends QuizState {
       currentQuestionIndex: currentQuestionIndex ?? this.currentQuestionIndex,
       currentQuestionAnswered:
           currentQuestionAnswered ?? this.currentQuestionAnswered,
-      selectedAnswerKey: selectedAnswerKey ?? this.selectedAnswerKey,
       isCorrect: isCorrect ?? this.isCorrect,
       answerList: answerList ?? this.answerList,
+      selectedAnswer: selectedAnswer ?? this.selectedAnswer,
     );
   }
 
@@ -62,9 +62,9 @@ class QuizLoaded extends QuizState {
   final int numberCorrect;
   final int currentQuestionIndex;
   final bool currentQuestionAnswered;
-  final String selectedAnswerKey;
   final bool isCorrect;
   final List<Answer> answerList;
+  final Answer? selectedAnswer;
 
   @override
   List<Object?> get props => [
@@ -76,9 +76,9 @@ class QuizLoaded extends QuizState {
         numberCorrect,
         currentQuestionIndex,
         currentQuestionAnswered,
-        selectedAnswerKey,
         isCorrect,
         answerList,
+        selectedAnswer,
       ];
 }
 

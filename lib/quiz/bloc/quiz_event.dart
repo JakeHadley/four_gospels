@@ -36,14 +36,25 @@ class QuizNextQuestion extends QuizEvent {
   List<Object?> get props => [];
 }
 
-class QuizAnsweredQuestion extends QuizEvent {
-  const QuizAnsweredQuestion({
-    required this.selectedAnswerKey,
+class QuizAnswerSubmitted extends QuizEvent {
+  const QuizAnswerSubmitted({
     required this.isCorrect,
   });
 
-  final String selectedAnswerKey;
   final bool isCorrect;
+  @override
+  List<Object?> get props => [isCorrect];
 }
 
 class QuizFinished extends QuizEvent {}
+
+class QuizAnswerSelected extends QuizEvent {
+  const QuizAnswerSelected({
+    required this.answer,
+  });
+
+  final Answer answer;
+
+  @override
+  List<Object?> get props => [answer];
+}

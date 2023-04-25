@@ -9,33 +9,33 @@ class AnswerButton extends StatelessWidget {
     required this.currentQuestionAnswered,
     required this.onPress,
     required this.selectedAnswer,
-    required this.selectedAnswerKey,
-    required this.showBadgeKey,
   });
 
   final Answer answer;
   final bool currentQuestionAnswered;
   final void Function(Answer) onPress;
   final Answer? selectedAnswer;
-  final String? selectedAnswerKey;
-  final String? showBadgeKey;
 
   @override
   Widget build(BuildContext context) {
-    var color = Theme.of(context).cardColor;
-    var textTheme = Theme.of(context).textTheme.bodyLarge;
+    final theme = Theme.of(context);
+
+    var color =
+        selectedAnswer == answer ? theme.disabledColor : theme.cardColor;
+    var textTheme = theme.textTheme.bodyLarge;
+    var shouldShowBadge = false;
+
     if (currentQuestionAnswered) {
       if (answer.isCorrect) {
-        color = Theme.of(context).colorScheme.primary;
-        textTheme =
-            textTheme?.merge(TextStyle(color: Theme.of(context).cardColor));
-      } else if (selectedAnswerKey == answer.key) {
-        color = Theme.of(context).colorScheme.error;
-        textTheme =
-            textTheme?.merge(TextStyle(color: Theme.of(context).cardColor));
+        color = theme.colorScheme.primary;
+        textTheme = textTheme?.copyWith(color: theme.cardColor);
+        if (answer == selectedAnswer) {
+          shouldShowBadge = true;
+        }
+      } else if (selectedAnswer?.key == answer.key) {
+        color = theme.colorScheme.error;
+        textTheme = textTheme?.copyWith(color: theme.cardColor);
       }
-    } else if (selectedAnswer == answer) {
-      color = Theme.of(context).disabledColor;
     }
 
     return GestureDetector(
@@ -53,7 +53,7 @@ class AnswerButton extends StatelessWidget {
         borderSide: BorderSide(
           color: Theme.of(context).primaryColorLight,
         ),
-        showBadge: showBadgeKey == answer.key,
+        showBadge: shouldShowBadge,
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 8),
           child: Card(

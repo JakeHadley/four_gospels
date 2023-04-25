@@ -17,35 +17,16 @@ class QuizPage extends StatefulWidget {
 }
 
 class _QuizPageState extends State<QuizPage> {
-  Answer? _selectedAnswer;
-  String? _showBadgeKey;
-
   void _onAnswerPress(Answer answer) {
-    setState(() {
-      _selectedAnswer = answer;
-    });
+    context.read<QuizBloc>().add(QuizAnswerSelected(answer: answer));
   }
 
-  void _submitAction() {
-    context.read<QuizBloc>().add(
-          QuizAnsweredQuestion(
-            selectedAnswerKey: _selectedAnswer!.key,
-            isCorrect: _selectedAnswer!.isCorrect,
-          ),
-        );
-    if (_selectedAnswer!.isCorrect) {
-      setState(() {
-        _showBadgeKey = _selectedAnswer?.key;
-      });
-    }
+  void _onSubmit(bool isCorrect) {
+    context.read<QuizBloc>().add(QuizAnswerSubmitted(isCorrect: isCorrect));
   }
 
-  void _nextQuestionAction() {
+  void _onNextQuestionPress() {
     context.read<QuizBloc>().add(const QuizNextQuestion());
-    setState(() {
-      _selectedAnswer = null;
-      _showBadgeKey = null;
-    });
   }
 
   void _onQuizEnded() {
@@ -88,12 +69,10 @@ class _QuizPageState extends State<QuizPage> {
                 backButton: const QuizBackButton(),
               ),
               body: QuizContent(
-                nextQuestionAction: _nextQuestionAction,
+                onNextQuestionPress: _onNextQuestionPress,
                 onAnswerPress: _onAnswerPress,
                 onQuizEnded: _onQuizEnded,
-                selectedAnswer: _selectedAnswer,
-                showBadgeKey: _showBadgeKey,
-                submitAction: _submitAction,
+                onSubmit: _onSubmit,
               ),
             );
           }

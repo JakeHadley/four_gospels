@@ -6,16 +6,16 @@ class ActionButton extends StatelessWidget {
   const ActionButton({
     super.key,
     required this.currentQuestionAnswered,
-    required this.nextQuestionAction,
+    required this.onNextQuestionPress,
     required this.selectedAnswer,
-    required this.submitAction,
+    required this.onSubmit,
     required this.lastQuestion,
   });
 
   final bool currentQuestionAnswered;
-  final void Function() nextQuestionAction;
+  final void Function() onNextQuestionPress;
   final Answer? selectedAnswer;
-  final void Function() submitAction;
+  final void Function(bool) onSubmit;
   final bool lastQuestion;
 
   @override
@@ -27,7 +27,9 @@ class ActionButton extends StatelessWidget {
       duration:
           selectedAnswer == null ? Duration.zero : const Duration(seconds: 1),
       child: GestureDetector(
-        onTap: !currentQuestionAnswered ? submitAction : nextQuestionAction,
+        onTap: !currentQuestionAnswered
+            ? () => onSubmit(selectedAnswer!.isCorrect)
+            : onNextQuestionPress,
         child: AnimatedContainer(
           duration: const Duration(seconds: 1),
           width: 315,

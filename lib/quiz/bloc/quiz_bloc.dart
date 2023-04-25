@@ -13,7 +13,8 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
         super(QuizInitial()) {
     on<QuizStart>(_onQuizStart);
     on<QuizNextQuestion>(_onQuizNextQuestion);
-    on<QuizAnsweredQuestion>(_onQuizAnsweredQuestion);
+    on<QuizAnswerSubmitted>(_onQuizAnswerSubmitted);
+    on<QuizAnswerSelected>(_onQuizAnswerSelected);
     on<QuizFinished>(_onQuizFinished);
   }
   final QuizService _quizService;
@@ -63,7 +64,6 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
           numberCorrect: numberCorrect,
           currentQuestionIndex: nextQuestionIndex,
           currentQuestionAnswered: false,
-          selectedAnswerKey: '',
           isCorrect: false,
           answerList: _buildAnswerList(prevState.questions[nextQuestionIndex]),
         ),
@@ -71,8 +71,8 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
     }
   }
 
-  void _onQuizAnsweredQuestion(
-    QuizAnsweredQuestion event,
+  void _onQuizAnswerSubmitted(
+    QuizAnswerSubmitted event,
     Emitter<QuizState> emit,
   ) {
     final prevState = state as QuizLoaded;
@@ -80,8 +80,20 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
     emit(
       prevState.copyWith(
         currentQuestionAnswered: true,
-        selectedAnswerKey: event.selectedAnswerKey,
         isCorrect: event.isCorrect,
+      ),
+    );
+  }
+
+  void _onQuizAnswerSelected(
+    QuizAnswerSelected event,
+    Emitter<QuizState> emit,
+  ) {
+    final prevState = state as QuizLoaded;
+
+    emit(
+      prevState.copyWith(
+        selectedAnswer: event.answer,
       ),
     );
   }

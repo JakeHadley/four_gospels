@@ -7,20 +7,16 @@ import 'package:four_gospels/quiz/widgets/widgets.dart';
 class QuizContent extends StatelessWidget {
   const QuizContent({
     super.key,
-    required this.nextQuestionAction,
+    required this.onNextQuestionPress,
     required this.onAnswerPress,
     required this.onQuizEnded,
-    required this.selectedAnswer,
-    required this.showBadgeKey,
-    required this.submitAction,
+    required this.onSubmit,
   });
 
-  final void Function() nextQuestionAction;
+  final void Function() onNextQuestionPress;
   final void Function(Answer) onAnswerPress;
   final void Function() onQuizEnded;
-  final Answer? selectedAnswer;
-  final String? showBadgeKey;
-  final void Function() submitAction;
+  final void Function(bool) onSubmit;
 
   @override
   Widget build(BuildContext context) {
@@ -39,10 +35,7 @@ class QuizContent extends StatelessWidget {
             child: Column(
               children: [
                 const SizedBox(height: 15),
-                ProgressInfo(
-                  currentQuestionIndex: state.currentQuestionIndex,
-                  numberOfQuestions: state.numberOfQuestions,
-                ),
+                const ProgressInfo(),
                 RichText(
                   text: TextSpan(
                     text: currentQuestion.question
@@ -52,13 +45,33 @@ class QuizContent extends StatelessWidget {
                   ),
                 ),
                 const Spacer(),
-                AnswerButtonList(
-                  answerList: state.answerList,
-                  currentQuestionAnswered: state.currentQuestionAnswered,
-                  onAnswerPress: onAnswerPress,
-                  selectedAnswer: selectedAnswer,
-                  selectedAnswerKey: state.selectedAnswerKey,
-                  showBadgeKey: showBadgeKey,
+                Column(
+                  children: [
+                    AnswerButton(
+                      answer: state.answerList[0],
+                      currentQuestionAnswered: state.currentQuestionAnswered,
+                      onPress: onAnswerPress,
+                      selectedAnswer: state.selectedAnswer,
+                    ),
+                    AnswerButton(
+                      answer: state.answerList[1],
+                      currentQuestionAnswered: state.currentQuestionAnswered,
+                      onPress: onAnswerPress,
+                      selectedAnswer: state.selectedAnswer,
+                    ),
+                    AnswerButton(
+                      answer: state.answerList[2],
+                      currentQuestionAnswered: state.currentQuestionAnswered,
+                      onPress: onAnswerPress,
+                      selectedAnswer: state.selectedAnswer,
+                    ),
+                    AnswerButton(
+                      answer: state.answerList[3],
+                      currentQuestionAnswered: state.currentQuestionAnswered,
+                      onPress: onAnswerPress,
+                      selectedAnswer: state.selectedAnswer,
+                    )
+                  ],
                 ),
                 const SizedBox(height: 20),
                 Reference(
@@ -68,9 +81,9 @@ class QuizContent extends StatelessWidget {
                 const SizedBox(height: 10),
                 ActionButton(
                   currentQuestionAnswered: state.currentQuestionAnswered,
-                  nextQuestionAction: nextQuestionAction,
-                  selectedAnswer: selectedAnswer,
-                  submitAction: submitAction,
+                  onNextQuestionPress: onNextQuestionPress,
+                  selectedAnswer: state.selectedAnswer,
+                  onSubmit: onSubmit,
                   lastQuestion:
                       state.numberOfQuestions - state.currentQuestionIndex == 1,
                 ),
