@@ -39,7 +39,6 @@ class _QuizPageState extends State<QuizPage> {
         }
         break;
       case QuizType.multi:
-        // TODO: Handle this case.
         break;
     }
   }
