@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:four_gospels/l10n/l10n.dart';
 import 'package:four_gospels/quiz/bloc/quiz_bloc.dart';
+import 'package:four_gospels/quiz/models/models.dart';
 
 class ProgressInfo extends StatelessWidget {
   const ProgressInfo({super.key});
@@ -12,7 +13,7 @@ class ProgressInfo extends StatelessWidget {
 
     return BlocBuilder<QuizBloc, QuizState>(
       builder: (context, state) {
-        if (state is QuizLoaded) {
+        if (state is QuizLoaded && state.type == QuizType.single) {
           return Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -35,6 +36,7 @@ class ProgressInfo extends StatelessWidget {
             ],
           );
         }
+
         return const SizedBox.shrink();
       },
     );

@@ -84,14 +84,16 @@ class QuizLoaded extends QuizState {
 
 class QuizLoading extends QuizState {}
 
-class QuizEnded extends QuizState {
-  const QuizEnded({
+class QuizComplete extends QuizState {
+  const QuizComplete({
     required this.numberOfQuestions,
     required this.numberCorrect,
     required this.numberOfPoints,
+    required this.type,
   });
 
   final int numberOfPoints;
   final int numberOfQuestions;
   final int numberCorrect;
+  final QuizType type;
 }

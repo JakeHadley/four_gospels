@@ -1,6 +1,6 @@
 import 'package:badges/badges.dart' as badges;
 import 'package:flutter/material.dart';
-import 'package:four_gospels/quiz/models/answer.dart';
+import 'package:four_gospels/quiz/models/models.dart';
 
 class AnswerButton extends StatelessWidget {
   const AnswerButton({
@@ -9,12 +9,14 @@ class AnswerButton extends StatelessWidget {
     required this.currentQuestionAnswered,
     required this.onPress,
     required this.selectedAnswer,
+    required this.quizType,
   });
 
   final Answer answer;
   final bool currentQuestionAnswered;
-  final void Function(Answer) onPress;
+  final void Function(Answer, QuizType) onPress;
   final Answer? selectedAnswer;
+  final QuizType quizType;
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +41,7 @@ class AnswerButton extends StatelessWidget {
     }
 
     return GestureDetector(
-      onTap: () => onPress(answer),
+      onTap: () => onPress(answer, quizType),
       child: badges.Badge(
         badgeContent: Text(
           '+10',

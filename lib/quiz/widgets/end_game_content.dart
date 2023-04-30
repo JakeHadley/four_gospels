@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:four_gospels/common_widgets/common_widgets.dart';
 import 'package:four_gospels/l10n/l10n.dart';
 import 'package:four_gospels/quiz/bloc/quiz_bloc.dart';
+import 'package:four_gospels/quiz/models/models.dart';
 import 'package:four_gospels/quiz/widgets/widgets.dart';
 
 class EndGameContent extends StatelessWidget {
@@ -19,7 +20,14 @@ class EndGameContent extends StatelessWidget {
 
     return BlocBuilder<QuizBloc, QuizState>(
       builder: (context, state) {
-        if (state is QuizEnded) {
+        if (state is QuizComplete) {
+          final text1 = '${l10n.endGameInfoScore}: ${state.numberOfPoints}';
+          final text2 = state.type == QuizType.single
+              ? '${l10n.endGamePageCorrectAnswers}: '
+                  '${state.numberCorrect}/${state.numberOfQuestions}'
+              : '${l10n.endGamePageCorrectAnswers}: '
+                  '${state.numberCorrect}';
+
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 40),
             child: Column(
@@ -35,11 +43,7 @@ class EndGameContent extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 54),
-                InfoBox(
-                  text1: '${l10n.endGameInfoScore}: ${state.numberOfPoints}',
-                  text2: '${l10n.endGamePageCorrectAnswers}: '
-                      '${state.numberCorrect}/${state.numberOfQuestions}',
-                ),
+                InfoBox(text1: text1, text2: text2),
                 const Spacer(),
                 EndGameButton(onPress: onPress),
                 const SizedBox(height: 20)

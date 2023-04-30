@@ -14,7 +14,7 @@ class QuizContent extends StatelessWidget {
   });
 
   final void Function() onNextQuestionPress;
-  final void Function(Answer) onAnswerPress;
+  final void Function(Answer, QuizType) onAnswerPress;
   final void Function() onQuizEnded;
   final void Function(bool) onSubmit;
 
@@ -22,7 +22,7 @@ class QuizContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<QuizBloc, QuizState>(
       listener: (context, state) {
-        if (state is QuizEnded) {
+        if (state is QuizComplete) {
           onQuizEnded();
         }
       },
@@ -35,7 +35,10 @@ class QuizContent extends StatelessWidget {
             child: Column(
               children: [
                 const SizedBox(height: 15),
-                const ProgressInfo(),
+                if (state.type == QuizType.single)
+                  const ProgressInfo()
+                else
+                  TimerInfo(quizState: state),
                 RichText(
                   text: TextSpan(
                     text: currentQuestion.question
@@ -52,41 +55,48 @@ class QuizContent extends StatelessWidget {
                       currentQuestionAnswered: state.currentQuestionAnswered,
                       onPress: onAnswerPress,
                       selectedAnswer: state.selectedAnswer,
+                      quizType: state.type,
                     ),
                     AnswerButton(
                       answer: state.answerList[1],
                       currentQuestionAnswered: state.currentQuestionAnswered,
                       onPress: onAnswerPress,
                       selectedAnswer: state.selectedAnswer,
+                      quizType: state.type,
                     ),
                     AnswerButton(
                       answer: state.answerList[2],
                       currentQuestionAnswered: state.currentQuestionAnswered,
                       onPress: onAnswerPress,
                       selectedAnswer: state.selectedAnswer,
+                      quizType: state.type,
                     ),
                     AnswerButton(
                       answer: state.answerList[3],
                       currentQuestionAnswered: state.currentQuestionAnswered,
                       onPress: onAnswerPress,
                       selectedAnswer: state.selectedAnswer,
+                      quizType: state.type,
                     )
                   ],
                 ),
-                const SizedBox(height: 20),
-                Reference(
-                  reference: currentQuestion.reference,
-                  currentQuestionAnswered: state.currentQuestionAnswered,
-                ),
-                const SizedBox(height: 10),
-                ActionButton(
-                  currentQuestionAnswered: state.currentQuestionAnswered,
-                  onNextQuestionPress: onNextQuestionPress,
-                  selectedAnswer: state.selectedAnswer,
-                  onSubmit: onSubmit,
-                  lastQuestion:
-                      state.numberOfQuestions - state.currentQuestionIndex == 1,
-                ),
+                if (state.type == QuizType.single) ...[
+                  const SizedBox(height: 20),
+                  Reference(
+                    reference: currentQuestion.reference,
+                    currentQuestionAnswered: state.currentQuestionAnswered,
+                  ),
+                  const SizedBox(height: 10),
+                  ActionButton(
+                    currentQuestionAnswered: state.currentQuestionAnswered,
+                    onNextQuestionPress: onNextQuestionPress,
+                    selectedAnswer: state.selectedAnswer,
+                    onSubmit: onSubmit,
+                    lastQuestion:
+                        state.numberOfQuestions - state.currentQuestionIndex ==
+                            1,
+                  ),
+                ],
                 const SizedBox(height: 20)
               ],
             ),

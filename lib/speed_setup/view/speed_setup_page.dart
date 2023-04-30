@@ -4,9 +4,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:four_gospels/app/auto_router.dart';
 import 'package:four_gospels/common_widgets/common_widgets.dart';
 import 'package:four_gospels/l10n/l10n.dart';
-import 'package:four_gospels/quiz/bloc/quiz_bloc.dart';
-import 'package:four_gospels/quiz/models/models.dart';
+import 'package:four_gospels/quiz/quiz.dart';
 import 'package:four_gospels/speed_setup/widgets/confirm_settings.dart';
+import 'package:four_gospels/timer/timer.dart';
 
 class SpeedSetupPage extends StatelessWidget {
   const SpeedSetupPage({super.key});
@@ -17,6 +17,7 @@ class SpeedSetupPage extends StatelessWidget {
 
   void _onStateChange(BuildContext context) {
     context.router.replaceAll([const QuizRoute()]);
+    context.read<TimerBloc>().add(const TimerStarted(duration: 60));
   }
 
   @override

@@ -8,21 +8,20 @@ part 'quiz_event.dart';
 part 'quiz_state.dart';
 
 class QuizBloc extends Bloc<QuizEvent, QuizState> {
-  QuizBloc(QuizService quizService)
-      : _quizService = quizService,
-        super(QuizInitial()) {
+  QuizBloc({required this.quizService}) : super(QuizInitial()) {
     on<QuizStart>(_onQuizStart);
     on<QuizNextQuestion>(_onQuizNextQuestion);
     on<QuizAnswerSubmitted>(_onQuizAnswerSubmitted);
     on<QuizAnswerSelected>(_onQuizAnswerSelected);
     on<QuizFinished>(_onQuizFinished);
+    on<QuizEnded>(_onQuizEnded);
   }
-  final QuizService _quizService;
+  final QuizService quizService;
 
   Future<void> _onQuizStart(QuizStart event, Emitter<QuizState> emit) async {
     emit(QuizLoading());
 
-    final questions = await _quizService.getQuestions(
+    final questions = await quizService.getQuestions(
       event.numberOfQuestions,
       event.mode,
       event.type,
@@ -51,10 +50,11 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
 
     if (nextQuestionIndex == prevState.numberOfQuestions) {
       emit(
-        QuizEnded(
+        QuizComplete(
           numberOfPoints: numberOfPoints,
           numberOfQuestions: prevState.numberOfQuestions,
           numberCorrect: numberCorrect,
+          type: prevState.type,
         ),
       );
     } else {
@@ -100,6 +100,19 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
 
   void _onQuizFinished(QuizFinished event, Emitter<QuizState> emit) {
     emit(QuizInitial());
+  }
+
+  void _onQuizEnded(QuizEnded event, Emitter<QuizState> emit) {
+    final prevState = state as QuizLoaded;
+
+    emit(
+      QuizComplete(
+        numberOfQuestions: prevState.numberOfQuestions,
+        numberCorrect: prevState.numberCorrect,
+        numberOfPoints: prevState.numberOfPoints,
+        type: prevState.type,
+      ),
+    );
   }
 
   List<Answer> _buildAnswerList(Question question) => List<Answer>.from([

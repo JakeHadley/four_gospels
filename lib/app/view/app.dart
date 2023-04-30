@@ -13,6 +13,7 @@ import 'package:four_gospels/app/auto_router.dart';
 import 'package:four_gospels/l10n/l10n.dart';
 import 'package:four_gospels/quiz/quiz.dart';
 import 'package:four_gospels/services/quiz_service.dart';
+import 'package:four_gospels/timer/timer.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class App extends StatelessWidget {
@@ -32,11 +33,12 @@ class App extends StatelessWidget {
       child: MultiBlocProvider(
         providers: [
           BlocProvider(
-            create: (BuildContext context) {
-              final quizService = RepositoryProvider.of<QuizService>(context);
-
-              return QuizBloc(quizService);
-            },
+            create: (BuildContext context) => QuizBloc(
+              quizService: RepositoryProvider.of<QuizService>(context),
+            ),
+          ),
+          BlocProvider(
+            create: (BuildContext context) => TimerBloc(ticker: const Ticker()),
           ),
         ],
         child: MaterialApp.router(

@@ -8,6 +8,7 @@ import 'package:four_gospels/quiz/bloc/quiz_bloc.dart';
 import 'package:four_gospels/quiz/models/models.dart';
 import 'package:four_gospels/quiz/widgets/back_button_dialog.dart';
 import 'package:four_gospels/quiz/widgets/widgets.dart';
+import 'package:four_gospels/timer/bloc/timer_bloc.dart';
 
 class QuizPage extends StatefulWidget {
   const QuizPage({super.key});
@@ -17,8 +18,30 @@ class QuizPage extends StatefulWidget {
 }
 
 class _QuizPageState extends State<QuizPage> {
-  void _onAnswerPress(Answer answer) {
-    context.read<QuizBloc>().add(QuizAnswerSelected(answer: answer));
+  void _onAnswerPress(Answer answer, QuizType type) {
+    switch (type) {
+      case QuizType.single:
+        context.read<QuizBloc>().add(QuizAnswerSelected(answer: answer));
+        break;
+      case QuizType.speed:
+        context.read<QuizBloc>().add(QuizAnswerSelected(answer: answer));
+        context
+            .read<QuizBloc>()
+            .add(QuizAnswerSubmitted(isCorrect: answer.isCorrect));
+
+        if (answer.isCorrect) {
+          context.read<TimerBloc>().add(const TimerAdded(duration: 10));
+        }
+        if (mounted) {
+          Future.delayed(const Duration(seconds: 1), () {
+            context.read<QuizBloc>().add(QuizNextQuestion());
+          });
+        }
+        break;
+      case QuizType.multi:
+        // TODO: Handle this case.
+        break;
+    }
   }
 
   void _onSubmit(bool isCorrect) {
@@ -26,7 +49,7 @@ class _QuizPageState extends State<QuizPage> {
   }
 
   void _onNextQuestionPress() {
-    context.read<QuizBloc>().add(const QuizNextQuestion());
+    context.read<QuizBloc>().add(QuizNextQuestion());
   }
 
   void _onQuizEnded() {
@@ -76,7 +99,7 @@ class _QuizPageState extends State<QuizPage> {
               ),
             );
           }
-          return const Text('Error');
+          return const Scaffold();
         },
       ),
     );
