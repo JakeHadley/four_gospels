@@ -86,7 +86,6 @@ class _QuizPageState extends State<QuizPage> {
           if (state is QuizLoaded) {
             return Scaffold(
               appBar: CustomAppBar(
-                height: 75,
                 title: _getTitle(state.type, l10n),
                 backButton: const QuizBackButton(),
               ),

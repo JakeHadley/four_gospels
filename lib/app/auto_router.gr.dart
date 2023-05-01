@@ -68,6 +68,24 @@ class _$AppRouter extends RootStackRouter {
         child: const SpeedSetupPage(),
       );
     },
+    MultiPlayerSetupRoute.name: (routeData) {
+      return MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const MultiPlayerSetupPage(),
+      );
+    },
+    JoinGameRoute.name: (routeData) {
+      return MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const JoinGamePage(),
+      );
+    },
+    CreateGameRoute.name: (routeData) {
+      return MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const CreateGamePage(),
+      );
+    },
   };
 
   @override
@@ -99,6 +117,18 @@ class _$AppRouter extends RootStackRouter {
         RouteConfig(
           SpeedSetupRoute.name,
           path: '/speed-setup-page',
+        ),
+        RouteConfig(
+          MultiPlayerSetupRoute.name,
+          path: '/multi-player-setup-page',
+        ),
+        RouteConfig(
+          JoinGameRoute.name,
+          path: '/join-game-page',
+        ),
+        RouteConfig(
+          CreateGameRoute.name,
+          path: '/create-game-page',
         ),
       ];
 }
@@ -234,4 +264,40 @@ class SpeedSetupRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'SpeedSetupRoute';
+}
+
+/// generated route for
+/// [MultiPlayerSetupPage]
+class MultiPlayerSetupRoute extends PageRouteInfo<void> {
+  const MultiPlayerSetupRoute()
+      : super(
+          MultiPlayerSetupRoute.name,
+          path: '/multi-player-setup-page',
+        );
+
+  static const String name = 'MultiPlayerSetupRoute';
+}
+
+/// generated route for
+/// [JoinGamePage]
+class JoinGameRoute extends PageRouteInfo<void> {
+  const JoinGameRoute()
+      : super(
+          JoinGameRoute.name,
+          path: '/join-game-page',
+        );
+
+  static const String name = 'JoinGameRoute';
+}
+
+/// generated route for
+/// [CreateGamePage]
+class CreateGameRoute extends PageRouteInfo<void> {
+  const CreateGameRoute()
+      : super(
+          CreateGameRoute.name,
+          path: '/create-game-page',
+        );
+
+  static const String name = 'CreateGameRoute';
 }

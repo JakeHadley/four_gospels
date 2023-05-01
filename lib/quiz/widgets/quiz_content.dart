@@ -87,7 +87,7 @@ class QuizContent extends StatelessWidget {
                     currentQuestionAnswered: state.currentQuestionAnswered,
                   ),
                   const SizedBox(height: 10),
-                  ActionButton(
+                  QuizButton(
                     currentQuestionAnswered: state.currentQuestionAnswered,
                     onNextQuestionPress: onNextQuestionPress,
                     selectedAnswer: state.selectedAnswer,

@@ -32,6 +32,10 @@
     "@speedRoundAppBar": {
       "description": "Speed round setup appbar text"
     },
+    "multiPlayerAppBar": "Multiplayer",
+    "@multiPlayerAppBar": {
+      "description": "MultiPlayer setup appbar text"
+    },
     "difficultySubtitle": "Select a Difficulty",
     "@difficultySubtitle": {
       "description": "Difficulty options page subtitle text"
@@ -119,5 +123,21 @@
     "comingSoonText": "Coming Soon!",
     "@comingSoonText": {
       "description": "Text for Snackbar"
+    },
+    "joinGameButton": "Join a game",
+    "@joinGameButton": {
+      "description": "Text for Join Game Button"
+    },
+    "joinGameAppBar": "Join a game",
+    "@joinGameAppBar": {
+      "description": "Text for Join Game Page App Bar"
+    },
+    "createGameButton": "Create a game",
+    "@createGameButton": {
+      "description": "Text for Create Game Button"
+    },
+    "createGameAppBar": "Create a game",
+    "@createGameAppBar": {
+      "description": "Text for Create Game Page App Bar"
     }
 }

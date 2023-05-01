@@ -20,7 +20,7 @@ class EndGamePage extends StatelessWidget {
     final l10n = context.l10n;
 
     return Scaffold(
-      appBar: CustomAppBar(height: 75, title: l10n.singlePlayerAppBar),
+      appBar: CustomAppBar(title: l10n.singlePlayerAppBar),
       body: EndGameContent(onPress: _onPress),
     );
   }

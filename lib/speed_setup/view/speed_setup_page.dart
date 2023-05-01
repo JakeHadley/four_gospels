@@ -25,7 +25,7 @@ class SpeedSetupPage extends StatelessWidget {
     final l10n = context.l10n;
 
     return Scaffold(
-      appBar: CustomAppBar(height: 75, title: l10n.speedRound),
+      appBar: CustomAppBar(title: l10n.speedRound),
       body: ConfirmSettings(
         onPress: _onPress,
         onStateChange: _onStateChange,

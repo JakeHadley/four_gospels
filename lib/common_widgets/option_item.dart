@@ -3,25 +3,20 @@ import 'package:flutter/material.dart';
 class OptionItem extends StatelessWidget {
   const OptionItem({
     super.key,
-    required String text,
-    required void Function()? action,
-    required Color color,
-    required Widget iconWidget,
-    bool darkText = false,
-    bool equalWidth = false,
-  })  : _text = text,
-        _action = action,
-        _color = color,
-        _iconWidget = iconWidget,
-        _darkText = darkText,
-        _equalWidth = equalWidth;
+    required this.text,
+    required this.action,
+    required this.color,
+    required this.iconWidget,
+    this.darkText = false,
+    this.equalWidth = false,
+  });
 
-  final String _text;
-  final void Function()? _action;
-  final Color _color;
-  final Widget _iconWidget;
-  final bool _darkText;
-  final bool _equalWidth;
+  final String text;
+  final void Function()? action;
+  final Color color;
+  final Widget iconWidget;
+  final bool darkText;
+  final bool equalWidth;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +24,7 @@ class OptionItem extends StatelessWidget {
       borderRadius: BorderRadius.circular(40),
     );
 
-    final textStyle = _darkText
+    final textStyle = darkText
         ? Theme.of(context).textTheme.headlineMedium?.copyWith(
               color: Theme.of(context).primaryIconTheme.color,
             )
@@ -39,19 +34,19 @@ class OptionItem extends StatelessWidget {
       height: 100,
       child: Card(
         shape: border,
-        color: _color,
+        color: color,
         child: InkWell(
           customBorder: border,
-          onTap: _action,
+          onTap: action,
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8),
             child: Row(
               children: [
                 const SizedBox(width: 12),
-                Expanded(flex: _equalWidth ? 1 : 0, child: _iconWidget),
+                Expanded(flex: equalWidth ? 1 : 0, child: iconWidget),
                 Expanded(
                   child: Text(
-                    _text,
+                    text,
                     style: textStyle,
                     textAlign: TextAlign.center,
                   ),

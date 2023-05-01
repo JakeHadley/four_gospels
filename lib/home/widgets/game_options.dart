@@ -11,22 +11,6 @@ class GameOptions extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
 
-    final snackBar = SnackBar(
-      backgroundColor: Theme.of(context).colorScheme.secondary,
-      content: Text(l10n.comingSoonText),
-      action: SnackBarAction(
-        label: 'dismiss',
-        textColor: Theme.of(context).colorScheme.tertiaryContainer,
-        onPressed: () => ScaffoldMessenger.of(context).hideCurrentSnackBar(),
-      ),
-      behavior: SnackBarBehavior.floating,
-    );
-
-    void dismissSnackbar() {
-      ScaffoldMessenger.of(context).hideCurrentSnackBar();
-      ScaffoldMessenger.of(context).showSnackBar(snackBar);
-    }
-
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 40),
       child: Column(
@@ -50,9 +34,8 @@ class GameOptions extends StatelessWidget {
           const SizedBox(height: 20),
           OptionItem(
             text: l10n.multiPlayer,
-            action: dismissSnackbar,
-            // color: Theme.of(context).colorScheme.secondary,
-            color: Colors.grey,
+            action: () => context.router.push(const MultiPlayerSetupRoute()),
+            color: Theme.of(context).colorScheme.secondary,
             iconWidget: const Icon(Icons.groups, size: 80),
           ),
           const SizedBox(height: 20),
