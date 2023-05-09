@@ -75,15 +75,23 @@ class _$AppRouter extends RootStackRouter {
       );
     },
     JoinGameRoute.name: (routeData) {
+      final args = routeData.argsAs<JoinGameRouteArgs>();
       return MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const JoinGamePage(),
+        child: JoinGamePage(
+          key: args.key,
+          name: args.name,
+        ),
       );
     },
     CreateGameRoute.name: (routeData) {
+      final args = routeData.argsAs<CreateGameRouteArgs>();
       return MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const CreateGamePage(),
+        child: CreateGamePage(
+          key: args.key,
+          name: args.name,
+        ),
       );
     },
   };
@@ -280,24 +288,68 @@ class MultiPlayerSetupRoute extends PageRouteInfo<void> {
 
 /// generated route for
 /// [JoinGamePage]
-class JoinGameRoute extends PageRouteInfo<void> {
-  const JoinGameRoute()
-      : super(
+class JoinGameRoute extends PageRouteInfo<JoinGameRouteArgs> {
+  JoinGameRoute({
+    Key? key,
+    required String name,
+  }) : super(
           JoinGameRoute.name,
           path: '/join-game-page',
+          args: JoinGameRouteArgs(
+            key: key,
+            name: name,
+          ),
         );
 
   static const String name = 'JoinGameRoute';
 }
 
+class JoinGameRouteArgs {
+  const JoinGameRouteArgs({
+    this.key,
+    required this.name,
+  });
+
+  final Key? key;
+
+  final String name;
+
+  @override
+  String toString() {
+    return 'JoinGameRouteArgs{key: $key, name: $name}';
+  }
+}
+
 /// generated route for
 /// [CreateGamePage]
-class CreateGameRoute extends PageRouteInfo<void> {
-  const CreateGameRoute()
-      : super(
+class CreateGameRoute extends PageRouteInfo<CreateGameRouteArgs> {
+  CreateGameRoute({
+    Key? key,
+    required String name,
+  }) : super(
           CreateGameRoute.name,
           path: '/create-game-page',
+          args: CreateGameRouteArgs(
+            key: key,
+            name: name,
+          ),
         );
 
   static const String name = 'CreateGameRoute';
+}
+
+class CreateGameRouteArgs {
+  const CreateGameRouteArgs({
+    this.key,
+    required this.name,
+  });
+
+  final Key? key;
+
+  final String name;
+
+  @override
+  String toString() {
+    return 'CreateGameRouteArgs{key: $key, name: $name}';
+  }
 }

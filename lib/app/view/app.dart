@@ -12,7 +12,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:four_gospels/app/auto_router.dart';
 import 'package:four_gospels/l10n/l10n.dart';
 import 'package:four_gospels/quiz/quiz.dart';
-import 'package:four_gospels/services/quiz_service.dart';
+import 'package:four_gospels/services/services.dart';
 import 'package:four_gospels/timer/timer.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -29,6 +29,9 @@ class App extends StatelessWidget {
         RepositoryProvider<QuizService>(
           create: (context) => QuizService(),
         ),
+        RepositoryProvider<MultiplayerService>(
+          create: (context) => MultiplayerService(),
+        )
       ],
       child: MultiBlocProvider(
         providers: [
@@ -45,6 +48,7 @@ class App extends StatelessWidget {
           routerDelegate: _appRouter.delegate(),
           routeInformationParser: _appRouter.defaultRouteParser(),
           theme: ThemeData(
+            // useMaterial3: true,
             primaryColor: const Color(0xff144C6E), //primary default
             primaryColorDark: const Color(0xff0F3953), //primary dark
             primaryColorLight: const Color(0xff89A6B7), //primary light
@@ -130,6 +134,7 @@ class App extends StatelessWidget {
                   color: Color(0xff030303),
                   fontWeight: FontWeight.w500,
                 ),
+                //reference
                 bodySmall: TextStyle(
                   color: Colors.blue[700],
                   decoration: TextDecoration.underline,
