@@ -7,43 +7,55 @@ import 'package:four_gospels/l10n/l10n.dart';
 import 'package:four_gospels/multi_player_setup/widgets/widgets.dart';
 
 class JoinGamePage extends StatefulWidget {
-  const JoinGamePage({super.key, required this.name});
-
-  final String name;
+  const JoinGamePage({super.key});
 
   @override
   State<JoinGamePage> createState() => _JoinGamePageState();
 }
 
 class _JoinGamePageState extends State<JoinGamePage> {
-  final _controller = TextEditingController();
+  final _codeController = TextEditingController();
+  final _nameController = TextEditingController();
   bool _codeEntered = false;
+  bool _nameEntered = false;
 
   @override
   void dispose() {
-    _controller.dispose();
+    _codeController.dispose();
+    _nameController.dispose();
     super.dispose();
   }
 
   @override
   void initState() {
-    _controller.addListener(() {
+    _codeController.addListener(() {
       setState(() {
-        _codeEntered = _controller.text.isNotEmpty;
+        _codeEntered = _codeController.text.isNotEmpty;
+      });
+    });
+    _nameController.addListener(() {
+      setState(() {
+        _nameEntered = _nameController.text.isNotEmpty;
       });
     });
     super.initState();
   }
 
-  void enterGame(BuildContext context, PageRouteInfo? route) {
-    if (route == null) {
+  bool isValid() {
+    return _codeEntered && _nameEntered;
+  }
+
+  void enterLobby(BuildContext context) {
+    if (!isValid()) {
       return;
     }
 
-    context.router.push(route);
-    _controller.clear();
+    context.router.push(const LobbyRoute());
+    _codeController.clear();
+    _nameController.clear();
     setState(() {
       _codeEntered = false;
+      _nameEntered = false;
     });
   }
 
@@ -51,7 +63,7 @@ class _JoinGamePageState extends State<JoinGamePage> {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
     final theme = Theme.of(context);
-    final buttonColor = _codeEntered ? theme.primaryColor : theme.disabledColor;
+    final buttonColor = isValid() ? theme.primaryColor : theme.disabledColor;
 
     return Scaffold(
       appBar: CustomAppBar(title: l10n.joinGameAppBar),
@@ -62,20 +74,17 @@ class _JoinGamePageState extends State<JoinGamePage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
-                  'Name: ${widget.name}',
-                  style: theme.textTheme.headlineSmall,
+                Input(
+                  controller: _nameController,
+                  label: 'Enter Your Name',
                 ),
                 Input(
+                  controller: _codeController,
                   label: 'Enter Code',
-                  controller: _controller,
                 ),
                 const SizedBox(height: 30),
                 ActionButton(
-                  onTap: () => enterGame(
-                    context,
-                    _codeEntered ? const LobbyRoute() : null,
-                  ),
+                  onTap: () => enterLobby(context),
                   color: buttonColor,
                   text: 'Join',
                 ),
