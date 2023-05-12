@@ -94,6 +94,12 @@ class _$AppRouter extends RootStackRouter {
         ),
       );
     },
+    LobbyRoute.name: (routeData) {
+      return MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const LobbyPage(),
+      );
+    },
   };
 
   @override
@@ -137,6 +143,10 @@ class _$AppRouter extends RootStackRouter {
         RouteConfig(
           CreateGameRoute.name,
           path: '/create-game-page',
+        ),
+        RouteConfig(
+          LobbyRoute.name,
+          path: '/lobby-page',
         ),
       ];
 }
@@ -352,4 +362,16 @@ class CreateGameRouteArgs {
   String toString() {
     return 'CreateGameRouteArgs{key: $key, name: $name}';
   }
+}
+
+/// generated route for
+/// [LobbyPage]
+class LobbyRoute extends PageRouteInfo<void> {
+  const LobbyRoute()
+      : super(
+          LobbyRoute.name,
+          path: '/lobby-page',
+        );
+
+  static const String name = 'LobbyRoute';
 }

@@ -139,5 +139,9 @@
     "createGameAppBar": "Create a game",
     "@createGameAppBar": {
       "description": "Text for Create Game Page App Bar"
+    },
+    "lobbyAppBar": "Lobby",
+    "@lobbyAppBar": {
+      "description": "Text for Lobby Page App Bar"
     }
 }

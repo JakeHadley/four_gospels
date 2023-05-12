@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:four_gospels/app/auto_router.dart';
 import 'package:four_gospels/common_widgets/common_widgets.dart';
 import 'package:four_gospels/l10n/l10n.dart';
+import 'package:four_gospels/multi_player_setup/widgets/widgets.dart';
 
 class MultiPlayerSetupPage extends StatefulWidget {
   const MultiPlayerSetupPage({super.key});
@@ -13,13 +14,7 @@ class MultiPlayerSetupPage extends StatefulWidget {
 
 class _MultiPlayerSetupPageState extends State<MultiPlayerSetupPage> {
   final _controller = TextEditingController();
-  var _nameEntered = false;
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
+  bool _nameEntered = false;
 
   @override
   void initState() {
@@ -58,15 +53,9 @@ class _MultiPlayerSetupPageState extends State<MultiPlayerSetupPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 24),
-                  child: TextField(
-                    autocorrect: false,
-                    decoration: const InputDecoration(
-                      labelText: 'Enter Your Name',
-                    ),
-                    controller: _controller,
-                  ),
+                Input(
+                  controller: _controller,
+                  label: 'Enter Your Name',
                 ),
                 const SizedBox(height: 30),
                 ActionButton(

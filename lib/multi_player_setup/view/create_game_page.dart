@@ -1,10 +1,10 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:four_gospels/app/auto_router.dart';
 import 'package:four_gospels/common_widgets/common_widgets.dart';
 import 'package:four_gospels/l10n/l10n.dart';
 import 'package:four_gospels/quiz/models/models.dart';
 import 'package:numberpicker/numberpicker.dart';
-import 'package:random_string/random_string.dart';
-import 'package:share_plus/share_plus.dart';
 
 class CreateGamePage extends StatefulWidget {
   const CreateGamePage({super.key, required this.name});
@@ -14,8 +14,6 @@ class CreateGamePage extends StatefulWidget {
   @override
   State<CreateGamePage> createState() => _CreateGamePageState();
 }
-
-final codeToShare = randomAlphaNumeric(6);
 
 class _CreateGamePageState extends State<CreateGamePage> {
   int _numPlayers = 3;
@@ -40,17 +38,6 @@ class _CreateGamePageState extends State<CreateGamePage> {
                 const SizedBox(height: 30),
                 Text('Name: ${widget.name}', style: theme.textTheme.bodyLarge),
                 const SizedBox(height: 10),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(codeToShare, style: theme.textTheme.bodyLarge),
-                    IconButton(
-                      icon: const Icon(Icons.share),
-                      onPressed: () => Share.share('This is a share text'),
-                      color: theme.primaryColor,
-                    ),
-                  ],
-                ),
                 Text('Number of Players', style: theme.textTheme.bodyLarge),
                 NumberPicker(
                   axis: Axis.horizontal,
@@ -100,7 +87,7 @@ class _CreateGamePageState extends State<CreateGamePage> {
                 ),
                 const Spacer(),
                 ActionButton(
-                  onTap: () => print('hello'),
+                  onTap: () => context.router.push(const LobbyRoute()),
                   color: buttonColor,
                   text: 'Start',
                 ),
