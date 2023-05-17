@@ -4,12 +4,12 @@ import 'package:four_gospels/quiz/models/models.dart';
 
 class AnswerButton extends StatelessWidget {
   const AnswerButton({
-    super.key,
     required this.answer,
     required this.currentQuestionAnswered,
     required this.onPress,
     required this.selectedAnswer,
     required this.quizType,
+    super.key,
   });
 
   final Answer answer;
@@ -50,10 +50,12 @@ class AnswerButton extends StatelessWidget {
               .titleMedium
               ?.merge(TextStyle(color: Theme.of(context).cardColor)),
         ),
-        padding: const EdgeInsets.all(12),
-        badgeColor: Theme.of(context).primaryColor,
-        borderSide: BorderSide(
-          color: Theme.of(context).primaryColorLight,
+        badgeStyle: badges.BadgeStyle(
+          padding: const EdgeInsets.all(12),
+          badgeColor: Theme.of(context).primaryColor,
+          borderSide: BorderSide(
+            color: Theme.of(context).primaryColorLight,
+          ),
         ),
         showBadge: shouldShowBadge,
         child: Padding(

@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:four_gospels/l10n/l10n.dart';
 
 class EndGameButton extends StatelessWidget {
-  const EndGameButton({super.key, required this.onPress});
+  const EndGameButton({
+    required this.onPress,
+    super.key,
+  });
 
   final void Function(BuildContext p1) onPress;
 

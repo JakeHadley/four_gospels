@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 class InfoBox extends StatelessWidget {
   const InfoBox({
-    super.key,
     required this.text1,
     required this.text2,
+    super.key,
   });
 
   final String text1;

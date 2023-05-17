@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 class Input extends StatefulWidget {
   const Input({
-    super.key,
     required this.controller,
     required this.label,
+    super.key,
   });
 
   final TextEditingController controller;

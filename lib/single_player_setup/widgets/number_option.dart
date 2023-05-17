@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 
 class NumberOption extends StatelessWidget {
-  const NumberOption({super.key, required this.text, required this.action});
+  const NumberOption({
+    required this.text,
+    required this.action,
+    super.key,
+  });
 
   final String text;
   final void Function()? action;

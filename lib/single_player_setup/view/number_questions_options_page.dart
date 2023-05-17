@@ -6,8 +6,12 @@ import 'package:four_gospels/l10n/l10n.dart';
 import 'package:four_gospels/quiz/models/mode.dart';
 import 'package:four_gospels/single_player_setup/widgets/widgets.dart';
 
+@RoutePage()
 class NumberQuestionsPage extends StatelessWidget {
-  const NumberQuestionsPage({super.key, required this.mode});
+  const NumberQuestionsPage({
+    required this.mode,
+    super.key,
+  });
 
   final Mode mode;
 

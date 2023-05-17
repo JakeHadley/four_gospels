@@ -10,6 +10,7 @@ import 'package:four_gospels/quiz/widgets/back_button_dialog.dart';
 import 'package:four_gospels/quiz/widgets/widgets.dart';
 import 'package:four_gospels/timer/bloc/timer_bloc.dart';
 
+@RoutePage()
 class QuizPage extends StatefulWidget {
   const QuizPage({super.key});
 
@@ -43,7 +44,7 @@ class _QuizPageState extends State<QuizPage> {
     }
   }
 
-  void _onSubmit(bool isCorrect) {
+  void _onSubmit({required bool isCorrect}) {
     context.read<QuizBloc>().add(QuizAnswerSubmitted(isCorrect: isCorrect));
   }
 
@@ -55,11 +56,17 @@ class _QuizPageState extends State<QuizPage> {
     context.router.replaceAll([const EndGameRoute()]);
   }
 
+  void _exitAction() {
+    context.read<TimerBloc>().add(TimerReset());
+  }
+
   Future<bool> _onWillPop() async {
     return await showDialog<bool>(
           context: context,
           barrierDismissible: false,
-          builder: (BuildContext context) => const BackButtonDialog(),
+          builder: (BuildContext context) => BackButtonDialog(
+            exitAction: _exitAction,
+          ),
         ) ??
         false;
   }
@@ -87,7 +94,7 @@ class _QuizPageState extends State<QuizPage> {
             return Scaffold(
               appBar: CustomAppBar(
                 title: _getTitle(state.type, l10n),
-                backButton: const QuizBackButton(),
+                backButton: QuizBackButton(exitAction: _exitAction),
               ),
               body: QuizContent(
                 onNextQuestionPress: _onNextQuestionPress,

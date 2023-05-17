@@ -8,11 +8,11 @@ import 'package:four_gospels/single_player_setup/widgets/widgets.dart';
 
 class ConfirmSettings extends StatelessWidget {
   const ConfirmSettings({
-    super.key,
     required this.mode,
     required this.numberQuestions,
     required this.onPress,
     required this.onStateChange,
+    super.key,
   });
 
   final Mode mode;

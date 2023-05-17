@@ -4,7 +4,10 @@ import 'package:four_gospels/quiz/quiz.dart';
 import 'package:four_gospels/timer/timer.dart';
 
 class TimerInfo extends StatelessWidget {
-  const TimerInfo({super.key, required this.quizState});
+  const TimerInfo({
+    required this.quizState,
+    super.key,
+  });
 
   final QuizState quizState;
 

@@ -8,20 +8,20 @@ import 'package:four_gospels/speed_setup/speed_setup.dart';
 
 part 'auto_router.gr.dart';
 
-@MaterialAutoRouter(
-  replaceInRouteName: 'Page,Route',
-  routes: <AutoRoute>[
-    AutoRoute(page: HomePage, initial: true),
-    AutoRoute(page: DifficultyOptionsPage),
-    AutoRoute(page: NumberQuestionsPage),
-    AutoRoute(page: ConfirmSettingsPage),
-    AutoRoute(page: QuizPage),
-    AutoRoute(page: EndGamePage),
-    AutoRoute(page: SpeedSetupPage),
-    AutoRoute(page: MultiPlayerSetupPage),
-    AutoRoute(page: JoinGamePage),
-    AutoRoute(page: CreateGamePage),
-    AutoRoute(page: LobbyPage),
-  ],
-)
-class AppRouter extends _$AppRouter {}
+@AutoRouterConfig()
+class AppRouter extends _$AppRouter {
+  @override
+  List<AutoRoute> get routes => [
+        AutoRoute(page: HomeRoute.page, initial: true),
+        AutoRoute(page: DifficultyOptionsRoute.page),
+        AutoRoute(page: NumberQuestionsRoute.page),
+        AutoRoute(page: ConfirmSettingsRoute.page),
+        AutoRoute(page: QuizRoute.page),
+        AutoRoute(page: EndGameRoute.page),
+        AutoRoute(page: SpeedSetupRoute.page),
+        AutoRoute(page: MultiPlayerSetupRoute.page),
+        AutoRoute(page: JoinGameRoute.page),
+        AutoRoute(page: CreateGameRoute.page),
+        AutoRoute(page: LobbyRoute.page),
+      ];
+}

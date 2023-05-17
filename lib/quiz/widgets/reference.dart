@@ -6,9 +6,9 @@ import 'package:url_launcher/url_launcher.dart';
 
 class Reference extends StatelessWidget {
   const Reference({
-    super.key,
     required this.reference,
     required this.currentQuestionAnswered,
+    super.key,
   });
 
   final String reference;

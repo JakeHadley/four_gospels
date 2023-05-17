@@ -4,7 +4,10 @@ import 'package:four_gospels/l10n/l10n.dart';
 import 'package:four_gospels/quiz/models/mode.dart';
 
 class DifficultyOptions extends StatelessWidget {
-  const DifficultyOptions({super.key, required this.onPress});
+  const DifficultyOptions({
+    required this.onPress,
+    super.key,
+  });
 
   final void Function(BuildContext context, Mode mode) onPress;
 

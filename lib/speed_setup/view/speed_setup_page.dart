@@ -8,6 +8,7 @@ import 'package:four_gospels/quiz/quiz.dart';
 import 'package:four_gospels/speed_setup/widgets/confirm_settings.dart';
 import 'package:four_gospels/timer/timer.dart';
 
+@RoutePage()
 class SpeedSetupPage extends StatelessWidget {
   const SpeedSetupPage({super.key});
 

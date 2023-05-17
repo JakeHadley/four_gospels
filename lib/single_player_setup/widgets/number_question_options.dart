@@ -5,9 +5,9 @@ import 'package:four_gospels/single_player_setup/widgets/number_option.dart';
 
 class NumberQuestionOptions extends StatelessWidget {
   const NumberQuestionOptions({
-    super.key,
     required this.mode,
     required this.onPress,
+    super.key,
   });
 
   final Mode mode;

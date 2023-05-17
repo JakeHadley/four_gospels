@@ -5,18 +5,18 @@ import 'package:four_gospels/quiz/models/models.dart';
 
 class QuizButton extends StatelessWidget {
   const QuizButton({
-    super.key,
     required this.currentQuestionAnswered,
     required this.onNextQuestionPress,
     required this.selectedAnswer,
     required this.onSubmit,
     required this.lastQuestion,
+    super.key,
   });
 
   final bool currentQuestionAnswered;
   final void Function() onNextQuestionPress;
   final Answer? selectedAnswer;
-  final void Function(bool) onSubmit;
+  final void Function({required bool isCorrect}) onSubmit;
   final bool lastQuestion;
 
   @override
@@ -33,7 +33,7 @@ class QuizButton extends StatelessWidget {
         : Theme.of(context).colorScheme.primaryContainer;
 
     final onTap = !currentQuestionAnswered
-        ? () => onSubmit(selectedAnswer!.isCorrect)
+        ? () => onSubmit(isCorrect: selectedAnswer!.isCorrect)
         : onNextQuestionPress;
 
     return AnimatedOpacity(

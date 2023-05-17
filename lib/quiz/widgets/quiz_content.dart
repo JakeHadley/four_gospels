@@ -6,17 +6,17 @@ import 'package:four_gospels/quiz/widgets/widgets.dart';
 
 class QuizContent extends StatelessWidget {
   const QuizContent({
-    super.key,
     required this.onNextQuestionPress,
     required this.onAnswerPress,
     required this.onQuizEnded,
     required this.onSubmit,
+    super.key,
   });
 
   final void Function() onNextQuestionPress;
   final void Function(Answer, QuizType) onAnswerPress;
   final void Function() onQuizEnded;
-  final void Function(bool) onSubmit;
+  final void Function({required bool isCorrect}) onSubmit;
 
   @override
   Widget build(BuildContext context) {

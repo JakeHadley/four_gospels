@@ -6,7 +6,12 @@ import 'package:four_gospels/l10n/l10n.dart';
 import 'package:four_gospels/quiz/quiz.dart';
 
 class BackButtonDialog extends StatelessWidget {
-  const BackButtonDialog({super.key});
+  const BackButtonDialog({
+    required this.exitAction,
+    super.key,
+  });
+
+  final void Function() exitAction;
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +28,7 @@ class BackButtonDialog extends StatelessWidget {
           onPressed: () {
             context.router.replaceAll([const HomeRoute()]);
             context.read<QuizBloc>().add(QuizFinished());
+            exitAction();
           },
           child: Text(l10n.quitDialogQuit),
         ),

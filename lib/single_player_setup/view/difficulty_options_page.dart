@@ -6,6 +6,7 @@ import 'package:four_gospels/l10n/l10n.dart';
 import 'package:four_gospels/quiz/models/models.dart';
 import 'package:four_gospels/single_player_setup/widgets/widgets.dart';
 
+@RoutePage()
 class DifficultyOptionsPage extends StatelessWidget {
   const DifficultyOptionsPage({super.key});
 

@@ -6,6 +6,7 @@ import 'package:four_gospels/l10n/l10n.dart';
 
 import 'package:four_gospels/multi_player_setup/widgets/widgets.dart';
 
+@RoutePage()
 class JoinGamePage extends StatefulWidget {
   const JoinGamePage({super.key});
 

@@ -8,11 +8,12 @@ import 'package:four_gospels/quiz/bloc/quiz_bloc.dart';
 import 'package:four_gospels/quiz/models/models.dart';
 import 'package:four_gospels/single_player_setup/widgets/widgets.dart';
 
+@RoutePage()
 class ConfirmSettingsPage extends StatelessWidget {
   const ConfirmSettingsPage({
-    super.key,
     required this.mode,
     required this.numberQuestions,
+    super.key,
   });
 
   final Mode mode;

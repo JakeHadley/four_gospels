@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 
 class OptionItem extends StatelessWidget {
   const OptionItem({
-    super.key,
     required this.text,
     required this.action,
     required this.color,
     required this.iconWidget,
+    super.key,
     this.darkText = false,
     this.equalWidth = false,
   });

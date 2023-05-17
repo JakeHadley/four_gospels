@@ -4,6 +4,7 @@ import 'package:four_gospels/app/auto_router.dart';
 import 'package:four_gospels/common_widgets/common_widgets.dart';
 import 'package:four_gospels/l10n/l10n.dart';
 
+@RoutePage()
 class MultiPlayerSetupPage extends StatelessWidget {
   const MultiPlayerSetupPage({super.key});
 

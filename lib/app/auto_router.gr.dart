@@ -1,47 +1,71 @@
-// **************************************************************************
-// AutoRouteGenerator
-// **************************************************************************
-
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
 // **************************************************************************
-// AutoRouteGenerator
+// AutoRouterGenerator
 // **************************************************************************
-//
+
 // ignore_for_file: type=lint
+// coverage:ignore-file
 
 part of 'auto_router.dart';
 
-class _$AppRouter extends RootStackRouter {
-  _$AppRouter([GlobalKey<NavigatorState>? navigatorKey]) : super(navigatorKey);
+abstract class _$AppRouter extends RootStackRouter {
+  // ignore: unused_element
+  _$AppRouter({super.navigatorKey});
 
   @override
   final Map<String, PageFactory> pagesMap = {
     HomeRoute.name: (routeData) {
-      return MaterialPageX<dynamic>(
+      return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const HomePage(),
       );
     },
-    DifficultyOptionsRoute.name: (routeData) {
-      return MaterialPageX<dynamic>(
+    EndGameRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const DifficultyOptionsPage(),
+        child: const EndGamePage(),
       );
     },
-    NumberQuestionsRoute.name: (routeData) {
-      final args = routeData.argsAs<NumberQuestionsRouteArgs>();
-      return MaterialPageX<dynamic>(
+    QuizRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: NumberQuestionsPage(
-          key: args.key,
-          mode: args.mode,
-        ),
+        child: const QuizPage(),
+      );
+    },
+    SpeedSetupRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const SpeedSetupPage(),
+      );
+    },
+    JoinGameRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const JoinGamePage(),
+      );
+    },
+    MultiPlayerSetupRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const MultiPlayerSetupPage(),
+      );
+    },
+    CreateGameRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const CreateGamePage(),
+      );
+    },
+    LobbyRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const LobbyPage(),
       );
     },
     ConfirmSettingsRoute.name: (routeData) {
       final args = routeData.argsAs<ConfirmSettingsRouteArgs>();
-      return MaterialPageX<dynamic>(
+      return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: ConfirmSettingsPage(
           key: args.key,
@@ -50,155 +74,135 @@ class _$AppRouter extends RootStackRouter {
         ),
       );
     },
-    QuizRoute.name: (routeData) {
-      return MaterialPageX<dynamic>(
+    NumberQuestionsRoute.name: (routeData) {
+      final args = routeData.argsAs<NumberQuestionsRouteArgs>();
+      return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const QuizPage(),
+        child: NumberQuestionsPage(
+          key: args.key,
+          mode: args.mode,
+        ),
       );
     },
-    EndGameRoute.name: (routeData) {
-      return MaterialPageX<dynamic>(
+    DifficultyOptionsRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const EndGamePage(),
-      );
-    },
-    SpeedSetupRoute.name: (routeData) {
-      return MaterialPageX<dynamic>(
-        routeData: routeData,
-        child: const SpeedSetupPage(),
-      );
-    },
-    MultiPlayerSetupRoute.name: (routeData) {
-      return MaterialPageX<dynamic>(
-        routeData: routeData,
-        child: const MultiPlayerSetupPage(),
-      );
-    },
-    JoinGameRoute.name: (routeData) {
-      return MaterialPageX<dynamic>(
-        routeData: routeData,
-        child: const JoinGamePage(),
-      );
-    },
-    CreateGameRoute.name: (routeData) {
-      return MaterialPageX<dynamic>(
-        routeData: routeData,
-        child: const CreateGamePage(),
-      );
-    },
-    LobbyRoute.name: (routeData) {
-      return MaterialPageX<dynamic>(
-        routeData: routeData,
-        child: const LobbyPage(),
+        child: const DifficultyOptionsPage(),
       );
     },
   };
-
-  @override
-  List<RouteConfig> get routes => [
-        RouteConfig(
-          HomeRoute.name,
-          path: '/',
-        ),
-        RouteConfig(
-          DifficultyOptionsRoute.name,
-          path: '/difficulty-options-page',
-        ),
-        RouteConfig(
-          NumberQuestionsRoute.name,
-          path: '/number-questions-page',
-        ),
-        RouteConfig(
-          ConfirmSettingsRoute.name,
-          path: '/confirm-settings-page',
-        ),
-        RouteConfig(
-          QuizRoute.name,
-          path: '/quiz-page',
-        ),
-        RouteConfig(
-          EndGameRoute.name,
-          path: '/end-game-page',
-        ),
-        RouteConfig(
-          SpeedSetupRoute.name,
-          path: '/speed-setup-page',
-        ),
-        RouteConfig(
-          MultiPlayerSetupRoute.name,
-          path: '/multi-player-setup-page',
-        ),
-        RouteConfig(
-          JoinGameRoute.name,
-          path: '/join-game-page',
-        ),
-        RouteConfig(
-          CreateGameRoute.name,
-          path: '/create-game-page',
-        ),
-        RouteConfig(
-          LobbyRoute.name,
-          path: '/lobby-page',
-        ),
-      ];
 }
 
 /// generated route for
 /// [HomePage]
 class HomeRoute extends PageRouteInfo<void> {
-  const HomeRoute()
+  const HomeRoute({List<PageRouteInfo>? children})
       : super(
           HomeRoute.name,
-          path: '/',
+          initialChildren: children,
         );
 
   static const String name = 'HomeRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for
-/// [DifficultyOptionsPage]
-class DifficultyOptionsRoute extends PageRouteInfo<void> {
-  const DifficultyOptionsRoute()
+/// [EndGamePage]
+class EndGameRoute extends PageRouteInfo<void> {
+  const EndGameRoute({List<PageRouteInfo>? children})
       : super(
-          DifficultyOptionsRoute.name,
-          path: '/difficulty-options-page',
+          EndGameRoute.name,
+          initialChildren: children,
         );
 
-  static const String name = 'DifficultyOptionsRoute';
+  static const String name = 'EndGameRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for
-/// [NumberQuestionsPage]
-class NumberQuestionsRoute extends PageRouteInfo<NumberQuestionsRouteArgs> {
-  NumberQuestionsRoute({
-    Key? key,
-    required Mode mode,
-  }) : super(
-          NumberQuestionsRoute.name,
-          path: '/number-questions-page',
-          args: NumberQuestionsRouteArgs(
-            key: key,
-            mode: mode,
-          ),
+/// [QuizPage]
+class QuizRoute extends PageRouteInfo<void> {
+  const QuizRoute({List<PageRouteInfo>? children})
+      : super(
+          QuizRoute.name,
+          initialChildren: children,
         );
 
-  static const String name = 'NumberQuestionsRoute';
+  static const String name = 'QuizRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
 }
 
-class NumberQuestionsRouteArgs {
-  const NumberQuestionsRouteArgs({
-    this.key,
-    required this.mode,
-  });
+/// generated route for
+/// [SpeedSetupPage]
+class SpeedSetupRoute extends PageRouteInfo<void> {
+  const SpeedSetupRoute({List<PageRouteInfo>? children})
+      : super(
+          SpeedSetupRoute.name,
+          initialChildren: children,
+        );
 
-  final Key? key;
+  static const String name = 'SpeedSetupRoute';
 
-  final Mode mode;
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
 
-  @override
-  String toString() {
-    return 'NumberQuestionsRouteArgs{key: $key, mode: $mode}';
-  }
+/// generated route for
+/// [JoinGamePage]
+class JoinGameRoute extends PageRouteInfo<void> {
+  const JoinGameRoute({List<PageRouteInfo>? children})
+      : super(
+          JoinGameRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'JoinGameRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [MultiPlayerSetupPage]
+class MultiPlayerSetupRoute extends PageRouteInfo<void> {
+  const MultiPlayerSetupRoute({List<PageRouteInfo>? children})
+      : super(
+          MultiPlayerSetupRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'MultiPlayerSetupRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [CreateGamePage]
+class CreateGameRoute extends PageRouteInfo<void> {
+  const CreateGameRoute({List<PageRouteInfo>? children})
+      : super(
+          CreateGameRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'CreateGameRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [LobbyPage]
+class LobbyRoute extends PageRouteInfo<void> {
+  const LobbyRoute({List<PageRouteInfo>? children})
+      : super(
+          LobbyRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'LobbyRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for
@@ -208,17 +212,21 @@ class ConfirmSettingsRoute extends PageRouteInfo<ConfirmSettingsRouteArgs> {
     Key? key,
     required Mode mode,
     required int numberQuestions,
+    List<PageRouteInfo>? children,
   }) : super(
           ConfirmSettingsRoute.name,
-          path: '/confirm-settings-page',
           args: ConfirmSettingsRouteArgs(
             key: key,
             mode: mode,
             numberQuestions: numberQuestions,
           ),
+          initialChildren: children,
         );
 
   static const String name = 'ConfirmSettingsRoute';
+
+  static const PageInfo<ConfirmSettingsRouteArgs> page =
+      PageInfo<ConfirmSettingsRouteArgs>(name);
 }
 
 class ConfirmSettingsRouteArgs {
@@ -241,85 +249,53 @@ class ConfirmSettingsRouteArgs {
 }
 
 /// generated route for
-/// [QuizPage]
-class QuizRoute extends PageRouteInfo<void> {
-  const QuizRoute()
-      : super(
-          QuizRoute.name,
-          path: '/quiz-page',
+/// [NumberQuestionsPage]
+class NumberQuestionsRoute extends PageRouteInfo<NumberQuestionsRouteArgs> {
+  NumberQuestionsRoute({
+    Key? key,
+    required Mode mode,
+    List<PageRouteInfo>? children,
+  }) : super(
+          NumberQuestionsRoute.name,
+          args: NumberQuestionsRouteArgs(
+            key: key,
+            mode: mode,
+          ),
+          initialChildren: children,
         );
 
-  static const String name = 'QuizRoute';
+  static const String name = 'NumberQuestionsRoute';
+
+  static const PageInfo<NumberQuestionsRouteArgs> page =
+      PageInfo<NumberQuestionsRouteArgs>(name);
+}
+
+class NumberQuestionsRouteArgs {
+  const NumberQuestionsRouteArgs({
+    this.key,
+    required this.mode,
+  });
+
+  final Key? key;
+
+  final Mode mode;
+
+  @override
+  String toString() {
+    return 'NumberQuestionsRouteArgs{key: $key, mode: $mode}';
+  }
 }
 
 /// generated route for
-/// [EndGamePage]
-class EndGameRoute extends PageRouteInfo<void> {
-  const EndGameRoute()
+/// [DifficultyOptionsPage]
+class DifficultyOptionsRoute extends PageRouteInfo<void> {
+  const DifficultyOptionsRoute({List<PageRouteInfo>? children})
       : super(
-          EndGameRoute.name,
-          path: '/end-game-page',
+          DifficultyOptionsRoute.name,
+          initialChildren: children,
         );
 
-  static const String name = 'EndGameRoute';
-}
+  static const String name = 'DifficultyOptionsRoute';
 
-/// generated route for
-/// [SpeedSetupPage]
-class SpeedSetupRoute extends PageRouteInfo<void> {
-  const SpeedSetupRoute()
-      : super(
-          SpeedSetupRoute.name,
-          path: '/speed-setup-page',
-        );
-
-  static const String name = 'SpeedSetupRoute';
-}
-
-/// generated route for
-/// [MultiPlayerSetupPage]
-class MultiPlayerSetupRoute extends PageRouteInfo<void> {
-  const MultiPlayerSetupRoute()
-      : super(
-          MultiPlayerSetupRoute.name,
-          path: '/multi-player-setup-page',
-        );
-
-  static const String name = 'MultiPlayerSetupRoute';
-}
-
-/// generated route for
-/// [JoinGamePage]
-class JoinGameRoute extends PageRouteInfo<void> {
-  const JoinGameRoute()
-      : super(
-          JoinGameRoute.name,
-          path: '/join-game-page',
-        );
-
-  static const String name = 'JoinGameRoute';
-}
-
-/// generated route for
-/// [CreateGamePage]
-class CreateGameRoute extends PageRouteInfo<void> {
-  const CreateGameRoute()
-      : super(
-          CreateGameRoute.name,
-          path: '/create-game-page',
-        );
-
-  static const String name = 'CreateGameRoute';
-}
-
-/// generated route for
-/// [LobbyPage]
-class LobbyRoute extends PageRouteInfo<void> {
-  const LobbyRoute()
-      : super(
-          LobbyRoute.name,
-          path: '/lobby-page',
-        );
-
-  static const String name = 'LobbyRoute';
+  static const PageInfo<void> page = PageInfo<void>(name);
 }

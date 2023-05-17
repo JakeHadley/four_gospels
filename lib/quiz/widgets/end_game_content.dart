@@ -8,8 +8,8 @@ import 'package:four_gospels/quiz/widgets/widgets.dart';
 
 class EndGameContent extends StatelessWidget {
   const EndGameContent({
-    super.key,
     required this.onPress,
+    super.key,
   });
 
   final void Function(BuildContext) onPress;

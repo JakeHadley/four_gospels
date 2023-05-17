@@ -2,7 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:four_gospels/quiz/widgets/back_button_dialog.dart';
 
 class QuizBackButton extends StatelessWidget {
-  const QuizBackButton({super.key});
+  const QuizBackButton({
+    required this.exitAction,
+    super.key,
+  });
+
+  final void Function() exitAction;
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +16,9 @@ class QuizBackButton extends StatelessWidget {
         showDialog<void>(
           context: context,
           barrierDismissible: false,
-          builder: (BuildContext context) => const BackButtonDialog(),
+          builder: (BuildContext context) => BackButtonDialog(
+            exitAction: exitAction,
+          ),
         );
       },
     );

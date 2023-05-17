@@ -45,8 +45,9 @@ class App extends StatelessWidget {
           ),
         ],
         child: MaterialApp.router(
-          routerDelegate: _appRouter.delegate(),
-          routeInformationParser: _appRouter.defaultRouteParser(),
+          routerConfig: _appRouter.config(),
+          // routerDelegate: _appRouter.delegate(),
+          // routeInformationParser: _appRouter.defaultRouteParser(),
           theme: ThemeData(
             // useMaterial3: true,
             primaryColor: const Color(0xff144C6E), //primary default

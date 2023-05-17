@@ -3,9 +3,9 @@ import 'package:four_gospels/l10n/l10n.dart';
 
 class StartButton extends StatelessWidget {
   const StartButton({
-    super.key,
     required this.onPress,
     required this.isInitialState,
+    super.key,
   });
 
   final void Function(BuildContext context) onPress;

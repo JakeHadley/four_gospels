@@ -1,12 +1,13 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:four_gospels/app/auto_router.dart';
 import 'package:four_gospels/common_widgets/common_widgets.dart';
 import 'package:four_gospels/l10n/l10n.dart';
 import 'package:four_gospels/multi_player_setup/widgets/widgets.dart';
 import 'package:four_gospels/quiz/models/models.dart';
+import 'package:four_gospels/services/services.dart';
 import 'package:numberpicker/numberpicker.dart';
 
+@RoutePage()
 class CreateGamePage extends StatefulWidget {
   const CreateGamePage({super.key});
 
@@ -20,6 +21,7 @@ class _CreateGamePageState extends State<CreateGamePage> {
   Mode _mode = Mode.easy;
   final _nameController = TextEditingController();
   bool _nameEntered = false;
+  MultiplayerService mps = MultiplayerService();
 
   @override
   void dispose() {
@@ -37,7 +39,11 @@ class _CreateGamePageState extends State<CreateGamePage> {
     super.initState();
   }
 
-  Widget generator(int index, ThemeData theme, AppLocalizations l10n) {
+  Widget choiceChipGenerator(
+    int index,
+    ThemeData theme,
+    AppLocalizations l10n,
+  ) {
     final mode = Mode.values[index];
 
     return Padding(
@@ -62,16 +68,17 @@ class _CreateGamePageState extends State<CreateGamePage> {
     return _nameEntered;
   }
 
-  void enterLobby(BuildContext context) {
+  Future<void> enterLobby(BuildContext context) async {
     if (!isValid()) {
       return;
     }
 
-    context.router.push(const LobbyRoute());
-    _nameController.clear();
-    setState(() {
-      _nameEntered = false;
-    });
+    await mps.createRoom(_nameController.text);
+    // context.router.push(const LobbyRoute());
+    // _nameController.clear();
+    // setState(() {
+    //   _nameEntered = false;
+    // });
   }
 
   @override
@@ -90,10 +97,7 @@ class _CreateGamePageState extends State<CreateGamePage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const SizedBox(height: 30),
-                Input(
-                  controller: _nameController,
-                  label: 'Enter Your Name',
-                ),
+                Input(controller: _nameController, label: 'Enter Your Name'),
                 const SizedBox(height: 10),
                 Text('Number of Players', style: theme.textTheme.bodyLarge),
                 NumberPicker(
@@ -120,7 +124,7 @@ class _CreateGamePageState extends State<CreateGamePage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: List.generate(
                     3,
-                    (int index) => generator(index, theme, l10n),
+                    (int index) => choiceChipGenerator(index, theme, l10n),
                   ),
                 ),
                 const Spacer(),

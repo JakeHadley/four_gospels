@@ -1,11 +1,10 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:four_gospels/common_widgets/common_widgets.dart';
 import 'package:four_gospels/l10n/l10n.dart';
-import 'package:random_string/random_string.dart';
-import 'package:share_plus/share_plus.dart';
+import 'package:four_gospels/multi_player_setup/widgets/widgets.dart';
 
-final codeToShare = randomAlphaNumeric(6);
-
+@RoutePage()
 class LobbyPage extends StatelessWidget {
   const LobbyPage({super.key});
 
@@ -24,70 +23,8 @@ class LobbyPage extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Padding(
-                  padding: const EdgeInsets.all(16),
-                  child: Text(
-                    'Name: dave',
-                    style: theme.textTheme.headlineSmall,
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(16),
-                  child: Text(
-                    'Number of Players: 3',
-                    style: theme.textTheme.headlineSmall,
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(16),
-                  child: Text(
-                    'Number of Questions: 10',
-                    style: theme.textTheme.headlineSmall,
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(16),
-                  child: Text(
-                    'Mode: Easy',
-                    style: theme.textTheme.headlineSmall,
-                  ),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      'Code: $codeToShare',
-                      style: theme.textTheme.headlineSmall,
-                    ),
-                    IconButton(
-                      icon: const Icon(Icons.share),
-                      onPressed: () => Share.share('This is a share text'),
-                      color: theme.primaryColor,
-                    ),
-                  ],
-                ),
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.all(16),
-                    child: DecoratedBox(
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          color: Colors.grey,
-                          width: 3,
-                        ),
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      child: ListView.builder(
-                        itemCount: 10,
-                        itemBuilder: (context, index) {
-                          return ListTile(
-                            title: Text('Player ${index + 1}'),
-                          );
-                        },
-                      ),
-                    ),
-                  ),
-                ),
+                const GameInfo(),
+                const PlayerList(),
                 ActionButton(
                   onTap: () => print('hello'),
                   color: buttonColor,
