@@ -2,146 +2,146 @@
     "@@locale": "en",
     "homePageAppBarTitle": "New Testament Quiz",
     "@homePageAppBarTitle": {
-      "description": "Home page app bar text"
+        "description": "Home page app bar text"
     },
     "selectQuizSubtitle": "Select a Quiz",
     "@selectQuizSubtitle": {
-      "description": "Home page subtitle text"
+        "description": "Home page subtitle text"
     },
     "singlePlayerHome": "Single Player",
     "@singlePlayerHome": {
-      "description": "Home page single player button text"
+        "description": "Home page single player button text"
     },
     "multiPlayer": "MultiPlayer",
     "@multiPlayer": {
-      "description": "Home page multiplayer button text"
+        "description": "Home page multiplayer button text"
     },
     "speedRound": "Speed Round",
     "@speedRound": {
-      "description": "Home page speed round button text"
+        "description": "Home page speed round button text"
     },
     "speed": "Speed",
     "@speed": {
-      "description": "Speed round confirm settings page summary text"
+        "description": "Speed round confirm settings page summary text"
     },
     "singlePlayerAppBar": "Single Player",
     "@singlePlayerAppBar": {
-      "description": "Single player setup appbar text"
+        "description": "Single player setup appbar text"
     },
     "speedRoundAppBar": "Speed Round",
     "@speedRoundAppBar": {
-      "description": "Speed round setup appbar text"
+        "description": "Speed round setup appbar text"
     },
     "multiPlayerAppBar": "Multiplayer",
     "@multiPlayerAppBar": {
-      "description": "MultiPlayer setup appbar text"
+        "description": "MultiPlayer setup appbar text"
     },
     "difficultySubtitle": "Select a Difficulty",
     "@difficultySubtitle": {
-      "description": "Difficulty options page subtitle text"
+        "description": "Difficulty options page subtitle text"
     },
     "difficultyEasy": "Easy",
     "@difficultyEasy": {
-      "description": "Difficulty easy option button text"
+        "description": "Difficulty easy option button text"
     },
     "difficultyModerate": "Moderate",
     "@difficultyModerate": {
-      "description": "Difficulty moderate option button text"
+        "description": "Difficulty moderate option button text"
     },
     "difficultyHard": "Hard",
     "@difficultyHard": {
-      "description": "Difficulty hard option button text"
+        "description": "Difficulty hard option button text"
     },
     "numberQuestionsSubtitle": "Select how many questions",
     "@numberQuestionsSubtitle": {
-      "description": "Number of questions page subtitle text"
+        "description": "Number of questions page subtitle text"
     },
     "confirmSettingsSubtitle": "Ready to test your knowlege?",
     "@confirmSettingsSubtitle": {
-      "description": "Confirm settings page subtitle text"
+        "description": "Confirm settings page subtitle text"
     },
     "confirmSettingsDifficulty": "Difficulty",
     "@confirmSettingsDifficulty": {
-      "description": "Difficulty selected option pretext"
+        "description": "Difficulty selected option pretext"
     },
     "confirmSettingsNumberQuestions": "Questions",
     "@confirmSettingsNumberQuestions": {
-      "description": "Number questions selected option pretext"
+        "description": "Number questions selected option pretext"
     },
     "startButton": "Start",
     "@startButton": {
-      "description": "Start button text"
+        "description": "Start button text"
     },
     "quizSubtitleQuestion": "question",
     "@quizSubtitleQuestion": {
-      "description": "Quiz subtitle question portion text"
+        "description": "Quiz subtitle question portion text"
     },
     "quizSubtitleOf": "of",
     "@quizSubtitleOf": {
-      "description": "Quiz subtitle of portion text"
+        "description": "Quiz subtitle of portion text"
     },
     "submitButton": "Submit",
     "@submitButton": {
-      "description": "Submit button text"
+        "description": "Submit button text"
     },
     "finishQuizButton": "Finish Quiz",
     "@finishQuizButton": {
-      "description": "Finish quiz button text"
+        "description": "Finish quiz button text"
     },
     "nextQuestionButton": "Next Question",
     "@nextQuestionButton": {
-      "description": "Next question button text"
+        "description": "Next question button text"
     },
     "endGamePageSubtitle": "Checkout your score!",
     "@endGamePageSubtitle": {
-      "description": "End game page subtitle text"
+        "description": "End game page subtitle text"
     },
     "endGameInfoScore": "Score",
     "@endGameInfoScore": {
-      "description": "End game page score pretext"
+        "description": "End game page score pretext"
     },
     "endGamePageCorrectAnswers": "Correct Answers",
     "@endGamePageCorrectAnswers": {
-      "description": "End game page correct answers pretext"
+        "description": "End game page correct answers pretext"
     },
     "endGameButton": "Play Again?",
     "@endGameButton": {
-      "description": "End game button text"
+        "description": "End game button text"
     },
     "quitDialogCaption": "Do you want to quit?",
     "@quitDialogCaption": {
-      "description": "Quit Dialog Caption"
+        "description": "Quit Dialog Caption"
     },
     "quitDialogCancel": "Cancel",
     "@quitDialogCancel": {
-      "description": "Quit dialog cancel button text"
+        "description": "Quit dialog cancel button text"
     },
     "quitDialogQuit": "Quit",
     "@quitDialogQuit": {
-      "description": "Quit dialog quit button text"
+        "description": "Quit dialog quit button text"
     },
     "comingSoonText": "Coming Soon!",
     "@comingSoonText": {
-      "description": "Text for Snackbar"
+        "description": "Text for Snackbar"
     },
     "joinGameButton": "Join a game",
     "@joinGameButton": {
-      "description": "Text for Join Game Button"
+        "description": "Text for Join Game Button"
     },
     "joinGameAppBar": "Join a game",
     "@joinGameAppBar": {
-      "description": "Text for Join Game Page App Bar"
+        "description": "Text for Join Game Page App Bar"
     },
     "createGameButton": "Create a game",
     "@createGameButton": {
-      "description": "Text for Create Game Button"
+        "description": "Text for Create Game Button"
     },
     "createGameAppBar": "Create a game",
     "@createGameAppBar": {
-      "description": "Text for Create Game Page App Bar"
+        "description": "Text for Create Game Page App Bar"
     },
     "lobbyAppBar": "Lobby",
     "@lobbyAppBar": {
-      "description": "Text for Lobby Page App Bar"
+        "description": "Text for Lobby Page App Bar"
     }
 }
