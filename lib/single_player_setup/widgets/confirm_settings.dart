@@ -55,7 +55,7 @@ class ConfirmSettings extends StatelessWidget {
               const Spacer(),
               StartButton(
                 onPress: onPress,
-                isInitialState: state is QuizInitial,
+                isLoading: state is QuizLoading,
               ),
               const SizedBox(height: 38)
             ],

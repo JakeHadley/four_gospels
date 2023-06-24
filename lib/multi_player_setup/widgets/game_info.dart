@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:random_string/random_string.dart';
 import 'package:share_plus/share_plus.dart';
-
-final codeToShare = randomAlphaNumeric(6);
 
 class GameInfo extends StatelessWidget {
   const GameInfo({super.key});
@@ -10,6 +7,8 @@ class GameInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+
+    const codeToShare = 'TODO:';
 
     return Column(
       children: [

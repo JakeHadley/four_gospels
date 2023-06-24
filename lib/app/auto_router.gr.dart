@@ -68,9 +68,9 @@ abstract class _$AppRouter extends RootStackRouter {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: ConfirmSettingsPage(
-          key: args.key,
           mode: args.mode,
           numberQuestions: args.numberQuestions,
+          key: args.key,
         ),
       );
     },
@@ -79,8 +79,8 @@ abstract class _$AppRouter extends RootStackRouter {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: NumberQuestionsPage(
-          key: args.key,
           mode: args.mode,
+          key: args.key,
         ),
       );
     },
@@ -209,16 +209,16 @@ class LobbyRoute extends PageRouteInfo<void> {
 /// [ConfirmSettingsPage]
 class ConfirmSettingsRoute extends PageRouteInfo<ConfirmSettingsRouteArgs> {
   ConfirmSettingsRoute({
-    Key? key,
     required Mode mode,
     required int numberQuestions,
+    Key? key,
     List<PageRouteInfo>? children,
   }) : super(
           ConfirmSettingsRoute.name,
           args: ConfirmSettingsRouteArgs(
-            key: key,
             mode: mode,
             numberQuestions: numberQuestions,
+            key: key,
           ),
           initialChildren: children,
         );
@@ -231,20 +231,20 @@ class ConfirmSettingsRoute extends PageRouteInfo<ConfirmSettingsRouteArgs> {
 
 class ConfirmSettingsRouteArgs {
   const ConfirmSettingsRouteArgs({
-    this.key,
     required this.mode,
     required this.numberQuestions,
+    this.key,
   });
-
-  final Key? key;
 
   final Mode mode;
 
   final int numberQuestions;
 
+  final Key? key;
+
   @override
   String toString() {
-    return 'ConfirmSettingsRouteArgs{key: $key, mode: $mode, numberQuestions: $numberQuestions}';
+    return 'ConfirmSettingsRouteArgs{mode: $mode, numberQuestions: $numberQuestions, key: $key}';
   }
 }
 
@@ -252,14 +252,14 @@ class ConfirmSettingsRouteArgs {
 /// [NumberQuestionsPage]
 class NumberQuestionsRoute extends PageRouteInfo<NumberQuestionsRouteArgs> {
   NumberQuestionsRoute({
-    Key? key,
     required Mode mode,
+    Key? key,
     List<PageRouteInfo>? children,
   }) : super(
           NumberQuestionsRoute.name,
           args: NumberQuestionsRouteArgs(
-            key: key,
             mode: mode,
+            key: key,
           ),
           initialChildren: children,
         );
@@ -272,17 +272,17 @@ class NumberQuestionsRoute extends PageRouteInfo<NumberQuestionsRouteArgs> {
 
 class NumberQuestionsRouteArgs {
   const NumberQuestionsRouteArgs({
-    this.key,
     required this.mode,
+    this.key,
   });
-
-  final Key? key;
 
   final Mode mode;
 
+  final Key? key;
+
   @override
   String toString() {
-    return 'NumberQuestionsRouteArgs{key: $key, mode: $mode}';
+    return 'NumberQuestionsRouteArgs{mode: $mode, key: $key}';
   }
 }
 

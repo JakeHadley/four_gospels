@@ -11,6 +11,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:four_gospels/app/auto_router.dart';
 import 'package:four_gospels/l10n/l10n.dart';
+import 'package:four_gospels/multi_player_setup/multi_player_setup.dart';
 import 'package:four_gospels/quiz/quiz.dart';
 import 'package:four_gospels/services/services.dart';
 import 'package:four_gospels/timer/timer.dart';
@@ -29,8 +30,8 @@ class App extends StatelessWidget {
         RepositoryProvider<QuizService>(
           create: (context) => QuizService(),
         ),
-        RepositoryProvider<MultiplayerService>(
-          create: (context) => MultiplayerService(),
+        RepositoryProvider<MultiPlayerService>(
+          create: (context) => MultiPlayerService(),
         )
       ],
       child: MultiBlocProvider(
@@ -43,11 +44,15 @@ class App extends StatelessWidget {
           BlocProvider(
             create: (BuildContext context) => TimerBloc(ticker: const Ticker()),
           ),
+          BlocProvider(
+            create: (BuildContext context) => MultiPlayerBloc(
+              multiPlayerService:
+                  RepositoryProvider.of<MultiPlayerService>(context),
+            ),
+          )
         ],
         child: MaterialApp.router(
           routerConfig: _appRouter.config(),
-          // routerDelegate: _appRouter.delegate(),
-          // routeInformationParser: _appRouter.defaultRouteParser(),
           theme: ThemeData(
             // useMaterial3: true,
             primaryColor: const Color(0xff144C6E), //primary default
