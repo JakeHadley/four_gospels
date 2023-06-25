@@ -5,22 +5,25 @@ class StartButton extends StatelessWidget {
   const StartButton({
     required this.onPress,
     required this.isLoading,
+    this.color,
     super.key,
   });
 
   final void Function(BuildContext context) onPress;
   final bool isLoading;
+  final Color? color;
 
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
+    final buttonColor = color ?? Theme.of(context).colorScheme.primaryContainer;
 
     return GestureDetector(
-      onTap: () => onPress(context),
+      onTap: isLoading ? () {} : () => onPress(context),
       child: AnimatedContainer(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(40),
-          color: Theme.of(context).colorScheme.primaryContainer,
+          color: buttonColor,
         ),
         duration: const Duration(milliseconds: 200),
         width: isLoading ? 100 : 300,

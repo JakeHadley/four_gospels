@@ -2,13 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:share_plus/share_plus.dart';
 
 class GameInfo extends StatelessWidget {
-  const GameInfo({super.key});
+  const GameInfo({
+    required this.code,
+    super.key,
+  });
+
+  final String code;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-
-    const codeToShare = 'TODO:';
 
     return Column(
       children: [
@@ -44,7 +47,7 @@ class GameInfo extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              'Code: $codeToShare',
+              'Code: $code',
               style: theme.textTheme.headlineSmall,
             ),
             IconButton(

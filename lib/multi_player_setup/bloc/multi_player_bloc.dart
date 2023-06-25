@@ -41,7 +41,12 @@ class MultiPlayerBloc extends Bloc<MultiPlayerEvent, MultiPlayerState> {
     MultiPlayerRoomUpdated event,
     Emitter<MultiPlayerState> emit,
   ) {
-    emit(MultiPlayerActive(room: event.room));
+    if (state is MultiPlayerLoading) {
+      emit(MultiPlayerActive(room: event.room));
+    } else {
+      final prevState = state as MultiPlayerActive;
+      emit(prevState.copyWith(room: event.room));
+    }
   }
 
   @override

@@ -11,31 +11,13 @@ class LobbyPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-    final theme = Theme.of(context);
-    final buttonColor = theme.primaryColor;
+
+    // TODO: intercept back button behavior to add an event to multiplayer bloc
+    //  cleanup the subscription and set state back to initial
 
     return Scaffold(
       appBar: CustomAppBar(title: l10n.lobbyAppBar),
-      body: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Expanded(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const GameInfo(),
-                const PlayerList(),
-                ActionButton(
-                  onTap: () => print('hello'),
-                  color: buttonColor,
-                  text: 'Start Game',
-                ),
-                const SizedBox(height: 30)
-              ],
-            ),
-          ),
-        ],
-      ),
+      body: const Lobby(),
     );
   }
 }
