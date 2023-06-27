@@ -6,28 +6,39 @@ class StartButton extends StatelessWidget {
     required this.onPress,
     required this.isLoading,
     this.color,
+    this.alternateText,
+    this.alternateHeight,
+    this.alternateTextStyle,
     super.key,
   });
 
-  final void Function(BuildContext context) onPress;
+  final VoidCallback onPress;
   final bool isLoading;
   final Color? color;
+  final String? alternateText;
+  final double? alternateHeight;
+  final TextStyle? alternateTextStyle;
 
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
     final buttonColor = color ?? Theme.of(context).colorScheme.primaryContainer;
+    final width = isLoading ? 100.0 : 315.0;
+    final height = alternateHeight ?? 100;
+    final text = alternateText ?? l10n.startButton;
+    final textStyle =
+        alternateTextStyle ?? Theme.of(context).textTheme.displayLarge;
 
     return GestureDetector(
-      onTap: isLoading ? () {} : () => onPress(context),
+      onTap: isLoading ? () {} : onPress,
       child: AnimatedContainer(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(40),
           color: buttonColor,
         ),
         duration: const Duration(milliseconds: 200),
-        width: isLoading ? 100 : 300,
-        height: isLoading ? 100 : 100,
+        width: width,
+        height: height,
         child: AnimatedSwitcher(
           transitionBuilder: (Widget child, Animation<double> animation) {
             return ScaleTransition(
@@ -40,10 +51,7 @@ class StartButton extends StatelessWidget {
               ? const CircularProgressIndicator(
                   color: Colors.white,
                 )
-              : Text(
-                  l10n.startButton,
-                  style: Theme.of(context).textTheme.displayLarge,
-                ),
+              : Text(text, style: textStyle),
         ),
       ),
     );

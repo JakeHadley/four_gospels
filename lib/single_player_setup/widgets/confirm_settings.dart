@@ -17,8 +17,8 @@ class ConfirmSettings extends StatelessWidget {
 
   final Mode mode;
   final int numberQuestions;
-  final void Function(BuildContext context) onPress;
-  final void Function(BuildContext context) onStateChange;
+  final VoidCallback onPress;
+  final VoidCallback onStateChange;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,7 @@ class ConfirmSettings extends StatelessWidget {
     return BlocConsumer<QuizBloc, QuizState>(
       listener: (context, state) {
         if (state is QuizLoaded) {
-          onStateChange(context);
+          onStateChange();
         }
       },
       builder: (context, state) {

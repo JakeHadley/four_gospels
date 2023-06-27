@@ -15,7 +15,7 @@ class GameCreation extends StatelessWidget {
     required this.changeQuestions,
     required this.players,
     required this.questions,
-    required this.onStart,
+    required this.onContinue,
     required this.chips,
     super.key,
   });
@@ -26,7 +26,7 @@ class GameCreation extends StatelessWidget {
   final void Function(int value) changeQuestions;
   final int players;
   final int questions;
-  final void Function(BuildContext context) onStart;
+  final VoidCallback onContinue;
   final List<Widget> chips;
 
   @override
@@ -84,9 +84,12 @@ class GameCreation extends StatelessWidget {
                   ),
                   const Spacer(),
                   StartButton(
-                    onPress: onStart,
+                    onPress: onContinue,
                     isLoading: state is MultiPlayerLoading,
                     color: buttonColor,
+                    alternateText: 'Continue',
+                    alternateHeight: 65,
+                    alternateTextStyle: theme.textTheme.headlineMedium,
                   ),
                   const SizedBox(height: 30),
                 ],

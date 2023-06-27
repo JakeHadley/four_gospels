@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:four_gospels/quiz/models/models.dart';
 
 class Room {
   const Room({
@@ -8,6 +9,7 @@ class Room {
     required this.owner,
     required this.numberOfPlayers,
     required this.numberOfQuestions,
+    required this.mode,
   });
 
   Room.fromJson(Map<String, Object?> json)
@@ -20,6 +22,7 @@ class Room {
           owner: json['owner']! as String,
           numberOfPlayers: json['numberOfPlayers']! as int,
           numberOfQuestions: json['numberOfQuestions']! as int,
+          mode: Mode.fromJson(json['mode']! as String),
         );
 
   Map<String, Object?> toJson() {
@@ -30,6 +33,7 @@ class Room {
       'owner': owner,
       'numberOfPlayers': numberOfPlayers,
       'numberOfQuestions': numberOfQuestions,
+      'mode': mode.toJson(),
     };
   }
 
@@ -43,4 +47,5 @@ class Room {
   final String owner;
   final int numberOfPlayers;
   final int numberOfQuestions;
+  final Mode mode;
 }

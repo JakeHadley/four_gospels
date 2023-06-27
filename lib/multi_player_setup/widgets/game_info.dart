@@ -4,10 +4,14 @@ import 'package:share_plus/share_plus.dart';
 class GameInfo extends StatelessWidget {
   const GameInfo({
     required this.code,
+    required this.numberOfPlayers,
+    required this.numberOfQuestions,
     super.key,
   });
 
   final String code;
+  final int numberOfPlayers;
+  final int numberOfQuestions;
 
   @override
   Widget build(BuildContext context) {
@@ -15,33 +19,47 @@ class GameInfo extends StatelessWidget {
 
     return Column(
       children: [
-        Padding(
-          padding: const EdgeInsets.all(16),
-          child: Text(
-            'Name: dave',
-            style: theme.textTheme.headlineSmall,
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.all(16),
-          child: Text(
-            'Number of Players: 3',
-            style: theme.textTheme.headlineSmall,
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.all(16),
-          child: Text(
-            'Number of Questions: 10',
-            style: theme.textTheme.headlineSmall,
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.all(16),
-          child: Text(
-            'Mode: Easy',
-            style: theme.textTheme.headlineSmall,
-          ),
+        const SizedBox(height: 10),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Column(
+              children: [
+                Text(
+                  'Players',
+                  style: theme.textTheme.titleMedium,
+                ),
+                Text(
+                  '$numberOfPlayers',
+                  style: theme.textTheme.headlineSmall,
+                ),
+              ],
+            ),
+            Column(
+              children: [
+                Text(
+                  'Questions',
+                  style: theme.textTheme.titleMedium,
+                ),
+                Text(
+                  '$numberOfQuestions',
+                  style: theme.textTheme.headlineSmall,
+                ),
+              ],
+            ),
+            Column(
+              children: [
+                Text(
+                  'Mode',
+                  style: theme.textTheme.titleMedium,
+                ),
+                Text(
+                  'Easy',
+                  style: theme.textTheme.headlineSmall,
+                ),
+              ],
+            ),
+          ],
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,

@@ -5,6 +5,9 @@ enum Mode {
   moderate,
   hard;
 
+  String toJson() => name;
+  static Mode fromJson(String json) => values.byName(json);
+
   String toStringIntl(AppLocalizations l10n) {
     if (name == easy.name) {
       return l10n.difficultyEasy;

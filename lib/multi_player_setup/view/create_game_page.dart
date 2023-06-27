@@ -73,7 +73,7 @@ class _CreateGamePageState extends State<CreateGamePage> {
     );
   }
 
-  void onStart(BuildContext context) {
+  void onContinue(BuildContext context) {
     if (!isValid()) {
       return;
     }
@@ -83,6 +83,7 @@ class _CreateGamePageState extends State<CreateGamePage> {
       numPlayers: _numPlayers,
       numQuestions: _numQuestions,
       userName: _nameController.text,
+      mode: _mode,
     );
 
     context.read<MultiPlayerBloc>().add(createRoomEvent);
@@ -108,7 +109,9 @@ class _CreateGamePageState extends State<CreateGamePage> {
         changeQuestions: changeQuestions,
         controller: _nameController,
         isValid: isValid(),
-        onStart: onStart,
+        onContinue: () {
+          onContinue(context);
+        },
         players: _numPlayers,
         questions: _numQuestions,
         chips: chips,

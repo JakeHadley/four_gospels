@@ -28,8 +28,12 @@ class SpeedSetupPage extends StatelessWidget {
     return Scaffold(
       appBar: CustomAppBar(title: l10n.speedRound),
       body: ConfirmSettings(
-        onPress: _onPress,
-        onStateChange: _onStateChange,
+        onPress: () {
+          _onPress(context);
+        },
+        onStateChange: () {
+          _onStateChange(context);
+        },
       ),
     );
   }

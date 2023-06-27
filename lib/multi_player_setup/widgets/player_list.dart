@@ -7,11 +7,14 @@ class PlayerList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // final theme = Theme.of(context);
+
     return Expanded(
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: DecoratedBox(
           decoration: BoxDecoration(
+            // color: theme.cardColor,
             border: Border.all(color: Colors.grey, width: 3),
             borderRadius: BorderRadius.circular(8),
           ),

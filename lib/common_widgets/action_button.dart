@@ -8,7 +8,7 @@ class ActionButton extends StatelessWidget {
     super.key,
   });
 
-  final void Function() onTap;
+  final VoidCallback onTap;
   final Color color;
   final String text;
 

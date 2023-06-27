@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:four_gospels/models/models.dart';
+import 'package:four_gospels/quiz/models/models.dart';
 
 class MultiPlayerService {
   final CollectionReference _roomsCollection =
@@ -13,6 +14,7 @@ class MultiPlayerService {
     int numPlayers,
     int numQuestions,
     String code,
+    Mode mode,
   ) async {
     final room = Room(
       users: [userName],
@@ -21,6 +23,7 @@ class MultiPlayerService {
       owner: userName,
       numberOfPlayers: numPlayers,
       numberOfQuestions: numQuestions,
+      mode: mode,
     );
 
     final roomReference = await _roomsCollection.add(room);

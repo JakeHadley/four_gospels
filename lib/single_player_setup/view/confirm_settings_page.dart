@@ -36,8 +36,12 @@ class ConfirmSettingsPage extends StatelessWidget {
       body: ConfirmSettings(
         mode: mode,
         numberQuestions: numberQuestions,
-        onPress: _onPress,
-        onStateChange: _onStateChange,
+        onPress: () {
+          _onPress(context);
+        },
+        onStateChange: () {
+          _onStateChange(context);
+        },
       ),
     );
   }

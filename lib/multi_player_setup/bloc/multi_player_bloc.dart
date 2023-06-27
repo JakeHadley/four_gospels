@@ -4,6 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
 import 'package:four_gospels/models/models.dart';
+import 'package:four_gospels/quiz/models/models.dart';
 import 'package:four_gospels/services/multi_player_service.dart';
 
 part 'multi_player_event.dart';
@@ -14,6 +15,7 @@ class MultiPlayerBloc extends Bloc<MultiPlayerEvent, MultiPlayerState> {
       : super(MultiPlayerInitial()) {
     on<MultiPlayerCreateRoom>(_onMultiPlayerCreateRoom);
     on<MultiPlayerRoomUpdated>(_onMultiPlayerRoomUpdated);
+    on<MultiPlayerReset>(_onMultiPlayerReset);
   }
 
   final MultiPlayerService multiPlayerService;
@@ -30,6 +32,7 @@ class MultiPlayerBloc extends Bloc<MultiPlayerEvent, MultiPlayerState> {
       event.numPlayers,
       event.numQuestions,
       event.code,
+      event.mode,
     );
 
     _roomSubscription = roomReference.snapshots().listen(
@@ -47,6 +50,14 @@ class MultiPlayerBloc extends Bloc<MultiPlayerEvent, MultiPlayerState> {
       final prevState = state as MultiPlayerActive;
       emit(prevState.copyWith(room: event.room));
     }
+  }
+
+  void _onMultiPlayerReset(
+    MultiPlayerReset event,
+    Emitter<MultiPlayerState> emit,
+  ) {
+    _roomSubscription.cancel();
+    emit(MultiPlayerInitial());
   }
 
   @override
