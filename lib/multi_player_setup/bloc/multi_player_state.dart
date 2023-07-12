@@ -10,18 +10,37 @@ abstract class MultiPlayerState extends Equatable {
 class MultiPlayerInitial extends MultiPlayerState {}
 
 class MultiPlayerActive extends MultiPlayerState {
-  const MultiPlayerActive({required this.room});
+  const MultiPlayerActive({
+    required this.room,
+    required this.name,
+  });
 
-  MultiPlayerActive copyWith({Room? room}) {
+  MultiPlayerActive copyWith({
+    Room? room,
+    String? name,
+  }) {
     return MultiPlayerActive(
       room: room ?? this.room,
+      name: name ?? this.name,
     );
   }
 
   final Room room;
+  final String name;
 
   @override
-  List<Object> get props => [room];
+  List<Object> get props => [room, name];
 }
 
 class MultiPlayerLoading extends MultiPlayerState {}
+
+class MultiPlayerError extends MultiPlayerState {
+  const MultiPlayerError({required this.error});
+
+  final String error;
+
+  @override
+  List<Object> get props => [error];
+}
+
+class MultiPlayerRoomDeleted extends MultiPlayerState {}

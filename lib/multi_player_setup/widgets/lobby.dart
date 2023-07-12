@@ -7,13 +7,17 @@ import 'package:four_gospels/single_player_setup/widgets/widgets.dart';
 class Lobby extends StatelessWidget {
   const Lobby({
     required this.onStart,
+    required this.onBack,
     super.key,
   });
 
   final VoidCallback onStart;
+  final VoidCallback onBack;
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return BlocBuilder<MultiPlayerBloc, MultiPlayerState>(
       builder: (context, state) {
         if (state is MultiPlayerActive) {
@@ -31,7 +35,7 @@ class Lobby extends StatelessWidget {
                       numberOfPlayers: room.numberOfPlayers,
                       numberOfQuestions: room.numberOfQuestions,
                     ),
-                    const PlayerList(),
+                    PlayerList(users: room.users),
                     StartButton(
                       isLoading: false,
                       onPress: onStart,
@@ -41,6 +45,31 @@ class Lobby extends StatelessWidget {
                 ),
               ),
             ],
+          );
+        }
+        if (state is MultiPlayerRoomDeleted) {
+          return SizedBox.expand(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Flexible(
+                  child: Text(
+                    'Room no longer exists',
+                    style: theme.textTheme.displaySmall,
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+                const SizedBox(height: 50),
+                StartButton(
+                  onPress: onBack,
+                  isLoading: state is MultiPlayerLoading,
+                  color: theme.primaryColor,
+                  alternateText: 'Go Back',
+                  alternateHeight: 65,
+                  alternateTextStyle: theme.textTheme.headlineMedium,
+                ),
+              ],
+            ),
           );
         }
         return const Text('Error');

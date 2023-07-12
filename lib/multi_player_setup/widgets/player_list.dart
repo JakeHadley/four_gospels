@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 
 class PlayerList extends StatelessWidget {
   const PlayerList({
+    required this.users,
     super.key,
   });
+
+  final List<String> users;
 
   @override
   Widget build(BuildContext context) {
@@ -19,10 +22,10 @@ class PlayerList extends StatelessWidget {
             borderRadius: BorderRadius.circular(8),
           ),
           child: ListView.builder(
-            itemCount: 10,
+            itemCount: users.length,
             itemBuilder: (context, index) {
               return ListTile(
-                title: Text('Player ${index + 1}'),
+                title: Text(users[index]),
               );
             },
           ),

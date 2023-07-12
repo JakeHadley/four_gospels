@@ -13,6 +13,8 @@ class LobbyPage extends StatelessWidget {
 
   void onStart(BuildContext context) {
     // TODO: get questions on start, add to firebase
+    // have to add event to quizBloc, use quizLoading state for start button loading
+    // setup listener to advance to quiz page when quiz loaded
   }
 
   void exitAction(BuildContext context) {
@@ -36,6 +38,9 @@ class LobbyPage extends StatelessWidget {
       body: Lobby(
         onStart: () {
           onStart(context);
+        },
+        onBack: () {
+          exitAction(context);
         },
       ),
     );

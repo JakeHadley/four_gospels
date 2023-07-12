@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:four_gospels/app/auto_router.dart';
 import 'package:four_gospels/common_widgets/common_widgets.dart';
 import 'package:four_gospels/l10n/l10n.dart';
 import 'package:four_gospels/multi_player_setup/multi_player_setup.dart';
@@ -22,6 +23,7 @@ class _CreateGamePageState extends State<CreateGamePage> {
   int _numQuestions = 10;
   bool _nameEntered = false;
   Mode _mode = Mode.easy;
+
   @override
   void dispose() {
     _nameController.dispose();
@@ -73,7 +75,7 @@ class _CreateGamePageState extends State<CreateGamePage> {
     );
   }
 
-  void onContinue(BuildContext context) {
+  void onContinue() {
     if (!isValid()) {
       return;
     }
@@ -82,16 +84,21 @@ class _CreateGamePageState extends State<CreateGamePage> {
       code: randomAlphaNumeric(6),
       numPlayers: _numPlayers,
       numQuestions: _numQuestions,
-      userName: _nameController.text,
+      name: _nameController.text,
       mode: _mode,
     );
 
     context.read<MultiPlayerBloc>().add(createRoomEvent);
+  }
 
+  void onStateChange() {
     _nameController.clear();
+
     setState(() {
       _nameEntered = false;
     });
+
+    context.router.navigate(const LobbyRoute());
   }
 
   @override
@@ -109,12 +116,11 @@ class _CreateGamePageState extends State<CreateGamePage> {
         changeQuestions: changeQuestions,
         controller: _nameController,
         isValid: isValid(),
-        onContinue: () {
-          onContinue(context);
-        },
+        onContinue: onContinue,
         players: _numPlayers,
         questions: _numQuestions,
         chips: chips,
+        onStateChange: onStateChange,
       ),
     );
   }

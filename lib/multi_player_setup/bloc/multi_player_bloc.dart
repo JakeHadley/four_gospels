@@ -14,12 +14,14 @@ class MultiPlayerBloc extends Bloc<MultiPlayerEvent, MultiPlayerState> {
   MultiPlayerBloc({required this.multiPlayerService})
       : super(MultiPlayerInitial()) {
     on<MultiPlayerCreateRoom>(_onMultiPlayerCreateRoom);
-    on<MultiPlayerRoomUpdated>(_onMultiPlayerRoomUpdated);
+    on<MultiPlayerUpdateRoom>(_onMultiPlayerUpdateRoom);
     on<MultiPlayerReset>(_onMultiPlayerReset);
+    on<MultiPlayerJoinRoom>(_onMultiPlayerJoinRoom);
+    on<MultiPlayerDeleteRoom>(_onMultiPlayerDeleteRoom);
   }
 
   final MultiPlayerService multiPlayerService;
-  late StreamSubscription<DocumentSnapshot> _roomSubscription;
+  StreamSubscription<DocumentSnapshot>? _roomSubscription;
 
   Future<void> _onMultiPlayerCreateRoom(
     MultiPlayerCreateRoom event,
@@ -28,41 +30,94 @@ class MultiPlayerBloc extends Bloc<MultiPlayerEvent, MultiPlayerState> {
     emit(MultiPlayerLoading());
 
     final roomReference = await multiPlayerService.createRoom(
-      event.userName,
+      event.name,
       event.numPlayers,
       event.numQuestions,
       event.code,
       event.mode,
     );
 
+    final roomSnapshot = await roomReference.get();
+    final room = roomSnapshot.data()!;
+
+    emit(MultiPlayerActive(room: room, name: event.name));
+
     _roomSubscription = roomReference.snapshots().listen(
-          (snapshot) => add(MultiPlayerRoomUpdated(room: snapshot.data()!)),
+          (snapshot) => add(MultiPlayerUpdateRoom(room: snapshot.data()!)),
         );
   }
 
-  void _onMultiPlayerRoomUpdated(
-    MultiPlayerRoomUpdated event,
+  void _onMultiPlayerUpdateRoom(
+    MultiPlayerUpdateRoom event,
     Emitter<MultiPlayerState> emit,
   ) {
-    if (state is MultiPlayerLoading) {
-      emit(MultiPlayerActive(room: event.room));
-    } else {
-      final prevState = state as MultiPlayerActive;
-      emit(prevState.copyWith(room: event.room));
-    }
+    final prevState = state as MultiPlayerActive;
+    emit(prevState.copyWith(room: event.room));
   }
 
   void _onMultiPlayerReset(
     MultiPlayerReset event,
     Emitter<MultiPlayerState> emit,
   ) {
-    _roomSubscription.cancel();
+    if (state is MultiPlayerActive) {
+      final prevState = state as MultiPlayerActive;
+      if (prevState.room.owner == prevState.name) {
+        multiPlayerService.removeRoom(prevState.room.code);
+      } else {
+        multiPlayerService.removeUserFromRoom(
+          prevState.name,
+          prevState.room.code,
+        );
+      }
+    }
+    _roomSubscription?.cancel();
     emit(MultiPlayerInitial());
+  }
+
+  Future<void> _onMultiPlayerJoinRoom(
+    MultiPlayerJoinRoom event,
+    Emitter<MultiPlayerState> emit,
+  ) async {
+    emit(MultiPlayerLoading());
+
+    try {
+      final roomReference = await multiPlayerService.joinRoom(
+        event.name,
+        event.code,
+      );
+
+      final roomSnapshot = await roomReference.get();
+      final room = roomSnapshot.data()!;
+
+      emit(MultiPlayerActive(room: room, name: event.name));
+
+      _roomSubscription = roomReference.snapshots().listen(
+        (snapshot) {
+          if (snapshot.exists) {
+            add(MultiPlayerUpdateRoom(room: snapshot.data()!));
+          } else {
+            add(MultiPlayerDeleteRoom());
+          }
+        },
+      );
+    } on JoinRoomException catch (e) {
+      emit(MultiPlayerError(error: e.error));
+    }
+  }
+
+  void _onMultiPlayerDeleteRoom(
+    MultiPlayerDeleteRoom event,
+    Emitter<MultiPlayerState> emit,
+  ) {
+    if (state is MultiPlayerActive) {
+      _roomSubscription?.cancel();
+      emit(MultiPlayerRoomDeleted());
+    }
   }
 
   @override
   Future<void> close() {
-    _roomSubscription.cancel();
+    _roomSubscription?.cancel();
     return super.close();
   }
 }

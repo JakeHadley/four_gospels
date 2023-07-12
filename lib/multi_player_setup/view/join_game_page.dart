@@ -1,9 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:four_gospels/app/auto_router.dart';
 import 'package:four_gospels/common_widgets/common_widgets.dart';
 import 'package:four_gospels/l10n/l10n.dart';
-
+import 'package:four_gospels/multi_player_setup/multi_player_setup.dart';
 import 'package:four_gospels/multi_player_setup/widgets/widgets.dart';
 
 @RoutePage()
@@ -46,53 +47,58 @@ class _JoinGamePageState extends State<JoinGamePage> {
     return _codeEntered && _nameEntered;
   }
 
-  void enterLobby(BuildContext context) {
+  void onContinue() {
     if (!isValid()) {
       return;
     }
 
-    context.router.push(const LobbyRoute());
+    final joinRoomEvent = MultiPlayerJoinRoom(
+      name: _nameController.text,
+      code: _codeController.text,
+    );
+
+    context.read<MultiPlayerBloc>().add(joinRoomEvent);
+  }
+
+  void onError(String error) {
+    ScaffoldMessenger.of(context)
+        .showSnackBar(
+          SnackBar(
+            content: Text(error),
+            backgroundColor: Theme.of(context).colorScheme.error,
+          ),
+        )
+        .closed
+        .then((reason) {
+      context.read<MultiPlayerBloc>().add(MultiPlayerReset());
+    });
+  }
+
+  void onStateChange() {
     _codeController.clear();
     _nameController.clear();
+
     setState(() {
       _codeEntered = false;
       _nameEntered = false;
     });
+
+    context.router.navigate(const LobbyRoute());
   }
 
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-    final theme = Theme.of(context);
-    final buttonColor = isValid() ? theme.primaryColor : theme.disabledColor;
 
     return Scaffold(
       appBar: CustomAppBar(title: l10n.joinGameAppBar),
-      body: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Expanded(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Input(
-                  controller: _nameController,
-                  label: 'Enter Your Name',
-                ),
-                Input(
-                  controller: _codeController,
-                  label: 'Enter Code',
-                ),
-                const SizedBox(height: 30),
-                ActionButton(
-                  onTap: () => enterLobby(context),
-                  color: buttonColor,
-                  text: 'Join',
-                ),
-              ],
-            ),
-          ),
-        ],
+      body: JoinGame(
+        codeController: _codeController,
+        nameController: _nameController,
+        isValid: isValid(),
+        onContinue: onContinue,
+        onError: onError,
+        onStateChange: onStateChange,
       ),
     );
   }
