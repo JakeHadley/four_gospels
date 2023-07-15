@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cloud_functions/cloud_functions.dart';
 import 'package:four_gospels/models/models.dart';
 import 'package:four_gospels/quiz/models/models.dart';
 
@@ -8,6 +9,7 @@ class MultiPlayerService {
             fromFirestore: (snapshot, _) => Room.fromJson(snapshot.data()!),
             toFirestore: (room, _) => room.toJson(),
           );
+  final FirebaseFunctions functions = FirebaseFunctions.instance;
 
   Future<DocumentReference<Room>> createRoom(
     String name,
@@ -15,6 +17,7 @@ class MultiPlayerService {
     int numQuestions,
     String code,
     Mode mode,
+    String language,
   ) async {
     final room = Room(
       users: [name],
@@ -24,6 +27,9 @@ class MultiPlayerService {
       numberOfPlayers: numPlayers,
       numberOfQuestions: numQuestions,
       mode: mode,
+      questions: List<Question>.empty(),
+      language: language,
+      status: 'inactive',
     );
 
     final roomReference = await _roomsCollection.add(room);
@@ -79,6 +85,13 @@ class MultiPlayerService {
     }
   }
 
+  Future<void> getQuestions(String code) async {
+    final getQuestions = GetQuestions(code: code);
+    await functions
+        .httpsCallable('getQuestions')
+        .call<void>(getQuestions.toJson());
+  }
+
   Future<DocumentReference<Room>> _getRoom(String code) async {
     final roomQuerySnapshot =
         await _roomsCollection.where('code', isEqualTo: code).get();
@@ -91,6 +104,18 @@ class MultiPlayerService {
     } else {
       throw JoinRoomException('No room found');
     }
+  }
+}
+
+class GetQuestions {
+  GetQuestions({required this.code});
+
+  final String code;
+
+  Map<String, Object?> toJson() {
+    return {
+      'code': code,
+    };
   }
 }
 

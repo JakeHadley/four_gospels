@@ -80,12 +80,15 @@ class _CreateGamePageState extends State<CreateGamePage> {
       return;
     }
 
+    final language = Localizations.localeOf(context);
+
     final createRoomEvent = MultiPlayerCreateRoom(
       code: randomAlphaNumeric(6),
       numPlayers: _numPlayers,
       numQuestions: _numQuestions,
       name: _nameController.text,
       mode: _mode,
+      language: language.toLanguageTag(),
     );
 
     context.read<MultiPlayerBloc>().add(createRoomEvent);

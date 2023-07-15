@@ -11,10 +11,9 @@ import 'package:four_gospels/multi_player_setup/widgets/widgets.dart';
 class LobbyPage extends StatelessWidget {
   const LobbyPage({super.key});
 
-  void onStart(BuildContext context) {
-    // TODO: get questions on start, add to firebase
-    // have to add event to quizBloc, use quizLoading state for start button loading
-    // setup listener to advance to quiz page when quiz loaded
+  void onStart(BuildContext context, String code) {
+    // TODO: Handle quiz bloc on multi start
+    context.read<MultiPlayerBloc>().add(MultiPlayerStart(code: code));
   }
 
   void exitAction(BuildContext context) {
@@ -36,8 +35,8 @@ class LobbyPage extends StatelessWidget {
         ),
       ),
       body: Lobby(
-        onStart: () {
-          onStart(context);
+        onStart: (String code) {
+          onStart(context, code);
         },
         onBack: () {
           exitAction(context);

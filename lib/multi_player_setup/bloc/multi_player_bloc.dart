@@ -18,6 +18,7 @@ class MultiPlayerBloc extends Bloc<MultiPlayerEvent, MultiPlayerState> {
     on<MultiPlayerReset>(_onMultiPlayerReset);
     on<MultiPlayerJoinRoom>(_onMultiPlayerJoinRoom);
     on<MultiPlayerDeleteRoom>(_onMultiPlayerDeleteRoom);
+    on<MultiPlayerStart>(_onMultiPlayerStart);
   }
 
   final MultiPlayerService multiPlayerService;
@@ -35,6 +36,7 @@ class MultiPlayerBloc extends Bloc<MultiPlayerEvent, MultiPlayerState> {
       event.numQuestions,
       event.code,
       event.mode,
+      event.language,
     );
 
     final roomSnapshot = await roomReference.get();
@@ -113,6 +115,14 @@ class MultiPlayerBloc extends Bloc<MultiPlayerEvent, MultiPlayerState> {
       _roomSubscription?.cancel();
       emit(MultiPlayerRoomDeleted());
     }
+  }
+
+  Future<void> _onMultiPlayerStart(
+    MultiPlayerStart event,
+    Emitter<MultiPlayerState> emit,
+  ) async {
+    // TODO: emit appropriate state
+    await multiPlayerService.getQuestions(event.code);
   }
 
   @override

@@ -21,6 +21,8 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
   Future<void> _onQuizStart(QuizStart event, Emitter<QuizState> emit) async {
     emit(QuizLoading());
 
+    // TODO: if event.type is not multiplayer, get questions
+
     final questions = await quizService.getQuestions(
       event.numberOfQuestions,
       event.mode,

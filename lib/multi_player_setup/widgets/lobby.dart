@@ -11,7 +11,7 @@ class Lobby extends StatelessWidget {
     super.key,
   });
 
-  final VoidCallback onStart;
+  final void Function(String code) onStart;
   final VoidCallback onBack;
 
   @override
@@ -36,10 +36,12 @@ class Lobby extends StatelessWidget {
                       numberOfQuestions: room.numberOfQuestions,
                     ),
                     PlayerList(users: room.users),
-                    StartButton(
-                      isLoading: false,
-                      onPress: onStart,
-                    ),
+                    if (room.owner == state.name) ...[
+                      StartButton(
+                        isLoading: false,
+                        onPress: () => onStart(room.code),
+                      ),
+                    ],
                     const SizedBox(height: 30)
                   ],
                 ),
