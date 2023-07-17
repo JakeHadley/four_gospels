@@ -10,6 +10,8 @@ abstract class QuizState extends Equatable {
 
 class QuizInitial extends QuizState {}
 
+class QuizLoading extends QuizState {}
+
 class QuizLoaded extends QuizState {
   const QuizLoaded({
     required this.numberOfQuestions,
@@ -81,8 +83,6 @@ class QuizLoaded extends QuizState {
         selectedAnswer,
       ];
 }
-
-class QuizLoading extends QuizState {}
 
 class QuizComplete extends QuizState {
   const QuizComplete({

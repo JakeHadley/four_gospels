@@ -20,7 +20,12 @@ class ConfirmSettingsPage extends StatelessWidget {
   final int numberQuestions;
 
   void _onPress(BuildContext context) {
-    context.read<QuizBloc>().add(QuizStart.single(numberQuestions, mode));
+    context.read<QuizBloc>().add(
+          QuizStart.single(
+            numberOfQuestions: numberQuestions,
+            mode: mode,
+          ),
+        );
   }
 
   void _onStateChange(BuildContext context) {

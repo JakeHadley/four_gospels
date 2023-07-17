@@ -9,6 +9,10 @@ abstract class MultiPlayerState extends Equatable {
 
 class MultiPlayerInitial extends MultiPlayerState {}
 
+class MultiPlayerRoomDeleted extends MultiPlayerState {}
+
+class MultiPlayerLoading extends MultiPlayerState {}
+
 class MultiPlayerActive extends MultiPlayerState {
   const MultiPlayerActive({
     required this.room,
@@ -32,8 +36,6 @@ class MultiPlayerActive extends MultiPlayerState {
   List<Object> get props => [room, name];
 }
 
-class MultiPlayerLoading extends MultiPlayerState {}
-
 class MultiPlayerError extends MultiPlayerState {
   const MultiPlayerError({required this.error});
 
@@ -42,5 +44,3 @@ class MultiPlayerError extends MultiPlayerState {
   @override
   List<Object> get props => [error];
 }
-
-class MultiPlayerRoomDeleted extends MultiPlayerState {}

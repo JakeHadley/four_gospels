@@ -121,7 +121,6 @@ class MultiPlayerBloc extends Bloc<MultiPlayerEvent, MultiPlayerState> {
     MultiPlayerStart event,
     Emitter<MultiPlayerState> emit,
   ) async {
-    // TODO: emit appropriate state
     await multiPlayerService.getQuestions(event.code);
   }
 

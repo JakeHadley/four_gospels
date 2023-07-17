@@ -1,24 +1,40 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:four_gospels/app/auto_router.dart';
 import 'package:four_gospels/common_widgets/common_widgets.dart';
 import 'package:four_gospels/l10n/l10n.dart';
+import 'package:four_gospels/models/models.dart';
 import 'package:four_gospels/multi_player_setup/multi_player_setup.dart';
 import 'package:four_gospels/multi_player_setup/widgets/lobby_back_button.dart';
 import 'package:four_gospels/multi_player_setup/widgets/widgets.dart';
+import 'package:four_gospels/quiz/quiz.dart';
 
 @RoutePage()
 class LobbyPage extends StatelessWidget {
   const LobbyPage({super.key});
 
   void onStart(BuildContext context, String code) {
-    // TODO: Handle quiz bloc on multi start
     context.read<MultiPlayerBloc>().add(MultiPlayerStart(code: code));
   }
 
   void exitAction(BuildContext context) {
     context.read<MultiPlayerBloc>().add(MultiPlayerReset());
     context.router.pop();
+  }
+
+  void onMultiStateChange(BuildContext context, Room room) {
+    context.read<QuizBloc>().add(
+          QuizStart.multi(
+            numberOfQuestions: room.numberOfQuestions,
+            mode: room.mode,
+            questions: room.questions,
+          ),
+        );
+  }
+
+  void onQuizStateChange(BuildContext context) {
+    context.router.replaceAll([const QuizRoute()]);
   }
 
   @override
@@ -40,6 +56,12 @@ class LobbyPage extends StatelessWidget {
         },
         onBack: () {
           exitAction(context);
+        },
+        onMultiStateChange: (Room room) {
+          onMultiStateChange(context, room);
+        },
+        onQuizStateChange: () {
+          onQuizStateChange(context);
         },
       ),
     );

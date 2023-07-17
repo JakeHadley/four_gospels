@@ -1,9 +1,5 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:four_gospels/app/auto_router.dart';
 import 'package:four_gospels/l10n/l10n.dart';
-import 'package:four_gospels/quiz/quiz.dart';
 
 class BackButtonDialog extends StatelessWidget {
   const BackButtonDialog({
@@ -25,11 +21,7 @@ class BackButtonDialog extends StatelessWidget {
           child: Text(l10n.quitDialogCancel),
         ),
         ElevatedButton(
-          onPressed: () {
-            context.router.replaceAll([const HomeRoute()]);
-            context.read<QuizBloc>().add(QuizFinished());
-            exitAction();
-          },
+          onPressed: exitAction,
           child: Text(l10n.quitDialogQuit),
         ),
       ],

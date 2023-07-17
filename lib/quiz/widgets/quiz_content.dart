@@ -37,7 +37,7 @@ class QuizContent extends StatelessWidget {
                 const SizedBox(height: 15),
                 if (state.type == QuizType.single)
                   const ProgressInfo()
-                else
+                else if (state.type == QuizType.speed)
                   TimerInfo(quizState: state),
                 RichText(
                   text: TextSpan(

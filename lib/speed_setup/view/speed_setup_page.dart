@@ -13,7 +13,9 @@ class SpeedSetupPage extends StatelessWidget {
   const SpeedSetupPage({super.key});
 
   void _onPress(BuildContext context) {
-    context.read<QuizBloc>().add(const QuizStart.speed(0, Mode.easy));
+    context
+        .read<QuizBloc>()
+        .add(const QuizStart.speed(numberOfQuestions: 0, mode: Mode.easy));
   }
 
   void _onStateChange(BuildContext context) {

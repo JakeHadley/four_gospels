@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:four_gospels/app/auto_router.dart';
 import 'package:four_gospels/common_widgets/common_widgets.dart';
 import 'package:four_gospels/l10n/l10n.dart';
+import 'package:four_gospels/multi_player_setup/multi_player_setup.dart';
 import 'package:four_gospels/quiz/bloc/quiz_bloc.dart';
 import 'package:four_gospels/quiz/models/models.dart';
 import 'package:four_gospels/quiz/widgets/back_button_dialog.dart';
@@ -57,7 +58,10 @@ class _QuizPageState extends State<QuizPage> {
   }
 
   void _exitAction() {
+    context.read<QuizBloc>().add(QuizFinished());
+    context.read<MultiPlayerBloc>().add(MultiPlayerReset());
     context.read<TimerBloc>().add(TimerReset());
+    context.router.replaceAll([const HomeRoute()]);
   }
 
   Future<bool> _onWillPop() async {
@@ -78,7 +82,7 @@ class _QuizPageState extends State<QuizPage> {
       case QuizType.speed:
         return l10n.speedRoundAppBar;
       case QuizType.multi:
-        return '';
+        return l10n.multiPlayerAppBar;
     }
   }
 
