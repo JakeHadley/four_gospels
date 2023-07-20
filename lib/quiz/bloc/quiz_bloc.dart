@@ -45,6 +45,8 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
   }
 
   void _onQuizNextQuestion(QuizNextQuestion event, Emitter<QuizState> emit) {
+    // TODO: test what happens when owner moves to next question without
+    // other user submitting an answer
     final prevState = state as QuizLoaded;
     final numberOfPoints = prevState.isCorrect
         ? prevState.numberOfPoints + 10
@@ -70,6 +72,7 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
           numberCorrect: numberCorrect,
           currentQuestionIndex: nextQuestionIndex,
           currentQuestionAnswered: false,
+          selectedAnswer: const Answer.empty(),
           isCorrect: false,
           answerList: _buildAnswerList(prevState.questions[nextQuestionIndex]),
         ),

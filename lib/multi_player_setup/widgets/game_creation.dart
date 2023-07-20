@@ -31,6 +31,7 @@ class GameCreation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // TODO: Fix rendering issue with keyboard open
     final theme = Theme.of(context);
     final buttonColor = isValid ? theme.primaryColor : theme.disabledColor;
 

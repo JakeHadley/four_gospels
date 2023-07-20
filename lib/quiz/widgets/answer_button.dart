@@ -14,8 +14,11 @@ class AnswerButton extends StatelessWidget {
 
   final Answer answer;
   final bool currentQuestionAnswered;
-  final void Function(Answer, QuizType) onPress;
-  final Answer? selectedAnswer;
+  final void Function({
+    required Answer answer,
+    required QuizType quizType,
+  }) onPress;
+  final Answer selectedAnswer;
   final QuizType quizType;
 
   @override
@@ -34,14 +37,14 @@ class AnswerButton extends StatelessWidget {
         if (answer == selectedAnswer) {
           shouldShowBadge = true;
         }
-      } else if (selectedAnswer?.key == answer.key) {
+      } else if (selectedAnswer.key == answer.key) {
         color = theme.colorScheme.error;
         textTheme = textTheme?.copyWith(color: theme.cardColor);
       }
     }
 
     return GestureDetector(
-      onTap: () => onPress(answer, quizType),
+      onTap: () => onPress(answer: answer, quizType: quizType),
       child: badges.Badge(
         badgeContent: Text(
           '+10',

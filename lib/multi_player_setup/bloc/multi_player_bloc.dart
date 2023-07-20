@@ -19,6 +19,8 @@ class MultiPlayerBloc extends Bloc<MultiPlayerEvent, MultiPlayerState> {
     on<MultiPlayerJoinRoom>(_onMultiPlayerJoinRoom);
     on<MultiPlayerDeleteRoom>(_onMultiPlayerDeleteRoom);
     on<MultiPlayerStart>(_onMultiPlayerStart);
+    on<MultiPlayerSubmitAnswer>(_onMultiPlayerSubmitAnswer);
+    on<MultiPlayerNextQuestion>(_onMultiPlayerNextQuestion);
   }
 
   final MultiPlayerService multiPlayerService;
@@ -82,6 +84,9 @@ class MultiPlayerBloc extends Bloc<MultiPlayerEvent, MultiPlayerState> {
   ) async {
     emit(MultiPlayerLoading());
 
+    //TODO: if language is not the same, don't join
+    //TODO: if room is active, don't join
+
     try {
       final roomReference = await multiPlayerService.joinRoom(
         event.name,
@@ -122,6 +127,31 @@ class MultiPlayerBloc extends Bloc<MultiPlayerEvent, MultiPlayerState> {
     Emitter<MultiPlayerState> emit,
   ) async {
     await multiPlayerService.getQuestions(event.code);
+  }
+
+  Future<void> _onMultiPlayerSubmitAnswer(
+    MultiPlayerSubmitAnswer event,
+    Emitter<MultiPlayerState> emit,
+  ) async {
+    if (state is MultiPlayerActive) {
+      final activeState = state as MultiPlayerActive;
+
+      await multiPlayerService.addUserAnswered(
+        activeState.room.code,
+        activeState.name,
+      );
+    }
+  }
+
+  Future<void> _onMultiPlayerNextQuestion(
+    MultiPlayerNextQuestion event,
+    Emitter<MultiPlayerState> emit,
+  ) async {
+    if (state is MultiPlayerActive) {
+      final activeState = state as MultiPlayerActive;
+
+      await multiPlayerService.moveToNextQuestion(activeState.room.code);
+    }
   }
 
   @override

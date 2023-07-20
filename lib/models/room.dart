@@ -13,6 +13,8 @@ class Room {
     required this.questions,
     required this.language,
     required this.status,
+    required this.usersAnswered,
+    required this.currentQuestionIndex,
   });
 
   Room.fromJson(Map<String, Object?> json)
@@ -31,6 +33,10 @@ class Room {
           ),
           language: json['language']! as String,
           status: json['status']! as String,
+          usersAnswered: convertUsersToListOfStrings(
+            json['users']! as Iterable<dynamic>,
+          ),
+          currentQuestionIndex: json['currentQuestionIndex']! as int,
         );
 
   Map<String, Object?> toJson() {
@@ -45,6 +51,8 @@ class Room {
       'questions': questions.map((question) => question.toJson()).toList(),
       'language': language,
       'status': status,
+      'usersAnswered': usersAnswered,
+      'currentQuestionIndex': currentQuestionIndex,
     };
   }
 
@@ -70,4 +78,6 @@ class Room {
   final List<Question> questions;
   final String language;
   final String status;
+  final List<String> usersAnswered;
+  final int currentQuestionIndex;
 }

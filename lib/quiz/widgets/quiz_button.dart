@@ -10,36 +10,66 @@ class QuizButton extends StatelessWidget {
     required this.selectedAnswer,
     required this.onSubmit,
     required this.lastQuestion,
+    required this.quizType,
+    required this.isMulti,
+    required this.isMultiOwner,
     super.key,
   });
 
   final bool currentQuestionAnswered;
-  final void Function() onNextQuestionPress;
-  final Answer? selectedAnswer;
-  final void Function({required bool isCorrect}) onSubmit;
+  final void Function({required QuizType quizType}) onNextQuestionPress;
+  final Answer selectedAnswer;
+  final void Function({
+    required bool isCorrect,
+    required QuizType quizType,
+  }) onSubmit;
   final bool lastQuestion;
+  final QuizType quizType;
+  final bool isMulti;
+  final bool isMultiOwner;
 
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-    final text = !currentQuestionAnswered
-        ? l10n.submitButton
-        : lastQuestion
-            ? l10n.finishQuizButton
-            : l10n.nextQuestionButton;
+    final theme = Theme.of(context);
 
-    final color = currentQuestionAnswered
-        ? Theme.of(context).primaryColor
-        : Theme.of(context).colorScheme.primaryContainer;
+    VoidCallback onTap;
+    Color color;
+    String text;
 
-    final onTap = !currentQuestionAnswered
-        ? () => onSubmit(isCorrect: selectedAnswer!.isCorrect)
-        : onNextQuestionPress;
+    if (!currentQuestionAnswered) {
+      text = l10n.submitButton;
+    } else if (!isMulti || isMultiOwner) {
+      if (lastQuestion) {
+        text = l10n.finishQuizButton;
+      } else {
+        text = l10n.nextQuestionButton;
+      }
+    } else {
+      text = 'waiting for leader';
+    }
+
+    if (!currentQuestionAnswered) {
+      // if not submitted
+      onTap = () => onSubmit(
+            isCorrect: selectedAnswer.isCorrect,
+            quizType: quizType,
+          );
+      color = theme.colorScheme.primaryContainer;
+    } else if (!isMulti || isMultiOwner) {
+      // if submitted and not multiplayer
+      // or if submitted and is multiplayer and is the owner
+      onTap = () => onNextQuestionPress(quizType: quizType);
+      color = theme.primaryColor;
+    } else {
+      onTap = () {};
+      color = theme.disabledColor;
+    }
 
     return AnimatedOpacity(
-      opacity: selectedAnswer == null ? 0 : 1,
+      opacity: selectedAnswer.isEmpty() ? 0 : 1,
       duration:
-          selectedAnswer == null ? Duration.zero : const Duration(seconds: 1),
+          selectedAnswer.isEmpty() ? Duration.zero : const Duration(seconds: 1),
       child: ActionButton(
         text: text,
         color: color,

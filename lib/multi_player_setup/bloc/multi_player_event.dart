@@ -7,6 +7,14 @@ abstract class MultiPlayerEvent extends Equatable {
   List<Object> get props => [];
 }
 
+class MultiPlayerSubmitAnswer extends MultiPlayerEvent {}
+
+class MultiPlayerNextQuestion extends MultiPlayerEvent {}
+
+class MultiPlayerReset extends MultiPlayerEvent {}
+
+class MultiPlayerDeleteRoom extends MultiPlayerEvent {}
+
 class MultiPlayerCreateRoom extends MultiPlayerEvent {
   const MultiPlayerCreateRoom({
     required this.name,
@@ -44,8 +52,6 @@ class MultiPlayerUpdateRoom extends MultiPlayerEvent {
   List<Object> get props => [room];
 }
 
-class MultiPlayerReset extends MultiPlayerEvent {}
-
 class MultiPlayerJoinRoom extends MultiPlayerEvent {
   const MultiPlayerJoinRoom({
     required this.name,
@@ -58,8 +64,6 @@ class MultiPlayerJoinRoom extends MultiPlayerEvent {
   @override
   List<Object> get props => [name, code];
 }
-
-class MultiPlayerDeleteRoom extends MultiPlayerEvent {}
 
 class MultiPlayerStart extends MultiPlayerEvent {
   const MultiPlayerStart({required this.code});

@@ -30,6 +30,8 @@ class MultiPlayerService {
       questions: List<Question>.empty(),
       language: language,
       status: 'inactive',
+      usersAnswered: [],
+      currentQuestionIndex: 0,
     );
 
     final roomReference = await _roomsCollection.add(room);
@@ -90,6 +92,23 @@ class MultiPlayerService {
     await functions
         .httpsCallable('getQuestions')
         .call<void>(getQuestions.toJson());
+  }
+
+  Future<void> addUserAnswered(String code, String name) async {
+    final roomReference = await _getRoom(code);
+
+    await roomReference.update({
+      'usersAnswered': FieldValue.arrayUnion([name])
+    });
+  }
+
+  Future<void> moveToNextQuestion(String code) async {
+    final roomReference = await _getRoom(code);
+
+    await roomReference.update({
+      'usersAnswered': [],
+      'currentQuestionIndex': FieldValue.increment(1),
+    });
   }
 
   Future<DocumentReference<Room>> _getRoom(String code) async {

@@ -20,8 +20,11 @@ class QuizPage extends StatefulWidget {
 }
 
 class _QuizPageState extends State<QuizPage> {
-  void _onAnswerPress(Answer answer, QuizType type) {
-    switch (type) {
+  void _onAnswerPress({
+    required Answer answer,
+    required QuizType quizType,
+  }) {
+    switch (quizType) {
       case QuizType.single:
         context.read<QuizBloc>().add(QuizAnswerSelected(answer: answer));
         break;
@@ -41,16 +44,28 @@ class _QuizPageState extends State<QuizPage> {
         }
         break;
       case QuizType.multi:
+        context.read<QuizBloc>().add(QuizAnswerSelected(answer: answer));
         break;
     }
   }
 
-  void _onSubmit({required bool isCorrect}) {
+  void _onSubmit({
+    required bool isCorrect,
+    required QuizType quizType,
+  }) {
     context.read<QuizBloc>().add(QuizAnswerSubmitted(isCorrect: isCorrect));
+
+    if (quizType == QuizType.multi) {
+      context.read<MultiPlayerBloc>().add(MultiPlayerSubmitAnswer());
+    }
   }
 
-  void _onNextQuestionPress() {
+  void _onNextQuestionPress({required QuizType quizType}) {
     context.read<QuizBloc>().add(QuizNextQuestion());
+
+    if (quizType == QuizType.multi) {
+      context.read<MultiPlayerBloc>().add(MultiPlayerNextQuestion());
+    }
   }
 
   void _onQuizEnded() {

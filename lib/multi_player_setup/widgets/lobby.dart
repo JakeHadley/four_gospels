@@ -41,7 +41,7 @@ class Lobby extends StatelessWidget {
         builder: (context, state) {
           if (state is MultiPlayerActive) {
             final room = state.room;
-
+            // TODO: show who the leader is
             return Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -57,6 +57,7 @@ class Lobby extends StatelessWidget {
                       PlayerList(users: room.users),
                       if (room.owner == state.name) ...[
                         StartButton(
+                          // TODO: Do something here to handle first click and loading
                           isLoading: false,
                           onPress: () => onStart(room.code),
                         ),
