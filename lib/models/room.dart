@@ -15,6 +15,7 @@ class Room {
     required this.status,
     required this.usersAnswered,
     required this.currentQuestionIndex,
+    required this.scores,
   });
 
   Room.fromJson(Map<String, Object?> json)
@@ -37,6 +38,9 @@ class Room {
             json['users']! as Iterable<dynamic>,
           ),
           currentQuestionIndex: json['currentQuestionIndex']! as int,
+          scores: convertScoresToListOfScores(
+            json['scores']! as Iterable<dynamic>,
+          ),
         );
 
   Map<String, Object?> toJson() {
@@ -53,6 +57,7 @@ class Room {
       'status': status,
       'usersAnswered': usersAnswered,
       'currentQuestionIndex': currentQuestionIndex,
+      'scores': scores,
     };
   }
 
@@ -68,6 +73,14 @@ class Room {
     return List<Question>.from(questionMap);
   }
 
+  static List<Score> convertScoresToListOfScores(
+    Iterable<dynamic> scores,
+  ) {
+    final scoresMap =
+        scores.map((score) => Score.fromJson(score as Map<String, dynamic>));
+    return List<Score>.from(scoresMap);
+  }
+
   final List<String> users;
   final String code;
   final DateTime lastInteraction;
@@ -80,4 +93,28 @@ class Room {
   final String status;
   final List<String> usersAnswered;
   final int currentQuestionIndex;
+  final List<Score> scores;
+}
+
+class Score {
+  Score({
+    required this.name,
+    required this.score,
+  });
+
+  Score.fromJson(Map<String, Object?> json)
+      : this(
+          name: json['name']! as String,
+          score: json['score']! as int,
+        );
+
+  Map<String, Object?> toJson() {
+    return {
+      'name': name,
+      'score': score,
+    };
+  }
+
+  final String name;
+  final int score;
 }

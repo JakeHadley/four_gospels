@@ -19,7 +19,10 @@ class QuizContent extends StatelessWidget {
     required Answer answer,
     required QuizType quizType,
   }) onAnswerPress;
-  final VoidCallback onQuizEnded;
+  final void Function({
+    required int score,
+    required QuizType quizType,
+  }) onQuizEnded;
   final void Function({
     required bool isCorrect,
     required QuizType quizType,
@@ -30,17 +33,22 @@ class QuizContent extends StatelessWidget {
     return BlocConsumer<QuizBloc, QuizState>(
       listener: (context, quizState) {
         if (quizState is QuizComplete) {
-          onQuizEnded();
+          onQuizEnded(
+            score: quizState.numberOfPoints,
+            quizType: quizState.type,
+          );
         }
       },
       builder: (context, quizState) {
         return BlocConsumer<MultiPlayerBloc, MultiPlayerState>(
           listener: (context, multiState) {
             if (multiState is MultiPlayerActive && quizState is QuizLoaded) {
-              if (multiState.room.currentQuestionIndex >
-                  quizState.currentQuestionIndex) {
+              if (quizState.currentQuestionIndex !=
+                  multiState.room.currentQuestionIndex) {
                 context.read<QuizBloc>().add(
-                      QuizNextQuestion(),
+                      QuizNextQuestion(
+                        indexToSet: multiState.room.currentQuestionIndex,
+                      ),
                     );
               }
             }

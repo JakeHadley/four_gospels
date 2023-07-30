@@ -6,6 +6,7 @@ import 'package:four_gospels/common_widgets/common_widgets.dart';
 import 'package:four_gospels/l10n/l10n.dart';
 import 'package:four_gospels/multi_player_setup/multi_player_setup.dart';
 import 'package:four_gospels/quiz/bloc/quiz_bloc.dart';
+import 'package:four_gospels/quiz/helpers/helpers.dart';
 import 'package:four_gospels/quiz/models/models.dart';
 import 'package:four_gospels/quiz/widgets/back_button_dialog.dart';
 import 'package:four_gospels/quiz/widgets/widgets.dart';
@@ -24,6 +25,7 @@ class _QuizPageState extends State<QuizPage> {
     required Answer answer,
     required QuizType quizType,
   }) {
+    //TODO: Don't allow answer changes after submit
     switch (quizType) {
       case QuizType.single:
         context.read<QuizBloc>().add(QuizAnswerSelected(answer: answer));
@@ -39,7 +41,7 @@ class _QuizPageState extends State<QuizPage> {
         }
         if (mounted) {
           Future.delayed(const Duration(seconds: 1), () {
-            context.read<QuizBloc>().add(QuizNextQuestion());
+            context.read<QuizBloc>().add(const QuizNextQuestion());
           });
         }
         break;
@@ -61,15 +63,22 @@ class _QuizPageState extends State<QuizPage> {
   }
 
   void _onNextQuestionPress({required QuizType quizType}) {
-    context.read<QuizBloc>().add(QuizNextQuestion());
+    context.read<QuizBloc>().add(const QuizNextQuestion());
 
     if (quizType == QuizType.multi) {
       context.read<MultiPlayerBloc>().add(MultiPlayerNextQuestion());
     }
   }
 
-  void _onQuizEnded() {
-    context.router.replaceAll([const EndGameRoute()]);
+  void _onQuizEnded({
+    required int score,
+    required QuizType quizType,
+  }) {
+    context.router.replaceAll([EndGameRoute(quizType: quizType)]);
+
+    if (quizType == QuizType.multi) {
+      context.read<MultiPlayerBloc>().add(MultiPlayerComplete(score: score));
+    }
   }
 
   void _exitAction() {
@@ -90,17 +99,6 @@ class _QuizPageState extends State<QuizPage> {
         false;
   }
 
-  String _getTitle(QuizType type, AppLocalizations l10n) {
-    switch (type) {
-      case QuizType.single:
-        return l10n.singlePlayerAppBar;
-      case QuizType.speed:
-        return l10n.speedRoundAppBar;
-      case QuizType.multi:
-        return l10n.multiPlayerAppBar;
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
@@ -112,7 +110,7 @@ class _QuizPageState extends State<QuizPage> {
           if (state is QuizLoaded) {
             return Scaffold(
               appBar: CustomAppBar(
-                title: _getTitle(state.type, l10n),
+                title: getTitle(state.type, l10n),
                 backButton: QuizBackButton(exitAction: _exitAction),
               ),
               body: QuizContent(

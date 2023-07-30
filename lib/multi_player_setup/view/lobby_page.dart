@@ -16,6 +16,7 @@ class LobbyPage extends StatelessWidget {
 
   void onStart(BuildContext context, String code) {
     context.read<MultiPlayerBloc>().add(MultiPlayerStart(code: code));
+    context.read<QuizBloc>().add(QuizLoad());
   }
 
   void exitAction(BuildContext context) {

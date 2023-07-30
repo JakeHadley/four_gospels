@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:four_gospels/common_widgets/common_widgets.dart';
 import 'package:four_gospels/l10n/l10n.dart';
+import 'package:four_gospels/multi_player_setup/bloc/multi_player_bloc.dart';
 import 'package:four_gospels/quiz/bloc/quiz_bloc.dart';
 import 'package:four_gospels/quiz/models/models.dart';
 import 'package:four_gospels/quiz/widgets/widgets.dart';
@@ -18,40 +19,96 @@ class EndGameContent extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
 
-    return BlocBuilder<QuizBloc, QuizState>(
-      builder: (context, state) {
-        if (state is QuizComplete) {
-          final text1 = '${l10n.endGameInfoScore}: ${state.numberOfPoints}';
-          final text2 = state.type == QuizType.single
-              ? '${l10n.endGamePageCorrectAnswers}: '
-                  '${state.numberCorrect}/${state.numberOfQuestions}'
-              : '${l10n.endGamePageCorrectAnswers}: '
-                  '${state.numberCorrect}';
+    Widget singleContent(QuizComplete state) {
+      final text1 = '${l10n.endGameInfoScore}: ${state.numberOfPoints}';
+      final text2 = state.type == QuizType.single
+          ? '${l10n.endGamePageCorrectAnswers}: '
+              '${state.numberCorrect}/${state.numberOfQuestions}'
+          : '${l10n.endGamePageCorrectAnswers}: '
+              '${state.numberCorrect}';
 
-          return Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 40),
-            child: Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 12),
-                  child: Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      l10n.endGamePageSubtitle,
-                      style: Theme.of(context).textTheme.titleMedium,
-                    ),
-                  ),
+      return Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 40),
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 12),
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  l10n.endGamePageSubtitle,
+                  style: Theme.of(context).textTheme.titleMedium,
                 ),
-                const SizedBox(height: 54),
-                InfoBox(text1: text1, text2: text2),
-                const Spacer(),
-                EndGameButton(onPress: onPress),
-                const SizedBox(height: 20)
-              ],
+              ),
             ),
-          );
-        }
-        return const Text('Error');
+            const SizedBox(height: 54),
+            InfoBox(text1: text1, text2: text2),
+            const Spacer(),
+            EndGameButton(onPress: onPress),
+            const SizedBox(height: 20)
+          ],
+        ),
+      );
+    }
+
+    Widget multiContent(MultiPlayerActive state) {
+      final scores = state.room.scores
+        ..sort((a, b) => b.score.compareTo(a.score));
+
+      return Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 40),
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 12),
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  l10n.endGamePageSubtitle,
+                  style: Theme.of(context).textTheme.titleMedium,
+                ),
+              ),
+            ),
+            const SizedBox(height: 20),
+            Expanded(
+              child: DecoratedBox(
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.grey, width: 3),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: ListView.builder(
+                  itemCount: scores.length,
+                  itemBuilder: (context, index) {
+                    final text =
+                        Text('${scores[index].name}: ${scores[index].score}');
+
+                    return ListTile(title: text);
+                  },
+                ),
+              ),
+            ),
+            const SizedBox(height: 20),
+            EndGameButton(onPress: onPress),
+            const SizedBox(height: 20)
+          ],
+        ),
+      );
+    }
+
+    return BlocBuilder<MultiPlayerBloc, MultiPlayerState>(
+      builder: (context, multiState) {
+        return BlocBuilder<QuizBloc, QuizState>(
+          builder: (context, quizState) {
+            if (quizState is QuizComplete) {
+              if (multiState is MultiPlayerActive) {
+                return multiContent(multiState);
+              } else {
+                return singleContent(quizState);
+              }
+            }
+            return const Text('Error');
+          },
+        );
       },
     );
   }

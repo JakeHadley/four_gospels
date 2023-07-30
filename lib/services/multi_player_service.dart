@@ -32,6 +32,7 @@ class MultiPlayerService {
       status: 'inactive',
       usersAnswered: [],
       currentQuestionIndex: 0,
+      scores: [],
     );
 
     final roomReference = await _roomsCollection.add(room);
@@ -108,6 +109,17 @@ class MultiPlayerService {
     await roomReference.update({
       'usersAnswered': [],
       'currentQuestionIndex': FieldValue.increment(1),
+    });
+  }
+
+  Future<void> addScore(
+    String code,
+    Score score,
+  ) async {
+    final roomReference = await _getRoom(code);
+
+    await roomReference.update({
+      'scores': FieldValue.arrayUnion([score.toJson()])
     });
   }
 

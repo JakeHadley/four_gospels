@@ -15,6 +15,7 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
     on<QuizAnswerSelected>(_onQuizAnswerSelected);
     on<QuizFinished>(_onQuizFinished);
     on<QuizEnded>(_onQuizEnded);
+    on<QuizLoad>(_onQuizLoad);
   }
   final QuizService quizService;
 
@@ -45,8 +46,6 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
   }
 
   void _onQuizNextQuestion(QuizNextQuestion event, Emitter<QuizState> emit) {
-    // TODO: test what happens when owner moves to next question without
-    // other user submitting an answer
     final prevState = state as QuizLoaded;
     final numberOfPoints = prevState.isCorrect
         ? prevState.numberOfPoints + 10
@@ -54,7 +53,11 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
     final numberCorrect = prevState.isCorrect
         ? prevState.numberCorrect + 1
         : prevState.numberCorrect;
-    final nextQuestionIndex = prevState.currentQuestionIndex + 1;
+
+    var nextQuestionIndex = prevState.currentQuestionIndex + 1;
+    if (event.indexToSet != null) {
+      nextQuestionIndex = event.indexToSet!;
+    }
 
     if (nextQuestionIndex == prevState.numberOfQuestions) {
       emit(
@@ -122,6 +125,10 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
         type: prevState.type,
       ),
     );
+  }
+
+  void _onQuizLoad(QuizLoad event, Emitter<QuizState> emit) {
+    emit(QuizLoading());
   }
 
   List<Answer> _buildAnswerList(Question question) => List<Answer>.from([

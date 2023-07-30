@@ -51,10 +51,14 @@ class QuizButton extends StatelessWidget {
 
     if (!currentQuestionAnswered) {
       // if not submitted
-      onTap = () => onSubmit(
-            isCorrect: selectedAnswer.isCorrect,
-            quizType: quizType,
-          );
+      if (selectedAnswer.isEmpty()) {
+        onTap = () {};
+      } else {
+        onTap = () => onSubmit(
+              isCorrect: selectedAnswer.isCorrect,
+              quizType: quizType,
+            );
+      }
       color = theme.colorScheme.primaryContainer;
     } else if (!isMulti || isMultiOwner) {
       // if submitted and not multiplayer

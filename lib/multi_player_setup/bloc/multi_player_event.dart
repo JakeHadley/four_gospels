@@ -73,3 +73,12 @@ class MultiPlayerStart extends MultiPlayerEvent {
   @override
   List<Object> get props => [code];
 }
+
+class MultiPlayerComplete extends MultiPlayerEvent {
+  const MultiPlayerComplete({required this.score});
+
+  final int score;
+
+  @override
+  List<Object> get props => [score];
+}

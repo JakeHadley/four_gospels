@@ -39,7 +39,15 @@ class QuizStart extends QuizEvent {
   List<Object?> get props => [numberOfQuestions, mode, type, questions];
 }
 
-class QuizNextQuestion extends QuizEvent {}
+class QuizNextQuestion extends QuizEvent {
+  const QuizNextQuestion({
+    this.indexToSet,
+  });
+
+  final int? indexToSet;
+  @override
+  List<Object?> get props => [indexToSet];
+}
 
 class QuizAnswerSubmitted extends QuizEvent {
   const QuizAnswerSubmitted({
@@ -47,6 +55,7 @@ class QuizAnswerSubmitted extends QuizEvent {
   });
 
   final bool isCorrect;
+
   @override
   List<Object?> get props => [isCorrect];
 }
@@ -65,3 +74,5 @@ class QuizAnswerSelected extends QuizEvent {
 }
 
 class QuizEnded extends QuizEvent {}
+
+class QuizLoad extends QuizEvent {}

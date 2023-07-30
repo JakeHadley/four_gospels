@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:four_gospels/models/models.dart';
 import 'package:four_gospels/multi_player_setup/multi_player_setup.dart';
@@ -24,79 +25,94 @@ class Lobby extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
-    return BlocListener<QuizBloc, QuizState>(
-      listener: (context, state) {
-        if (state is QuizLoaded) {
+    return BlocConsumer<QuizBloc, QuizState>(
+      listener: (context, quizState) {
+        if (quizState is QuizLoaded) {
           onQuizStateChange();
         }
       },
-      child: BlocConsumer<MultiPlayerBloc, MultiPlayerState>(
-        listener: (context, state) {
-          if (state is MultiPlayerActive) {
-            if (state.room.status == 'active') {
-              onMultiStateChange(state.room);
+      builder: (context, quizState) {
+        return BlocConsumer<MultiPlayerBloc, MultiPlayerState>(
+          listener: (context, multiState) {
+            if (multiState is MultiPlayerActive) {
+              if (multiState.room.status == 'active') {
+                onMultiStateChange(multiState.room);
+              }
             }
-          }
-        },
-        builder: (context, state) {
-          if (state is MultiPlayerActive) {
-            final room = state.room;
-            // TODO: show who the leader is
-            return Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Expanded(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      GameInfo(
-                        code: room.code,
-                        numberOfPlayers: room.numberOfPlayers,
-                        numberOfQuestions: room.numberOfQuestions,
-                      ),
-                      PlayerList(users: room.users),
-                      if (room.owner == state.name) ...[
-                        StartButton(
-                          // TODO: Do something here to handle first click and loading
-                          isLoading: false,
-                          onPress: () => onStart(room.code),
-                        ),
-                      ],
-                      const SizedBox(height: 30)
-                    ],
-                  ),
-                ),
-              ],
-            );
-          }
-          if (state is MultiPlayerRoomDeleted) {
-            return SizedBox.expand(
-              child: Column(
+          },
+          builder: (context, multiState) {
+            if (multiState is MultiPlayerActive) {
+              final room = multiState.room;
+
+              return Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Flexible(
-                    child: Text(
-                      'Room no longer exists',
-                      style: theme.textTheme.displaySmall,
-                      textAlign: TextAlign.center,
+                  Expanded(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        GameInfo(
+                          code: room.code,
+                          numberOfPlayers: room.numberOfPlayers,
+                          numberOfQuestions: room.numberOfQuestions,
+                        ),
+                        PlayerList(
+                          users: room.users,
+                          owner: room.owner,
+                        ),
+                        if (room.owner == multiState.name) ...[
+                          StartButton(
+                            isLoading: quizState is QuizLoading,
+                            onPress: () => onStart(room.code),
+                          ),
+                        ] else ...[
+                          Text(
+                            'Waiting for the leader to start...',
+                            style: theme.textTheme.displaySmall,
+                            textAlign: TextAlign.center,
+                          )
+                              .animate(
+                                onPlay: (controller) =>
+                                    controller.repeat(reverse: true),
+                              )
+                              .fadeIn(duration: 2.seconds),
+                        ],
+                        const SizedBox(height: 30)
+                      ],
                     ),
                   ),
-                  const SizedBox(height: 50),
-                  StartButton(
-                    onPress: onBack,
-                    isLoading: state is MultiPlayerLoading,
-                    color: theme.primaryColor,
-                    alternateText: 'Go Back',
-                    alternateHeight: 65,
-                    alternateTextStyle: theme.textTheme.headlineMedium,
-                  ),
                 ],
-              ),
-            );
-          }
-          return const Text('Error');
-        },
-      ),
+              );
+            }
+            if (multiState is MultiPlayerRoomDeleted) {
+              return SizedBox.expand(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Flexible(
+                      child: Text(
+                        'Room no longer exists',
+                        style: theme.textTheme.displaySmall,
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                    const SizedBox(height: 50),
+                    StartButton(
+                      onPress: onBack,
+                      isLoading: multiState is MultiPlayerLoading,
+                      color: theme.primaryColor,
+                      alternateText: 'Go Back',
+                      alternateHeight: 65,
+                      alternateTextStyle: theme.textTheme.headlineMedium,
+                    ),
+                  ],
+                ),
+              );
+            }
+            return const Text('Error');
+          },
+        );
+      },
     );
   }
 }

@@ -22,9 +22,13 @@ abstract class _$AppRouter extends RootStackRouter {
       );
     },
     EndGameRoute.name: (routeData) {
+      final args = routeData.argsAs<EndGameRouteArgs>();
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const EndGamePage(),
+        child: EndGamePage(
+          quizType: args.quizType,
+          key: args.key,
+        ),
       );
     },
     QuizRoute.name: (routeData) {
@@ -109,16 +113,40 @@ class HomeRoute extends PageRouteInfo<void> {
 
 /// generated route for
 /// [EndGamePage]
-class EndGameRoute extends PageRouteInfo<void> {
-  const EndGameRoute({List<PageRouteInfo>? children})
-      : super(
+class EndGameRoute extends PageRouteInfo<EndGameRouteArgs> {
+  EndGameRoute({
+    required QuizType quizType,
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
           EndGameRoute.name,
+          args: EndGameRouteArgs(
+            quizType: quizType,
+            key: key,
+          ),
           initialChildren: children,
         );
 
   static const String name = 'EndGameRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static const PageInfo<EndGameRouteArgs> page =
+      PageInfo<EndGameRouteArgs>(name);
+}
+
+class EndGameRouteArgs {
+  const EndGameRouteArgs({
+    required this.quizType,
+    this.key,
+  });
+
+  final QuizType quizType;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'EndGameRouteArgs{quizType: $quizType, key: $key}';
+  }
 }
 
 /// generated route for
