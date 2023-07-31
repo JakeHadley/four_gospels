@@ -1,10 +1,10 @@
 {
-    "@@locale": "pt",
+    "@@locale": "pt-br",
     "homePageAppBarTitle": "Quiz do Novo Testamento",
     "@homePageAppBarTitle": {
         "description": "Home page app bar text"
     },
-    "selectQuizSubtitle": "Selecione um quiz",
+    "selectQuizSubtitle": "Selecione um Quiz",
     "@selectQuizSubtitle": {
         "description": "Home page subtitle text"
     },
@@ -140,7 +140,7 @@
     "@createGameAppBar": {
         "description": "Text for Create Game Page App Bar"
     },
-    "lobbyAppBar": "Salão",
+    "lobbyAppBar": "Entrada",
     "@lobbyAppBar": {
         "description": "Text for Lobby Page App Bar"
     }
