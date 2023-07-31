@@ -43,8 +43,15 @@ class AnswerButton extends StatelessWidget {
       }
     }
 
+    VoidCallback onTap;
+    if (currentQuestionAnswered) {
+      onTap = () {};
+    } else {
+      onTap = () => onPress(answer: answer, quizType: quizType);
+    }
+
     return GestureDetector(
-      onTap: () => onPress(answer: answer, quizType: quizType),
+      onTap: onTap,
       child: badges.Badge(
         badgeContent: Text(
           '+10',

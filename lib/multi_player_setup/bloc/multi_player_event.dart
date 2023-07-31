@@ -56,13 +56,15 @@ class MultiPlayerJoinRoom extends MultiPlayerEvent {
   const MultiPlayerJoinRoom({
     required this.name,
     required this.code,
+    required this.language,
   });
 
   final String name;
   final String code;
+  final String language;
 
   @override
-  List<Object> get props => [name, code];
+  List<Object> get props => [name, code, language];
 }
 
 class MultiPlayerStart extends MultiPlayerEvent {

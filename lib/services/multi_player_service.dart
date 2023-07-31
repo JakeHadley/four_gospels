@@ -45,6 +45,7 @@ class MultiPlayerService {
   Future<DocumentReference<Room>> joinRoom(
     String name,
     String code,
+    String language,
   ) async {
     DocumentReference<Room> roomReference;
     try {
@@ -55,6 +56,14 @@ class MultiPlayerService {
 
     final roomDocument = await roomReference.get();
     final roomDocumentData = roomDocument.data()!;
+
+    if (roomDocumentData.language != language) {
+      throw JoinRoomException('Language is not the same');
+    }
+
+    if (roomDocumentData.status == 'active') {
+      throw JoinRoomException('Game already started');
+    }
 
     if (!roomDocumentData.users.contains(name)) {
       await roomReference.update(

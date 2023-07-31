@@ -85,13 +85,11 @@ class MultiPlayerBloc extends Bloc<MultiPlayerEvent, MultiPlayerState> {
   ) async {
     emit(MultiPlayerLoading());
 
-    //TODO: if language is not the same, don't join
-    //TODO: if room is active, don't join
-
     try {
       final roomReference = await multiPlayerService.joinRoom(
         event.name,
         event.code,
+        event.language,
       );
 
       final roomSnapshot = await roomReference.get();

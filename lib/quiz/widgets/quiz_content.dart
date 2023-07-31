@@ -62,6 +62,19 @@ class QuizContent extends StatelessWidget {
               final currentQuestion =
                   quizState.questions[quizState.currentQuestionIndex];
 
+              final answers = quizState.answerList
+                  .map(
+                    (answer) => AnswerButton(
+                      answer: answer,
+                      currentQuestionAnswered:
+                          quizState.currentQuestionAnswered,
+                      onPress: onAnswerPress,
+                      selectedAnswer: quizState.selectedAnswer,
+                      quizType: quizState.type,
+                    ),
+                  )
+                  .toList();
+
               return Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 40),
                 child: Column(
@@ -80,43 +93,7 @@ class QuizContent extends StatelessWidget {
                       ),
                     ),
                     const Spacer(),
-                    Column(
-                      // TODO: put this in a map function or something
-                      children: [
-                        AnswerButton(
-                          answer: quizState.answerList[0],
-                          currentQuestionAnswered:
-                              quizState.currentQuestionAnswered,
-                          onPress: onAnswerPress,
-                          selectedAnswer: quizState.selectedAnswer,
-                          quizType: quizState.type,
-                        ),
-                        AnswerButton(
-                          answer: quizState.answerList[1],
-                          currentQuestionAnswered:
-                              quizState.currentQuestionAnswered,
-                          onPress: onAnswerPress,
-                          selectedAnswer: quizState.selectedAnswer,
-                          quizType: quizState.type,
-                        ),
-                        AnswerButton(
-                          answer: quizState.answerList[2],
-                          currentQuestionAnswered:
-                              quizState.currentQuestionAnswered,
-                          onPress: onAnswerPress,
-                          selectedAnswer: quizState.selectedAnswer,
-                          quizType: quizState.type,
-                        ),
-                        AnswerButton(
-                          answer: quizState.answerList[3],
-                          currentQuestionAnswered:
-                              quizState.currentQuestionAnswered,
-                          onPress: onAnswerPress,
-                          selectedAnswer: quizState.selectedAnswer,
-                          quizType: quizState.type,
-                        )
-                      ],
-                    ),
+                    Column(children: answers),
                     if (quizState.type != QuizType.speed) ...[
                       const SizedBox(height: 20),
                       Reference(

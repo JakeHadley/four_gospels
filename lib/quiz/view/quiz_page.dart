@@ -25,7 +25,6 @@ class _QuizPageState extends State<QuizPage> {
     required Answer answer,
     required QuizType quizType,
   }) {
-    //TODO: Don't allow answer changes after submit
     switch (quizType) {
       case QuizType.single:
         context.read<QuizBloc>().add(QuizAnswerSelected(answer: answer));

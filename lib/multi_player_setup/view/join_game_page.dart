@@ -52,9 +52,12 @@ class _JoinGamePageState extends State<JoinGamePage> {
       return;
     }
 
+    final language = Localizations.localeOf(context);
+
     final joinRoomEvent = MultiPlayerJoinRoom(
       name: _nameController.text,
       code: _codeController.text,
+      language: language.toLanguageTag(),
     );
 
     context.read<MultiPlayerBloc>().add(joinRoomEvent);
@@ -92,6 +95,7 @@ class _JoinGamePageState extends State<JoinGamePage> {
 
     return Scaffold(
       appBar: CustomAppBar(title: l10n.joinGameAppBar),
+      resizeToAvoidBottomInset: false,
       body: JoinGame(
         codeController: _codeController,
         nameController: _nameController,

@@ -114,7 +114,8 @@ class _CreateGamePageState extends State<CreateGamePage> {
     );
     return Scaffold(
       appBar: CustomAppBar(title: l10n.createGameAppBar),
-      body: GameCreation(
+      resizeToAvoidBottomInset: false,
+      body: CreateGame(
         changePlayers: changePlayers,
         changeQuestions: changeQuestions,
         controller: _nameController,

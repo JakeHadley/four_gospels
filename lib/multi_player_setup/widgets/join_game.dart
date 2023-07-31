@@ -43,6 +43,7 @@ class JoinGame extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  const Spacer(),
                   Input(
                     controller: nameController,
                     label: 'Enter Your Name',
@@ -52,6 +53,7 @@ class JoinGame extends StatelessWidget {
                     label: 'Enter Code',
                   ),
                   const SizedBox(height: 30),
+                  const Spacer(),
                   StartButton(
                     onPress: onContinue,
                     isLoading: state is MultiPlayerLoading,
@@ -60,6 +62,7 @@ class JoinGame extends StatelessWidget {
                     alternateHeight: 65,
                     alternateTextStyle: theme.textTheme.headlineMedium,
                   ),
+                  const SizedBox(height: 30),
                 ],
               ),
             ),

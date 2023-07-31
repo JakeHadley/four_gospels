@@ -5,8 +5,8 @@ import 'package:four_gospels/multi_player_setup/widgets/widgets.dart';
 import 'package:four_gospels/single_player_setup/widgets/widgets.dart';
 import 'package:numberpicker/numberpicker.dart';
 
-class GameCreation extends StatelessWidget {
-  const GameCreation({
+class CreateGame extends StatelessWidget {
+  const CreateGame({
     required this.controller,
     required this.isValid,
     required this.changePlayers,
@@ -31,7 +31,6 @@ class GameCreation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: Fix rendering issue with keyboard open
     final theme = Theme.of(context);
     final buttonColor = isValid ? theme.primaryColor : theme.disabledColor;
 

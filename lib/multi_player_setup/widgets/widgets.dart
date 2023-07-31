@@ -1,4 +1,4 @@
-export 'game_creation.dart';
+export 'create_game.dart';
 export 'game_info.dart';
 export 'input.dart';
 export 'join_game.dart';
