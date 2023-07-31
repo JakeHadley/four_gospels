@@ -1,147 +1,147 @@
 {
     "@@locale": "es",
-    "homePageAppBarTitle": "Quiz do Novo Testamento",
+    "homePageAppBarTitle": "Quiz del Nuevo Testamento",
     "@homePageAppBarTitle": {
-      "description": "Home page app bar text"
+        "description": "Home page app bar text"
     },
-    "selectQuizSubtitle": "Selecione um quiz",
+    "selectQuizSubtitle": "Seleccione un Quiz",
     "@selectQuizSubtitle": {
-      "description": "Home page subtitle text"
+        "description": "Home page subtitle text"
     },
-    "singlePlayerHome": "1 jogador",
+    "singlePlayerHome": "1 jugador",
     "@singlePlayerHome": {
-      "description": "Home page single player button text"
+        "description": "Home page single player button text"
     },
-    "multiPlayer": "Vários jogadores",
+    "multiPlayer": "Multijugador",
     "@multiPlayer": {
-      "description": "Home page multiplayer button text"
+        "description": "Home page multiplayer button text"
     },
-    "speedRound": "Rodada de velocidade",
+    "speedRound": "Ronda de velocidad",
     "@speedRound": {
-      "description": "Home page speed round button text"
+        "description": "Home page speed round button text"
     },
-    "speed": "Velocidade",
+    "speed": "Velocidad",
     "@speed": {
-      "description": "Speed round confirm settings page summary text"
+        "description": "Speed round confirm settings page summary text"
     },
-    "singlePlayerAppBar": "1 jogador",
+    "singlePlayerAppBar": "1 jugador",
     "@singlePlayerAppBar": {
-      "description": "Single player setup appbar text"
+        "description": "Single player setup appbar text"
     },
-    "speedRoundAppBar": "Rodada de velocidade",
+    "speedRoundAppBar": "Ronda de velocidad",
     "@speedRoundAppBar": {
-      "description": "Speed round setup appbar text"
+        "description": "Speed round setup appbar text"
     },
-    "multiPlayerAppBar": "Vários jogadores",
+    "multiPlayerAppBar": "Multijugador",
     "@multiPlayerAppBar": {
-      "description": "MultiPlayer setup appbar text"
+        "description": "MultiPlayer setup appbar text"
     },
-    "difficultySubtitle": "Selecione a dificuldade",
+    "difficultySubtitle": "Seleccione una dificultad",
     "@difficultySubtitle": {
-      "description": "Difficulty options page subtitle text"
+        "description": "Difficulty options page subtitle text"
     },
     "difficultyEasy": "Fácil",
     "@difficultyEasy": {
-      "description": "Difficulty easy option button text"
+        "description": "Difficulty easy option button text"
     },
     "difficultyModerate": "Moderado",
     "@difficultyModerate": {
-      "description": "Difficulty moderate option button text"
+        "description": "Difficulty moderate option button text"
     },
     "difficultyHard": "Difícil",
     "@difficultyHard": {
-      "description": "Difficulty hard option button text"
+        "description": "Difficulty hard option button text"
     },
-    "numberQuestionsSubtitle": "Selecione o número de perguntas",
+    "numberQuestionsSubtitle": "Seleccione el número de preguntas",
     "@numberQuestionsSubtitle": {
-      "description": "Number of questions page subtitle text"
+        "description": "Number of questions page subtitle text"
     },
-    "confirmSettingsSubtitle": "Pronto para testar seu conhecimento?",
+    "confirmSettingsSubtitle": "Listo para poner a prueba tus conocimientos?",
     "@confirmSettingsSubtitle": {
-      "description": "Confirm settings page subtitle text"
+        "description": "Confirm settings page subtitle text"
     },
-    "confirmSettingsDifficulty": "Dificuldade",
+    "confirmSettingsDifficulty": "Dificultad",
     "@confirmSettingsDifficulty": {
-      "description": "Difficulty selected option pretext"
+        "description": "Difficulty selected option pretext"
     },
-    "confirmSettingsNumberQuestions": "Perguntas",
+    "confirmSettingsNumberQuestions": "Preguntas",
     "@confirmSettingsNumberQuestions": {
-      "description": "Number questions selected option pretext"
+        "description": "Number questions selected option pretext"
     },
-    "startButton": "Iniciar",
+    "startButton": "Comenzar",
     "@startButton": {
-      "description": "Start button text"
+        "description": "Start button text"
     },
-    "quizSubtitleQuestion": "pergunta",
+    "quizSubtitleQuestion": "pregunta",
     "@quizSubtitleQuestion": {
-      "description": "Quiz subtitle question portion text"
+        "description": "Quiz subtitle question portion text"
     },
     "quizSubtitleOf": "de",
     "@quizSubtitleOf": {
-      "description": "Quiz subtitle of portion text"
+        "description": "Quiz subtitle of portion text"
     },
     "submitButton": "Enviar",
     "@submitButton": {
-      "description": "Submit button text"
+        "description": "Submit button text"
     },
-    "finishQuizButton": "Terminar o Quiz",
+    "finishQuizButton": "Finalizar el Quiz",
     "@finishQuizButton": {
-      "description": "Finish quiz button text"
+        "description": "Finish quiz button text"
     },
-    "nextQuestionButton": "Próxima pergunta",
+    "nextQuestionButton": "Próxima pregunta",
     "@nextQuestionButton": {
-      "description": "Next question button text"
+        "description": "Next question button text"
     },
-    "endGamePageSubtitle": "Verifique sua pontuação!",
+    "endGamePageSubtitle": "¡Consulta tu puntuación!",
     "@endGamePageSubtitle": {
-      "description": "End game page subtitle text"
+        "description": "End game page subtitle text"
     },
-    "endGameInfoScore": "Pontuação",
+    "endGameInfoScore": "Puntuación",
     "@endGameInfoScore": {
-      "description": "End game page score pretext"
+        "description": "End game page score pretext"
     },
-    "endGamePageCorrectAnswers": "Respostas corretas",
+    "endGamePageCorrectAnswers": "Respuestas correctas",
     "@endGamePageCorrectAnswers": {
-      "description": "End game page correct answers pretext"
+        "description": "End game page correct answers pretext"
     },
-    "endGameButton": "Jogar novamente?",
+    "endGameButton": "¿Juega de nuevo?",
     "@endGameButton": {
-      "description": "End game button text"
+        "description": "End game button text"
     },
-    "quitDialogCaption": "Quer terminar o jogo?",
+    "quitDialogCaption": "¿Finalizar el juego?",
     "@quitDialogCaption": {
-      "description": "Quit Dialog Caption"
+        "description": "Quit Dialog Caption"
     },
     "quitDialogCancel": "Cancelar",
     "@quitDialogCancel": {
-      "description": "Quit dialog cancel button text"
+        "description": "Quit dialog cancel button text"
     },
-    "quitDialogQuit": "Terminar",
+    "quitDialogQuit": "Finalizar",
     "@quitDialogQuit": {
-      "description": "Quit dialog quit button text"
+        "description": "Quit dialog quit button text"
     },
-    "comingSoonText": "Em Breve!",
+    "comingSoonText": "¡Muy pronto!",
     "@comingSoonText": {
-      "description": "Text for Snackbar"
+        "description": "Text for Snackbar"
     },
-    "joinGameButton": "Entrar em um jogo",
+    "joinGameButton": "Unirse a un juego",
     "@joinGameButton": {
-      "description": "Text for Join Game Button"
+        "description": "Text for Join Game Button"
     },
-    "joinGameAppBar": "Entrar em um jogo",
+    "joinGameAppBar": "Unirse a un juego",
     "@joinGameAppBar": {
-      "description": "Text for Join Game Page App Bar"
+        "description": "Text for Join Game Page App Bar"
     },
-    "createGameButton": "Criar um jogo",
+    "createGameButton": "Crear un juego",
     "@createGameButton": {
-      "description": "Text for Create Game Button"
+        "description": "Text for Create Game Button"
     },
-    "createGameAppBar": "Criar um jogo",
+    "createGameAppBar": "Crear un juego",
     "@createGameAppBar": {
-      "description": "Text for Create Game Page App Bar"
+        "description": "Text for Create Game Page App Bar"
     },
-    "lobbyAppBar": "Salão",
+    "lobbyAppBar": "Entrada",
     "@lobbyAppBar": {
-      "description": "Text for Lobby Page App Bar"
+        "description": "Text for Lobby Page App Bar"
     }
 }
