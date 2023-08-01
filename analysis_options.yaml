@@ -4,4 +4,4 @@ linter:
     public_member_api_docs: false
     flutter_style_todos: false
 analyzer: 
-  exclude: [test/**, lib/firebase_options.dart]
+  exclude: [ lib/firebase_options.dart]
