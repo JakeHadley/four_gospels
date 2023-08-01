@@ -143,5 +143,29 @@
     "lobbyAppBar": "Lobby",
     "@lobbyAppBar": {
         "description": "Text for Lobby Page App Bar"
+    },
+    "enterNameField": "Enter Your Name",
+    "numPlayers": "Number of Players",
+    "numQuestions": "Number of Questions",
+    "continueButton": "Continue",
+    "players": "Players",
+    "code": "Code",
+    "Shown when sharing a code from Multiplayer. e.g. ('Invite your friends and family with code: \"ABC123\"')": {
+        "share": "Invite friends and family with code"
+    },
+    "enterCodeField": "Enter Code",
+    "joinButton": "Join",
+    "Shown on multiplayer when a non-owner user joins a lobby": {
+        "waitingForOwner": "Waiting for the leader to start"
+    },
+    "Shown when a non-owner user joins a room and the owner leaves the lobby": {
+        "roomDeleted": "Room no longer exists"
+    },
+    "goBackButton": "Go back",
+    "Shown next to the owner of the room in the lobby": {
+        "owner": "leader"
+    },
+    "Shown for non-owner users after submitting a question on multiplayer": {
+        "waitingForOwner": "waiting for leader"
     }
 }
