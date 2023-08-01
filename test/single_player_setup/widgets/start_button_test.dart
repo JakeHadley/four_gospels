@@ -6,7 +6,7 @@ import '../../helpers/helpers.dart';
 
 void main() {
   group('Start Button', () {
-    testWidgets('Start Button', (tester) async {
+    testWidgets('Start Button Loading', (tester) async {
       await tester.pumpApp(
         StartButton(
           isLoading: true,
@@ -16,11 +16,11 @@ void main() {
       expect(find.byType(CircularProgressIndicator), findsOneWidget);
       expect(find.byType(Text), findsNothing);
     });
-    // testWidgets('Start Button Loading', (tester) async {
+    // testWidgets('Start Button', (tester) async {
     //   await tester.pumpApp(
     //     StartButton(
-    //       onPress: (_) {},
-    //       isInitialState: true,
+    //       isLoading: false,
+    //       onPress: () {},
     //     ),
     //   );
     //   expect(find.byType(CircularProgressIndicator), findsNothing);
