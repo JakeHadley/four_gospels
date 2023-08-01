@@ -41,13 +41,14 @@ exports.getQuestions = functions.https.onCall(async (request) => {
       const roomData = roomDoc.data();
       let questionsCollectionName;
 
-      switch (roomData.language) {
-        case "pt":
-          questionsCollectionName = "questionsPor";
-          break;
-        default:
-          questionsCollectionName = "questionsPor";
-          break;
+      if (roomData.language.startsWith("pt")) {
+        questionsCollectionName = "questionsPor";
+      } else if (roomData.language.startsWith("en")) {
+        questionsCollectionName = "questionsEng";
+      } else if (roomData.language.startsWith("es")) {
+        questionsCollectionName = "questionsSpa";
+      } else {
+        questionsCollectionName = "questionsEng";
       }
 
       const questionsCollection = firestore.collection(questionsCollectionName);

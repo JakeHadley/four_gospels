@@ -20,10 +20,13 @@ class ConfirmSettingsPage extends StatelessWidget {
   final int numberQuestions;
 
   void _onPress(BuildContext context) {
+    final language = Localizations.localeOf(context).toLanguageTag();
+
     context.read<QuizBloc>().add(
           QuizStart.single(
             numberOfQuestions: numberQuestions,
             mode: mode,
+            language: language,
           ),
         );
   }

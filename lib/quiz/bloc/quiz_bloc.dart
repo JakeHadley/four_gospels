@@ -29,6 +29,7 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
         event.numberOfQuestions,
         event.mode,
         event.type,
+        event.language,
       );
     } else {
       questions = event.questions!;

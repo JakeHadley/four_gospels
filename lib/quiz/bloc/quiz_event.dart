@@ -12,6 +12,7 @@ class QuizStart extends QuizEvent {
   const QuizStart.single({
     required this.numberOfQuestions,
     required this.mode,
+    required this.language,
     this.type = QuizType.single,
     this.questions,
   });
@@ -19,6 +20,7 @@ class QuizStart extends QuizEvent {
   const QuizStart.speed({
     required this.numberOfQuestions,
     required this.mode,
+    required this.language,
     this.type = QuizType.speed,
     this.questions,
   });
@@ -26,6 +28,7 @@ class QuizStart extends QuizEvent {
   const QuizStart.multi({
     required this.numberOfQuestions,
     required this.mode,
+    required this.language,
     this.type = QuizType.multi,
     this.questions,
   });
@@ -34,6 +37,7 @@ class QuizStart extends QuizEvent {
   final Mode mode;
   final QuizType type;
   final List<Question>? questions;
+  final String language;
 
   @override
   List<Object?> get props => [numberOfQuestions, mode, type, questions];

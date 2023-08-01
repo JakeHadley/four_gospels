@@ -3,15 +3,17 @@ import 'package:four_gospels/quiz/models/models.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class QuizService {
-  final CollectionReference _questionsCollection = FirebaseFirestore.instance
-      .collection('questionsPor')
-      .withConverter<Question>(
-        fromFirestore: (snapshot, _) => Question.fromJson(snapshot.data()!),
-        toFirestore: (question, _) => question.toJson(),
-      );
-
-  final CollectionReference _statsCollection =
-      FirebaseFirestore.instance.collection('stats');
+  String _getCollectionName(String language) {
+    if (language.startsWith('pt')) {
+      return 'questionsPor';
+    } else if (language.startsWith('en')) {
+      return 'questionsEng';
+    } else if (language.startsWith('es')) {
+      return 'questionsSpa';
+    } else {
+      return 'questionsEng';
+    }
+  }
 
   Future<List<String>> _getIds(
     Stats stats,
@@ -47,14 +49,24 @@ class QuizService {
     }
   }
 
-  Future<List<Question>> _getQuestionsList(List<String> ids) async {
+  Future<List<Question>> _getQuestionsList(
+    List<String> ids,
+    String language,
+  ) async {
+    final CollectionReference questionsCollection = FirebaseFirestore.instance
+        .collection(_getCollectionName(language))
+        .withConverter<Question>(
+          fromFirestore: (snapshot, _) => Question.fromJson(snapshot.data()!),
+          toFirestore: (question, _) => question.toJson(),
+        );
+
     final futureQuerySnapshotList =
         List<Future<QuerySnapshot>>.empty(growable: true);
     final questionList = List<Question>.empty(growable: true);
 
     for (final id in ids) {
       futureQuerySnapshotList.add(
-        _questionsCollection.where('id', isEqualTo: int.parse(id)).get(),
+        questionsCollection.where('id', isEqualTo: int.parse(id)).get(),
       );
     }
     final querySnapshotList = await Future.wait([...futureQuerySnapshotList]);
@@ -71,12 +83,15 @@ class QuizService {
     int numberOfQuestions,
     Mode mode,
     QuizType type,
+    String language,
   ) async {
-    final statsCollection = await _statsCollection.doc('questionsPor').get();
+    final CollectionReference statsCollection =
+        FirebaseFirestore.instance.collection('stats');
+    final statsDoc =
+        await statsCollection.doc(_getCollectionName(language)).get();
 
-    if (statsCollection.data() != null) {
-      final stats =
-          Stats.fromJson(statsCollection.data()! as Map<String, dynamic>);
+    if (statsDoc.data() != null) {
+      final stats = Stats.fromJson(statsDoc.data()! as Map<String, dynamic>);
 
       var ids = <String>[];
       if (type == QuizType.speed) {
@@ -89,7 +104,7 @@ class QuizService {
       } else {
         ids = await _getIds(stats, mode, numberOfQuestions);
       }
-      final questionsList = await _getQuestionsList(ids);
+      final questionsList = await _getQuestionsList(ids, language);
 
       return questionsList;
     } else {

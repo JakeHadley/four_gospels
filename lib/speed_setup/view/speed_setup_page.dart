@@ -13,9 +13,15 @@ class SpeedSetupPage extends StatelessWidget {
   const SpeedSetupPage({super.key});
 
   void _onPress(BuildContext context) {
-    context
-        .read<QuizBloc>()
-        .add(const QuizStart.speed(numberOfQuestions: 0, mode: Mode.easy));
+    final language = Localizations.localeOf(context).toLanguageTag();
+
+    final quizStartEvent = QuizStart.speed(
+      numberOfQuestions: 0,
+      mode: Mode.easy,
+      language: language,
+    );
+
+    context.read<QuizBloc>().add(quizStartEvent);
   }
 
   void _onStateChange(BuildContext context) {
