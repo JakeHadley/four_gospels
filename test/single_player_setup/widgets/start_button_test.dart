@@ -16,16 +16,16 @@ void main() {
       expect(find.byType(CircularProgressIndicator), findsOneWidget);
       expect(find.byType(Text), findsNothing);
     });
-    // testWidgets('Start Button', (tester) async {
-    //   await tester.pumpApp(
-    //     StartButton(
-    //       isLoading: false,
-    //       onPress: () {},
-    //     ),
-    //   );
-    //   expect(find.byType(CircularProgressIndicator), findsNothing);
-    //   expect(find.byType(Text), findsOneWidget);
-    // });
+    testWidgets('Start Button', (tester) async {
+      await tester.pumpApp(
+        StartButton(
+          isLoading: false,
+          onPress: () {},
+        ),
+      );
+      expect(find.byType(CircularProgressIndicator), findsNothing);
+      expect(find.byType(Text), findsOneWidget);
+    });
     // testWidgets('Start Button onPress', (tester) async {
     //   var pressed = false;
     //   await tester.pumpApp(
