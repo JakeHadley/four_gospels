@@ -30,6 +30,9 @@ class QuizContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // TODO: do 2 points for easy, 4 for moderate, 6 for hard,
+    //  -1 point for wrong answers
+
     return BlocConsumer<QuizBloc, QuizState>(
       listener: (context, quizState) {
         if (quizState is QuizComplete) {

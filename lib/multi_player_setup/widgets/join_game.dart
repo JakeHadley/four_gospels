@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:four_gospels/l10n/l10n.dart';
 import 'package:four_gospels/multi_player_setup/multi_player_setup.dart';
 import 'package:four_gospels/multi_player_setup/widgets/widgets.dart';
 import 'package:four_gospels/single_player_setup/widgets/widgets.dart';
@@ -26,6 +27,7 @@ class JoinGame extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final buttonColor = isValid ? theme.primaryColor : theme.disabledColor;
+    final l10n = context.l10n;
 
     return BlocConsumer<MultiPlayerBloc, MultiPlayerState>(
       listener: (context, state) {
@@ -46,11 +48,11 @@ class JoinGame extends StatelessWidget {
                   const Spacer(),
                   Input(
                     controller: nameController,
-                    label: 'Enter Your Name',
+                    label: l10n.enterNameField,
                   ),
                   Input(
                     controller: codeController,
-                    label: 'Enter Code',
+                    label: l10n.enterCodeField,
                   ),
                   const SizedBox(height: 30),
                   const Spacer(),
@@ -58,7 +60,7 @@ class JoinGame extends StatelessWidget {
                     onPress: onContinue,
                     isLoading: state is MultiPlayerLoading,
                     color: buttonColor,
-                    alternateText: 'Join',
+                    alternateText: l10n.joinButton,
                     alternateHeight: 65,
                     alternateTextStyle: theme.textTheme.headlineMedium,
                   ),

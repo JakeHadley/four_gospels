@@ -46,7 +46,7 @@ class QuizButton extends StatelessWidget {
         text = l10n.nextQuestionButton;
       }
     } else {
-      text = 'waiting for leader';
+      text = l10n.waitingForOwner;
     }
 
     if (!currentQuestionAnswered) {

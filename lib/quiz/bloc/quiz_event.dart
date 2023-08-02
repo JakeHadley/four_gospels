@@ -8,6 +8,12 @@ abstract class QuizEvent extends Equatable {
   List<Object?> get props => [];
 }
 
+class QuizFinished extends QuizEvent {}
+
+class QuizEnded extends QuizEvent {}
+
+class QuizLoad extends QuizEvent {}
+
 class QuizStart extends QuizEvent {
   const QuizStart.single({
     required this.numberOfQuestions,
@@ -64,8 +70,6 @@ class QuizAnswerSubmitted extends QuizEvent {
   List<Object?> get props => [isCorrect];
 }
 
-class QuizFinished extends QuizEvent {}
-
 class QuizAnswerSelected extends QuizEvent {
   const QuizAnswerSelected({
     required this.answer,
@@ -76,7 +80,3 @@ class QuizAnswerSelected extends QuizEvent {
   @override
   List<Object?> get props => [answer];
 }
-
-class QuizEnded extends QuizEvent {}
-
-class QuizLoad extends QuizEvent {}

@@ -17,6 +17,12 @@ class DifficultyOptionsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
+    // TODO: Show all settings on one page, no confirmation page
+    //   Difficulty
+    //   Number of Questions
+    //   Language
+
+    // TODO: Remove circular indicator on single player mode for quiz progress
 
     return Scaffold(
       appBar: CustomAppBar(title: l10n.singlePlayerAppBar),

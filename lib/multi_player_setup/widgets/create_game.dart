@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:four_gospels/l10n/l10n.dart';
 import 'package:four_gospels/multi_player_setup/bloc/multi_player_bloc.dart';
 import 'package:four_gospels/multi_player_setup/widgets/widgets.dart';
 import 'package:four_gospels/single_player_setup/widgets/widgets.dart';
@@ -33,6 +34,10 @@ class CreateGame extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final buttonColor = isValid ? theme.primaryColor : theme.disabledColor;
+    final l10n = context.l10n;
+
+    // TODO: check into creating a random option for all difficulties
+    // TODO: allow to choose the language of the quiz
 
     return BlocConsumer<MultiPlayerBloc, MultiPlayerState>(
       listener: (context, state) {
@@ -51,10 +56,10 @@ class CreateGame extends StatelessWidget {
                   const SizedBox(height: 30),
                   Input(
                     controller: controller,
-                    label: 'Enter Your Name',
+                    label: l10n.enterNameField,
                   ),
                   const SizedBox(height: 10),
-                  Text('Number of Players', style: theme.textTheme.bodyLarge),
+                  Text(l10n.numPlayers, style: theme.textTheme.bodyLarge),
                   NumberPicker(
                     axis: Axis.horizontal,
                     value: players,
@@ -64,19 +69,22 @@ class CreateGame extends StatelessWidget {
                     itemWidth: 50,
                   ),
                   Text(
-                    'Number of Questions',
+                    l10n.numQuestions,
                     style: theme.textTheme.bodyLarge,
                   ),
                   NumberPicker(
                     axis: Axis.horizontal,
                     value: questions,
                     minValue: 10,
-                    maxValue: 30,
+                    maxValue: 50,
                     onChanged: changeQuestions,
                     itemWidth: 50,
                     step: 5,
                   ),
-                  Text('Mode', style: theme.textTheme.bodyLarge),
+                  Text(
+                    l10n.confirmSettingsDifficulty,
+                    style: theme.textTheme.bodyLarge,
+                  ),
                   const SizedBox(height: 10),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -87,7 +95,7 @@ class CreateGame extends StatelessWidget {
                     onPress: onContinue,
                     isLoading: state is MultiPlayerLoading,
                     color: buttonColor,
-                    alternateText: 'Continue',
+                    alternateText: l10n.continueButton,
                     alternateHeight: 65,
                     alternateTextStyle: theme.textTheme.headlineMedium,
                   ),

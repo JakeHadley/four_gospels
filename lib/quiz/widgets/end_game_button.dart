@@ -13,6 +13,8 @@ class EndGameButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
 
+    // TODO: Standardize button widgets
+
     return InkWell(
       onTap: () => onPress(context),
       borderRadius: BorderRadius.circular(40),

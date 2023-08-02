@@ -14,6 +14,7 @@ class DifficultyOptions extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
+    // TODO: Add option for random difficulty
 
     final icon = Icon(
       Icons.star,

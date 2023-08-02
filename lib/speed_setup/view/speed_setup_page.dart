@@ -15,6 +15,17 @@ class SpeedSetupPage extends StatelessWidget {
   void _onPress(BuildContext context) {
     final language = Localizations.localeOf(context).toLanguageTag();
 
+    // TODO: Show settings for
+    //  difficulty,
+    //  language,
+    //  time (15, 30, 45, 60)
+    // TODO: Maintain maximum number of seconds
+
+    // TODO: +5 seconds for correct answers,
+    //  -1 second for wrong answers
+
+    // TODO: change time bar to red with 5 seconds left
+
     final quizStartEvent = QuizStart.speed(
       numberOfQuestions: 0,
       mode: Mode.easy,

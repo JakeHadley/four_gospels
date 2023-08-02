@@ -65,15 +65,15 @@ class MultiPlayerService {
       throw JoinRoomException('Game already started');
     }
 
-    if (!roomDocumentData.users.contains(name)) {
-      await roomReference.update(
-        {
-          'users': FieldValue.arrayUnion([name])
-        },
-      );
-    } else {
+    if (roomDocumentData.users.contains(name)) {
       throw JoinRoomException('Name taken');
     }
+
+    await roomReference.update(
+      {
+        'users': FieldValue.arrayUnion([name])
+      },
+    );
 
     return roomReference;
   }

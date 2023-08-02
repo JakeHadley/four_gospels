@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:four_gospels/l10n/l10n.dart';
+import 'package:four_gospels/quiz/models/models.dart';
 import 'package:share_plus/share_plus.dart';
 
 class GameInfo extends StatelessWidget {
@@ -6,16 +8,19 @@ class GameInfo extends StatelessWidget {
     required this.code,
     required this.numberOfPlayers,
     required this.numberOfQuestions,
+    required this.mode,
     super.key,
   });
 
   final String code;
   final int numberOfPlayers;
   final int numberOfQuestions;
+  final Mode mode;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final l10n = context.l10n;
 
     return Column(
       children: [
@@ -26,7 +31,7 @@ class GameInfo extends StatelessWidget {
             Column(
               children: [
                 Text(
-                  'Players',
+                  l10n.players,
                   style: theme.textTheme.titleMedium,
                 ),
                 Text(
@@ -38,7 +43,7 @@ class GameInfo extends StatelessWidget {
             Column(
               children: [
                 Text(
-                  'Questions',
+                  l10n.confirmSettingsNumberQuestions,
                   style: theme.textTheme.titleMedium,
                 ),
                 Text(
@@ -50,11 +55,11 @@ class GameInfo extends StatelessWidget {
             Column(
               children: [
                 Text(
-                  'Mode',
+                  l10n.confirmSettingsDifficulty,
                   style: theme.textTheme.titleMedium,
                 ),
                 Text(
-                  'Easy',
+                  mode.toStringIntl(l10n),
                   style: theme.textTheme.headlineSmall,
                 ),
               ],
@@ -65,12 +70,13 @@ class GameInfo extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              'Code: $code',
+              '${l10n.code}: $code',
               style: theme.textTheme.headlineSmall,
             ),
             IconButton(
+              // TODO: Come back to this and check what happens on share
               icon: const Icon(Icons.share),
-              onPressed: () => Share.share('This is a share text'),
+              onPressed: () => Share.share('${l10n.share}: $code'),
               color: theme.primaryColor,
             ),
           ],

@@ -53,6 +53,7 @@ class QuizService {
     List<String> ids,
     String language,
   ) async {
+    // TODO: investigate offline capability (storage on device)
     final CollectionReference questionsCollection = FirebaseFirestore.instance
         .collection(_getCollectionName(language))
         .withConverter<Question>(
@@ -96,9 +97,9 @@ class QuizService {
       var ids = <String>[];
       if (type == QuizType.speed) {
         ids = await Future.wait([
-          _getIds(stats, Mode.easy, 20),
-          _getIds(stats, Mode.moderate, 20),
-          _getIds(stats, Mode.hard, 20),
+          _getIds(stats, Mode.easy, 50),
+          _getIds(stats, Mode.moderate, 50),
+          _getIds(stats, Mode.hard, 50),
           // flatten list of ids to be one list
         ]).then((results) => results.expand((idsList) => idsList).toList());
       } else {

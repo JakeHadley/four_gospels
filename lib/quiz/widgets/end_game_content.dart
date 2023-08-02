@@ -52,6 +52,8 @@ class EndGameContent extends StatelessWidget {
     }
 
     Widget multiContent(MultiPlayerActive state) {
+      // TODO: Ensure screen doesn't change for other users if owner finishes
+      //  the game
       final scores = state.room.scores
         ..sort((a, b) => b.score.compareTo(a.score));
 

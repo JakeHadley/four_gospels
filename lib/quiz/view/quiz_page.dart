@@ -6,7 +6,6 @@ import 'package:four_gospels/common_widgets/common_widgets.dart';
 import 'package:four_gospels/l10n/l10n.dart';
 import 'package:four_gospels/multi_player_setup/multi_player_setup.dart';
 import 'package:four_gospels/quiz/bloc/quiz_bloc.dart';
-import 'package:four_gospels/quiz/helpers/helpers.dart';
 import 'package:four_gospels/quiz/models/models.dart';
 import 'package:four_gospels/quiz/widgets/back_button_dialog.dart';
 import 'package:four_gospels/quiz/widgets/widgets.dart';
@@ -102,6 +101,8 @@ class _QuizPageState extends State<QuizPage> {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
 
+    // TODO: Feedback button to dispute a question/set of answers
+
     return WillPopScope(
       onWillPop: _onWillPop,
       child: BlocBuilder<QuizBloc, QuizState>(
@@ -109,7 +110,7 @@ class _QuizPageState extends State<QuizPage> {
           if (state is QuizLoaded) {
             return Scaffold(
               appBar: CustomAppBar(
-                title: getTitle(state.type, l10n),
+                title: state.type.toStringIntl(l10n),
                 backButton: QuizBackButton(exitAction: _exitAction),
               ),
               body: QuizContent(

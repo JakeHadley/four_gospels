@@ -17,7 +17,9 @@ class NumberQuestionOptions extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
 
-    void Function() select(int n) => () => onPress(context, n);
+    // TODO: Add more numbers of questions
+
+    VoidCallback select(int n) => () => onPress(context, n);
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 40),

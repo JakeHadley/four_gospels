@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:four_gospels/models/score.dart';
 import 'package:four_gospels/quiz/models/models.dart';
 
 class Room {
@@ -94,27 +95,4 @@ class Room {
   final List<String> usersAnswered;
   final int currentQuestionIndex;
   final List<Score> scores;
-}
-
-class Score {
-  Score({
-    required this.name,
-    required this.score,
-  });
-
-  Score.fromJson(Map<String, Object?> json)
-      : this(
-          name: json['name']! as String,
-          score: json['score']! as int,
-        );
-
-  Map<String, Object?> toJson() {
-    return {
-      'name': name,
-      'score': score,
-    };
-  }
-
-  final String name;
-  final int score;
 }

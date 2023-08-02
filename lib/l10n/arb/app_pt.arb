@@ -1,5 +1,5 @@
 {
-    "@@locale": "pt-br",
+    "@@locale": "pt",
     "homePageAppBarTitle": "Quiz do Novo Testamento",
     "@homePageAppBarTitle": {
         "description": "Home page app bar text"
@@ -149,23 +149,5 @@
     "numQuestions": "",
     "continueButton": "",
     "players": "",
-    "code": "",
-    "Shown when sharing a code from Multiplayer. e.g. ('Invite your friends and family with code: \"ABC123\"')": {
-        "share": ""
-    },
-    "enterCodeField": "",
-    "joinButton": "",
-    "Shown on multiplayer when a non-owner user joins a lobby": {
-        "waitingForOwner": ""
-    },
-    "Shown when a non-owner user joins a room and the owner leaves the lobby": {
-        "roomDeleted": ""
-    },
-    "goBackButton": "",
-    "Shown next to the owner of the room in the lobby": {
-        "owner": ""
-    },
-    "Shown for non-owner users after submitting a question on multiplayer": {
-        "waitingForOwner": ""
-    }
+    "code": ""
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:four_gospels/l10n/l10n.dart';
 import 'package:four_gospels/models/models.dart';
 import 'package:four_gospels/multi_player_setup/multi_player_setup.dart';
 import 'package:four_gospels/multi_player_setup/widgets/widgets.dart';
@@ -24,6 +25,7 @@ class Lobby extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final l10n = context.l10n;
 
     return BlocConsumer<QuizBloc, QuizState>(
       listener: (context, quizState) {
@@ -55,6 +57,7 @@ class Lobby extends StatelessWidget {
                           code: room.code,
                           numberOfPlayers: room.numberOfPlayers,
                           numberOfQuestions: room.numberOfQuestions,
+                          mode: room.mode,
                         ),
                         PlayerList(
                           users: room.users,
@@ -67,7 +70,7 @@ class Lobby extends StatelessWidget {
                           ),
                         ] else ...[
                           Text(
-                            'Waiting for the leader to start...',
+                            '${l10n.waitingForOwnerStart}...',
                             style: theme.textTheme.displaySmall,
                             textAlign: TextAlign.center,
                           )
@@ -91,7 +94,7 @@ class Lobby extends StatelessWidget {
                   children: [
                     Flexible(
                       child: Text(
-                        'Room no longer exists',
+                        l10n.roomDeleted,
                         style: theme.textTheme.displaySmall,
                         textAlign: TextAlign.center,
                       ),
@@ -101,7 +104,7 @@ class Lobby extends StatelessWidget {
                       onPress: onBack,
                       isLoading: multiState is MultiPlayerLoading,
                       color: theme.primaryColor,
-                      alternateText: 'Go Back',
+                      alternateText: l10n.goBackButton,
                       alternateHeight: 65,
                       alternateTextStyle: theme.textTheme.headlineMedium,
                     ),

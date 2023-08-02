@@ -7,7 +7,7 @@ class QuizBackButton extends StatelessWidget {
     super.key,
   });
 
-  final void Function() exitAction;
+  final VoidCallback exitAction;
 
   @override
   Widget build(BuildContext context) {
