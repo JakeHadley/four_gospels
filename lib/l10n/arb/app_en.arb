@@ -151,11 +151,20 @@
     "players": "Players",
     "code": "Code",
     "share": "Invite friends and family with code",
+    "@share": {
+        "description": "Shown when sharing a code from Multiplayer. e.g. ('Invite your friends and family with code: \"ABC123\"')"
+    },
     "enterCodeField": "Enter Code",
     "joinButton": "Join",
-    "waitingForOwnerStart": "Waiting for the leader to start",
+    "Shown on multiplayer when a non-owner user joins a lobby": {
+        "waitingForOwner": "Waiting for the leader to start"
+    },
     "roomDeleted": "Room no longer exists",
     "goBackButton": "Go back",
-    "owner": "leader",
-    "waitingForOwner": "waiting for leader"
+    "Shown next to the owner of the room in the lobby": {
+        "owner": "leader"
+    },
+    "Shown for non-owner users after submitting a question on multiplayer": {
+        "waitingForOwner": "waiting for leader"
+    }
 }
