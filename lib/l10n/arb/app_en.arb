@@ -72,7 +72,7 @@
     "@startButton": {
         "description": "Start button text"
     },
-    "quizSubtitleQuestion": "question",
+    "quizSubtitleQuestion": "Question",
     "@quizSubtitleQuestion": {
         "description": "Quiz subtitle question portion text"
     },
@@ -156,15 +156,18 @@
     },
     "enterCodeField": "Enter Code",
     "joinButton": "Join",
-    "Shown on multiplayer when a non-owner user joins a lobby": {
-        "waitingForOwner": "Waiting for the leader to start"
+    "waitingForOwnerStart": "Waiting for the leader to start",
+    "@waitingForOwnerStart": {
+        "description": "Shown on multiplayer when a non-owner user joins a lobby"
     },
     "roomDeleted": "Room no longer exists",
     "goBackButton": "Go back",
-    "Shown next to the owner of the room in the lobby": {
-        "owner": "leader"
+    "owner": "host",
+    "@owner": {
+        "description": "Shown next to the owner of the room in the lobby"
     },
-    "Shown for non-owner users after submitting a question on multiplayer": {
-        "waitingForOwner": "waiting for leader"
+    "waitingForOwner": "waiting for leader",
+    "@waitingForOwner": {
+        "description": "Shown for non-owner users after submitting a question on multiplayer"
     }
 }
