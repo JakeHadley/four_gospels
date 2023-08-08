@@ -114,7 +114,7 @@ class MultiPlayerBloc extends Bloc<MultiPlayerEvent, MultiPlayerState> {
           }
         },
       );
-    } on JoinRoomException catch (e) {
+    } on RoomException catch (e) {
       emit(MultiPlayerError(error: e.error));
     }
   }

@@ -39,7 +39,7 @@ class MultiPlayerActive extends MultiPlayerState {
 class MultiPlayerError extends MultiPlayerState {
   const MultiPlayerError({required this.error});
 
-  final String error;
+  final RoomExceptionErrorEnum error;
 
   @override
   List<Object> get props => [error];

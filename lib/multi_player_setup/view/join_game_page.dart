@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:four_gospels/app/auto_router.dart';
 import 'package:four_gospels/common_widgets/common_widgets.dart';
 import 'package:four_gospels/l10n/l10n.dart';
+import 'package:four_gospels/models/models.dart';
 import 'package:four_gospels/multi_player_setup/multi_player_setup.dart';
 import 'package:four_gospels/multi_player_setup/widgets/widgets.dart';
 
@@ -63,11 +64,27 @@ class _JoinGamePageState extends State<JoinGamePage> {
     context.read<MultiPlayerBloc>().add(joinRoomEvent);
   }
 
-  void onError(String error) {
+  void onError(RoomExceptionErrorEnum error) {
+    String errorStr;
+    switch (error) {
+      case RoomExceptionErrorEnum.language:
+        errorStr = context.l10n.wrongLanguage;
+        break;
+      case RoomExceptionErrorEnum.active:
+        errorStr = context.l10n.gameActive;
+        break;
+      case RoomExceptionErrorEnum.name:
+        errorStr = context.l10n.nameTaken;
+        break;
+      case RoomExceptionErrorEnum.room:
+        errorStr = context.l10n.noRoom;
+        break;
+    }
+
     ScaffoldMessenger.of(context)
         .showSnackBar(
           SnackBar(
-            content: Text(error),
+            content: Text(errorStr),
             backgroundColor: Theme.of(context).colorScheme.error,
           ),
         )

@@ -50,7 +50,7 @@ class MultiPlayerService {
     DocumentReference<Room> roomReference;
     try {
       roomReference = await _getRoom(code);
-    } on JoinRoomException {
+    } on RoomException {
       rethrow;
     }
 
@@ -58,15 +58,15 @@ class MultiPlayerService {
     final roomDocumentData = roomDocument.data()!;
 
     if (roomDocumentData.language != language) {
-      throw JoinRoomException('Language is not the same');
+      throw RoomException(RoomExceptionErrorEnum.language);
     }
 
     if (roomDocumentData.status == 'active') {
-      throw JoinRoomException('Game already started');
+      throw RoomException(RoomExceptionErrorEnum.active);
     }
 
     if (roomDocumentData.users.contains(name)) {
-      throw JoinRoomException('Name taken');
+      throw RoomException(RoomExceptionErrorEnum.name);
     }
 
     await roomReference.update(
@@ -142,7 +142,7 @@ class MultiPlayerService {
         toFirestore: (room, _) => room.toJson(),
       );
     } else {
-      throw JoinRoomException('No room found');
+      throw RoomException(RoomExceptionErrorEnum.room);
     }
   }
 }
@@ -157,10 +157,4 @@ class GetQuestions {
       'code': code,
     };
   }
-}
-
-class JoinRoomException implements Exception {
-  JoinRoomException(this.error);
-
-  final String error;
 }

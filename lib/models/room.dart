@@ -96,3 +96,16 @@ class Room {
   final int currentQuestionIndex;
   final List<Score> scores;
 }
+
+enum RoomExceptionErrorEnum {
+  language,
+  active,
+  name,
+  room,
+}
+
+class RoomException implements Exception {
+  RoomException(this.error);
+
+  final RoomExceptionErrorEnum error;
+}

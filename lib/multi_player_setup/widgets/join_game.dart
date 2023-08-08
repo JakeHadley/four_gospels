@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:four_gospels/l10n/l10n.dart';
+import 'package:four_gospels/models/models.dart';
 import 'package:four_gospels/multi_player_setup/multi_player_setup.dart';
 import 'package:four_gospels/multi_player_setup/widgets/widgets.dart';
 import 'package:four_gospels/single_player_setup/widgets/widgets.dart';
@@ -20,7 +21,7 @@ class JoinGame extends StatelessWidget {
   final TextEditingController nameController;
   final bool isValid;
   final VoidCallback onContinue;
-  final void Function(String error) onError;
+  final void Function(RoomExceptionErrorEnum error) onError;
   final VoidCallback onStateChange;
 
   @override

@@ -6,8 +6,6 @@ import 'package:four_gospels/quiz/bloc/quiz_bloc.dart';
 class ProgressInfo extends StatelessWidget {
   const ProgressInfo({super.key});
 
-  // TODO: Capitilize question (question 1 of X)
-
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
