@@ -173,5 +173,6 @@
     "gameActive": "",
     "nameTaken": "",
     "wrongLanguage": "",
-    "noRoom": ""
+    "noRoom": "",
+    "noConnection": ""
 }

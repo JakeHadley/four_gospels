@@ -173,5 +173,6 @@
     "gameActive": "Game already started",
     "nameTaken": "Name taken",
     "wrongLanguage": "Language is not the same",
-    "noRoom": "No room found"
+    "noRoom": "No room found",
+    "noConnection": "No internet connection!"
 }
