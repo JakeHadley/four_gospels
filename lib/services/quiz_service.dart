@@ -3,15 +3,35 @@ import 'package:four_gospels/quiz/models/models.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class QuizService {
+  QuizService() {
+    _getAllQuestions();
+  }
+
+  Future<void> _getAllQuestions() async {
+    final prefs = await SharedPreferences.getInstance();
+    final checkDate = prefs.getString('checkDate');
+
+    if (checkDate == null || _isMoreThanSevenDays(checkDate)) {
+      await prefs.setString('checkDate', DateTime.now().toString());
+      for (final collectionName in CollectionNames.values) {
+        await FirebaseFirestore.instance.collection(collectionName.name).get();
+      }
+    }
+  }
+
+  bool _isMoreThanSevenDays(String checkDate) {
+    return DateTime.now().difference(DateTime.parse(checkDate)).inDays > 7;
+  }
+
   String _getCollectionName(String language) {
     if (language.startsWith('pt')) {
-      return 'questionsPor';
+      return CollectionNames.questionsPor.name;
     } else if (language.startsWith('en')) {
-      return 'questionsEng';
+      return CollectionNames.questionsEng.name;
     } else if (language.startsWith('es')) {
-      return 'questionsSpa';
+      return CollectionNames.questionsSpa.name;
     } else {
-      return 'questionsEng';
+      return CollectionNames.questionsEng.name;
     }
   }
 
@@ -53,7 +73,6 @@ class QuizService {
     List<String> ids,
     String language,
   ) async {
-    // TODO: investigate offline capability (storage on device)
     final CollectionReference questionsCollection = FirebaseFirestore.instance
         .collection(_getCollectionName(language))
         .withConverter<Question>(
@@ -67,7 +86,9 @@ class QuizService {
 
     for (final id in ids) {
       futureQuerySnapshotList.add(
-        questionsCollection.where('id', isEqualTo: int.parse(id)).get(),
+        questionsCollection
+            .where('id', isEqualTo: int.parse(id))
+            .get(const GetOptions(source: Source.cache)),
       );
     }
     final querySnapshotList = await Future.wait([...futureQuerySnapshotList]);
@@ -87,9 +108,10 @@ class QuizService {
     String language,
   ) async {
     final CollectionReference statsCollection =
-        FirebaseFirestore.instance.collection('stats');
-    final statsDoc =
-        await statsCollection.doc(_getCollectionName(language)).get();
+        FirebaseFirestore.instance.collection(CollectionNames.stats.name);
+    final statsDoc = await statsCollection
+        .doc(_getCollectionName(language))
+        .get(const GetOptions(source: Source.cache));
 
     if (statsDoc.data() != null) {
       final stats = Stats.fromJson(statsDoc.data()! as Map<String, dynamic>);
@@ -107,9 +129,20 @@ class QuizService {
       }
       final questionsList = await _getQuestionsList(ids, language);
 
+      if (questionsList.isEmpty) {
+        throw Exception('Could not get Questions');
+      }
+
       return questionsList;
     } else {
       throw Exception('Could not get Questions');
     }
   }
+}
+
+enum CollectionNames {
+  questionsPor,
+  questionsEng,
+  questionsSpa,
+  stats,
 }

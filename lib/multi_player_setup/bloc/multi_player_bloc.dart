@@ -85,7 +85,6 @@ class MultiPlayerBloc extends Bloc<MultiPlayerEvent, MultiPlayerState> {
   ) async {
     emit(MultiPlayerLoading());
 
-    // TODO: Check for internet connection, show error if not connected
     // TODO: Don't check for a max number of players
     // TODO: check into continuing a game after it's done
     // TODO: show when a player answers and show number of players answered

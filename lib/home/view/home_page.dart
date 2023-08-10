@@ -11,6 +11,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
+
     return Scaffold(
       appBar: CustomAppBar(title: l10n.homePageAppBarTitle),
       body: const GameOptions(),

@@ -17,6 +17,7 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
     on<QuizEnded>(_onQuizEnded);
     on<QuizLoad>(_onQuizLoad);
   }
+
   final QuizService quizService;
 
   Future<void> _onQuizStart(QuizStart event, Emitter<QuizState> emit) async {

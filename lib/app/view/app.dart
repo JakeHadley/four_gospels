@@ -22,6 +22,7 @@ class App extends StatelessWidget {
       providers: [
         RepositoryProvider<QuizService>(
           create: (context) => QuizService(),
+          lazy: false,
         ),
         RepositoryProvider<MultiPlayerService>(
           create: (context) => MultiPlayerService(),
