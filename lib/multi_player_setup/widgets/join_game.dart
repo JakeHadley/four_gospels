@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:four_gospels/common_widgets/common_widgets.dart';
 import 'package:four_gospels/l10n/l10n.dart';
 import 'package:four_gospels/models/models.dart';
 import 'package:four_gospels/multi_player_setup/multi_player_setup.dart';
 import 'package:four_gospels/multi_player_setup/widgets/widgets.dart';
-import 'package:four_gospels/single_player_setup/widgets/widgets.dart';
 
 class JoinGame extends StatelessWidget {
   const JoinGame({
@@ -57,13 +57,13 @@ class JoinGame extends StatelessWidget {
                   ),
                   const SizedBox(height: 30),
                   const Spacer(),
-                  StartButton(
+                  ActionButton(
                     onPress: onContinue,
                     isLoading: state is MultiPlayerLoading,
                     color: buttonColor,
-                    alternateText: l10n.joinButton,
-                    alternateHeight: 65,
-                    alternateTextStyle: theme.textTheme.headlineMedium,
+                    text: l10n.joinButton,
+                    height: 65,
+                    textStyle: theme.textTheme.headlineMedium!,
                   ),
                   const SizedBox(height: 30),
                 ],

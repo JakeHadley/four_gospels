@@ -35,7 +35,6 @@ class MultiPlayerBloc extends Bloc<MultiPlayerEvent, MultiPlayerState> {
 
     final roomReference = await multiPlayerService.createRoom(
       event.name,
-      event.numPlayers,
       event.numQuestions,
       event.code,
       event.mode,
@@ -85,7 +84,6 @@ class MultiPlayerBloc extends Bloc<MultiPlayerEvent, MultiPlayerState> {
   ) async {
     emit(MultiPlayerLoading());
 
-    // TODO: Don't check for a max number of players
     // TODO: check into continuing a game after it's done
     // TODO: show when a player answers and show number of players answered
     //  potentially show indicator of percentage of players answered

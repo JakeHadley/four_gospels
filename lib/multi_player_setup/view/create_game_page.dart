@@ -19,7 +19,6 @@ class CreateGamePage extends StatefulWidget {
 
 class _CreateGamePageState extends State<CreateGamePage> {
   final _nameController = TextEditingController();
-  int _numPlayers = 3;
   int _numQuestions = 10;
   bool _nameEntered = false;
   Mode _mode = Mode.easy;
@@ -38,10 +37,6 @@ class _CreateGamePageState extends State<CreateGamePage> {
       });
     });
     super.initState();
-  }
-
-  void changePlayers(int value) {
-    setState(() => _numPlayers = value);
   }
 
   void changeQuestions(int value) {
@@ -84,7 +79,6 @@ class _CreateGamePageState extends State<CreateGamePage> {
 
     final createRoomEvent = MultiPlayerCreateRoom(
       code: randomAlphaNumeric(6),
-      numPlayers: _numPlayers,
       numQuestions: _numQuestions,
       name: _nameController.text,
       mode: _mode,
@@ -116,12 +110,10 @@ class _CreateGamePageState extends State<CreateGamePage> {
       appBar: CustomAppBar(title: l10n.createGameAppBar),
       resizeToAvoidBottomInset: false,
       body: CreateGame(
-        changePlayers: changePlayers,
         changeQuestions: changeQuestions,
         controller: _nameController,
         isValid: isValid(),
         onContinue: onContinue,
-        players: _numPlayers,
         questions: _numQuestions,
         chips: chips,
         onStateChange: onStateChange,

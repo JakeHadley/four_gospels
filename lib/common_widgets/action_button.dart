@@ -2,32 +2,49 @@ import 'package:flutter/material.dart';
 
 class ActionButton extends StatelessWidget {
   const ActionButton({
-    required this.onTap,
+    required this.onPress,
+    required this.isLoading,
     required this.color,
     required this.text,
+    required this.height,
+    required this.textStyle,
     super.key,
   });
 
-  final VoidCallback onTap;
+  final VoidCallback onPress;
+  final bool isLoading;
   final Color color;
   final String text;
+  final double height;
+  final TextStyle textStyle;
 
   @override
   Widget build(BuildContext context) {
+    final width = isLoading ? 100.0 : 315.0;
+
     return GestureDetector(
-      onTap: onTap,
+      onTap: isLoading ? () {} : onPress,
       child: AnimatedContainer(
-        duration: const Duration(seconds: 1),
-        width: 315,
-        height: 65,
-        alignment: Alignment.center,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(40),
           color: color,
         ),
-        child: Text(
-          text,
-          style: Theme.of(context).textTheme.headlineMedium,
+        duration: const Duration(milliseconds: 200),
+        width: width,
+        height: height,
+        child: AnimatedSwitcher(
+          transitionBuilder: (Widget child, Animation<double> animation) {
+            return ScaleTransition(
+              scale: animation,
+              child: child,
+            );
+          },
+          duration: const Duration(milliseconds: 200),
+          child: isLoading
+              ? const CircularProgressIndicator(
+                  color: Colors.white,
+                )
+              : Text(text, style: textStyle),
         ),
       ),
     );

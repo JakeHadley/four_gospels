@@ -33,7 +33,7 @@ class QuizButton extends StatelessWidget {
     final l10n = context.l10n;
     final theme = Theme.of(context);
 
-    VoidCallback onTap;
+    VoidCallback onPress;
     Color color;
     String text;
 
@@ -52,9 +52,9 @@ class QuizButton extends StatelessWidget {
     if (!currentQuestionAnswered) {
       // if not submitted
       if (selectedAnswer.isEmpty()) {
-        onTap = () {};
+        onPress = () {};
       } else {
-        onTap = () => onSubmit(
+        onPress = () => onSubmit(
               isCorrect: selectedAnswer.isCorrect,
               quizType: quizType,
             );
@@ -63,10 +63,10 @@ class QuizButton extends StatelessWidget {
     } else if (!isMulti || isMultiOwner) {
       // if submitted and not multiplayer
       // or if submitted and is multiplayer and is the owner
-      onTap = () => onNextQuestionPress(quizType: quizType);
+      onPress = () => onNextQuestionPress(quizType: quizType);
       color = theme.primaryColor;
     } else {
-      onTap = () {};
+      onPress = () {};
       color = theme.disabledColor;
     }
 
@@ -75,9 +75,12 @@ class QuizButton extends StatelessWidget {
       duration:
           selectedAnswer.isEmpty() ? Duration.zero : const Duration(seconds: 1),
       child: ActionButton(
+        isLoading: false,
+        onPress: onPress,
         text: text,
         color: color,
-        onTap: onTap,
+        height: 65,
+        textStyle: theme.textTheme.headlineMedium!,
       ),
     );
   }

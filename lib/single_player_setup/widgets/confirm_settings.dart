@@ -4,7 +4,6 @@ import 'package:four_gospels/common_widgets/common_widgets.dart';
 import 'package:four_gospels/l10n/l10n.dart';
 import 'package:four_gospels/quiz/bloc/quiz_bloc.dart';
 import 'package:four_gospels/quiz/models/models.dart';
-import 'package:four_gospels/single_player_setup/widgets/widgets.dart';
 
 class ConfirmSettings extends StatelessWidget {
   const ConfirmSettings({
@@ -23,6 +22,7 @@ class ConfirmSettings extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
+    final theme = Theme.of(context);
 
     return BlocConsumer<QuizBloc, QuizState>(
       listener: (context, state) {
@@ -53,9 +53,13 @@ class ConfirmSettings extends StatelessWidget {
                     '$numberQuestions',
               ),
               const Spacer(),
-              StartButton(
+              ActionButton(
                 onPress: onPress,
                 isLoading: state is QuizLoading,
+                color: theme.colorScheme.primaryContainer,
+                text: l10n.startButton,
+                height: 100,
+                textStyle: theme.textTheme.displayLarge!,
               ),
               const SizedBox(height: 38)
             ],

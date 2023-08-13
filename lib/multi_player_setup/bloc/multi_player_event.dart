@@ -18,7 +18,6 @@ class MultiPlayerDeleteRoom extends MultiPlayerEvent {}
 class MultiPlayerCreateRoom extends MultiPlayerEvent {
   const MultiPlayerCreateRoom({
     required this.name,
-    required this.numPlayers,
     required this.numQuestions,
     required this.code,
     required this.mode,
@@ -26,7 +25,6 @@ class MultiPlayerCreateRoom extends MultiPlayerEvent {
   });
 
   final String name;
-  final int numPlayers;
   final int numQuestions;
   final String code;
   final Mode mode;
@@ -35,7 +33,6 @@ class MultiPlayerCreateRoom extends MultiPlayerEvent {
   @override
   List<Object> get props => [
         name,
-        numPlayers,
         numQuestions,
         code,
         mode,

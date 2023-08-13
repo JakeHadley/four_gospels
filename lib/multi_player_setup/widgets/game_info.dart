@@ -6,14 +6,12 @@ import 'package:share_plus/share_plus.dart';
 class GameInfo extends StatelessWidget {
   const GameInfo({
     required this.code,
-    required this.numberOfPlayers,
     required this.numberOfQuestions,
     required this.mode,
     super.key,
   });
 
   final String code;
-  final int numberOfPlayers;
   final int numberOfQuestions;
   final Mode mode;
 
@@ -28,18 +26,6 @@ class GameInfo extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Column(
-              children: [
-                Text(
-                  l10n.players,
-                  style: theme.textTheme.titleMedium,
-                ),
-                Text(
-                  '$numberOfPlayers',
-                  style: theme.textTheme.headlineSmall,
-                ),
-              ],
-            ),
             Column(
               children: [
                 Text(

@@ -8,7 +8,6 @@ class Room {
     required this.code,
     required this.lastInteraction,
     required this.owner,
-    required this.numberOfPlayers,
     required this.numberOfQuestions,
     required this.mode,
     required this.questions,
@@ -27,7 +26,6 @@ class Room {
           code: json['code']! as String,
           lastInteraction: (json['lastInteraction']! as Timestamp).toDate(),
           owner: json['owner']! as String,
-          numberOfPlayers: json['numberOfPlayers']! as int,
           numberOfQuestions: json['numberOfQuestions']! as int,
           mode: Mode.fromJson(json['mode']! as String),
           questions: convertQuestionstoListOfQuestions(
@@ -50,7 +48,6 @@ class Room {
       'code': code,
       'lastInteraction': lastInteraction,
       'owner': owner,
-      'numberOfPlayers': numberOfPlayers,
       'numberOfQuestions': numberOfQuestions,
       'mode': mode.toJson(),
       'questions': questions.map((question) => question.toJson()).toList(),
@@ -86,7 +83,6 @@ class Room {
   final String code;
   final DateTime lastInteraction;
   final String owner;
-  final int numberOfPlayers;
   final int numberOfQuestions;
   final Mode mode;
   final List<Question> questions;

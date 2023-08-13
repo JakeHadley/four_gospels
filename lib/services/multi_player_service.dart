@@ -13,7 +13,6 @@ class MultiPlayerService {
 
   Future<DocumentReference<Room>> createRoom(
     String name,
-    int numPlayers,
     int numQuestions,
     String code,
     Mode mode,
@@ -24,7 +23,6 @@ class MultiPlayerService {
       code: code,
       lastInteraction: DateTime.now(),
       owner: name,
-      numberOfPlayers: numPlayers,
       numberOfQuestions: numQuestions,
       mode: mode,
       questions: List<Question>.empty(),

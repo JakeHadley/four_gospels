@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:four_gospels/common_widgets/common_widgets.dart';
 import 'package:four_gospels/l10n/l10n.dart';
 import 'package:four_gospels/multi_player_setup/bloc/multi_player_bloc.dart';
 import 'package:four_gospels/multi_player_setup/widgets/widgets.dart';
-import 'package:four_gospels/single_player_setup/widgets/widgets.dart';
 import 'package:numberpicker/numberpicker.dart';
 
 class CreateGame extends StatelessWidget {
   const CreateGame({
     required this.controller,
     required this.isValid,
-    required this.changePlayers,
     required this.changeQuestions,
-    required this.players,
     required this.questions,
     required this.onContinue,
     required this.chips,
@@ -22,9 +20,7 @@ class CreateGame extends StatelessWidget {
 
   final TextEditingController controller;
   final bool isValid;
-  final void Function(int value) changePlayers;
   final void Function(int value) changeQuestions;
-  final int players;
   final int questions;
   final VoidCallback onContinue;
   final List<Widget> chips;
@@ -59,15 +55,6 @@ class CreateGame extends StatelessWidget {
                     label: l10n.enterNameField,
                   ),
                   const SizedBox(height: 10),
-                  Text(l10n.numPlayers, style: theme.textTheme.bodyLarge),
-                  NumberPicker(
-                    axis: Axis.horizontal,
-                    value: players,
-                    minValue: 2,
-                    maxValue: 6,
-                    onChanged: changePlayers,
-                    itemWidth: 50,
-                  ),
                   Text(
                     l10n.numQuestions,
                     style: theme.textTheme.bodyLarge,
@@ -91,13 +78,13 @@ class CreateGame extends StatelessWidget {
                     children: chips,
                   ),
                   const Spacer(),
-                  StartButton(
+                  ActionButton(
                     onPress: onContinue,
                     isLoading: state is MultiPlayerLoading,
                     color: buttonColor,
-                    alternateText: l10n.continueButton,
-                    alternateHeight: 65,
-                    alternateTextStyle: theme.textTheme.headlineMedium,
+                    text: l10n.continueButton,
+                    height: 65,
+                    textStyle: theme.textTheme.headlineMedium!,
                   ),
                   const SizedBox(height: 30),
                 ],

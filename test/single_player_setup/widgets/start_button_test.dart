@@ -1,42 +1,50 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:four_gospels/single_player_setup/widgets/start_button.dart';
+import 'package:four_gospels/common_widgets/action_button.dart';
 
 import '../../helpers/helpers.dart';
 
 void main() {
-  group('Start Button', () {
-    testWidgets('Start Button Loading', (tester) async {
+  group('Action Button', () {
+    testWidgets('Action Button Loading', (tester) async {
       await tester.pumpApp(
-        StartButton(
+        ActionButton(
           isLoading: true,
           onPress: () {},
+          color: Colors.blue,
+          text: 'Hello',
+          height: 65,
+          textStyle: const TextStyle(fontSize: 22),
         ),
       );
       expect(find.byType(CircularProgressIndicator), findsOneWidget);
       expect(find.byType(Text), findsNothing);
     });
-    testWidgets('Start Button', (tester) async {
+    testWidgets('Action Button', (tester) async {
       await tester.pumpApp(
-        StartButton(
+        ActionButton(
           isLoading: false,
           onPress: () {},
+          color: Colors.blue,
+          text: 'Hello',
+          height: 65,
+          textStyle: const TextStyle(fontSize: 22),
         ),
       );
       expect(find.byType(CircularProgressIndicator), findsNothing);
       expect(find.byType(Text), findsOneWidget);
     });
-    // testWidgets('Start Button onPress', (tester) async {
+    // testWidgets('Action Button onPress', (tester) async {
     //   var pressed = false;
     //   await tester.pumpApp(
-    //     StartButton(
+    //     ActionButton(
     //       onPress: (_) {
     //         pressed = true;
     //       },
     //       isInitialState: true,
     //     ),
     //   );
-    //   await tester.tap(find.text('Start'));
+    //   await tester.tap(find.text('Action'));
     //   expect(pressed, isTrue);
     // });
   });

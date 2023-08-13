@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:four_gospels/common_widgets/common_widgets.dart';
 import 'package:four_gospels/l10n/l10n.dart';
 import 'package:four_gospels/models/models.dart';
 import 'package:four_gospels/multi_player_setup/multi_player_setup.dart';
 import 'package:four_gospels/multi_player_setup/widgets/widgets.dart';
 import 'package:four_gospels/quiz/bloc/quiz_bloc.dart';
-import 'package:four_gospels/single_player_setup/widgets/widgets.dart';
 
 class Lobby extends StatelessWidget {
   const Lobby({
@@ -55,7 +55,6 @@ class Lobby extends StatelessWidget {
                       children: [
                         GameInfo(
                           code: room.code,
-                          numberOfPlayers: room.numberOfPlayers,
                           numberOfQuestions: room.numberOfQuestions,
                           mode: room.mode,
                         ),
@@ -64,9 +63,13 @@ class Lobby extends StatelessWidget {
                           owner: room.owner,
                         ),
                         if (room.owner == multiState.name) ...[
-                          StartButton(
+                          ActionButton(
                             isLoading: quizState is QuizLoading,
                             onPress: () => onStart(room.code),
+                            color: theme.colorScheme.primaryContainer,
+                            text: l10n.startButton,
+                            height: 100,
+                            textStyle: theme.textTheme.displayLarge!,
                           ),
                         ] else ...[
                           Text(
@@ -100,13 +103,13 @@ class Lobby extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 50),
-                    StartButton(
+                    ActionButton(
                       onPress: onBack,
                       isLoading: multiState is MultiPlayerLoading,
                       color: theme.primaryColor,
-                      alternateText: l10n.goBackButton,
-                      alternateHeight: 65,
-                      alternateTextStyle: theme.textTheme.headlineMedium,
+                      text: l10n.goBackButton,
+                      height: 65,
+                      textStyle: theme.textTheme.headlineMedium!,
                     ),
                   ],
                 ),

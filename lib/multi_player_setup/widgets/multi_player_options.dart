@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:four_gospels/common_widgets/common_widgets.dart';
+import 'package:four_gospels/common_widgets/action_button.dart';
 import 'package:four_gospels/l10n/l10n.dart';
 
 class MultiPlayerOptions extends StatelessWidget {
@@ -27,15 +27,21 @@ class MultiPlayerOptions extends StatelessWidget {
             children: [
               const SizedBox(height: 30),
               ActionButton(
-                onTap: onCreate,
+                onPress: onCreate,
+                isLoading: false,
                 color: buttonColor,
                 text: l10n.createGameButton,
+                height: 65,
+                textStyle: theme.textTheme.headlineMedium!,
               ),
               const SizedBox(height: 50),
               ActionButton(
-                onTap: onJoin,
+                onPress: onJoin,
+                isLoading: false,
                 color: buttonColor,
                 text: l10n.joinGameButton,
+                height: 65,
+                textStyle: theme.textTheme.headlineMedium!,
               ),
             ],
           ),
