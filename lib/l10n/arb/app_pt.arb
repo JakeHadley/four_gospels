@@ -104,7 +104,7 @@
     "@endGamePageCorrectAnswers": {
         "description": "End game page correct answers pretext"
     },
-    "endGameButton": "Jogar novamente?",
+    "endGameButton": "",
     "@endGameButton": {
         "description": "End game button text"
     },
@@ -145,7 +145,6 @@
         "description": "Text for Lobby Page App Bar"
     },
     "enterNameField": "",
-    "numPlayers": "",
     "numQuestions": "",
     "continueButton": "",
     "players": "",
@@ -174,5 +173,6 @@
     "nameTaken": "",
     "wrongLanguage": "",
     "noRoom": "",
-    "noConnection": ""
+    "noConnection": "",
+    "playAgainButton": ""
 }
