@@ -27,7 +27,7 @@ class JoinGame extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final buttonColor = isValid ? theme.primaryColor : theme.disabledColor;
+    final buttonColor = !isValid ? theme.disabledColor : null;
     final l10n = context.l10n;
 
     return BlocConsumer<MultiPlayerBloc, MultiPlayerState>(
@@ -62,8 +62,6 @@ class JoinGame extends StatelessWidget {
                     isLoading: state is MultiPlayerLoading,
                     color: buttonColor,
                     text: l10n.joinButton,
-                    height: 65,
-                    textStyle: theme.textTheme.headlineMedium!,
                   ),
                   const SizedBox(height: 30),
                 ],

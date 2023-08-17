@@ -22,7 +22,7 @@ class DifficultyOptions extends StatelessWidget {
       size: 44,
     );
 
-    void Function() select(Mode mode) => () => onPress(context, mode);
+    VoidCallback select(Mode mode) => () => onPress(context, mode);
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 40),

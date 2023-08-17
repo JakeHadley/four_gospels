@@ -69,7 +69,7 @@ class Lobby extends StatelessWidget {
                             color: theme.colorScheme.primaryContainer,
                             text: l10n.startButton,
                             height: 100,
-                            textStyle: theme.textTheme.displayLarge!,
+                            textStyle: theme.textTheme.displayLarge,
                           ),
                         ] else ...[
                           Text(
@@ -106,16 +106,13 @@ class Lobby extends StatelessWidget {
                     ActionButton(
                       onPress: onBack,
                       isLoading: multiState is MultiPlayerLoading,
-                      color: theme.primaryColor,
                       text: l10n.goBackButton,
-                      height: 65,
-                      textStyle: theme.textTheme.headlineMedium!,
                     ),
                   ],
                 ),
               );
             }
-            return const Text('Error');
+            return const Text('Error lobby');
           },
         );
       },

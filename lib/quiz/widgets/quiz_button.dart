@@ -34,7 +34,7 @@ class QuizButton extends StatelessWidget {
     final theme = Theme.of(context);
 
     VoidCallback onPress;
-    Color color;
+    Color? color;
     String text;
 
     if (!currentQuestionAnswered) {
@@ -64,7 +64,6 @@ class QuizButton extends StatelessWidget {
       // if submitted and not multiplayer
       // or if submitted and is multiplayer and is the owner
       onPress = () => onNextQuestionPress(quizType: quizType);
-      color = theme.primaryColor;
     } else {
       onPress = () {};
       color = theme.disabledColor;
@@ -79,8 +78,6 @@ class QuizButton extends StatelessWidget {
         onPress: onPress,
         text: text,
         color: color,
-        height: 65,
-        textStyle: theme.textTheme.headlineMedium!,
       ),
     );
   }

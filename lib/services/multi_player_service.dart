@@ -52,26 +52,25 @@ class MultiPlayerService {
       rethrow;
     }
 
-    final roomDocument = await roomReference.get();
-    final roomDocumentData = roomDocument.data()!;
+    final roomDocSnapshot = await roomReference.get();
+    final room = roomDocSnapshot.data()!;
 
-    if (roomDocumentData.language != language) {
+    if (room.language != language) {
       throw RoomException(RoomExceptionErrorEnum.language);
     }
 
-    if (roomDocumentData.status == 'active') {
+    // TODO: check to make sure user can enter room, go to lobby while game is
+    //  active
+    if (room.status == 'active') {
       throw RoomException(RoomExceptionErrorEnum.active);
     }
 
-    if (roomDocumentData.users.contains(name)) {
+    if (room.users.contains(name)) {
       throw RoomException(RoomExceptionErrorEnum.name);
     }
 
-    await roomReference.update(
-      {
-        'users': FieldValue.arrayUnion([name])
-      },
-    );
+    final users = room.users..add(name);
+    await roomReference.set(room.copyWith(users: users));
 
     return roomReference;
   }
@@ -83,15 +82,12 @@ class MultiPlayerService {
 
   Future<void> removeUserFromRoom(String name, String code) async {
     final roomReference = await _getRoom(code);
-    final roomDocument = await roomReference.get();
-    final roomDocumentData = roomDocument.data()!;
+    final roomDocSnapshot = await roomReference.get();
+    final room = roomDocSnapshot.data()!;
 
-    if (roomDocumentData.users.contains(name)) {
-      await roomReference.update(
-        {
-          'users': FieldValue.arrayRemove([name])
-        },
-      );
+    if (room.users.contains(name)) {
+      final users = room.users..remove(name);
+      await roomReference.set(room.copyWith(users: users));
     }
   }
 
@@ -104,19 +100,24 @@ class MultiPlayerService {
 
   Future<void> addUserAnswered(String code, String name) async {
     final roomReference = await _getRoom(code);
+    final roomDocSnapshot = await roomReference.get();
+    final room = roomDocSnapshot.data();
+    final usersAnswered = room!.usersAnswered..add(name);
 
-    await roomReference.update({
-      'usersAnswered': FieldValue.arrayUnion([name])
-    });
+    await roomReference.set(room.copyWith(usersAnswered: usersAnswered));
   }
 
   Future<void> moveToNextQuestion(String code) async {
     final roomReference = await _getRoom(code);
+    final roomDocSnapshot = await roomReference.get();
+    final room = roomDocSnapshot.data();
 
-    await roomReference.update({
-      'usersAnswered': [],
-      'currentQuestionIndex': FieldValue.increment(1),
-    });
+    await roomReference.set(
+      room!.copyWith(
+        usersAnswered: [],
+        currentQuestionIndex: room.currentQuestionIndex + 1,
+      ),
+    );
   }
 
   Future<void> addScore(
@@ -124,10 +125,26 @@ class MultiPlayerService {
     Score score,
   ) async {
     final roomReference = await _getRoom(code);
+    final roomDocSnapshot = await roomReference.get();
+    final room = roomDocSnapshot.data();
+    final scores = room!.scores..add(score);
 
-    await roomReference.update({
-      'scores': FieldValue.arrayUnion([score.toJson()])
-    });
+    await roomReference.set(room.copyWith(scores: scores));
+  }
+
+  Future<void> restartGame(String code) async {
+    final roomReference = await _getRoom(code);
+    final roomDocSnapshot = await roomReference.get();
+    final room = roomDocSnapshot.data();
+
+    await roomReference.set(
+      room!.copyWith(
+        scores: [],
+        usersAnswered: [],
+        currentQuestionIndex: 0,
+        status: 'inactive',
+      ),
+    );
   }
 
   Future<DocumentReference<Room>> _getRoom(String code) async {

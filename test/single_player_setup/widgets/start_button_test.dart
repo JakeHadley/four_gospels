@@ -13,7 +13,6 @@ void main() {
           onPress: () {},
           color: Colors.blue,
           text: 'Hello',
-          height: 65,
           textStyle: const TextStyle(fontSize: 22),
         ),
       );
@@ -27,7 +26,6 @@ void main() {
           onPress: () {},
           color: Colors.blue,
           text: 'Hello',
-          height: 65,
           textStyle: const TextStyle(fontSize: 22),
         ),
       );

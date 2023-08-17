@@ -15,6 +15,8 @@ class MultiPlayerReset extends MultiPlayerEvent {}
 
 class MultiPlayerDeleteRoom extends MultiPlayerEvent {}
 
+class MultiPlayerRestart extends MultiPlayerEvent {}
+
 class MultiPlayerCreateRoom extends MultiPlayerEvent {
   const MultiPlayerCreateRoom({
     required this.name,

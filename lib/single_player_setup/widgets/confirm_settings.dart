@@ -59,7 +59,7 @@ class ConfirmSettings extends StatelessWidget {
                 color: theme.colorScheme.primaryContainer,
                 text: l10n.startButton,
                 height: 100,
-                textStyle: theme.textTheme.displayLarge!,
+                textStyle: theme.textTheme.displayLarge,
               ),
               const SizedBox(height: 38)
             ],

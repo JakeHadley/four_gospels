@@ -15,10 +15,16 @@ class EndGamePage extends StatelessWidget {
 
   final QuizType quizType;
 
-  void _onPress(BuildContext context) {
+  void onExit(BuildContext context) {
     context.router.replaceAll([const HomeRoute()]);
     context.read<QuizBloc>().add(QuizFinished());
     context.read<MultiPlayerBloc>().add(MultiPlayerReset());
+  }
+
+  void onPlayAgain(BuildContext context) {
+    context.router.replaceAll([const HomeRoute(), const LobbyRoute()]);
+    context.read<QuizBloc>().add(QuizFinished());
+    context.read<MultiPlayerBloc>().add(MultiPlayerRestart());
   }
 
   @override
@@ -27,7 +33,10 @@ class EndGamePage extends StatelessWidget {
 
     return Scaffold(
       appBar: CustomAppBar(title: quizType.toStringIntl(l10n)),
-      body: EndGameContent(onPress: _onPress),
+      body: EndGameContent(
+        onExit: () => onExit(context),
+        onPlayAgain: () => onPlayAgain(context),
+      ),
     );
   }
 }

@@ -55,7 +55,7 @@ class Room {
       'status': status,
       'usersAnswered': usersAnswered,
       'currentQuestionIndex': currentQuestionIndex,
-      'scores': scores,
+      'scores': scores.map((score) => score.toJson()).toList(),
     };
   }
 
@@ -91,6 +91,36 @@ class Room {
   final List<String> usersAnswered;
   final int currentQuestionIndex;
   final List<Score> scores;
+
+  Room copyWith({
+    List<String>? users,
+    String? code,
+    DateTime? lastInteraction,
+    String? owner,
+    int? numberOfQuestions,
+    Mode? mode,
+    List<Question>? questions,
+    String? language,
+    String? status,
+    List<String>? usersAnswered,
+    int? currentQuestionIndex,
+    List<Score>? scores,
+  }) {
+    return Room(
+      users: users ?? this.users,
+      code: code ?? this.code,
+      lastInteraction: lastInteraction ?? this.lastInteraction,
+      owner: owner ?? this.owner,
+      numberOfQuestions: numberOfQuestions ?? this.numberOfQuestions,
+      mode: mode ?? this.mode,
+      questions: questions ?? this.questions,
+      language: language ?? this.language,
+      status: status ?? this.status,
+      usersAnswered: usersAnswered ?? this.usersAnswered,
+      currentQuestionIndex: currentQuestionIndex ?? this.currentQuestionIndex,
+      scores: scores ?? this.scores,
+    );
+  }
 }
 
 enum RoomExceptionErrorEnum {

@@ -15,8 +15,6 @@ class MultiPlayerOptions extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-    final theme = Theme.of(context);
-    final buttonColor = theme.primaryColor;
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -29,19 +27,13 @@ class MultiPlayerOptions extends StatelessWidget {
               ActionButton(
                 onPress: onCreate,
                 isLoading: false,
-                color: buttonColor,
                 text: l10n.createGameButton,
-                height: 65,
-                textStyle: theme.textTheme.headlineMedium!,
               ),
               const SizedBox(height: 50),
               ActionButton(
                 onPress: onJoin,
                 isLoading: false,
-                color: buttonColor,
                 text: l10n.joinGameButton,
-                height: 65,
-                textStyle: theme.textTheme.headlineMedium!,
               ),
             ],
           ),

@@ -29,11 +29,12 @@ class CreateGame extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final buttonColor = isValid ? theme.primaryColor : theme.disabledColor;
+    final buttonColor = !isValid ? theme.disabledColor : null;
     final l10n = context.l10n;
 
     // TODO: check into creating a random option for all difficulties
     // TODO: allow to choose the language of the quiz
+    // TODO: allow for owner to change settings on lobby page
 
     return BlocConsumer<MultiPlayerBloc, MultiPlayerState>(
       listener: (context, state) {
@@ -83,8 +84,6 @@ class CreateGame extends StatelessWidget {
                     isLoading: state is MultiPlayerLoading,
                     color: buttonColor,
                     text: l10n.continueButton,
-                    height: 65,
-                    textStyle: theme.textTheme.headlineMedium!,
                   ),
                   const SizedBox(height: 30),
                 ],

@@ -5,19 +5,21 @@ import 'package:four_gospels/l10n/l10n.dart';
 import 'package:four_gospels/multi_player_setup/bloc/multi_player_bloc.dart';
 import 'package:four_gospels/quiz/bloc/quiz_bloc.dart';
 import 'package:four_gospels/quiz/models/models.dart';
-import 'package:four_gospels/quiz/widgets/widgets.dart';
 
 class EndGameContent extends StatelessWidget {
   const EndGameContent({
-    required this.onPress,
+    required this.onExit,
+    required this.onPlayAgain,
     super.key,
   });
 
-  final void Function(BuildContext) onPress;
+  final VoidCallback onExit;
+  final VoidCallback onPlayAgain;
 
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
+    final theme = Theme.of(context);
 
     Widget singleContent(QuizComplete state) {
       final text1 = '${l10n.endGameInfoScore}: ${state.numberOfPoints}';
@@ -37,14 +39,18 @@ class EndGameContent extends StatelessWidget {
                 alignment: Alignment.centerLeft,
                 child: Text(
                   l10n.endGamePageSubtitle,
-                  style: Theme.of(context).textTheme.titleMedium,
+                  style: theme.textTheme.titleMedium,
                 ),
               ),
             ),
             const SizedBox(height: 54),
             InfoBox(text1: text1, text2: text2),
             const Spacer(),
-            EndGameButton(onPress: onPress),
+            ActionButton(
+              onPress: onExit,
+              isLoading: false,
+              text: l10n.endGameButton,
+            ),
             const SizedBox(height: 20)
           ],
         ),
@@ -67,7 +73,7 @@ class EndGameContent extends StatelessWidget {
                 alignment: Alignment.centerLeft,
                 child: Text(
                   l10n.endGamePageSubtitle,
-                  style: Theme.of(context).textTheme.titleMedium,
+                  style: theme.textTheme.titleMedium,
                 ),
               ),
             ),
@@ -90,8 +96,18 @@ class EndGameContent extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 20),
-            EndGameButton(onPress: onPress),
-            const SizedBox(height: 20)
+            ActionButton(
+              onPress: onExit,
+              isLoading: false,
+              text: l10n.endGameButton,
+            ),
+            const SizedBox(height: 20),
+            ActionButton(
+              onPress: onPlayAgain,
+              isLoading: false,
+              text: l10n.playAgainButton,
+            ),
+            const SizedBox(height: 20),
           ],
         ),
       );
@@ -108,7 +124,7 @@ class EndGameContent extends StatelessWidget {
                 return singleContent(quizState);
               }
             }
-            return const Text('Error');
+            return const Text('Error end game content');
           },
         );
       },
