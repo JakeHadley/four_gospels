@@ -174,5 +174,6 @@
     "wrongLanguage": "",
     "noRoom": "",
     "noConnection": "",
-    "playAgainButton": ""
+    "playAgainButton": "",
+    "quizLanguage": ""
 }
