@@ -174,5 +174,6 @@
     "wrongLanguage": "Language is not the same",
     "noRoom": "No room found",
     "noConnection": "No internet connection!",
-    "playAgainButton": "Play again?"
+    "playAgainButton": "Play again?",
+    "quizLanguage": "Quiz Language"
 }
