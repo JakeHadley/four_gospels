@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:four_gospels/quiz/helpers/points_helper.dart';
 import 'package:four_gospels/quiz/models/models.dart';
 import 'package:four_gospels/services/services.dart';
 import 'package:meta/meta.dart';
@@ -43,6 +44,7 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
         mode: event.mode,
         answerList: _buildAnswerList(questions[0]),
         type: event.type,
+        timer: event.timer ?? 15,
       ),
     );
   }
@@ -50,8 +52,9 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
   void _onQuizNextQuestion(QuizNextQuestion event, Emitter<QuizState> emit) {
     final prevState = state as QuizLoaded;
     final numberOfPoints = prevState.isCorrect
-        ? prevState.numberOfPoints + 10
-        : prevState.numberOfPoints;
+        ? prevState.numberOfPoints +
+            getPoints(event.questionMode, prevState.type)
+        : prevState.numberOfPoints - 1;
     final numberCorrect = prevState.isCorrect
         ? prevState.numberCorrect + 1
         : prevState.numberCorrect;

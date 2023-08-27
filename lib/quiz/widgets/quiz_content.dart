@@ -11,13 +11,18 @@ class QuizContent extends StatelessWidget {
     required this.onAnswerPress,
     required this.onQuizEnded,
     required this.onSubmit,
+    required this.advanceMultiPlayerQuestion,
     super.key,
   });
 
-  final void Function({required QuizType quizType}) onNextQuestionPress;
+  final void Function({
+    required QuizType quizType,
+    required Mode questionMode,
+  }) onNextQuestionPress;
   final void Function({
     required Answer answer,
     required QuizType quizType,
+    required Mode questionMode,
   }) onAnswerPress;
   final void Function({
     required int score,
@@ -27,12 +32,10 @@ class QuizContent extends StatelessWidget {
     required bool isCorrect,
     required QuizType quizType,
   }) onSubmit;
+  final void Function({required int indexToSet}) advanceMultiPlayerQuestion;
 
   @override
   Widget build(BuildContext context) {
-    // TODO: do 2 points for easy, 4 for moderate, 6 for hard,
-    //  -1 point for wrong answers
-
     return BlocConsumer<QuizBloc, QuizState>(
       listener: (context, quizState) {
         if (quizState is QuizComplete) {
@@ -48,11 +51,9 @@ class QuizContent extends StatelessWidget {
             if (multiState is MultiPlayerActive && quizState is QuizLoaded) {
               if (quizState.currentQuestionIndex !=
                   multiState.room.currentQuestionIndex) {
-                context.read<QuizBloc>().add(
-                      QuizNextQuestion(
-                        indexToSet: multiState.room.currentQuestionIndex,
-                      ),
-                    );
+                advanceMultiPlayerQuestion(
+                  indexToSet: multiState.room.currentQuestionIndex,
+                );
               }
             }
           },
@@ -74,6 +75,7 @@ class QuizContent extends StatelessWidget {
                       onPress: onAnswerPress,
                       selectedAnswer: quizState.selectedAnswer,
                       quizType: quizState.type,
+                      questionMode: currentQuestion.mode,
                     ),
                   )
                   .toList();
@@ -117,6 +119,7 @@ class QuizContent extends StatelessWidget {
                         quizType: quizState.type,
                         isMulti: isMulti,
                         isMultiOwner: isMultiOwner,
+                        questionMode: currentQuestion.mode,
                       ),
                     ],
                     const SizedBox(height: 20)

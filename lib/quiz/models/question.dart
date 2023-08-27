@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:four_gospels/quiz/models/mode.dart';
 
 class Question extends Equatable {
   const Question({
@@ -15,7 +16,7 @@ class Question extends Equatable {
   Question.fromJson(Map<String, Object?> json)
       : this(
           id: json['id']! as int,
-          mode: json['mode']! as String,
+          mode: Mode.fromJson(json['mode']! as String),
           question: json['question']! as String,
           correctAnswer: json['correctAnswer']! as String,
           wrongAnswer1: json['wrongAnswer1']! as String,
@@ -27,7 +28,7 @@ class Question extends Equatable {
   Map<String, Object?> toJson() {
     return {
       'id': id,
-      'mode': mode,
+      'mode': mode.toJson(),
       'question': question,
       'correctAnswer': correctAnswer,
       'wrongAnswer1': wrongAnswer1,
@@ -38,7 +39,7 @@ class Question extends Equatable {
   }
 
   final int id;
-  final String mode;
+  final Mode mode;
   final String question;
   final String correctAnswer;
   final String wrongAnswer1;

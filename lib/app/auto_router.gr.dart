@@ -67,31 +67,10 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const LobbyPage(),
       );
     },
-    ConfirmSettingsRoute.name: (routeData) {
-      final args = routeData.argsAs<ConfirmSettingsRouteArgs>();
+    SinglePlayerSetupRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: ConfirmSettingsPage(
-          mode: args.mode,
-          numberQuestions: args.numberQuestions,
-          key: args.key,
-        ),
-      );
-    },
-    NumberQuestionsRoute.name: (routeData) {
-      final args = routeData.argsAs<NumberQuestionsRouteArgs>();
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: NumberQuestionsPage(
-          mode: args.mode,
-          key: args.key,
-        ),
-      );
-    },
-    DifficultyOptionsRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const DifficultyOptionsPage(),
+        child: const SinglePlayerSetupPage(),
       );
     },
   };
@@ -234,96 +213,15 @@ class LobbyRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [ConfirmSettingsPage]
-class ConfirmSettingsRoute extends PageRouteInfo<ConfirmSettingsRouteArgs> {
-  ConfirmSettingsRoute({
-    required Mode mode,
-    required int numberQuestions,
-    Key? key,
-    List<PageRouteInfo>? children,
-  }) : super(
-          ConfirmSettingsRoute.name,
-          args: ConfirmSettingsRouteArgs(
-            mode: mode,
-            numberQuestions: numberQuestions,
-            key: key,
-          ),
-          initialChildren: children,
-        );
-
-  static const String name = 'ConfirmSettingsRoute';
-
-  static const PageInfo<ConfirmSettingsRouteArgs> page =
-      PageInfo<ConfirmSettingsRouteArgs>(name);
-}
-
-class ConfirmSettingsRouteArgs {
-  const ConfirmSettingsRouteArgs({
-    required this.mode,
-    required this.numberQuestions,
-    this.key,
-  });
-
-  final Mode mode;
-
-  final int numberQuestions;
-
-  final Key? key;
-
-  @override
-  String toString() {
-    return 'ConfirmSettingsRouteArgs{mode: $mode, numberQuestions: $numberQuestions, key: $key}';
-  }
-}
-
-/// generated route for
-/// [NumberQuestionsPage]
-class NumberQuestionsRoute extends PageRouteInfo<NumberQuestionsRouteArgs> {
-  NumberQuestionsRoute({
-    required Mode mode,
-    Key? key,
-    List<PageRouteInfo>? children,
-  }) : super(
-          NumberQuestionsRoute.name,
-          args: NumberQuestionsRouteArgs(
-            mode: mode,
-            key: key,
-          ),
-          initialChildren: children,
-        );
-
-  static const String name = 'NumberQuestionsRoute';
-
-  static const PageInfo<NumberQuestionsRouteArgs> page =
-      PageInfo<NumberQuestionsRouteArgs>(name);
-}
-
-class NumberQuestionsRouteArgs {
-  const NumberQuestionsRouteArgs({
-    required this.mode,
-    this.key,
-  });
-
-  final Mode mode;
-
-  final Key? key;
-
-  @override
-  String toString() {
-    return 'NumberQuestionsRouteArgs{mode: $mode, key: $key}';
-  }
-}
-
-/// generated route for
-/// [DifficultyOptionsPage]
-class DifficultyOptionsRoute extends PageRouteInfo<void> {
-  const DifficultyOptionsRoute({List<PageRouteInfo>? children})
+/// [SinglePlayerSetupPage]
+class SinglePlayerSetupRoute extends PageRouteInfo<void> {
+  const SinglePlayerSetupRoute({List<PageRouteInfo>? children})
       : super(
-          DifficultyOptionsRoute.name,
+          SinglePlayerSetupRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'DifficultyOptionsRoute';
+  static const String name = 'SinglePlayerSetupRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }

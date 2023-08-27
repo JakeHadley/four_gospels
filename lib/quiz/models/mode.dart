@@ -6,7 +6,14 @@ enum Mode {
   hard;
 
   String toJson() => name;
-  static Mode fromJson(String json) => values.byName(json);
+  static Mode fromJson(String json) {
+    var jsonString = json.toLowerCase();
+    if (jsonString == 'difficult') {
+      jsonString = 'hard';
+    }
+
+    return values.byName(jsonString);
+  }
 
   String toStringIntl(AppLocalizations l10n) {
     if (name == easy.name) {

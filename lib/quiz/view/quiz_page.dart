@@ -23,6 +23,7 @@ class _QuizPageState extends State<QuizPage> {
   void _onAnswerPress({
     required Answer answer,
     required QuizType quizType,
+    required Mode questionMode,
   }) {
     switch (quizType) {
       case QuizType.single:
@@ -35,11 +36,16 @@ class _QuizPageState extends State<QuizPage> {
             .add(QuizAnswerSubmitted(isCorrect: answer.isCorrect));
 
         if (answer.isCorrect) {
-          context.read<TimerBloc>().add(const TimerAdded(duration: 10));
+          context.read<TimerBloc>().add(const TimerChanged(duration: 5));
+        } else {
+          context.read<TimerBloc>().add(const TimerChanged(duration: -1));
         }
+
         if (mounted) {
           Future.delayed(const Duration(seconds: 1), () {
-            context.read<QuizBloc>().add(const QuizNextQuestion());
+            context
+                .read<QuizBloc>()
+                .add(QuizNextQuestion(questionMode: questionMode));
           });
         }
         break;
@@ -60,8 +66,20 @@ class _QuizPageState extends State<QuizPage> {
     }
   }
 
-  void _onNextQuestionPress({required QuizType quizType}) {
-    context.read<QuizBloc>().add(const QuizNextQuestion());
+  void _advanceMultiPlayerQuestion({required int indexToSet}) {
+    context.read<QuizBloc>().add(
+          QuizNextQuestion(
+            indexToSet: indexToSet,
+            questionMode: Mode.easy,
+          ),
+        );
+  }
+
+  void _onNextQuestionPress({
+    required QuizType quizType,
+    required Mode questionMode,
+  }) {
+    context.read<QuizBloc>().add(QuizNextQuestion(questionMode: questionMode));
 
     if (quizType == QuizType.multi) {
       context.read<MultiPlayerBloc>().add(MultiPlayerNextQuestion());
@@ -118,6 +136,7 @@ class _QuizPageState extends State<QuizPage> {
                 onAnswerPress: _onAnswerPress,
                 onQuizEnded: _onQuizEnded,
                 onSubmit: _onSubmit,
+                advanceMultiPlayerQuestion: _advanceMultiPlayerQuestion,
               ),
             );
           }

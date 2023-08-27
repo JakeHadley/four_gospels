@@ -13,9 +13,11 @@ class TimerInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return BlocConsumer<TimerBloc, TimerState>(
       listener: (context, state) {
-        if (state is TimerRunComplete) {
+        if (state is TimerComplete) {
           context.read<QuizBloc>().add(QuizEnded());
         }
       },
@@ -23,8 +25,11 @@ class TimerInfo extends StatelessWidget {
         return Stack(
           children: [
             LinearProgressIndicator(
-              value: state.duration.toDouble() / 60,
+              value: state.duration.toDouble() / state.initialDuration!,
               minHeight: 20,
+              color: state.duration < 5
+                  ? theme.colorScheme.error
+                  : theme.colorScheme.primary,
             ),
             Align(
               child: Text(state.duration.toString()),

@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:four_gospels/models/models.dart';
 import 'package:four_gospels/quiz/models/models.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -24,11 +25,11 @@ class QuizService {
   }
 
   String _getCollectionName(String language) {
-    if (language.startsWith('pt')) {
+    if (language.startsWith(Languages.pt.name)) {
       return CollectionNames.questionsPor.name;
-    } else if (language.startsWith('en')) {
+    } else if (language.startsWith(Languages.en.name)) {
       return CollectionNames.questionsEng.name;
-    } else if (language.startsWith('es')) {
+    } else if (language.startsWith(Languages.es.name)) {
       return CollectionNames.questionsSpa.name;
     } else {
       return CollectionNames.questionsEng.name;

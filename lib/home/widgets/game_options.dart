@@ -2,7 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:four_gospels/app/auto_router.dart';
-import 'package:four_gospels/common_widgets/common_widgets.dart';
+import 'package:four_gospels/home/widgets/option_item.dart';
 import 'package:four_gospels/l10n/l10n.dart';
 
 class GameOptions extends StatefulWidget {
@@ -60,7 +60,7 @@ class _GameOptionsState extends State<GameOptions> {
               OptionItem(
                 text: l10n.singlePlayerHome,
                 action: () =>
-                    context.router.push(const DifficultyOptionsRoute()),
+                    context.router.push(const SinglePlayerSetupRoute()),
                 color: theme.primaryColorDark,
                 iconWidget: const Icon(Icons.person, size: 80),
               ),

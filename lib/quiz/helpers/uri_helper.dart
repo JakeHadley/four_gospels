@@ -1,3 +1,5 @@
+import 'package:four_gospels/models/models.dart';
+
 const baseUrl = 'https://www.churchofjesuschrist.org/study/scriptures/nt/';
 const matthew = ['Matthew', 'Mateus'];
 const mark = ['Mark', 'Marcos'];
@@ -71,11 +73,11 @@ ParsedEntry parseEntry(String entry) {
 }
 
 String getLanguage(String language) {
-  if (language == 'en') {
+  if (language == Languages.en.name) {
     return 'eng';
-  } else if (language == 'pt') {
+  } else if (language == Languages.pt.name) {
     return 'por';
-  } else if (language == 'es') {
+  } else if (language == Languages.es.name) {
     return 'spa';
   }
   return '';

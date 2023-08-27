@@ -13,11 +13,15 @@ class QuizButton extends StatelessWidget {
     required this.quizType,
     required this.isMulti,
     required this.isMultiOwner,
+    required this.questionMode,
     super.key,
   });
 
   final bool currentQuestionAnswered;
-  final void Function({required QuizType quizType}) onNextQuestionPress;
+  final void Function({
+    required QuizType quizType,
+    required Mode questionMode,
+  }) onNextQuestionPress;
   final Answer selectedAnswer;
   final void Function({
     required bool isCorrect,
@@ -27,6 +31,7 @@ class QuizButton extends StatelessWidget {
   final QuizType quizType;
   final bool isMulti;
   final bool isMultiOwner;
+  final Mode questionMode;
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +68,10 @@ class QuizButton extends StatelessWidget {
     } else if (!isMulti || isMultiOwner) {
       // if submitted and not multiplayer
       // or if submitted and is multiplayer and is the owner
-      onPress = () => onNextQuestionPress(quizType: quizType);
+      onPress = () => onNextQuestionPress(
+            quizType: quizType,
+            questionMode: questionMode,
+          );
     } else {
       onPress = () {};
       color = theme.disabledColor;
