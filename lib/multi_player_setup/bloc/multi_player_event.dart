@@ -83,3 +83,18 @@ class MultiPlayerComplete extends MultiPlayerEvent {
   @override
   List<Object> get props => [score];
 }
+
+class MultiPlayerModifyRoomSettings extends MultiPlayerEvent {
+  const MultiPlayerModifyRoomSettings({
+    required this.code,
+    required this.option,
+    required this.value,
+  });
+
+  final String code;
+  final SettingsOptions option;
+  final dynamic value;
+
+  @override
+  List<Object> get props => [code, option];
+}

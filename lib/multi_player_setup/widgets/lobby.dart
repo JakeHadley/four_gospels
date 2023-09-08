@@ -5,8 +5,10 @@ import 'package:four_gospels/common_widgets/common_widgets.dart';
 import 'package:four_gospels/l10n/l10n.dart';
 import 'package:four_gospels/models/models.dart';
 import 'package:four_gospels/multi_player_setup/multi_player_setup.dart';
+import 'package:four_gospels/multi_player_setup/widgets/share_code.dart';
 import 'package:four_gospels/multi_player_setup/widgets/widgets.dart';
 import 'package:four_gospels/quiz/bloc/quiz_bloc.dart';
+import 'package:four_gospels/quiz/models/models.dart';
 
 class Lobby extends StatelessWidget {
   const Lobby({
@@ -14,6 +16,7 @@ class Lobby extends StatelessWidget {
     required this.onBack,
     required this.onMultiStateChange,
     required this.onQuizStateChange,
+    required this.onChangeSettings,
     super.key,
   });
 
@@ -21,6 +24,11 @@ class Lobby extends StatelessWidget {
   final VoidCallback onBack;
   final void Function(Room room) onMultiStateChange;
   final VoidCallback onQuizStateChange;
+  final void Function(
+    String code,
+    SettingsOptions option,
+    dynamic value,
+  ) onChangeSettings;
 
   @override
   Widget build(BuildContext context) {
@@ -53,11 +61,28 @@ class Lobby extends StatelessWidget {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        GameInfo(
-                          code: room.code,
-                          numberOfQuestions: room.numberOfQuestions,
-                          mode: room.mode,
-                        ),
+                        if (room.owner != multiState.name) ...[
+                          GameInfo(
+                            code: room.code,
+                            numberOfQuestions: room.numberOfQuestions,
+                            mode: room.mode,
+                            language: room.language,
+                          )
+                        ] else ...[
+                          Settings(
+                            type: QuizType.multi,
+                            onStateChange: ({int? timer}) {
+                              // do nothing here since we're handling it already
+                            },
+                            onChangeSettings: (
+                              SettingsOptions option,
+                              dynamic value,
+                            ) =>
+                                onChangeSettings(room.code, option, value),
+                            isCompact: true,
+                          ),
+                          ShareCode(code: room.code)
+                        ],
                         PlayerList(
                           users: room.users,
                           owner: room.owner,

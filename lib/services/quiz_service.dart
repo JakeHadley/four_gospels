@@ -102,6 +102,28 @@ class QuizService {
     return questionList;
   }
 
+  Future<List<String>> _getIdsForRandomMode(
+    Stats stats,
+    int numberOfQuestions,
+  ) async {
+    final split = numberOfQuestions / 3;
+    final quotient = split.floor();
+    final remainder = numberOfQuestions % 3;
+    final num1 = quotient + (remainder >= 1 ? 1 : 0);
+    final num2 = quotient + (remainder >= 2 ? 1 : 0);
+    final num3 = quotient;
+
+    final ids = await Future.wait([
+      _getIds(stats, Mode.easy, num1),
+      _getIds(stats, Mode.moderate, num2),
+      _getIds(stats, Mode.hard, num3),
+    ]).then(
+      (results) => results.expand((idsList) => idsList).toList()..shuffle(),
+    );
+
+    return ids;
+  }
+
   Future<List<Question>> getQuestions(
     int numberOfQuestions,
     Mode mode,
@@ -119,12 +141,9 @@ class QuizService {
 
       var ids = <String>[];
       if (type == QuizType.speed) {
-        ids = await Future.wait([
-          _getIds(stats, Mode.easy, 50),
-          _getIds(stats, Mode.moderate, 50),
-          _getIds(stats, Mode.hard, 50),
-          // flatten list of ids to be one list
-        ]).then((results) => results.expand((idsList) => idsList).toList());
+        ids = await _getIdsForRandomMode(stats, 150);
+      } else if (mode == Mode.random) {
+        ids = await _getIdsForRandomMode(stats, numberOfQuestions);
       } else {
         ids = await _getIds(stats, mode, numberOfQuestions);
       }

@@ -1,19 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:four_gospels/l10n/l10n.dart';
+import 'package:four_gospels/models/models.dart';
+import 'package:four_gospels/multi_player_setup/widgets/share_code.dart';
 import 'package:four_gospels/quiz/models/models.dart';
-import 'package:share_plus/share_plus.dart';
 
 class GameInfo extends StatelessWidget {
   const GameInfo({
     required this.code,
     required this.numberOfQuestions,
     required this.mode,
+    required this.language,
     super.key,
   });
 
   final String code;
   final int numberOfQuestions;
   final Mode mode;
+  final String language;
 
   @override
   Widget build(BuildContext context) {
@@ -23,8 +26,10 @@ class GameInfo extends StatelessWidget {
     return Column(
       children: [
         const SizedBox(height: 10),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        Wrap(
+          alignment: WrapAlignment.center,
+          spacing: 40,
+          runSpacing: 10,
           children: [
             Column(
               children: [
@@ -50,23 +55,25 @@ class GameInfo extends StatelessWidget {
                 ),
               ],
             ),
+            Column(
+              children: [
+                Text(
+                  l10n.quizLanguage,
+                  style: theme.textTheme.titleMedium,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 5),
+                  child: SizedBox(
+                    height: 30,
+                    width: 40,
+                    child: flags[Languages.values.byName(language).index],
+                  ),
+                ),
+              ],
+            ),
           ],
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              '${l10n.code}: $code',
-              style: theme.textTheme.headlineSmall,
-            ),
-            IconButton(
-              // TODO: Come back to this and check what happens on share
-              icon: const Icon(Icons.share),
-              onPressed: () => Share.share('${l10n.share}: $code'),
-              color: theme.primaryColor,
-            ),
-          ],
-        ),
+        ShareCode(code: code),
       ],
     );
   }

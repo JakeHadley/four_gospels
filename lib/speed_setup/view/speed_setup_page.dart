@@ -59,6 +59,7 @@ class SpeedSetupPage extends StatelessWidget {
             timer: timer!,
           );
         },
+        isCompact: false,
       ),
     );
   }

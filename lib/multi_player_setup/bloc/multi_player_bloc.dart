@@ -23,6 +23,7 @@ class MultiPlayerBloc extends Bloc<MultiPlayerEvent, MultiPlayerState> {
     on<MultiPlayerNextQuestion>(_onMultiPlayerNextQuestion);
     on<MultiPlayerComplete>(_onMultiPlayerComplete);
     on<MultiPlayerRestart>(_onMultiPlayerRestart);
+    on<MultiPlayerModifyRoomSettings>(_onMultiPlayerModifyRoomSettings);
   }
 
   final MultiPlayerService multiPlayerService;
@@ -85,7 +86,8 @@ class MultiPlayerBloc extends Bloc<MultiPlayerEvent, MultiPlayerState> {
   ) async {
     emit(MultiPlayerLoading());
 
-    // TODO: check into continuing a game after it's done
+    // TODO: check rerendering of screens when owner and non owner continues
+    //  to play and returns to lobby
     // TODO: show when a player answers and show number of players answered
     //  potentially show indicator of percentage of players answered
     // TODO: Utilize circular indicator to show players answered, turn green
@@ -184,6 +186,17 @@ class MultiPlayerBloc extends Bloc<MultiPlayerEvent, MultiPlayerState> {
 
       await multiPlayerService.restartGame(activeState.room.code);
     }
+  }
+
+  Future<void> _onMultiPlayerModifyRoomSettings(
+    MultiPlayerModifyRoomSettings event,
+    Emitter<MultiPlayerState> emit,
+  ) async {
+    await multiPlayerService.modifyRoomSettings(
+      event.code,
+      event.option,
+      event.value,
+    );
   }
 
   @override

@@ -132,6 +132,29 @@ class MultiPlayerService {
     await roomReference.set(room.copyWith(scores: scores));
   }
 
+  Future<void> modifyRoomSettings(
+    String code,
+    SettingsOptions option,
+    dynamic value,
+  ) async {
+    final roomReference = await _getRoom(code);
+    final roomDocSnapshot = await roomReference.get();
+    final room = roomDocSnapshot.data();
+
+    switch (option) {
+      case SettingsOptions.questions:
+        await roomReference
+            .set(room!.copyWith(numberOfQuestions: value as int));
+        break;
+      case SettingsOptions.difficulty:
+        await roomReference.set(room!.copyWith(mode: value as Mode));
+        break;
+      case SettingsOptions.language:
+        await roomReference.set(room!.copyWith(language: value as String));
+        break;
+    }
+  }
+
   Future<void> restartGame(String code) async {
     final roomReference = await _getRoom(code);
     final roomDocSnapshot = await roomReference.get();

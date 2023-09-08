@@ -3,7 +3,8 @@ import 'package:four_gospels/l10n/l10n.dart';
 enum Mode {
   easy,
   moderate,
-  hard;
+  hard,
+  random;
 
   String toJson() => name;
   static Mode fromJson(String json) {
@@ -22,6 +23,9 @@ enum Mode {
       return l10n.difficultyModerate;
     } else if (name == hard.name) {
       return l10n.difficultyHard;
+    } else if (name == random.name) {
+      //TODO: translate
+      return 'Random';
     }
     return '';
   }

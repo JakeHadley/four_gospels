@@ -43,22 +43,10 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const SpeedSetupPage(),
       );
     },
-    JoinGameRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const JoinGamePage(),
-      );
-    },
     MultiPlayerSetupRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const MultiPlayerSetupPage(),
-      );
-    },
-    CreateGameRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const CreateGamePage(),
       );
     },
     LobbyRoute.name: (routeData) {
@@ -157,20 +145,6 @@ class SpeedSetupRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [JoinGamePage]
-class JoinGameRoute extends PageRouteInfo<void> {
-  const JoinGameRoute({List<PageRouteInfo>? children})
-      : super(
-          JoinGameRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'JoinGameRoute';
-
-  static const PageInfo<void> page = PageInfo<void>(name);
-}
-
-/// generated route for
 /// [MultiPlayerSetupPage]
 class MultiPlayerSetupRoute extends PageRouteInfo<void> {
   const MultiPlayerSetupRoute({List<PageRouteInfo>? children})
@@ -180,20 +154,6 @@ class MultiPlayerSetupRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'MultiPlayerSetupRoute';
-
-  static const PageInfo<void> page = PageInfo<void>(name);
-}
-
-/// generated route for
-/// [CreateGamePage]
-class CreateGameRoute extends PageRouteInfo<void> {
-  const CreateGameRoute({List<PageRouteInfo>? children})
-      : super(
-          CreateGameRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'CreateGameRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }

@@ -18,6 +18,7 @@ class Stats {
     required this.easy,
     required this.moderate,
     required this.hard,
+    required this.random,
   });
 
   Stats.fromJson(Map<String, dynamic> json)
@@ -25,11 +26,13 @@ class Stats {
           easy: Stat.fromJson(json['easy'] as Map<String, dynamic>),
           moderate: Stat.fromJson(json['moderate'] as Map<String, dynamic>),
           hard: Stat.fromJson(json['hard'] as Map<String, dynamic>),
+          random: Stat.fromJson(json['random'] as Map<String, dynamic>),
         );
 
   final Stat easy;
   final Stat moderate;
   final Stat hard;
+  final Stat random;
 
   Stat operator [](Mode mode) {
     switch (mode) {
@@ -39,6 +42,8 @@ class Stats {
         return moderate;
       case Mode.hard:
         return hard;
+      case Mode.random:
+        return random;
     }
   }
 }

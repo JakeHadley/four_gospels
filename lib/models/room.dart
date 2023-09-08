@@ -34,7 +34,7 @@ class Room {
           language: json['language']! as String,
           status: json['status']! as String,
           usersAnswered: convertUsersToListOfStrings(
-            json['users']! as Iterable<dynamic>,
+            json['usersAnswered']! as Iterable<dynamic>,
           ),
           currentQuestionIndex: json['currentQuestionIndex']! as int,
           scores: convertScoresToListOfScores(

@@ -57,7 +57,17 @@ exports.getQuestions = functions.https.onCall(async (request) => {
           .get();
       const stats = statsSnapshot.data();
       if (stats) {
-        const idsForMode = stats[roomData.mode].ids;
+        let idsForMode;
+        if (roomData.mode === "random") {
+          idsForMode = [
+            ...stats["easy"].ids,
+            ...stats["moderate"].ids,
+            ...stats["hard"].ids,
+          ];
+        } else {
+          idsForMode = stats[roomData.mode].ids;
+        }
+
         const idsToGet = [];
         for (let i = 0; i < roomData.numberOfQuestions; i++) {
           idsToGet.push(parseInt(getRandomElement(idsForMode)));

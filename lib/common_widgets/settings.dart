@@ -9,18 +9,25 @@ class Settings extends StatefulWidget {
   const Settings({
     required this.type,
     required this.onStateChange,
-    required this.onPress,
+    required this.isCompact,
+    this.onPress,
+    this.onChangeSettings,
     super.key,
   });
 
   final QuizType type;
   final void Function({int? timer}) onStateChange;
+  final bool isCompact;
   final void Function({
     required Mode mode,
     required String language,
     int? questions,
     int? timer,
-  }) onPress;
+  })? onPress;
+  final void Function(
+    SettingsOptions option,
+    dynamic value,
+  )? onChangeSettings;
 
   @override
   State<Settings> createState() => _SettingsState();
@@ -32,15 +39,16 @@ class _SettingsState extends State<Settings> {
   String _language = Languages.en.name;
   int _timer = 15;
 
-  void changeQuestions(int value) {
+  void _onChangeQuestions(int value) {
     setState(() => _questions = value);
+    widget.onChangeSettings?.call(SettingsOptions.questions, value);
   }
 
-  void onTimerChanged(int value) {
+  void _onTimerChanged(int value) {
     setState(() => _timer = value);
   }
 
-  Widget choiceChipGenerator(
+  Widget _choiceChipGenerator(
     int index,
     ThemeData theme,
     AppLocalizations l10n,
@@ -53,11 +61,13 @@ class _SettingsState extends State<Settings> {
         selectedColor: theme.primaryColorLight,
         label: Text(
           mode.toStringIntl(l10n),
-          style: theme.textTheme.bodyLarge,
+          style: theme.textTheme.bodyLarge
+              ?.copyWith(fontSize: widget.isCompact ? 16 : 20),
         ),
         selected: _mode == mode,
         onSelected: (bool selected) {
           setState(() => _mode = mode);
+          widget.onChangeSettings?.call(SettingsOptions.difficulty, mode);
         },
       ),
     );
@@ -73,6 +83,10 @@ class _SettingsState extends State<Settings> {
     setState(() {
       _language = Languages.values[index].name;
     });
+    widget.onChangeSettings?.call(
+      SettingsOptions.language,
+      Languages.values[index].name,
+    );
   }
 
   @override
@@ -81,26 +95,27 @@ class _SettingsState extends State<Settings> {
     final theme = Theme.of(context);
 
     final chips = List.generate(
-      3,
-      (int index) => choiceChipGenerator(index, theme, l10n),
+      Mode.values.length,
+      (int index) => _choiceChipGenerator(index, theme, l10n),
     );
 
     return SettingsContent(
       type: widget.type,
       chips: chips,
       onStateChange: widget.onStateChange,
-      changeQuestions: changeQuestions,
+      onChangeQuestions: _onChangeQuestions,
       questions: _questions,
       initialLanguage: getFlagFromLanguage(),
-      onLanguageChanged: getLanguageFromFlag,
+      onChangeLanguage: getLanguageFromFlag,
       timer: _timer,
-      onTimerChanged: onTimerChanged,
-      onPress: () => widget.onPress(
+      onChangeTimer: _onTimerChanged,
+      onPress: () => widget.onPress?.call(
         mode: _mode,
         language: _language,
         questions: _questions,
         timer: _timer,
       ),
+      isCompact: widget.isCompact,
     );
   }
 }

@@ -25,20 +25,33 @@ class LobbyPage extends StatelessWidget {
   }
 
   void onMultiStateChange(BuildContext context, Room room) {
-    final language = Localizations.localeOf(context).toLanguageTag();
-
     context.read<QuizBloc>().add(
           QuizStart.multi(
             numberOfQuestions: room.numberOfQuestions,
             mode: room.mode,
             questions: room.questions,
-            language: language,
+            language: room.language,
           ),
         );
   }
 
   void onQuizStateChange(BuildContext context) {
     context.router.replaceAll([const QuizRoute()]);
+  }
+
+  void onChangeSettings(
+    BuildContext context,
+    String code,
+    SettingsOptions option,
+    dynamic value,
+  ) {
+    context.read<MultiPlayerBloc>().add(
+          MultiPlayerModifyRoomSettings(
+            code: code,
+            option: option,
+            value: value,
+          ),
+        );
   }
 
   @override
@@ -66,6 +79,9 @@ class LobbyPage extends StatelessWidget {
         },
         onQuizStateChange: () {
           onQuizStateChange(context);
+        },
+        onChangeSettings: (String code, SettingsOptions option, dynamic value) {
+          onChangeSettings(context, code, option, value);
         },
       ),
     );

@@ -18,8 +18,6 @@ class AppRouter extends _$AppRouter {
         AutoRoute(page: EndGameRoute.page),
         AutoRoute(page: SpeedSetupRoute.page),
         AutoRoute(page: MultiPlayerSetupRoute.page),
-        AutoRoute(page: JoinGameRoute.page),
-        AutoRoute(page: CreateGameRoute.page),
         AutoRoute(page: LobbyRoute.page),
       ];
 }

@@ -53,6 +53,7 @@ class SinglePlayerSetupPage extends StatelessWidget {
             questions: questions!,
           );
         },
+        isCompact: false,
       ),
     );
   }
