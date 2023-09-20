@@ -176,5 +176,7 @@
     "playAgainButton": "Play again?",
     "quizLanguage": "Quiz Language",
     "deviceInfo": "Device Info",
-    "feedback": "Feedback"
+    "feedback": "Feedback",
+    "timer": "Timer Amount",
+    "random": "Random"
 }
