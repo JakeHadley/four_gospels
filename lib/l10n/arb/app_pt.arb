@@ -178,5 +178,6 @@
     "deviceInfo": "",
     "feedback": "",
     "timer": "",
-    "random": ""
+    "random": "",
+    "waitingForGameFinish": ""
 }
