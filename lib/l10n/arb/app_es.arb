@@ -176,5 +176,7 @@
     "playAgainButton": "",
     "quizLanguage": "",
     "deviceInfo": "",
-    "feedback": ""
+    "feedback": "",
+    "timer": "",
+    "random": ""
 }
