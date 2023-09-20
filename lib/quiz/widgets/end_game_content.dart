@@ -59,8 +59,6 @@ class EndGameContent extends StatelessWidget {
     }
 
     Widget multiContent(MultiPlayerActive state) {
-      // TODO: Ensure screen doesn't change for other users if owner finishes
-      //  the game
       final scores = state.room.scores
         ..sort((a, b) => b.score.compareTo(a.score));
 
@@ -115,6 +113,13 @@ class EndGameContent extends StatelessWidget {
     }
 
     return BlocBuilder<MultiPlayerBloc, MultiPlayerState>(
+      buildWhen: (prevState, state) {
+        if (state is MultiPlayerInitial || state is MultiPlayerRoomDeleted) {
+          return false;
+        } else {
+          return true;
+        }
+      },
       builder: (context, multiState) {
         return BlocBuilder<QuizBloc, QuizState>(
           builder: (context, quizState) {

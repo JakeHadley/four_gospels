@@ -73,6 +73,8 @@ class _MultiPlayerSetupPageState extends State<MultiPlayerSetupPage> {
       return;
     }
 
+    FocusScope.of(context).unfocus();
+
     final language = Localizations.localeOf(context);
 
     final joinRoomEvent = MultiPlayerJoinRoom(
@@ -102,9 +104,6 @@ class _MultiPlayerSetupPageState extends State<MultiPlayerSetupPage> {
       case RoomExceptionErrorEnum.language:
         errorStr = context.l10n.wrongLanguage;
         break;
-      case RoomExceptionErrorEnum.active:
-        errorStr = context.l10n.gameActive;
-        break;
       case RoomExceptionErrorEnum.name:
         errorStr = context.l10n.nameTaken;
         break;
@@ -131,7 +130,7 @@ class _MultiPlayerSetupPageState extends State<MultiPlayerSetupPage> {
     final l10n = context.l10n;
 
     return Scaffold(
-      appBar: CustomAppBar(title: l10n.multiPlayerAppBar),
+      appBar: CustomAppBar(title: l10n.multiPlayerAppBar, type: QuizType.multi),
       body: MultiPlayerOptions(
         nameController: _nameController,
         codeController: _codeController,

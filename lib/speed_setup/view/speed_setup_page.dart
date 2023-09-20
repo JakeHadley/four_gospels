@@ -40,7 +40,7 @@ class SpeedSetupPage extends StatelessWidget {
     final l10n = context.l10n;
 
     return Scaffold(
-      appBar: CustomAppBar(title: l10n.speedRound),
+      appBar: CustomAppBar(title: l10n.speedRound, type: QuizType.speed),
       body: Settings(
         type: QuizType.speed,
         onStateChange: ({int? timer}) {

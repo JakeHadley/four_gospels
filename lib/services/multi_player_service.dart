@@ -59,12 +59,6 @@ class MultiPlayerService {
       throw RoomException(RoomExceptionErrorEnum.language);
     }
 
-    // TODO: check to make sure user can enter room, go to lobby while game is
-    //  active
-    if (room.status == 'active') {
-      throw RoomException(RoomExceptionErrorEnum.active);
-    }
-
     if (room.users.contains(name)) {
       throw RoomException(RoomExceptionErrorEnum.name);
     }

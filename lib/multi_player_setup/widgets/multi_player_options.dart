@@ -61,7 +61,7 @@ class MultiPlayerOptions extends StatelessWidget {
                   ActionButton(
                     onPress: onCreate,
                     color: createButtonColor,
-                    isLoading: false,
+                    isLoading: state is MultiPlayerLoading,
                     text: l10n.createGameButton,
                   ),
                   const SizedBox(height: 30),
@@ -96,7 +96,9 @@ class MultiPlayerOptions extends StatelessWidget {
                   ActionButton(
                     onPress: onJoin,
                     color: joinButtonColor,
-                    isLoading: false,
+                    isLoading: isNameValid &&
+                        isCodeValid &&
+                        state is MultiPlayerLoading,
                     text: l10n.joinGameButton,
                   ),
                   const Spacer(),

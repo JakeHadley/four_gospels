@@ -45,7 +45,8 @@ class Lobby extends StatelessWidget {
         return BlocConsumer<MultiPlayerBloc, MultiPlayerState>(
           listener: (context, multiState) {
             if (multiState is MultiPlayerActive) {
-              if (multiState.room.status == 'active') {
+              if (multiState.room.status == 'active' &&
+                  multiState.room.currentQuestionIndex == 0) {
                 onMultiStateChange(multiState.room);
               }
             }
@@ -98,7 +99,9 @@ class Lobby extends StatelessWidget {
                           ),
                         ] else ...[
                           Text(
-                            '${l10n.waitingForOwnerStart}...',
+                            multiState.room.currentQuestionIndex > 0
+                                ? '${l10n.waitingForGameFinish}...'
+                                : '${l10n.waitingForOwnerStart}...',
                             style: theme.textTheme.displaySmall,
                             textAlign: TextAlign.center,
                           )

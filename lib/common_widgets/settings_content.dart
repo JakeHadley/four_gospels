@@ -78,9 +78,8 @@ class SettingsContent extends StatelessWidget {
                   color: theme.disabledColor,
                 ),
               ] else if (type == QuizType.speed) ...[
-                //TODO: Translate
                 Text(
-                  'Timer Amount',
+                  l10n.timer,
                   style: theme.textTheme.bodyLarge?.copyWith(fontSize: 25),
                 ),
                 NumberPicker(

@@ -88,7 +88,7 @@ class QuizContent extends StatelessWidget {
                     if (quizState.type == QuizType.speed)
                       TimerInfo(quizState: quizState)
                     else
-                      const ProgressInfo(),
+                      ProgressInfo(),
                     RichText(
                       text: TextSpan(
                         text: currentQuestion.question

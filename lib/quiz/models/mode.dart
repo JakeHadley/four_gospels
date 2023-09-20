@@ -24,8 +24,7 @@ enum Mode {
     } else if (name == hard.name) {
       return l10n.difficultyHard;
     } else if (name == random.name) {
-      //TODO: translate
-      return 'Random';
+      return l10n.random;
     }
     return '';
   }

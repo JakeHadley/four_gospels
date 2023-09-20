@@ -86,13 +86,6 @@ class MultiPlayerBloc extends Bloc<MultiPlayerEvent, MultiPlayerState> {
   ) async {
     emit(MultiPlayerLoading());
 
-    // TODO: check rerendering of screens when owner and non owner continues
-    //  to play and returns to lobby
-    // TODO: show when a player answers and show number of players answered
-    //  potentially show indicator of percentage of players answered
-    // TODO: Utilize circular indicator to show players answered, turn green
-    //  when 100% of players answered
-
     try {
       final roomReference = await multiPlayerService.joinRoom(
         event.name,

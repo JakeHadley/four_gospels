@@ -125,7 +125,6 @@ class Room {
 
 enum RoomExceptionErrorEnum {
   language,
-  active,
   name,
   room,
 }
