@@ -169,11 +169,12 @@
     "@waitingForOwner": {
         "description": "Shown for non-owner users after submitting a question on multiplayer"
     },
-    "gameActive": "",
     "nameTaken": "",
     "wrongLanguage": "",
     "noRoom": "",
     "noConnection": "",
     "playAgainButton": "",
-    "quizLanguage": ""
+    "quizLanguage": "",
+    "deviceInfo": "",
+    "feedback": ""
 }
