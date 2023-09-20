@@ -178,5 +178,6 @@
     "deviceInfo": "Device Info",
     "feedback": "Feedback",
     "timer": "Timer Amount",
-    "random": "Random"
+    "random": "Random",
+    "waitingForGameFinish": "Waiting for game to finish"
 }
