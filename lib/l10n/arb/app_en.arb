@@ -149,23 +149,29 @@
     "continueButton": "Continue",
     "players": "Players",
     "code": "Code",
-    "share": "Invite friends and family with code",
+    "share": "Invite friends with code",
     "@share": {
         "description": "Shown when sharing a code from Multiplayer. e.g. ('Invite your friends and family with code: \"ABC123\"')"
     },
     "enterCodeField": "Enter Code",
     "joinButton": "Join",
-    "waitingForOwnerStart": "Waiting for the leader to start",
+    "waitingForOwnerStart": "Waiting for the host to start",
     "@waitingForOwnerStart": {
         "description": "Shown on multiplayer when a non-owner user joins a lobby"
     },
     "roomDeleted": "Room no longer exists",
+    "@roomDeleted": {
+        "description": "Info text to notify user that the multiplayer lobby no longer exists"
+    },
     "goBackButton": "Go back",
+    "@goBackButton": {
+        "description": "Text on button to tell user to return to home page after lobby has been deleted"
+    },
     "owner": "host",
     "@owner": {
         "description": "Shown next to the owner of the room in the lobby"
     },
-    "waitingForOwner": "waiting for leader",
+    "waitingForOwner": "waiting for host",
     "@waitingForOwner": {
         "description": "Shown for non-owner users after submitting a question on multiplayer"
     },
@@ -179,5 +185,6 @@
     "feedback": "Feedback",
     "timer": "Timer Amount",
     "random": "Random",
-    "waitingForGameFinish": "Waiting for game to finish"
+    "waitingForGameFinish": "Waiting for game to finish",
+    "feedbackPrompt": "Do you want to provide feedback?"
 }
