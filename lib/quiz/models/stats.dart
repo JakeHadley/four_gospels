@@ -17,7 +17,7 @@ class Stats {
   const Stats({
     required this.easy,
     required this.moderate,
-    required this.hard,
+    required this.difficult,
     required this.random,
   });
 
@@ -25,13 +25,13 @@ class Stats {
       : this(
           easy: Stat.fromJson(json['easy'] as Map<String, dynamic>),
           moderate: Stat.fromJson(json['moderate'] as Map<String, dynamic>),
-          hard: Stat.fromJson(json['hard'] as Map<String, dynamic>),
+          difficult: Stat.fromJson(json['difficult'] as Map<String, dynamic>),
           random: Stat.fromJson(json['random'] as Map<String, dynamic>),
         );
 
   final Stat easy;
   final Stat moderate;
-  final Stat hard;
+  final Stat difficult;
   final Stat random;
 
   Stat operator [](Mode mode) {
@@ -40,8 +40,8 @@ class Stats {
         return easy;
       case Mode.moderate:
         return moderate;
-      case Mode.hard:
-        return hard;
+      case Mode.difficult:
+        return difficult;
       case Mode.random:
         return random;
     }

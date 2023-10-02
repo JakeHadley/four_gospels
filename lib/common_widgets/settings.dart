@@ -15,6 +15,8 @@ class Settings extends StatefulWidget {
     super.key,
   });
 
+  // TODO: verify that settings are reset correctly
+
   final QuizType type;
   final void Function({int? timer}) onStateChange;
   final bool isCompact;

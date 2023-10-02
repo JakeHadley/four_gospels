@@ -7,7 +7,7 @@ int getPoints(Mode questionMode, QuizType type) {
     return 2;
   } else if (questionMode == Mode.moderate) {
     return 4;
-  } else if (questionMode == Mode.hard) {
+  } else if (questionMode == Mode.difficult) {
     return 6;
   } else {
     return 0;

@@ -169,6 +169,26 @@ class _QuizPageState extends State<QuizPage> {
     await FlutterEmailSender.send(email);
   }
 
+  void showFeedbackDialog(String info, AppLocalizations l10n) {
+    showDialog<void>(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) => AlertDialog(
+        content: Text(l10n.feedbackPrompt),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(),
+            child: Text(l10n.quitDialogCancel),
+          ),
+          ElevatedButton(
+            onPressed: () => feedbackAction(info),
+            child: Text(l10n.continueButton),
+          ),
+        ],
+      ),
+    );
+  }
+
   Future<void> feedbackAction(String info) async {
     final deviceInfo = await getDeviceInfo();
     final screenshotPath = await captureScreenshot();
@@ -190,10 +210,11 @@ class _QuizPageState extends State<QuizPage> {
                 appBar: CustomAppBar(
                   title: state.type.toStringIntl(l10n),
                   backButton: QuizBackButton(exitAction: _exitAction),
-                  feedbackAction: () => feedbackAction(
+                  feedbackAction: () => showFeedbackDialog(
                     '${state.type.toStringIntl(l10n)}, '
                     '${state.mode.toStringIntl(l10n)}, '
                     'id: ${state.questions[state.currentQuestionIndex].id}',
+                    l10n,
                   ),
                   type: state.type,
                 ),

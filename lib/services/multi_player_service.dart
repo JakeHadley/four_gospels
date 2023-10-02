@@ -55,6 +55,7 @@ class MultiPlayerService {
     final roomDocSnapshot = await roomReference.get();
     final room = roomDocSnapshot.data()!;
 
+    //TODO: check if this is an issue still
     if (room.language != language) {
       throw RoomException(RoomExceptionErrorEnum.language);
     }

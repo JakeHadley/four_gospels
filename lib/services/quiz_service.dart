@@ -116,7 +116,7 @@ class QuizService {
     final ids = await Future.wait([
       _getIds(stats, Mode.easy, num1),
       _getIds(stats, Mode.moderate, num2),
-      _getIds(stats, Mode.hard, num3),
+      _getIds(stats, Mode.difficult, num3),
     ]).then(
       (results) => results.expand((idsList) => idsList).toList()..shuffle(),
     );
