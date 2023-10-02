@@ -122,7 +122,7 @@ class QuizContent extends StatelessWidget {
                         questionMode: currentQuestion.mode,
                       ),
                     ],
-                    const SizedBox(height: 20)
+                    const SizedBox(height: 20),
                   ],
                 ),
               );

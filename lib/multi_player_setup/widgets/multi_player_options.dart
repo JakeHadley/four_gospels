@@ -104,7 +104,7 @@ class MultiPlayerOptions extends StatelessWidget {
                   const Spacer(),
                 ],
               ),
-            )
+            ),
           ],
         );
       },

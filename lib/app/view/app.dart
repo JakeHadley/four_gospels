@@ -26,7 +26,7 @@ class App extends StatelessWidget {
         ),
         RepositoryProvider<MultiPlayerService>(
           create: (context) => MultiPlayerService(),
-        )
+        ),
       ],
       child: MultiBlocProvider(
         providers: [
@@ -43,7 +43,7 @@ class App extends StatelessWidget {
               multiPlayerService:
                   RepositoryProvider.of<MultiPlayerService>(context),
             ),
-          )
+          ),
         ],
         child: MaterialApp.router(
           routerConfig: _appRouter.config(),

@@ -52,7 +52,7 @@ class EndGameContent extends StatelessWidget {
               isLoading: false,
               text: l10n.endGameButton,
             ),
-            const SizedBox(height: 20)
+            const SizedBox(height: 20),
           ],
         ),
       );

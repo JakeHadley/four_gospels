@@ -155,12 +155,13 @@ class _QuizPageState extends State<QuizPage> {
   Future<void> sendFeedbackEmail(
     String deviceInfo,
     String screenshotPath,
+    String info,
   ) async {
     final l10n = context.l10n;
 
     final email = Email(
-      body: '${l10n.deviceInfo}: $deviceInfo\n\n${l10n.feedback}:',
-      subject: l10n.feedback,
+      body: '${l10n.deviceInfo}: $deviceInfo\n\n${l10n.feedback}: ',
+      subject: '${l10n.feedback} ($info)',
       recipients: ['exigentdev@gmail.com'],
       attachmentPaths: [screenshotPath],
     );
@@ -168,10 +169,10 @@ class _QuizPageState extends State<QuizPage> {
     await FlutterEmailSender.send(email);
   }
 
-  Future<void> feedbackAction() async {
+  Future<void> feedbackAction(String info) async {
     final deviceInfo = await getDeviceInfo();
     final screenshotPath = await captureScreenshot();
-    await sendFeedbackEmail(deviceInfo, screenshotPath);
+    await sendFeedbackEmail(deviceInfo, screenshotPath, info);
   }
 
   @override
@@ -189,7 +190,11 @@ class _QuizPageState extends State<QuizPage> {
                 appBar: CustomAppBar(
                   title: state.type.toStringIntl(l10n),
                   backButton: QuizBackButton(exitAction: _exitAction),
-                  feedbackAction: feedbackAction,
+                  feedbackAction: () => feedbackAction(
+                    '${state.type.toStringIntl(l10n)}, '
+                    '${state.mode.toStringIntl(l10n)}, '
+                    'id: ${state.questions[state.currentQuestionIndex].id}',
+                  ),
                   type: state.type,
                 ),
                 body: QuizContent(

@@ -143,7 +143,7 @@ class SettingsContent extends StatelessWidget {
                   textStyle: theme.textTheme.displayLarge,
                 ),
               ],
-              SizedBox(height: isCompact == true ? 0 : 30)
+              SizedBox(height: isCompact == true ? 0 : 30),
             ],
           ),
         );

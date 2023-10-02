@@ -68,7 +68,7 @@ class Lobby extends StatelessWidget {
                             numberOfQuestions: room.numberOfQuestions,
                             mode: room.mode,
                             language: room.language,
-                          )
+                          ),
                         ] else ...[
                           Settings(
                             type: QuizType.multi,
@@ -82,7 +82,7 @@ class Lobby extends StatelessWidget {
                                 onChangeSettings(room.code, option, value),
                             isCompact: true,
                           ),
-                          ShareCode(code: room.code)
+                          ShareCode(code: room.code),
                         ],
                         PlayerList(
                           users: room.users,
@@ -111,7 +111,7 @@ class Lobby extends StatelessWidget {
                               )
                               .fadeIn(duration: 2.seconds),
                         ],
-                        const SizedBox(height: 30)
+                        const SizedBox(height: 30),
                       ],
                     ),
                   ),

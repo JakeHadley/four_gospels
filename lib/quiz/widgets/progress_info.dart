@@ -62,7 +62,7 @@ class ProgressInfo extends StatelessWidget {
                                 '${multiState.room.usersAnswered.length}'
                                 '/${multiState.room.users.length}',
                               ),
-                            )
+                            ),
                           ],
                         ),
                       );
@@ -71,7 +71,7 @@ class ProgressInfo extends StatelessWidget {
                     }
                     return const SizedBox.shrink();
                   },
-                )
+                ),
             ],
           );
         }

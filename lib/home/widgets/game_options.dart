@@ -77,7 +77,7 @@ class _GameOptionsState extends State<GameOptions> {
                 action: () => context.router.push(const SpeedSetupRoute()),
                 color: theme.colorScheme.tertiary,
                 iconWidget: const Icon(Icons.av_timer, size: 80),
-              )
+              ),
             ],
           ),
         );

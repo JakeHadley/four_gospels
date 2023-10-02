@@ -33,7 +33,7 @@ class TimerInfo extends StatelessWidget {
             ),
             Align(
               child: Text(state.duration.toString()),
-            )
+            ),
           ],
         );
       },
