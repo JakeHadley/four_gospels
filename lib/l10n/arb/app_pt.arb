@@ -84,7 +84,7 @@
     "@submitButton": {
         "description": "Submit button text"
     },
-    "finishQuizButton": "Terminar o Quiz",
+    "finishQuizButton": "Ver a pontuação",
     "@finishQuizButton": {
         "description": "Finish quiz button text"
     },
@@ -146,7 +146,7 @@
     },
     "enterNameField": "Digite o seu nome",
     "numQuestions": "Número de perguntas",
-    "continueButton": "Continue",
+    "continueButton": "Continuar",
     "players": "Jogadores",
     "code": "Código",
     "share": "Convide amigos usando o código",
@@ -186,5 +186,7 @@
     "timer": "Quantidade de tempo",
     "random": "Aleatório",
     "waitingForGameFinish": "Esperando o jogo terminar",
-    "feedbackPrompt": "Quer enviar feedback?"
+    "feedbackPrompt": "Quer enviar feedback?",
+    "or": "OU",
+    "nextQuestionPrompt": "Alguns jogadores ainda não responderam. Deseja continuar?"
 }
