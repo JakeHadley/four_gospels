@@ -84,7 +84,7 @@
     "@submitButton": {
         "description": "Submit button text"
     },
-    "finishQuizButton": "Finalizar el Quiz",
+    "finishQuizButton": "Ver la puntuación",
     "@finishQuizButton": {
         "description": "Finish quiz button text"
     },
@@ -186,5 +186,7 @@
     "timer": "Cantidad de tiempo",
     "random": "Aleatorio",
     "waitingForGameFinish": "Esperando a que termine el juego",
-    "feedbackPrompt": "¿Quieres enviar comentarios?"
+    "feedbackPrompt": "¿Quieres enviar comentarios?",
+    "or": "O",
+    "nextQuestionPrompt": "Algunos jugadores aún no han respondido. ¿Quieres continuar?"
 }
