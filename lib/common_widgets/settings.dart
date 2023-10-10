@@ -57,6 +57,8 @@ class _SettingsState extends State<Settings> {
   ) {
     final mode = Mode.values[index];
 
+    // TODO: make chips wrap
+    // https://stackoverflow.com/a/58547609/7514409
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 5),
       child: ChoiceChip(

@@ -83,14 +83,54 @@ class _QuizPageState extends State<QuizPage> {
         );
   }
 
+  void _showNextQuestionDialog({
+    required Mode questionMode,
+  }) {
+    final l10n = context.l10n;
+
+    showDialog<void>(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) => AlertDialog(
+        content: Text(l10n.nextQuestionPrompt),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(),
+            child: Text(l10n.quitDialogCancel),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              context
+                  .read<QuizBloc>()
+                  .add(QuizNextQuestion(questionMode: questionMode));
+              context.read<MultiPlayerBloc>().add(MultiPlayerNextQuestion());
+              Navigator.of(context).pop();
+            },
+            child: Text(l10n.continueButton),
+          ),
+        ],
+      ),
+    );
+  }
+
   void _onNextQuestionPress({
     required QuizType quizType,
     required Mode questionMode,
+    required bool allNotAnswered,
   }) {
-    context.read<QuizBloc>().add(QuizNextQuestion(questionMode: questionMode));
-
     if (quizType == QuizType.multi) {
-      context.read<MultiPlayerBloc>().add(MultiPlayerNextQuestion());
+      if (allNotAnswered == true) {
+        _showNextQuestionDialog(questionMode: questionMode);
+      } else {
+        context
+            .read<QuizBloc>()
+            .add(QuizNextQuestion(questionMode: questionMode));
+        context.read<MultiPlayerBloc>().add(MultiPlayerNextQuestion());
+      }
+    } else {
+      context
+          .read<QuizBloc>()
+          .add(QuizNextQuestion(questionMode: questionMode));
     }
   }
 

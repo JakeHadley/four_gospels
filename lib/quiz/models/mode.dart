@@ -7,7 +7,11 @@ enum Mode {
   random;
 
   String toJson() => name;
-  static Mode fromJson(String json) => values.byName(json);
+  static Mode fromJson(String json) {
+    final jsonString = json.toLowerCase();
+
+    return values.byName(jsonString);
+  }
 
   String toStringIntl(AppLocalizations l10n) {
     if (name == easy.name) {

@@ -14,6 +14,7 @@ class QuizButton extends StatelessWidget {
     required this.isMulti,
     required this.isMultiOwner,
     required this.questionMode,
+    required this.allNotAnswered,
     super.key,
   });
 
@@ -21,6 +22,7 @@ class QuizButton extends StatelessWidget {
   final void Function({
     required QuizType quizType,
     required Mode questionMode,
+    required bool allNotAnswered,
   }) onNextQuestionPress;
   final Answer selectedAnswer;
   final void Function({
@@ -32,6 +34,7 @@ class QuizButton extends StatelessWidget {
   final bool isMulti;
   final bool isMultiOwner;
   final Mode questionMode;
+  final bool allNotAnswered;
 
   @override
   Widget build(BuildContext context) {
@@ -71,6 +74,7 @@ class QuizButton extends StatelessWidget {
       onPress = () => onNextQuestionPress(
             quizType: quizType,
             questionMode: questionMode,
+            allNotAnswered: allNotAnswered,
           );
     } else {
       onPress = () {};

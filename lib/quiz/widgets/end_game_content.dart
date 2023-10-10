@@ -11,11 +11,13 @@ class EndGameContent extends StatelessWidget {
   const EndGameContent({
     required this.onExit,
     required this.onPlayAgain,
+    required this.onSinglePlayAgain,
     super.key,
   });
 
   final VoidCallback onExit;
   final VoidCallback onPlayAgain;
+  final VoidCallback onSinglePlayAgain;
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +31,9 @@ class EndGameContent extends StatelessWidget {
               '${state.numberCorrect}/${state.numberOfQuestions}'
           : '${l10n.endGamePageCorrectAnswers}: '
               '${state.numberCorrect}';
+
+      // TODO: On Single player and speed, add a button to play again,
+      //  immediately start the quiz again, don't redirect to settings
 
       return Padding(
         padding: const EdgeInsets.symmetric(horizontal: 40),
@@ -51,6 +56,12 @@ class EndGameContent extends StatelessWidget {
               onPress: onExit,
               isLoading: false,
               text: l10n.endGameButton,
+            ),
+            const SizedBox(height: 20),
+            ActionButton(
+              onPress: onPlayAgain,
+              isLoading: false,
+              text: l10n.playAgainButton,
             ),
             const SizedBox(height: 20),
           ],

@@ -20,6 +20,8 @@ class Lobby extends StatelessWidget {
     super.key,
   });
 
+  // TODO: make sure room deleted app bar is the correct color
+
   final void Function(String code) onStart;
   final VoidCallback onBack;
   final void Function(Room room) onMultiStateChange;
@@ -94,8 +96,6 @@ class Lobby extends StatelessWidget {
                             onPress: () => onStart(room.code),
                             color: theme.colorScheme.primaryContainer,
                             text: l10n.startButton,
-                            height: 100,
-                            textStyle: theme.textTheme.displayLarge,
                           ),
                         ] else ...[
                           Text(

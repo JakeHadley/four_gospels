@@ -27,6 +27,11 @@ class EndGamePage extends StatelessWidget {
     context.read<MultiPlayerBloc>().add(MultiPlayerRestart());
   }
 
+  void onSinglePlayAgain(BuildContext context) {
+    context.router.replaceAll([const HomeRoute(), const LobbyRoute()]);
+    context.read<QuizBloc>().add(QuizFinished());
+  }
+
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
@@ -36,6 +41,7 @@ class EndGamePage extends StatelessWidget {
       body: EndGameContent(
         onExit: () => onExit(context),
         onPlayAgain: () => onPlayAgain(context),
+        onSinglePlayAgain: () => onSinglePlayAgain(context),
       ),
     );
   }

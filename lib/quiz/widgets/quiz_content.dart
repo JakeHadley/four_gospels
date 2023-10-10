@@ -18,6 +18,7 @@ class QuizContent extends StatelessWidget {
   final void Function({
     required QuizType quizType,
     required Mode questionMode,
+    required bool allNotAnswered,
   }) onNextQuestionPress;
   final void Function({
     required Answer answer,
@@ -33,6 +34,10 @@ class QuizContent extends StatelessWidget {
     required QuizType quizType,
   }) onSubmit;
   final void Function({required int indexToSet}) advanceMultiPlayerQuestion;
+
+  // TODO: look into a scoreboard every so many questions if answering more than
+  //  10 questions
+  // TODO: look into animating scoreboard
 
   @override
   Widget build(BuildContext context) {
@@ -61,6 +66,9 @@ class QuizContent extends StatelessWidget {
             final isMulti = multiState is MultiPlayerActive;
             final isMultiOwner =
                 isMulti && multiState.name == multiState.room.owner;
+            final allNotAnswered = isMulti &&
+                multiState.room.usersAnswered.length !=
+                    multiState.room.users.length;
 
             if (quizState is QuizLoaded) {
               final currentQuestion =
@@ -79,6 +87,8 @@ class QuizContent extends StatelessWidget {
                     ),
                   )
                   .toList();
+
+              //TODO: check to make sure speed quiz ends correctly
 
               return Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 40),
@@ -120,6 +130,7 @@ class QuizContent extends StatelessWidget {
                         isMulti: isMulti,
                         isMultiOwner: isMultiOwner,
                         questionMode: currentQuestion.mode,
+                        allNotAnswered: allNotAnswered,
                       ),
                     ],
                     const SizedBox(height: 20),

@@ -76,7 +76,7 @@ class MultiPlayerOptions extends StatelessWidget {
                           ),
                         ),
                       ),
-                      const Text('OR'),
+                      Text(l10n.or),
                       Expanded(
                         child: Container(
                           margin: const EdgeInsets.only(left: 20, right: 10),

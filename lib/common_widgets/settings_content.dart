@@ -82,6 +82,8 @@ class SettingsContent extends StatelessWidget {
                   l10n.timer,
                   style: theme.textTheme.bodyLarge?.copyWith(fontSize: 25),
                 ),
+                // TODO: add an arrow on both sides,
+                //  indicating additional options
                 NumberPicker(
                   axis: Axis.horizontal,
                   value: timer,
@@ -122,6 +124,7 @@ class SettingsContent extends StatelessWidget {
                     ?.copyWith(fontSize: isCompact == true ? 18 : 25),
               ),
               const SizedBox(height: 10),
+              // TODO: add a border for the selected item
               CarouselSlider(
                 items: flags,
                 options: CarouselOptions(
