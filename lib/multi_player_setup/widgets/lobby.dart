@@ -20,8 +20,6 @@ class Lobby extends StatelessWidget {
     super.key,
   });
 
-  // TODO: make sure room deleted app bar is the correct color
-
   final void Function(String code) onStart;
   final VoidCallback onBack;
   final void Function(Room room) onMultiStateChange;

@@ -61,14 +61,42 @@ class SettingsContent extends StatelessWidget {
                   style: theme.textTheme.bodyLarge
                       ?.copyWith(fontSize: isCompact == true ? 18 : 25),
                 ),
-                NumberPicker(
-                  axis: Axis.horizontal,
-                  value: questions,
-                  minValue: 10,
-                  maxValue: 50,
-                  onChanged: onChangeQuestions,
-                  itemWidth: 60,
-                  step: 5,
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      IconButton(
+                        onPressed: () {
+                          final newQuestions = questions - 5;
+                          onChangeQuestions(newQuestions.clamp(10, 50));
+                        },
+                        icon: const Icon(
+                          Icons.arrow_back,
+                          color: Colors.black,
+                        ),
+                      ),
+                      NumberPicker(
+                        axis: Axis.horizontal,
+                        value: questions,
+                        minValue: 10,
+                        maxValue: 50,
+                        onChanged: onChangeQuestions,
+                        itemWidth: 60,
+                        step: 5,
+                      ),
+                      IconButton(
+                        onPressed: () {
+                          final newQuestions = questions + 5;
+                          onChangeQuestions(newQuestions.clamp(10, 50));
+                        },
+                        icon: const Icon(
+                          Icons.arrow_forward,
+                          color: Colors.black,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
                 Divider(
                   height: isCompact == true ? 10 : 30,
@@ -82,16 +110,39 @@ class SettingsContent extends StatelessWidget {
                   l10n.timer,
                   style: theme.textTheme.bodyLarge?.copyWith(fontSize: 25),
                 ),
-                // TODO: add an arrow on both sides,
-                //  indicating additional options
-                NumberPicker(
-                  axis: Axis.horizontal,
-                  value: timer,
-                  minValue: 15,
-                  maxValue: 60,
-                  onChanged: onChangeTimer,
-                  itemWidth: 60,
-                  step: 15,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    IconButton(
+                      onPressed: () {
+                        final newTimer = timer - 15;
+                        onChangeTimer(newTimer.clamp(15, 60));
+                      },
+                      icon: const Icon(
+                        Icons.arrow_back,
+                        color: Colors.black,
+                      ),
+                    ),
+                    NumberPicker(
+                      axis: Axis.horizontal,
+                      value: timer,
+                      minValue: 15,
+                      maxValue: 60,
+                      onChanged: onChangeTimer,
+                      itemWidth: 60,
+                      step: 15,
+                    ),
+                    IconButton(
+                      onPressed: () {
+                        final newTimer = timer + 15;
+                        onChangeTimer(newTimer.clamp(15, 60));
+                      },
+                      icon: const Icon(
+                        Icons.arrow_forward,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ],
                 ),
                 Divider(
                   height: 30,
@@ -107,8 +158,8 @@ class SettingsContent extends StatelessWidget {
                     ?.copyWith(fontSize: isCompact == true ? 18 : 25),
               ),
               SizedBox(height: isCompact == true ? 0 : 10),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+              Wrap(
+                alignment: WrapAlignment.center,
                 children: chips,
               ),
               Divider(
@@ -124,15 +175,16 @@ class SettingsContent extends StatelessWidget {
                     ?.copyWith(fontSize: isCompact == true ? 18 : 25),
               ),
               const SizedBox(height: 10),
-              // TODO: add a border for the selected item
               CarouselSlider(
                 items: flags,
                 options: CarouselOptions(
                   enableInfiniteScroll: false,
-                  viewportFraction: isCompact == true ? 0.15 : 0.3,
-                  height: isCompact == true ? 30 : 60,
+                  viewportFraction: isCompact == true ? 0.25 : 0.3,
+                  height: isCompact == true ? 50 : 60,
                   initialPage: initialLanguage,
                   onPageChanged: onChangeLanguage,
+                  enlargeCenterPage: true,
+                  enlargeFactor: 0.5,
                 ),
               ),
               if (type != QuizType.multi) ...[

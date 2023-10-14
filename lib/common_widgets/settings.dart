@@ -41,6 +41,27 @@ class _SettingsState extends State<Settings> {
   String _language = Languages.en.name;
   int _timer = 15;
 
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      _getInitialLanguage();
+    });
+  }
+
+  void _getInitialLanguage() {
+    final languageTag = Localizations.localeOf(context).toLanguageTag();
+
+    final languageTagToEnum = {
+      'en': Languages.en,
+      'pt': Languages.pt,
+      'es': Languages.es,
+    };
+    setState(() {
+      _language = languageTagToEnum[languageTag]?.name ?? Languages.en.name;
+    });
+  }
+
   void _onChangeQuestions(int value) {
     setState(() => _questions = value);
     widget.onChangeSettings?.call(SettingsOptions.questions, value);
@@ -57,8 +78,6 @@ class _SettingsState extends State<Settings> {
   ) {
     final mode = Mode.values[index];
 
-    // TODO: make chips wrap
-    // https://stackoverflow.com/a/58547609/7514409
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 5),
       child: ChoiceChip(
@@ -78,9 +97,9 @@ class _SettingsState extends State<Settings> {
   }
 
   int getFlagFromLanguage() {
-    final language = Localizations.localeOf(context).toLanguageTag();
-
-    return Languages.values.byName(language).index;
+    return Languages.values
+        .byName(Localizations.localeOf(context).toLanguageTag())
+        .index;
   }
 
   void getLanguageFromFlag(int index, CarouselPageChangedReason _) {
@@ -109,7 +128,9 @@ class _SettingsState extends State<Settings> {
       onStateChange: widget.onStateChange,
       onChangeQuestions: _onChangeQuestions,
       questions: _questions,
-      initialLanguage: getFlagFromLanguage(),
+      initialLanguage: Languages.values
+          .byName(Localizations.localeOf(context).toLanguageTag())
+          .index,
       onChangeLanguage: getLanguageFromFlag,
       timer: _timer,
       onChangeTimer: _onTimerChanged,

@@ -61,6 +61,7 @@ class LobbyPage extends StatelessWidget {
     return Scaffold(
       appBar: CustomAppBar(
         title: l10n.lobbyAppBar,
+        type: QuizType.multi,
         backButton: LobbyBackButton(
           exitAction: () {
             exitAction(context);
