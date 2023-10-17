@@ -8,6 +8,7 @@ import 'package:four_gospels/multi_player_setup/multi_player_setup.dart';
 import 'package:four_gospels/quiz/bloc/quiz_bloc.dart';
 import 'package:four_gospels/quiz/models/models.dart';
 import 'package:four_gospels/quiz/widgets/widgets.dart';
+import 'package:four_gospels/timer/timer.dart';
 
 @RoutePage()
 class EndGamePage extends StatelessWidget {
@@ -27,9 +28,15 @@ class EndGamePage extends StatelessWidget {
     context.read<MultiPlayerBloc>().add(MultiPlayerRestart());
   }
 
-  void onSinglePlayAgain(BuildContext context) {
-    context.router.replaceAll([const HomeRoute(), const LobbyRoute()]);
-    context.read<QuizBloc>().add(QuizFinished());
+  void onSinglePlayAgain(BuildContext context, QuizStart prevEvent) {
+    context.read<QuizBloc>().add(prevEvent);
+  }
+
+  void onStateChange(BuildContext context, QuizType type, int timer) {
+    context.router.replaceAll([const QuizRoute()]);
+    if (type == QuizType.speed) {
+      context.read<TimerBloc>().add(TimerStarted(duration: timer));
+    }
   }
 
   @override
@@ -41,7 +48,10 @@ class EndGamePage extends StatelessWidget {
       body: EndGameContent(
         onExit: () => onExit(context),
         onPlayAgain: () => onPlayAgain(context),
-        onSinglePlayAgain: () => onSinglePlayAgain(context),
+        onSinglePlayAgain: (QuizStart prevEvent) =>
+            onSinglePlayAgain(context, prevEvent),
+        onStateChange: (QuizType type, int timer) =>
+            onStateChange(context, type, timer),
       ),
     );
   }

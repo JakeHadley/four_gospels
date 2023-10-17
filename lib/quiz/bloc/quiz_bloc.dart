@@ -45,6 +45,7 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
         answerList: _buildAnswerList(questions[0]),
         type: event.type,
         timer: event.timer ?? 15,
+        prevEvent: event,
       ),
     );
   }
@@ -71,6 +72,7 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
           numberOfQuestions: prevState.numberOfQuestions,
           numberCorrect: numberCorrect,
           type: prevState.type,
+          prevEvent: prevState.prevEvent,
         ),
       );
     } else {
@@ -128,6 +130,7 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
         numberCorrect: prevState.numberCorrect,
         numberOfPoints: prevState.numberOfPoints,
         type: prevState.type,
+        prevEvent: prevState.prevEvent,
       ),
     );
   }

@@ -12,12 +12,14 @@ class EndGameContent extends StatelessWidget {
     required this.onExit,
     required this.onPlayAgain,
     required this.onSinglePlayAgain,
+    required this.onStateChange,
     super.key,
   });
 
   final VoidCallback onExit;
   final VoidCallback onPlayAgain;
-  final VoidCallback onSinglePlayAgain;
+  final void Function(QuizStart prevEvent) onSinglePlayAgain;
+  final void Function(QuizType type, int timer) onStateChange;
 
   @override
   Widget build(BuildContext context) {
@@ -31,9 +33,6 @@ class EndGameContent extends StatelessWidget {
               '${state.numberCorrect}/${state.numberOfQuestions}'
           : '${l10n.endGamePageCorrectAnswers}: '
               '${state.numberCorrect}';
-
-      // TODO: On Single player and speed, add a button to play again,
-      //  immediately start the quiz again, don't redirect to settings
 
       return Padding(
         padding: const EdgeInsets.symmetric(horizontal: 40),
@@ -59,7 +58,7 @@ class EndGameContent extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             ActionButton(
-              onPress: onPlayAgain,
+              onPress: () => onSinglePlayAgain(state.prevEvent),
               isLoading: false,
               text: l10n.playAgainButton,
             ),
@@ -132,7 +131,12 @@ class EndGameContent extends StatelessWidget {
         }
       },
       builder: (context, multiState) {
-        return BlocBuilder<QuizBloc, QuizState>(
+        return BlocConsumer<QuizBloc, QuizState>(
+          listener: (context, state) {
+            if (state is QuizLoaded) {
+              onStateChange(state.type, state.timer);
+            }
+          },
           builder: (context, quizState) {
             if (quizState is QuizComplete) {
               if (multiState is MultiPlayerActive) {

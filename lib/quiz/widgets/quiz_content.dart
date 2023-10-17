@@ -88,8 +88,6 @@ class QuizContent extends StatelessWidget {
                   )
                   .toList();
 
-              //TODO: check to make sure speed quiz ends correctly
-
               return Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 40),
                 child: Column(
