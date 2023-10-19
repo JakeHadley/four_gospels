@@ -163,6 +163,15 @@ class _QuizPageState extends State<QuizPage> {
         false;
   }
 
+  void _onPointsChanged({required String code, required int score}) {
+    context.read<MultiPlayerBloc>().add(
+          MultiPlayerUpdatePoints(
+            code: code,
+            score: score,
+          ),
+        );
+  }
+
   Future<String> getDeviceInfo() async {
     final deviceInfo = DeviceInfoPlugin();
     if (Platform.isAndroid) {
@@ -264,6 +273,7 @@ class _QuizPageState extends State<QuizPage> {
                   onQuizEnded: _onQuizEnded,
                   onSubmit: _onSubmit,
                   advanceMultiPlayerQuestion: _advanceMultiPlayerQuestion,
+                  onPointsChanged: _onPointsChanged,
                 ),
               );
             }

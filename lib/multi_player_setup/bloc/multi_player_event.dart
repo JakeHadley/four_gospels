@@ -98,3 +98,16 @@ class MultiPlayerModifyRoomSettings extends MultiPlayerEvent {
   @override
   List<Object> get props => [code, option];
 }
+
+class MultiPlayerUpdatePoints extends MultiPlayerEvent {
+  const MultiPlayerUpdatePoints({
+    required this.code,
+    required this.score,
+  });
+
+  final String code;
+  final int score;
+
+  @override
+  List<Object> get props => [code, score];
+}

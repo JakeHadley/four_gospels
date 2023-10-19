@@ -17,6 +17,11 @@ class Score {
     };
   }
 
+  @override
+  String toString() {
+    return '$name: $score';
+  }
+
   final String name;
   final int score;
 }

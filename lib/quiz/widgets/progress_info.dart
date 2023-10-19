@@ -4,6 +4,7 @@ import 'package:four_gospels/l10n/l10n.dart';
 import 'package:four_gospels/multi_player_setup/bloc/multi_player_bloc.dart';
 import 'package:four_gospels/quiz/bloc/quiz_bloc.dart';
 import 'package:four_gospels/quiz/models/quiz_type.dart';
+import 'package:four_gospels/quiz/widgets/scoresheet.dart';
 
 // ignore: must_be_immutable
 class ProgressInfo extends StatelessWidget {
@@ -67,7 +68,13 @@ class ProgressInfo extends StatelessWidget {
                         ),
                       );
                       prevValue = newValue;
-                      return widget;
+                      return Scoresheet(
+                        l10n: l10n,
+                        theme: theme,
+                        widget: widget,
+                        scores: multiState.room.scores
+                          ..sort((a, b) => b.score.compareTo(a.score)),
+                      );
                     }
                     return const SizedBox.shrink();
                   },

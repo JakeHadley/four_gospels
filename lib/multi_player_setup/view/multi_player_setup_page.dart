@@ -101,9 +101,6 @@ class _MultiPlayerSetupPageState extends State<MultiPlayerSetupPage> {
   void onError(RoomExceptionErrorEnum error) {
     String errorStr;
     switch (error) {
-      case RoomExceptionErrorEnum.language:
-        errorStr = context.l10n.wrongLanguage;
-        break;
       case RoomExceptionErrorEnum.name:
         errorStr = context.l10n.nameTaken;
         break;

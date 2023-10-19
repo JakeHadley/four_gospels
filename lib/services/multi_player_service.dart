@@ -55,11 +55,6 @@ class MultiPlayerService {
     final roomDocSnapshot = await roomReference.get();
     final room = roomDocSnapshot.data()!;
 
-    //TODO: check if this is an issue still
-    if (room.language != language) {
-      throw RoomException(RoomExceptionErrorEnum.language);
-    }
-
     if (room.users.contains(name)) {
       throw RoomException(RoomExceptionErrorEnum.name);
     }
@@ -122,7 +117,7 @@ class MultiPlayerService {
     final roomReference = await _getRoom(code);
     final roomDocSnapshot = await roomReference.get();
     final room = roomDocSnapshot.data();
-    final scores = room!.scores..add(score);
+    final scores = _getScores(room!.scores, score);
 
     await roomReference.set(room.copyWith(scores: scores));
   }
@@ -163,6 +158,18 @@ class MultiPlayerService {
         status: 'inactive',
       ),
     );
+  }
+
+  List<Score> _getScores(List<Score> scores, Score score) {
+    final existingScoreIndex = scores.indexWhere((s) => s.name == score.name);
+
+    if (existingScoreIndex != -1) {
+      scores[existingScoreIndex] = score;
+    } else {
+      scores.add(score);
+    }
+
+    return scores;
   }
 
   Future<DocumentReference<Room>> _getRoom(String code) async {

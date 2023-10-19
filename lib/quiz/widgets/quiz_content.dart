@@ -5,13 +5,14 @@ import 'package:four_gospels/quiz/bloc/quiz_bloc.dart';
 import 'package:four_gospels/quiz/models/models.dart';
 import 'package:four_gospels/quiz/widgets/widgets.dart';
 
-class QuizContent extends StatelessWidget {
+class QuizContent extends StatefulWidget {
   const QuizContent({
     required this.onNextQuestionPress,
     required this.onAnswerPress,
     required this.onQuizEnded,
     required this.onSubmit,
     required this.advanceMultiPlayerQuestion,
+    required this.onPointsChanged,
     super.key,
   });
 
@@ -34,17 +35,24 @@ class QuizContent extends StatelessWidget {
     required QuizType quizType,
   }) onSubmit;
   final void Function({required int indexToSet}) advanceMultiPlayerQuestion;
+  final void Function({
+    required String code,
+    required int score,
+  }) onPointsChanged;
 
-  // TODO: look into a scoreboard every so many questions if answering more than
-  //  10 questions
-  // TODO: look into animating scoreboard
+  @override
+  State<QuizContent> createState() => _QuizContentState();
+}
+
+class _QuizContentState extends State<QuizContent> {
+  int pointsTracker = 0;
 
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<QuizBloc, QuizState>(
       listener: (context, quizState) {
         if (quizState is QuizComplete) {
-          onQuizEnded(
+          widget.onQuizEnded(
             score: quizState.numberOfPoints,
             quizType: quizState.type,
           );
@@ -56,9 +64,18 @@ class QuizContent extends StatelessWidget {
             if (multiState is MultiPlayerActive && quizState is QuizLoaded) {
               if (quizState.currentQuestionIndex !=
                   multiState.room.currentQuestionIndex) {
-                advanceMultiPlayerQuestion(
+                widget.advanceMultiPlayerQuestion(
                   indexToSet: multiState.room.currentQuestionIndex,
                 );
+              }
+              if (quizState.numberOfPoints != pointsTracker) {
+                widget.onPointsChanged(
+                  code: multiState.room.code,
+                  score: quizState.numberOfPoints,
+                );
+                setState(() {
+                  pointsTracker = quizState.numberOfPoints;
+                });
               }
             }
           },
@@ -80,7 +97,7 @@ class QuizContent extends StatelessWidget {
                       answer: answer,
                       currentQuestionAnswered:
                           quizState.currentQuestionAnswered,
-                      onPress: onAnswerPress,
+                      onPress: widget.onAnswerPress,
                       selectedAnswer: quizState.selectedAnswer,
                       quizType: quizState.type,
                       questionMode: currentQuestion.mode,
@@ -118,9 +135,9 @@ class QuizContent extends StatelessWidget {
                       QuizButton(
                         currentQuestionAnswered:
                             quizState.currentQuestionAnswered,
-                        onNextQuestionPress: onNextQuestionPress,
+                        onNextQuestionPress: widget.onNextQuestionPress,
                         selectedAnswer: quizState.selectedAnswer,
-                        onSubmit: onSubmit,
+                        onSubmit: widget.onSubmit,
                         lastQuestion: quizState.numberOfQuestions -
                                 quizState.currentQuestionIndex ==
                             1,

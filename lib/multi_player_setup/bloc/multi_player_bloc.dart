@@ -24,6 +24,7 @@ class MultiPlayerBloc extends Bloc<MultiPlayerEvent, MultiPlayerState> {
     on<MultiPlayerComplete>(_onMultiPlayerComplete);
     on<MultiPlayerRestart>(_onMultiPlayerRestart);
     on<MultiPlayerModifyRoomSettings>(_onMultiPlayerModifyRoomSettings);
+    on<MultiPlayerUpdatePoints>(_onMultiPlayerUpdatePoints);
   }
 
   final MultiPlayerService multiPlayerService;
@@ -190,6 +191,18 @@ class MultiPlayerBloc extends Bloc<MultiPlayerEvent, MultiPlayerState> {
       event.option,
       event.value,
     );
+  }
+
+  Future<void> _onMultiPlayerUpdatePoints(
+    MultiPlayerUpdatePoints event,
+    Emitter<MultiPlayerState> emit,
+  ) async {
+    if (state is MultiPlayerActive) {
+      final activeState = state as MultiPlayerActive;
+      final score = Score(name: activeState.name, score: event.score);
+
+      await multiPlayerService.addScore(event.code, score);
+    }
   }
 
   @override

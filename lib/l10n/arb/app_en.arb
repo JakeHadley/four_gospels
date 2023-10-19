@@ -96,7 +96,7 @@
     "@endGamePageSubtitle": {
         "description": "End game page subtitle text"
     },
-    "endGameInfoScore": "Score",
+    "endGameInfoScore": "Points",
     "@endGameInfoScore": {
         "description": "End game page score pretext"
     },
