@@ -3,8 +3,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:four_gospels/l10n/l10n.dart';
 import 'package:four_gospels/multi_player_setup/bloc/multi_player_bloc.dart';
 import 'package:four_gospels/quiz/bloc/quiz_bloc.dart';
-import 'package:four_gospels/quiz/models/quiz_type.dart';
+import 'package:four_gospels/quiz/models/models.dart';
 import 'package:four_gospels/quiz/widgets/scoresheet.dart';
+
+Map<Mode, Widget> gaugeMap = {
+  Mode.easy: Image.asset('assets/easy.png'),
+  Mode.moderate: Image.asset('assets/moderate.png'),
+  Mode.difficult: Image.asset('assets/difficult.png'),
+};
 
 // ignore: must_be_immutable
 class ProgressInfo extends StatelessWidget {
@@ -23,11 +29,29 @@ class ProgressInfo extends StatelessWidget {
           return Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                '${l10n.quizSubtitleQuestion} '
-                '${quizState.currentQuestionIndex + 1} '
-                '${l10n.quizSubtitleOf} ${quizState.numberOfQuestions}',
-                style: theme.textTheme.titleSmall,
+              Row(
+                children: [
+                  AnimatedSwitcher(
+                    duration: const Duration(milliseconds: 400),
+                    child: SizedBox(
+                      key: ValueKey<Mode>(
+                        quizState
+                            .questions[quizState.currentQuestionIndex].mode,
+                      ),
+                      width: 40,
+                      height: 25,
+                      child: gaugeMap[quizState
+                          .questions[quizState.currentQuestionIndex].mode],
+                    ),
+                  ),
+                  const SizedBox(width: 5),
+                  Text(
+                    '${l10n.quizSubtitleQuestion} '
+                    '${quizState.currentQuestionIndex + 1} '
+                    '${l10n.quizSubtitleOf} ${quizState.numberOfQuestions}',
+                    style: theme.textTheme.titleSmall,
+                  ),
+                ],
               ),
               if (quizState.type == QuizType.multi)
                 BlocBuilder<MultiPlayerBloc, MultiPlayerState>(

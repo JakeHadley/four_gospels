@@ -194,8 +194,6 @@ class SettingsContent extends StatelessWidget {
                   isLoading: state is QuizLoading,
                   color: theme.colorScheme.primaryContainer,
                   text: l10n.startButton,
-                  height: 100,
-                  textStyle: theme.textTheme.displayLarge,
                 ),
               ],
               SizedBox(height: isCompact == true ? 0 : 30),

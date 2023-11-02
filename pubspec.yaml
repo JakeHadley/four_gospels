@@ -58,3 +58,13 @@ flutter_native_splash:
 flutter:
   uses-material-design: true
   generate: true
+  assets:
+    - assets/
+
+scripts:
+  build:
+    ios: flutter build ipa -t lib/main_production.dart --flavor production && open build/ios/ipa/
+    android: flutter build appbundle -t lib/main_production.dart --flavor production && open build/app/outputs/bundle/productionRelease/
+  auto_route: flutter packages pub run build_runner build
+  run_flutter:
+    prod: flutter run --flavor production --target lib/main_production.dart

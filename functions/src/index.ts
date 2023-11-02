@@ -62,7 +62,7 @@ exports.getQuestions = functions.https.onCall(async (request) => {
           idsForMode = [
             ...stats["easy"].ids,
             ...stats["moderate"].ids,
-            ...stats["hard"].ids,
+            ...stats["difficult"].ids,
           ];
         } else {
           idsForMode = stats[roomData.mode].ids;
