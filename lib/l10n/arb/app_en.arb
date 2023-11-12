@@ -1,6 +1,6 @@
 {
     "@@locale": "en",
-    "homePageAppBarTitle": "New Testament Quiz",
+    "homePageAppBarTitle": "Four Gospels Quiz",
     "@homePageAppBarTitle": {
         "description": "Home page app bar text"
     },
@@ -176,7 +176,6 @@
         "description": "Shown for non-owner users after submitting a question on multiplayer"
     },
     "nameTaken": "Name taken",
-    "wrongLanguage": "Language is not the same",
     "noRoom": "No room found",
     "noConnection": "No internet connection!",
     "playAgainButton": "Play again?",

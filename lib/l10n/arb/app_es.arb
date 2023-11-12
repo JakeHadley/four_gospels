@@ -1,6 +1,6 @@
 {
     "@@locale": "es",
-    "homePageAppBarTitle": "Quiz del Nuevo Testamento",
+    "homePageAppBarTitle": "Quiz de los Quatro Evangelios",
     "@homePageAppBarTitle": {
         "description": "Home page app bar text"
     },
@@ -176,7 +176,6 @@
         "description": "Shown for non-owner users after submitting a question on multiplayer"
     },
     "nameTaken": "Nombre ya tomado",
-    "wrongLanguage": "El idioma no es el mismo",
     "noRoom": "No se encontró ninguna sala",
     "noConnection": "¡Sin conexión a Internet!",
     "playAgainButton": "¿Jugar de nuevo?",
