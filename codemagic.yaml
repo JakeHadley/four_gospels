@@ -1,0 +1,87 @@
+workflows:
+  android-workflow:
+    name: Android Workflow
+    instance_type: mac_mini_m1
+    max_build_duration: 120
+    environment:
+      android_signing:
+        - keystore_reference
+      groups:
+        - google_play # <-- (Includes GCLOUD_SERVICE_ACCOUNT_CREDENTIALS)
+      vars:
+        PACKAGE_NAME: "app.exigentdev.four_gospels" # <-- Put your package name here
+        GOOGLE_PLAY_TRACK: "alpha"
+      flutter: stable
+    scripts:
+      - name: Set up local.properties
+        script: |
+          echo "flutter.sdk=$HOME/programs/flutter" > "$CM_BUILD_DIR/android/local.properties"
+      - name: Set up onepub
+        script: |
+          flutter pub global activate onepub |
+          export ONEPUB_TOKEN="$onepub" |
+          onepub import
+      - name: Get Flutter packages
+        script: |
+          flutter packages pub get
+      - name: Build AAB with Flutter
+        script: |
+          flutter build appbundle -t lib/main_production.dart --flavor production
+    artifacts:
+      - build/**/outputs/**/*.aab
+      - build/**/outputs/**/mapping.txt
+      - flutter_drive.log
+    publishing:
+      google_play:
+        credentials: $GCLOUD_SERVICE_ACCOUNT_CREDENTIALS
+        track: $GOOGLE_PLAY_TRACK
+        submit_as_draft: true
+  # ios-workflow:
+  #   name: iOS Workflow
+  #   instance_type: mac_mini_m1
+  #   max_build_duration: 120
+  #   integrations:
+  #     app_store_connect: codemagic
+  #   environment:
+  #     ios_signing:
+  #       distribution_type: app_store
+  #       bundle_identifier: app.exigentdev.four-gospels
+  #     flutter: stable
+  #     xcode: 14.2 # <-- set to specific version e.g. 14.3, 15.0 to avoid unexpected updates.
+  #     cocoapods: default
+  #   scripts:
+  #     - name: Set up code signing settings on Xcode project
+  #       script: |
+  #         xcode-project use-profiles
+  #     - name: Set up onepub
+  #       script: |
+  #         flutter pub global activate onepub |
+  #         export ONEPUB_TOKEN="$onepub" |
+  #         onepub import
+  #     - name: Get Flutter packages
+  #       script: |
+  #         flutter packages pub get
+  #     - name: Install pods
+  #       script: |
+  #         find . -name "Podfile" -execdir pod install \;
+  #     - name: Flutter build ipa and automatic versioning
+  #       script: |
+  #         flutter build ipa \
+  #           --export-options-plist=/Users/builder/export_options.plist -t lib/main_production.dart --flavor production
+  #   artifacts:
+  #     - build/ios/ipa/*.ipa
+  #     - /tmp/xcodebuild_logs/*.log
+  #     - flutter_drive.log
+  #   publishing:
+  #     app_store_connect:
+  #       auth: integration
+        
+  #       # Configuration related to TestFlight (optional)
+  #       # Note: This action is performed during post-processing.
+  #       submit_to_testflight: true
+  #       beta_groups: # Specify the names of beta tester groups that will get access to the build once it has passed beta review.
+  #         - Testers
+
+  #       # Configuration related to App Store (optional)
+  #       # Note: This action is performed during post-processing.
+  #       submit_to_app_store: false
