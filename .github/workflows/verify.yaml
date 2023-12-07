@@ -34,7 +34,7 @@ jobs:
         shell: bash
 
       - name: Analyze
-        run: flutter analyze 'lib test'
+        run: flutter analyze lib test
         shell: bash
 
       - name: Run Tests
