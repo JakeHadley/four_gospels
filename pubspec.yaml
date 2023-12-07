@@ -1,6 +1,6 @@
 name: four_gospels
 description: Four Gospels App
-version: 0.0.1+12
+version: 0.0.1+13
 publish_to: none
 
 environment:
