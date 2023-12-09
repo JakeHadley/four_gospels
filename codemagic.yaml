@@ -31,7 +31,6 @@ workflows:
           echo "keyPassword=$CM_KEY_PASSWORD" >> "$CM_BUILD_DIR/android/key.properties"
           echo "keyAlias=$CM_KEY_ALIAS" >> "$CM_BUILD_DIR/android/key.properties"
           echo "storeFile=$CM_KEYSTORE_PATH" >> "$CM_BUILD_DIR/android/key.properties"
-          cat $CM_BUILD_DIR/android/key.properties
       - name: Set up onepub
         script: |
           flutter pub global activate onepub
