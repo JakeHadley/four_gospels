@@ -30,7 +30,7 @@ jobs:
         shell: bash
 
       - name: Check Formatting
-        run: dart format --line-length '80' --set-exit-if-changed 'lib test'
+        run: dart format --line-length '80' --set-exit-if-changed lib test
         shell: bash
 
       - name: Analyze
