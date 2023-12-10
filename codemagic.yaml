@@ -19,7 +19,8 @@ workflows:
         - onepub
       vars:
         PACKAGE_NAME: "app.exigentdev.four_gospels" # <-- Put your package name here
-        GOOGLE_PLAY_TRACK: internal
+        GOOGLE_PLAY_TRACK: production
+        #GOOGLE_PLAY_TRACK: internal
       flutter: stable
     scripts:
       - name: Set up local.properties
@@ -49,7 +50,7 @@ workflows:
       google_play:
         credentials: $GCLOUD_SERVICE_ACCOUNT_CREDENTIALS
         track: $GOOGLE_PLAY_TRACK
-        submit_as_draft: true
+        #submit_as_draft: true
   ios-workflow:
     triggering:
       events:
@@ -105,10 +106,12 @@ workflows:
         
         # Configuration related to TestFlight (optional)
         # Note: This action is performed during post-processing.
-        submit_to_testflight: true
-        beta_groups: # Specify the names of beta tester groups that will get access to the build once it has passed beta review.
-          - Testers
+        #submit_to_testflight: true
+        #beta_groups: # Specify the names of beta tester groups that will get access to the build once it has passed beta review.
+        #  - Testers
 
         # Configuration related to App Store (optional)
         # Note: This action is performed during post-processing.
-        submit_to_app_store: false
+        submit_to_app_store: true
+        #submit_to_app_store: false
+        
