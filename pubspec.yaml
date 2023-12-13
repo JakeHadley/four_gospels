@@ -1,6 +1,6 @@
 name: four_gospels
 description: Four Gospels App
-version: 0.0.1+18
+version: 0.0.1+19
 publish_to: none
 
 environment:
@@ -36,7 +36,7 @@ dependencies:
   path_provider: ^2.1.1
   quiz_core:
     hosted: https://onepub.dev/api/kxhbxpsdav/
-    version: ^0.0.1+1
+    version: ^0.0.2
   screenshot: ^2.1.0
   shared_preferences: ^2.0.15
 

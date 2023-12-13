@@ -897,10 +897,10 @@ packages:
     dependency: "direct main"
     description:
       name: quiz_core
-      sha256: "5587b0b33c6aa7632020ab21e3638e7b6b98cad15dd98d3691abdd330b6a74c3"
+      sha256: "8dff5d2cf3ce6f11a12733a424ebd35638d759d51eb8513018fd253aac92e886"
       url: "https://onepub.dev/api/kxhbxpsdav/"
     source: hosted
-    version: "0.0.1+1"
+    version: "0.0.2+6"
   random_string:
     dependency: transitive
     description:
