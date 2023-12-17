@@ -8,6 +8,7 @@ workflows:
         - include: true
           pattern: master
           source: true
+      cancel_previous_builds: true
     name: Android Workflow
     instance_type: mac_mini_m1
     max_build_duration: 120
@@ -59,6 +60,7 @@ workflows:
         - include: true
           pattern: master
           source: true
+      cancel_previous_builds: true
     name: iOS Workflow
     instance_type: mac_mini_m1
     max_build_duration: 120
