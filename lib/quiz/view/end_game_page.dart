@@ -2,8 +2,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:four_gospels/app/auto_router.dart';
 import 'package:four_gospels/l10n/l10n.dart';
-import 'package:four_gospels/quiz/models/quiz_type.dart';
-import 'package:quiz_core/models/quiz_type.dart';
+import 'package:four_gospels/quiz/models/models.dart';
+import 'package:quiz_core/models/models.dart';
 import 'package:quiz_core/quiz_widgets/end_game_wrapper.dart';
 
 @RoutePage()
@@ -39,6 +39,8 @@ class EndGamePage extends StatelessWidget {
       endGamePageSubtitleText: l10n.endGamePageSubtitle,
       endGameButtonText: l10n.endGameButton,
       playAgainButtonText: l10n.playAgainButton,
+      modeText: l10n.confirmSettingsDifficulty,
+      getModeString: (Mode mode) => getModeString(mode, l10n),
     );
   }
 }

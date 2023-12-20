@@ -12,6 +12,8 @@ buildscript {
         classpath 'com.google.firebase:firebase-crashlytics-gradle:2.8.1'
         // END: FlutterFire Configuration
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath 'com.google.android.play:review:2.0.1'
+        classpath 'com.google.android.play:review-ktx:2.0.1'
     }
 }
 
