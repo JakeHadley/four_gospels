@@ -44,8 +44,6 @@ class QuizTheme {
           onSecondary: const Color(0xff413D3D),
           brightness: Brightness.light,
           onError: const Color(0xffC8C8C8),
-          background: const Color(0xffE0E0DF),
-          onBackground: const Color(0xff616161),
           surface: Colors.white,
           onSurface: const Color(0xff616161),
         ),
@@ -60,6 +58,7 @@ class QuizTheme {
             ),
           ),
         ),
+
         textTheme: GoogleFonts.getTextTheme(
           'KoHo',
           TextTheme(
