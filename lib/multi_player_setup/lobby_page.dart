@@ -11,7 +11,7 @@ class LobbyPage extends StatelessWidget {
   const LobbyPage({super.key});
 
   void pop(BuildContext context) {
-    context.router.pop();
+    context.router.maybePop();
   }
 
   void navigateToQuiz(BuildContext context) {
